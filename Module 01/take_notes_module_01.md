@@ -80,7 +80,7 @@
 - Trong đó n sẽ bằng kích thước từ vựng -> Nếu **kích thước từ vựng lớn** điều này sẽ là 1 vấn đề. 
 - Mô hình mất rất nhiều thời gian để training và mất nhiều thời gian hơn cần thiết để đưa ra dự đoán
 
-- Với text đã được học cách biểu diễn dứi dạng một Vector có kích thước v cụ thể -> 1 Tweet có thể xây dunwgh dưới một từ vựng của chiều V. 
+- Với text đã được học cách biểu diễn dứi dạng một Vector có kích thước v cụ thể -> 1 Tweet có thể xây dựng dưới một từ vựng của chiều V. 
 - Nếu V trở nên lớn hơn -> **bạn sẽ gặp phải một số vấn đề**
 - Như bạn có thể thấy, khi V trở nên lớn hơn, vector trở nên thưa thớt hơn. Hơn nữa, chúng ta sẽ có nhiều đặc trưng hơn và kết quả là phải **huấn luyện nhiều tham số θ** của V hơn. 
 - Điều này có thể dẫn đến **thời gian huấn luyện lâu hơn** và **thời gian dự đoán cũng lớn hơn**.
@@ -112,18 +112,32 @@
 
 ![M1_W1_06_Feature Extraction with Frequencies_04](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_04.png)
 
-- Do đó, bạn sẽ nhận được vectơ đặc trưng sau đây[1,8,11] . 1, tương ứng với độ lệch (bias),8 là đặc trưng dương, và 11 là đặc trưng âm.
+- Do đó, bạn sẽ nhận được vectơ đặc trưng sau đây[1,8,11] . 1, tương ứng với độ lệch (bias), 8 là đặc trưng dương, và 11 là đặc trưng âm.
 
+#### 7. Preprocessing
+- Học về hai khái niệm chính về tiền xử lý: 
+    + Khái niệm thứ nhất gọi là `steaming` (**bắt nguồn từ**) 
+    + Khái niệm thứ hai gọi là `stop word` (**dừng từ**)
+- Học về cách sử dụng `steaming` và `stop word` để xử lý trước văn bản
 
+- Khi tiền xử lý, bạn phải thực hiện theo các bước sau: 
+    + Loại bỏ các handle và URL
+    + Phân tách chuỗi thành các từ
+    + Xóa các `stop word` như: "and, is, a, o, v.v"
+    + `steaming` hoặc chuyển đổi từng từ thành gốc của nó. Ví dụ như dancer, dancing, danced, thành **danc**. Bạn có thế sử dụng `porter stemmer` để xử lý việc này. 
+    + Chuyển đổi tất cả các từ của bạn sang **chữ thường**. 
 
+- Ví dụ như dòng tweet sau
+   
+    ```
+    "@YMourri and @AndrewYNg are tuning a GREAT AI model at https://deeplearning.ai!!!"
+    ```
 
+- Sau khi tiền xử lý sẽ trở thành như sau: 
 
+![M1_W1_07_Preprocessing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_07_Preprocessing.png)
 
-
-
-
-
-
+[*tun, great, ai, model*] Do đó, bạn có thể thấy cách chúng tôi **loại bỏ các ký tự xử lý**, phân tách thành các từ, **loại bỏ các từ dừng**, thực hiện chuyển đổi gốc và **chuyển đổi mọi thứ thành chữ thường.**
 
 
 
