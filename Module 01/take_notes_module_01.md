@@ -133,7 +133,7 @@
     "@YMourri and @AndrewYNg are tuning a GREAT AI model at https://deeplearning.ai!!!"
     ```
 
-- Sau khi tiền xử lý sẽ trở thành như sau: 
+- Sau khi tiền xử lý nó sẽ trở thành như sau: 
 
 ![M1_W1_07_Preprocessing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_07_Preprocessing.png)
 
