@@ -1,10 +1,13 @@
-# Module 01 - Natural Language Processing with Classification and Vector Spaces
+# **Module 01** - Natural Language Processing with Classification and Vector Spaces
 ## Week 1: Sentiment Analysis with Logistic Regression
 
 - Biểu diễn văn bản dưới dạng text thành vector và xây dựng một bộ phân loại sẽ phân loại văn bản mẫu thành hai loại (Tâm lý tích cực hoặc Tâm lý tiêu cực). Sử dụng Logistic Regression. 
 
 ### Logistic Regression
 #### 1. Supervised Machine Learning (Học có giám sát)
+
+![M1_W1_01_Supervised ML](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_01_Supervised%20ML.png)
+> Kiến trúc của Supervise ML
 
 - Trong máy học giám sát bạn có các tính năng đầu vào **X** và tập hợp các nhãn **Y**
 - Để đảm bảo rằng bạn nhận được **dự đoán chính xác nhất** dựa trên dữ liệu của bạn.
@@ -14,8 +17,7 @@
 - **Hàm chi phí** thực hiện bằng cách so sánh mức độ gần gũi giữa Output Y^ của bạn với nhãn Y.
 - Sau đó bạn có thể cập nhật tham số và lặp lại toàn bộ quá trình xử lý cho đến khi tối ưu được chi phí thấp nhất. 
 
-![M1_W1_01_Supervised ML](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_01_Supervised%20ML.png)
-> Kiến trúc của Supervise ML
+
 
 #### 2. Sentiment Analysis (Phân tích tình cảm)
 
@@ -68,6 +70,62 @@
 - Làm sao để xác định câu này có trong list. 
 - Thì nó sẽ gán giá trị là 1 nếu từ vựng trong câu trên có xuất hiện trong list, còn tất cả các giá trị còn lại không xuất hiện trong list sẽ hiểu là 0
 - Những nó sẽ sinh ra vấn đề -> **Quá nhiều số 0 và biễu diễn quá thưa thớt.**
+
+#### 5. Vấn đề biểu diễn thưa thớt 
+
+![M1_W1_05_Problem Spare Representation](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_05_Problem%20Spare%20Representation.png)
+> Giải thích ảnh trên: 
+
+- Với sử biểu diễn thưa thớt, thì mô hình hồi quy Logistic sẽ phải học **n + 1 parameter**. 
+- Trong đó n sẽ bằng kích thước từ vựng -> Nếu **kích thước từ vựng lớn** điều này sẽ là 1 vấn đề. 
+- Mô hình mất rất nhiều thời gian để training và mất nhiều thời gian hơn cần thiết để đưa ra dự đoán
+
+- Với text đã được học cách biểu diễn dứi dạng một Vector có kích thước v cụ thể -> 1 Tweet có thể xây dunwgh dưới một từ vựng của chiều V. 
+- Nếu V trở nên lớn hơn -> **bạn sẽ gặp phải một số vấn đề**
+- Như bạn có thể thấy, khi V trở nên lớn hơn, vector trở nên thưa thớt hơn. Hơn nữa, chúng ta sẽ có nhiều đặc trưng hơn và kết quả là phải **huấn luyện nhiều tham số θ** của V hơn. 
+- Điều này có thể dẫn đến **thời gian huấn luyện lâu hơn** và **thời gian dự đoán cũng lớn hơn**.
+
+**Negative and Positive** 
+
+#### 6. Feature Extraction with Frequencies
+
+- Mỗi hàng text sẽ là 1 Tweet 
+
+- Cho một tập hợp dữ liệu với các tweet tích cực và tiêu cực như sau
+
+![M1_W1_06_Feature Extraction with Frequencies_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_01.png)
+
+- Bạn phải mã hóa mỗi tweet dưới dạng một vectơ. 
+- Trước đây, vectơ này có kích thước V. 
+- Bây giờ, như bạn sẽ thấy trong các video sắp tới, bạn sẽ biểu diễn nó bằng một vectơ có kích thước 3. 
+- Để làm được điều này, bạn phải tạo một từ điển để gán từ và lớp mà nó xuất hiện (tích cực hoặc tiêu cực) với số lần từ đó xuất hiện trong lớp tương ứng của nó.
+
+![M1_W1_06_Feature Extraction with Frequencies_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_02.png)
+
+- Trong hai video trước, chúng tôi gọi từ điển này là `freqs`. 
+- Trong bảng trên, bạn có thể thấy các từ như happy và sad có xu hướng nghiêng về một thái cực rõ ràng, trong khi các từ khác như "I, am" thường có xu hướng trung lập hơn. 
+- Dựa trên từ điển này và tweet, "I am sad, I am not learning NLP", bạn có thể tạo một vector tương ứng với đặc trưng như sau:
+
+![M1_W1_06_Feature Extraction with Frequencies_03](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_03.png)
+
+- Để mã hóa đặc điểm tiêu cực, bạn có thể làm việc tương tự
+
+![M1_W1_06_Feature Extraction with Frequencies_04](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_04.png)
+
+- Do đó, bạn sẽ nhận được vectơ đặc trưng sau đây[1,8,11] . 1, tương ứng với độ lệch (bias),8 là đặc trưng dương, và 11 là đặc trưng âm.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
