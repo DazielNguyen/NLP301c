@@ -19,6 +19,9 @@
 
 #### 2. Sentiment Analysis (Phân tích tình cảm)
 
+![Sentiment analysis Ví dụ](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_02_Sentiment%20analysis.png)
+>Ví dụ về Sentiment analysis 
+
 - Trong ví dụ này bạn có: 
 
     ```
@@ -35,22 +38,36 @@
 
 - Dùng Logistic Regression đã dán nhãn, gán quan sát của nó cho hai lớp khác biệt
 
-![Sentiment analysis Ví dụ](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_02_Sentiment%20analysis.png)
-
->Ví dụ về Sentiment analysis 
+![Cách xây dựng Sentiment analysis](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2_02_Sentiment%20analysis%20ho%E1%BA%A1t%20%C4%91%E1%BB%99ng.png)
+> Cách xây dựng Sentiment analysis
 
 - Để xây dựng một bộ phân loại hồi quy logistic, có khả năng dự đoán tình cảm của một tweet tùy ý. 
 - Xử lý các tweet thô trong training set và trích xuất các tính năng hữu ích
 - Sau đó train Logistic Regression của bạn cùng với đó phải giảm thiểu chi phí. 
 - Classify, cuối cùng bạn sẽ có thể đưa ra dự đoán của bạn
 
+### Vocabulary & Feature Extraction
+#### 3. Vocabulary 
+- Để biểu diễn text dưới dạng vector, cần phải xây dựng một bộ từ vựng và nó sẽ cho phép bạn mã hóa bất kỳ text nào hoặc bất kỳ tweet nào dưới dạng một mảng số.
 
-![Cách xây dựng Sentiment analysis](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2_02_Sentiment%20analysis%20ho%E1%BA%A1t%20%C4%91%E1%BB%99ng.png)
-> Cách xây dựng Sentiment analysis
+![M1_01_01_Vocabulary](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_03_Vocabulary.png)
 
+> Cách lưu các text thành mảng số
 
+- Hình ảnh một danh sách các tweet, trực quan hóa nó sẽ là các câu. 
+- Sau đó từ vựng V sẽ là danh sách các từ duy nhất trong danh sách các tweet của bạn. 
+- Để có được list đó thì bạn phải xem qua tất cả các từ vựng từ tất cả các tweet của bạn và lưu mọi từ mới xuất hiện trong tìm kiếm của bạn. 
+- Lưu ý trong 2 câu có lặp từ thì chỉ lấy 1 từ duy nhất, không lặp lại hai từ đó. 
 
+#### 4. Feature Extraction
 
+![Biểu diễn Feature Extraction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_04_Feature%20Extraction.png)
+> Giải thích ảnh trên: 
+
+- Chúng ta có một câu (I am happy because I am learning NLP)
+- Làm sao để xác định câu này có trong list. 
+- Thì nó sẽ gán giá trị là 1 nếu từ vựng trong câu trên có xuất hiện trong list, còn tất cả các giá trị còn lại không xuất hiện trong list sẽ hiểu là 0
+- Những nó sẽ sinh ra vấn đề -> **Quá nhiều số 0 và biễu diễn quá thưa thớt.**
 
 
 
