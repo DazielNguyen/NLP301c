@@ -140,8 +140,19 @@
 [*tun, great, ai, model*] Do đó, bạn có thể thấy cách chúng tôi **loại bỏ các ký tự xử lý**, phân tách thành các từ, **loại bỏ các từ dừng**, thực hiện chuyển đổi gốc và **chuyển đổi mọi thứ thành chữ thường.**
 
 #### 8. Putting it All Together
+- Nhìn chung, bạn bắt đầu với một văn bản cho trước, bạn thực hiện tiền xử lý, sau đó bạn trích xuất đặc điểm để chuyển đổi văn bản thành biểu diễn số như sau:
 
+![M1_W1_08_PuttingIAT](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_08_PuttingIAT.png)
 
+- **X** của bạn, trở thành kích thước (*m*, 3) như sau:
+
+![M1_W1_08_PuttingIAT_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_08_PuttingIAT_01.png)
+
+- Khi triển khai bằng code, nó sẽ như sau:
+
+![M1_W1_08_PuttingIAT_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_08_PuttingIAT_02.png)
+
+- Bạn có thể thấy ở bước cuối cùng, bạn đang lưu trữ các **tính năng được trích xuất dưới dạng các hàng** (extract_features) trong ma trận **X** và bạn có *m* ví dụ này.
 
 
 
