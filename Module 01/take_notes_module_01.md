@@ -139,6 +139,8 @@
 
 [*tun, great, ai, model*] Do đó, bạn có thể thấy cách chúng tôi **loại bỏ các ký tự xử lý**, phân tách thành các từ, **loại bỏ các từ dừng**, thực hiện chuyển đổi gốc và **chuyển đổi mọi thứ thành chữ thường.**
 
+#### 8. Putting it All Together
+
 
 
 
