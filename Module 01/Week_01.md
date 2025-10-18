@@ -362,14 +362,6 @@ $$
 * NMT thành công vì có sẵn lượng lớn dữ liệu (văn bản song ngữ).
 * Các mô hình ban đầu sử dụng **tái phát mạng thần kinh (recurrent neural networks - RNN)**, được xem như "phiên bản thần kinh liên tục của một mô hình Markov ẩn", và chúng hoạt động tốt mà không cần (lập trình sẵn) cấu trúc ngôn ngữ của con người.
 
-## Week 2: 
-- Sử dụng phân loại Naive Bayes trên cùng một vấn đề
 
-## Week 3: 
-- Tìm hiểu về các mô hình khôn gian Vector. 
-- Tim hiểu về các biểu diễn các tài liệu văn bản như tweet, artical, truy vấn hoặc bất kỳ đối tượng nào có chứa văn bản dưới dạng một Vector. Điều này quan trọng trong việc truy xuất thông tin trong tập chỉ mục, trong xếp hạng liên quan và cũng như trong lọc thông tin.
-
-## Week 4: 
-- Xây dựng hệ thống dịch máy cơ bản đầu tiền của bạn và bạn sẽ sử dụng locality sensitive hashing để cải thiện hiệu suất của Nearest Neighbor Search. 
 
 
