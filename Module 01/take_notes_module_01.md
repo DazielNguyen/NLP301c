@@ -154,7 +154,7 @@
 
 - Bạn có thể thấy ở bước cuối cùng, bạn đang lưu trữ các **tính năng được trích xuất dưới dạng các hàng** (extract_features) trong ma trận **X** và bạn có *m* ví dụ này.
 
-#### 9. Logistic Regression Overview
+### Logistic Regression Overview
 
 - Đây là cái nhìn tổng quan về **hồi quy logistic** (logistic regression).
 - Bạn sẽ sử dụng các **tính năng** (features) đã trích xuất để dự đoán một **tweet** có tâm lý tích cực hay tiêu cực.
@@ -176,13 +176,37 @@
 - Khi tích chấm $\ge 0$, dự đoán là dương. Khi tích chấm $< 0$, dự đoán là âm.
 > Một ví dụ được đưa ra trong bối cảnh **phân tích tình cảm** (sentiment analysis) tweet.
 
-![M1_W1_10_Logistic_Regression_Overview_03](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_10_Logistic_Regression_Overview_03)
+![M1_W1_10_Logistic_Regression_Overview_03](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_10_Logistic_Regression_Overview_03.png)
 
 - Sau **tiền xử lý** (preprocessing) (ví dụ: chữ thường, giảm từ về gốc như 'tun'), bạn trích xuất các tính năng thành một vector.
 - Vector này bao gồm một **đơn vị thiên vị** (bias unit) và các tính năng (như tổng tần số tích cực và tiêu cực).
 - Giả sử đã có bộ tham số **Theta** tối ưu, bạn có thể nhận được giá trị của **hàm sigmoid** (ví dụ 4.92 trong script) và dự đoán một tình cảm tích cực.
 - Bây giờ bạn đã biết ký hiệu (notation) để **đào tạo** (train) một yếu tố trọng lượng **Theta**.
 - Video tiếp theo sẽ nói về cơ chế (mechanics) đằng sau việc đào tạo bộ phân loại hồi quy logistic.
+
+#### 1. Logistic Regression: Training
+- Video này hướng dẫn bạn học (tìm) **theta** ($\theta$) của riêng bạn từ đầu.
+- Để đào tạo bộ phân loại **hồi quy logistic**, bạn lặp lại cho đến khi tìm thấy **theta** ($\theta$) giúp **giảm thiểu hàm chi phí** (cost function) J.
+- Một ví dụ trực quan cho thấy hàm chi phí (giả sử phụ thuộc vào **theta1** và **theta2**) và sự tiến hóa của nó qua các lần lặp (100, 200,...) để tiến gần đến chi phí tối ưu.
+> Kiến trúc Training LR
+
+![M1_W1_11_Logistic_Regression_Training](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_11_Logistic_Regression_Training.png)
+
+- Quá trình chi tiết bao gồm:
+    1.  **Khởi tạo** (Initialize) vector tham số **theta** ($\theta$).
+    2.  Sử dụng **hàm logistic** (logistic function) để lấy giá trị cho mỗi quan sát.
+    3.  Tính toán **gradient** (gradient) của hàm chi phí.
+    4.  **Cập nhật** (Update) các tham số.
+    5.  Tính toán **chi phí J** (cost J) và quyết định xem có cần lặp thêm không (dựa trên tham số dừng hoặc số lần lặp tối đa).
+- Thuật toán này được gọi là **gradient descent**.
+> Thông thường bạn sẽ tiếp tục huấn luyện cho đến khi chi phí hội tụ. Nếu bạn vẽ biểu đồ số lần lặp so với chi phí, bạn sẽ thấy điều gì đó như sau:
+
+![M1_W1_12_Logistic_Regression_Training_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_11_Logistic_Regression_Training_02.png)
+- Sau khi có **theta** ($\theta$), bạn cần **đánh giá** (evaluate) nó, tức là đánh giá bộ phân loại của bạn (tốt hay xấu).
+- Video tiếp theo sẽ chỉ cách đánh giá này.
+
+#### 2. Logistic Regression: Testing
+
 
 ## Week 2: 
 - Sử dụng phân loại Naive Bayes trên cùng một vấn đề
