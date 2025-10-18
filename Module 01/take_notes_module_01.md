@@ -154,7 +154,35 @@
 
 - Bạn có thể thấy ở bước cuối cùng, bạn đang lưu trữ các **tính năng được trích xuất dưới dạng các hàng** (extract_features) trong ma trận **X** và bạn có *m* ví dụ này.
 
+#### 9. Logistic Regression Overview
 
+- Đây là cái nhìn tổng quan về **hồi quy logistic** (logistic regression).
+- Bạn sẽ sử dụng các **tính năng** (features) đã trích xuất để dự đoán một **tweet** có tâm lý tích cực hay tiêu cực.
+- Hồi quy logistic sử dụng một **hàm sigmoid** (sigmoid function), xuất ra một xác suất từ 0 đến 1.
+> Overview of logistic regression
+
+![M1_W1_09_Logistic Regression Overview](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_09_Logistic_Regression_Overview.png)
+
+- Trong **máy học được giám sát** (supervised machine learning), bạn có các tính năng đầu vào và nhãn. Bạn dùng một hàm với các tham số để ánh xạ các đối tượng với nhãn đầu ra.
+- Để có ánh xạ tối ưu, bạn **giảm thiểu hàm chi phí** (cost function) bằng cách so sánh đầu ra **Y hat** với nhãn thật **Y**. Các **tham số** (parameters) được cập nhật lặp lại cho đến khi chi phí được giảm thiểu.
+- Đối với hồi quy logistic, Hàm F trong hình là hàm Sigmoid
+> Biểu đạt bằng phương trình
+
+![M1_W1_10_Logistic_Regression_Overview_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_10_Logistic_Regression_Overview_02.png)
+- Đối với hàm hồi quy logistic (H) là **hàm sigmoid**, phụ thuộc vào tham số **Theta** và vector tính năng **X dấu trên i** (quan sát thứ i, hoặc tweet thứ i).
+- Hàm sigmoid tiếp cận 0 khi tích chấm của **Theta transpose X** ($\theta^T X$) tiến đến âm vô cực, và tiếp cận 1 khi nó tiến đến dương vô cực.
+- Để phân loại, cần một **ngưỡng** (threshold), thường là **0.5**.
+- Giá trị 0.5 tương ứng với **tích chấm** ($\theta^T X$) bằng 0.
+- Khi tích chấm $\ge 0$, dự đoán là dương. Khi tích chấm $< 0$, dự đoán là âm.
+> Một ví dụ được đưa ra trong bối cảnh **phân tích tình cảm** (sentiment analysis) tweet.
+
+![M1_W1_10_Logistic_Regression_Overview_03](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_10_Logistic_Regression_Overview_03)
+
+- Sau **tiền xử lý** (preprocessing) (ví dụ: chữ thường, giảm từ về gốc như 'tun'), bạn trích xuất các tính năng thành một vector.
+- Vector này bao gồm một **đơn vị thiên vị** (bias unit) và các tính năng (như tổng tần số tích cực và tiêu cực).
+- Giả sử đã có bộ tham số **Theta** tối ưu, bạn có thể nhận được giá trị của **hàm sigmoid** (ví dụ 4.92 trong script) và dự đoán một tình cảm tích cực.
+- Bây giờ bạn đã biết ký hiệu (notation) để **đào tạo** (train) một yếu tố trọng lượng **Theta**.
+- Video tiếp theo sẽ nói về cơ chế (mechanics) đằng sau việc đào tạo bộ phân loại hồi quy logistic.
 
 ## Week 2: 
 - Sử dụng phân loại Naive Bayes trên cùng một vấn đề
