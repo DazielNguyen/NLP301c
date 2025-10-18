@@ -242,7 +242,7 @@
 ![M1_W1_15_Logistic_Regression_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function.png)
 
 
-![M1_W1_15_Logistic_Regression_Cost_Function_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function_2.png)
+![M1_W1_16_Logistic_Regression_Cost_Function_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function_2.png)
 
 - **Tổng** ($\sum$) trên **m** ví dụ đào tạo, cho thấy chi phí được tính trên mỗi ví dụ.
 - Hệ số **-1/m** phía trước có nghĩa là tính giá trị trung bình.
@@ -267,13 +267,42 @@
 - Bạn đã hiểu cách hàm chi phí hoạt động khi dự đoán đúng và sai.
 - Tuần tiếp theo sẽ tìm hiểu về **Naive Bayes**, một thuật toán phân loại khác.
 
+#### 4. Optional Logistic Regression: Gradient
+
+- This is an optional reading where I explain gradient descent in more detail. Remember, previously I gave you the gradient update step, but did not explicitly explain what is going on behind the scenes.
+
+- The general form of gradient descent is defined as:
+
+![M1_W1_17_Gradient_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_17_Gradient_1.png)
+
+- For all j. We can work out the derivative part using calculus to get:
+
+![M1_W1_18_Gradient_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_18_Gradient_2.png)
+
+- A vectorized implementation is:
+
+![M1_W1_19_Gradient_3](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_19_Gradient_3.png)
+
+### Partial derivative of J(θ)
+
+First calculate derivative of sigmoid function (it will be useful while finding partial derivative of J(θ)):
+
+![M1_W1_20_Gradient_4](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_20_Gradient_4.png)
 
 
+- Note that we computed the partial derivative of the sigmoid function. If we were to derive `$h(x^{(i)}, \theta)$` with respect to `$\theta_j$`, you would get `$h(x^{(i)}, \theta) (1 - h(x^{(i)}, \theta)) x_j^{(i)}$`. Note that we used the chain rule there, because we multiply by the derivative of `$\theta^T x^{(i)}$` with respect to `$\theta_j$`. Now we are ready to find out resulting partial derivative:
 
+$$
+\frac{\partial}{\partial \theta_j} h(x^{(i)}, \theta) = h(x^{(i)}, \theta) (1 - h(x^{(i)}, \theta)) x_j^{(i)}
+$$
 
+![M1_W1_21_Gradient_5](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_21_Gradient_5.png)
 
+- The vectorized version:
 
-
+$$
+\nabla J(\theta) = \frac{1}{m} \cdot X^T \cdot (H(X, \theta) - Y)
+$$
 
 ## Week 2: 
 - Sử dụng phân loại Naive Bayes trên cùng một vấn đề
