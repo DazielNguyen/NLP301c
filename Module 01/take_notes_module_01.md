@@ -210,7 +210,7 @@
 - Bạn sẽ sử dụng dữ liệu để dự đoán các điểm dữ liệu mới (ví dụ: tweet tích cực hay tiêu cực) và phân tích xem mô hình có **khái quát hóa** (generalize) tốt không.
 > Phần này chỉ cách tính **độ chính xác** (accuracy) của mô hình.
 
-![M1_W1_13_Logistic_Regression_Testing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_12_Logistic_Regression_Testing.png)
+![M1_W1_13_Logistic_Regression_Testing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_13_Logistic_Regression_Testing.png)
 
 - Để tính độ chính xác, bạn cần **X_Val** và **Y_Val** (dữ liệu để riêng trong quá trình đào tạo, còn gọi là **bộ xác nhận** - validation set) và **Theta** ($\theta$) (bộ thông số tối ưu).
 - Các bước thực hiện:
@@ -220,7 +220,7 @@
     4.  Kết quả là một **vector dự đoán** (prediction vector) gồm các số 0 (tiêu cực) và 1 (tích cực).
 > Công thức tính độ chính xác
 
-![M1_W1_14_Logistic_Regression_Testing_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_12_Logistic_Regression_Testing_02.png)
+![M1_W1_14_Logistic_Regression_Testing_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_14_Logistic_Regression_Testing_02.png)
 
 - Tính toán độ chính xác:
     1.  So sánh **vector dự đoán** với **giá trị thực sự** (Y_Val). Nếu khớp (ví dụ: dự đoán 0, nhãn 0) = 1; nếu không khớp (ví dụ: dự đoán 1, nhãn 0) = 0.
@@ -242,7 +242,7 @@
 ![M1_W1_15_Logistic_Regression_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function.png)
 
 
-![M1_W1_16_Logistic_Regression_Cost_Function_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function_2.png)
+![M1_W1_16_Logistic_Regression_Cost_Function_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_16_Logistic_Regression_Cost_Function_2.png)
 
 - **Tổng** ($\sum$) trên **m** ví dụ đào tạo, cho thấy chi phí được tính trên mỗi ví dụ.
 - Hệ số **-1/m** phía trước có nghĩa là tính giá trị trung bình.
