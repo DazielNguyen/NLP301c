@@ -233,6 +233,48 @@
 * Có một **video tùy chọn** (optional video) về trực giác (intuition) đằng sau **hàm chi phí** (cost function) cho hồi quy logistic.
 - Tuần tới sẽ học về thuật toán **Bayes ngây thơ** (Naive Bayes).
 
+#### 3. Logistic Regression: Cost Function
+
+- Video này là **tùy chọn** và giải thích **trực giác** (intuition) đằng sau **hàm chi phí hồi quy logistic** (logistic regression cost function).
+
+> **Phương trình hàm chi phí** được phân tích thành các thành phần:
+
+![M1_W1_15_Logistic_Regression_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function.png)
+
+
+![M1_W1_15_Logistic_Regression_Cost_Function_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function_2.png)
+
+- **Tổng** ($\sum$) trên **m** ví dụ đào tạo, cho thấy chi phí được tính trên mỗi ví dụ.
+- Hệ số **-1/m** phía trước có nghĩa là tính giá trị trung bình.
+- **Dấu trừ** đảm bảo chi phí tổng thể luôn là một **số dương**.
+
+- Bên trong phương trình có **hai thuật ngữ**:
+
+    + **Thuật ngữ bên trái** ($y^{(i)} \log(h(x^{(i)}, \theta))$):
+        * Có liên quan khi **nhãn (y) là 1**.
+        * Khi y=1 và dự đoán (h) gần 1, chi phí gần 0 (dự đoán tốt).
+        * Khi y=1 và dự đoán (h) gần 0, chi phí tăng lên rất lớn (tiến đến vô cực) (dự đoán sai).
+        * Khi y=0, thuật ngữ này bằng 0.
+    + **Thuật ngữ bên phải** ($(1-y^{(i)}) \log(1-h(x^{(i)}, \theta))$):
+        * Có liên quan khi **nhãn (y) là 0**.
+        * Khi y=0 và dự đoán (h) gần 0, chi phí gần 0 (dự đoán tốt).
+        * Khi y=0 và dự đoán (h) gần 1, chi phí tăng lên rất lớn (tiến đến vô cực) (dự đoán sai).
+        * Khi y=1, thuật ngữ này bằng 0.
+
+- **Đồ thị hàm chi phí** cho một ví dụ duy nhất:
+    + Khi **nhãn là 1**, chi phí ($-\log(h)$) gần 0 nếu dự đoán gần 1, và tiến đến **vô cùng** nếu dự đoán gần 0.
+    + Khi **nhãn là 0**, chi phí ($-\log(1-h)$) gần 0 nếu dự đoán gần 0, và tiến đến **vô cùng** nếu dự đoán gần 1.
+- Bạn đã hiểu cách hàm chi phí hoạt động khi dự đoán đúng và sai.
+- Tuần tiếp theo sẽ tìm hiểu về **Naive Bayes**, một thuật toán phân loại khác.
+
+
+
+
+
+
+
+
+
 ## Week 2: 
 - Sử dụng phân loại Naive Bayes trên cùng một vấn đề
 
