@@ -201,12 +201,37 @@
 - Thuật toán này được gọi là **gradient descent**.
 > Thông thường bạn sẽ tiếp tục huấn luyện cho đến khi chi phí hội tụ. Nếu bạn vẽ biểu đồ số lần lặp so với chi phí, bạn sẽ thấy điều gì đó như sau:
 
-![M1_W1_12_Logistic_Regression_Training_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_11_Logistic_Regression_Training_02.png)
+![M1_W1_12_Logistic_Regression_Training_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_12_Logistic_Regression_Training_02.png)
 - Sau khi có **theta** ($\theta$), bạn cần **đánh giá** (evaluate) nó, tức là đánh giá bộ phân loại của bạn (tốt hay xấu).
 - Video tiếp theo sẽ chỉ cách đánh giá này.
 
 #### 2. Logistic Regression: Testing
 
+- Bạn sẽ sử dụng dữ liệu để dự đoán các điểm dữ liệu mới (ví dụ: tweet tích cực hay tiêu cực) và phân tích xem mô hình có **khái quát hóa** (generalize) tốt không.
+> Phần này chỉ cách tính **độ chính xác** (accuracy) của mô hình.
+
+![M1_W1_13_Logistic_Regression_Testing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_12_Logistic_Regression_Testing.png)
+
+- Để tính độ chính xác, bạn cần **X_Val** và **Y_Val** (dữ liệu để riêng trong quá trình đào tạo, còn gọi là **bộ xác nhận** - validation set) và **Theta** ($\theta$) (bộ thông số tối ưu).
+- Các bước thực hiện:
+    1.  Tính **hàm sigmoid** (sigmoid function) cho **X_Val** với các tham số **Theta**.
+    2.  Đánh giá nếu mỗi giá trị $h(X, \theta)$ $\ge$ **ngưỡng** (threshold), thường là **0.5**.
+    3.  Ví dụ: 0.3 $< 0.5$ $\rightarrow$ dự đoán là 0; 0.8 $\ge 0.5$ $\rightarrow$ dự đoán là 1; 0.5 $\ge 0.5$ $\rightarrow$ dự đoán là 1.
+    4.  Kết quả là một **vector dự đoán** (prediction vector) gồm các số 0 (tiêu cực) và 1 (tích cực).
+> Công thức tính độ chính xác
+
+![M1_W1_14_Logistic_Regression_Testing_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_12_Logistic_Regression_Testing_02.png)
+
+- Tính toán độ chính xác:
+    1.  So sánh **vector dự đoán** với **giá trị thực sự** (Y_Val). Nếu khớp (ví dụ: dự đoán 0, nhãn 0) = 1; nếu không khớp (ví dụ: dự đoán 1, nhãn 0) = 0.
+    2.  Tạo một vector so sánh (ví dụ: [1, 0, ...]).
+    3.  Tổng hợp vector so sánh (tính tổng số lần dự đoán đúng).
+    4.  Chia tổng đó cho **tổng số m quan sát** từ bộ xác nhận.
+- Số liệu này ước tính thời gian **hồi quy logistic** (logistic regression) hoạt động chính xác trên **dữ liệu không nhìn thấy** (unseen data). (Ví dụ: độ chính xác 0.5 = 50%; ví dụ khác: 80%).
+- Tổng kết Tuần 1: Bạn đã học cách **xử lý trước** (preprocess) văn bản, **trích xuất đối tượng/đặc điểm** (extract features), **đào tạo** (train) mô hình, và **kiểm tra** (test) mô hình.
+- **Bài tập lập trình** (programming exercise) tuần này sẽ giúp thực hiện các khái niệm đã học.
+* Có một **video tùy chọn** (optional video) về trực giác (intuition) đằng sau **hàm chi phí** (cost function) cho hồi quy logistic.
+- Tuần tới sẽ học về thuật toán **Bayes ngây thơ** (Naive Bayes).
 
 ## Week 2: 
 - Sử dụng phân loại Naive Bayes trên cùng một vấn đề
