@@ -3,7 +3,7 @@
 
 - Biểu diễn văn bản dưới dạng text thành vector và xây dựng một bộ phân loại sẽ phân loại văn bản mẫu thành hai loại (Tâm lý tích cực hoặc Tâm lý tiêu cực). Sử dụng Logistic Regression. 
 
-### Logistic Regression
+### **Logistic Regression**
 #### 1. Supervised Machine Learning (Học có giám sát)
 
 ![M1_W1_01_Supervised ML](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_01_Supervised%20ML.png)
@@ -48,7 +48,7 @@
 - Sau đó train Logistic Regression của bạn cùng với đó phải giảm thiểu chi phí. 
 - Classify, cuối cùng bạn sẽ có thể đưa ra dự đoán của bạn
 
-### Vocabulary & Feature Extraction
+### **Vocabulary & Feature Extraction**
 #### 3. Vocabulary 
 - Để biểu diễn text dưới dạng vector, cần phải xây dựng một bộ từ vựng và nó sẽ cho phép bạn mã hóa bất kỳ text nào hoặc bất kỳ tweet nào dưới dạng một mảng số.
 
@@ -154,7 +154,7 @@
 
 - Bạn có thể thấy ở bước cuối cùng, bạn đang lưu trữ các **tính năng được trích xuất dưới dạng các hàng** (extract_features) trong ma trận **X** và bạn có *m* ví dụ này.
 
-### Logistic Regression Overview
+### **Logistic Regression Overview**
 
 - Đây là cái nhìn tổng quan về **hồi quy logistic** (logistic regression).
 - Bạn sẽ sử dụng các **tính năng** (features) đã trích xuất để dự đoán một **tweet** có tâm lý tích cực hay tiêu cực.
@@ -283,7 +283,7 @@
 
 ![M1_W1_19_Gradient_3](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_19_Gradient_3.png)
 
-### Partial derivative of J(θ)
+#### Partial derivative of J(θ)
 
 First calculate derivative of sigmoid function (it will be useful while finding partial derivative of J(θ)):
 
@@ -304,7 +304,7 @@ $$
 \nabla J(\theta) = \frac{1}{m} \cdot X^T \cdot (H(X, \theta) - Y)
 $$
 
-#### 5. Phỏng vấn của bác Andrew Nguyen với ông Chris Manning
+### **Phỏng vấn của bác Andrew Nguyen với ông Chris Manning**
 
 ##### Giới thiệu Chris Manning
 
