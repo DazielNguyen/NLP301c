@@ -304,6 +304,64 @@ $$
 \nabla J(\theta) = \frac{1}{m} \cdot X^T \cdot (H(X, \theta) - Y)
 $$
 
+#### 5. Phỏng vấn của bác Andrew Nguyen với ông Chris Manning
+
+##### Giới thiệu Chris Manning
+
+* Buổi phỏng vấn với **Chris Manning**, nhà nghiên cứu **NLP** (Xử lý ngôn ngữ tự nhiên) được trích dẫn nhiều nhất thế giới.
+* Ông là Giáo sư Khoa học Máy tính và Ngôn ngữ học tại **Đại học Stanford** và là Giám đốc của **Stanford AI Lab**.
+* Ông nổi tiếng là người đi đầu trong việc áp dụng **học sâu (deep learning)** vào NLP.
+* Các nghiên cứu nổi tiếng của ông bao gồm **mạng thần kinh đệ quy cây (tree-recursive neural networks)**, **phân tích tình cảm (sentiment analysis)**, **phân tích phụ thuộc (dependency parsing)**, và thuật toán **GLOVE**.
+* Ông từng giảng dạy tại **Carnegie Mellon (CMU)**, **Đại học Sydney**, và **Stanford**.
+
+---
+
+##### Con đường đến với AI và Máy học
+
+* Andrew (người phỏng vấn) hỏi Chris về việc ông bắt đầu với AI như thế nào, đặc biệt là với nền tảng về **ngôn ngữ học (linguistics)**.
+* Chris cho biết ban đầu ông không phải là người làm AI. Khi học đại học, ông học khoa học máy tính, toán học và cả ngôn ngữ học.
+* Điểm khởi đầu của ông là góc nhìn **khoa học nhận thức (cognitive science)**: Làm thế nào con người học được ngôn ngữ?
+* Vào nửa sau thế kỷ 20, tư duy thống trị trong ngôn ngữ học là của **Noam Chomsky**.
+* Chomsky cho rằng con người không thể học ngôn ngữ chỉ từ **dữ liệu (data)** mà phải có **máy móc bẩm sinh (innate machinery)** trong não.
+* Chris không tin vào điều này và bắt đầu quan tâm đến việc làm thế nào bạn có thể *học* ngôn ngữ, dẫn ông đến **máy học (machine learning)** vào cuối những năm 1980.
+* Thời điểm đó, máy học là một lĩnh vực rất nhỏ bé, "thận trọng" bên lề AI, không giống như bây giờ khi AI và máy học "là hai phần ba cùng một thứ".
+* Các công trình máy học sơ khai thời đó bao gồm sách của **Jaime Carbonell** và **Tom Mitchell** (từ CMU) và các **thuật toán cây quyết định (decision tree algorithms)** như **ID3**.
+
+---
+
+##### Bối cảnh AI/NLP thời kỳ đầu
+
+* Andrew lưu ý rằng vào thời điểm đó, việc sử dụng dữ liệu để học ngôn ngữ là không trực quan; thay vào đó, mọi người cố gắng **lập trình bằng tay (hand-programming)** một **ngữ pháp CFG (CFG grammar)**.
+* Chris đồng ý, cách tiếp cận thống trị trong AI lúc đó là **hệ thống dựa trên tri thức (knowledge-based systems)**, nơi các **kỹ sư kiến thức (knowledge engineers)** mã hóa tri thức chuyên gia.
+* Chris đã là "tín đồ thời kỳ đầu" (early believer) vào việc sử dụng máy học cho NLP.
+
+---
+
+##### Transformer và Dịch máy Thống kê (SMT)
+
+* Chris đề cập (có phần lạc đề) rằng **kiến trúc dựa trên biến áp (transformer-based architectures)** hiện đang thống trị, được xây dựng xung quanh ý tưởng về **sự chú ý (attention)**, thứ tạo ra "cấu trúc cây mềm (soft tree structure)".
+* Nghiên cứu (ví dụ của **John Hewitt**) cho thấy **mô hình biến áp (transformer models)** có thể học được cấu trúc ngôn ngữ (như **đồng tham khảo (co-reference)** và **cấu trúc ngữ pháp không có ngữ cảnh phân cấp**) chỉ từ dữ liệu văn bản thô.
+* Quay lại chủ đề, Andrew đề cập đến công việc có ảnh hưởng của Chris về **dịch máy thống kê (statistical machine translation - SMT)**.
+* Khi học sâu nổi lên, nhóm của Chris đã xuất bản một trong những bài báo sớm nhất về **dịch máy thần kinh (neural machine translation - NMT)**, giúp đặt nền tảng (ví dụ: **ma trận chú ý bi-tuyến tính - bilinear attention matrix**).
+* Chris xác nhận rằng trong những năm 2000, ông chủ yếu sử dụng **kỹ thuật mô hình xác suất (probabilistic model techniques)**, đây là cách tiếp cận thống trị.
+* Mô hình MT thống trị khi đó là **dịch máy dựa trên cụm từ thống kê (statistical phrase-based machine translation)**.
+* Các hệ thống này sử dụng **bảng cụm từ (phrase tables)** (xác suất dịch cụm từ) kết hợp với **mô hình ngôn ngữ (language model - LM)**.
+* **Mô hình ngôn ngữ** (được định nghĩa là một **phân phối xác suất (probability distribution)** qua chuỗi các từ) là một ý tưởng rất mạnh mẽ trong NLP, được sử dụng cho **hiệu chỉnh chính tả (spell correction)**, **nhận dạng giọng nói (speech recognition)**, và MT.
+* Khi Google ra mắt dịch máy dựa trên ML, họ đã sử dụng các hệ thống **dựa trên cụm từ thống kê** này (sau khi ban đầu cấp phép hệ thống **dựa trên quy tắc** của **SYSTRAN**).
+* **Franz Och** là người đã lãnh đạo Google mở rộng quy mô các mô hình MT dựa trên cụm từ thống kê trên "tấn dữ liệu", làm cho Google Translate hoạt động "khá hợp lý" trong giai đoạn 2007-2010.
+
+---
+
+##### Giai đoạn chững lại và Bước đột phá của Mạng Nơ-ron
+
+* Trong giai đoạn 2010-2014, **dịch máy dựa trên cụm từ thống kê bị đình trệ (stalled)**.
+* Những nỗ lực cải tiến bằng cách sử dụng **cấu trúc ngữ pháp (grammatical structure)** (tức là **hệ thống dịch máy dựa trên cú pháp - syntax-based machine translation systems**) "hầu như không hiệu quả".
+* Giải pháp (trớ trêu thay) là "chú ý ít hơn đến cú pháp và chú ý nhiều hơn đến dữ liệu".
+* Thành công lớn đầu tiên của các phương pháp thần kinh trong NLP (dựa trên văn bản) là **dịch thuật máy thần kinh (NMT)**.
+* (Chris lưu ý rằng **nhận dạng giọng nói (speech recognition)** mới thực sự là thành công lớn *đầu tiên* của mạng nơ-ron đối với ngôn ngữ con người).
+* NMT thành công vì có sẵn lượng lớn dữ liệu (văn bản song ngữ).
+* Các mô hình ban đầu sử dụng **tái phát mạng thần kinh (recurrent neural networks - RNN)**, được xem như "phiên bản thần kinh liên tục của một mô hình Markov ẩn", và chúng hoạt động tốt mà không cần (lập trình sẵn) cấu trúc ngôn ngữ của con người.
+
 ## Week 2: 
 - Sử dụng phân loại Naive Bayes trên cùng một vấn đề
 
@@ -313,3 +371,5 @@ $$
 
 ## Week 4: 
 - Xây dựng hệ thống dịch máy cơ bản đầu tiền của bạn và bạn sẽ sử dụng locality sensitive hashing để cải thiện hiệu suất của Nearest Neighbor Search. 
+
+
