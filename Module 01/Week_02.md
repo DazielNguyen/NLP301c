@@ -54,7 +54,7 @@
 - **Điểm rút ra chính:** Quy tắc Bayes dựa trên công thức toán học của xác suất có điều kiện. Nó cho phép bạn tính $P(x | y)$ nếu bạn biết $P(y | x)$ và tỷ lệ $P(x) / P(y)$.
 - **CONDITIONAL PROBABILITIES** "LÀ" **BAYES' RULE**
 - Video tiếp theo sẽ áp dụng quy tắc Bayes cho một mô hình gọi là **Naive Bayes** (Bayes ngây thơ) để xây dựng **bộ phân loại phân tích tâm lý** (sentiment analysis classifier).
-
+---
 ### Naive Bayes Introduction
 
 - Tuần này, bạn sẽ học cách phân loại tweet bằng **Naive Bayes** (Bayes ngây thơ), thay vì dùng **hồi quy logistic** (logistic regression) như tuần trước.
@@ -62,7 +62,6 @@
 - Đây là một ví dụ về **học máy có giám sát** (supervised machine learning).
 - Nó được gọi là **"ngây thơ" (naive)** vì đưa ra giả định rằng các **tính năng (features)** (từ) là **độc lập (independent)** với nhau, điều mà trong thực tế hiếm khi xảy ra nhưng vẫn hoạt động tốt.
 
----
 
 > Quy trình của Naive Bayes
 
@@ -92,7 +91,6 @@
     * Nếu một từ (ví dụ: "because") chỉ xuất hiện trong kho tích cực, xác suất của nó ở kho âm sẽ là 0.
     * Điều này gây ra vấn đề tính toán. Để tránh điều này, bạn cần **làm mịn (smoothing)**.
 
----
 
 #### Áp dụng (Suy luận)
 
@@ -115,7 +113,32 @@
 - Vì giá trị này **cao hơn một** (1.4 > 1), tweet được kết luận là tích cực.
 - Video tiếp theo sẽ xem xét các vấn đề và **đơn giản hóa các tính toán (simplify calculations)**.
 
+---
 ### Laplacian Smoothing
+> Công thức tính Laplacian Smoothing
+
+![08_Laplacian_smoothing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/08_Laplacian_smoothing.png)
+
+- **Vấn đề**: Khi tính xác suất, nếu hai từ không bao giờ xuất hiện cạnh nhau trong tập tài liệu đào tạo, bạn sẽ nhận được **xác suất bằng 0**. Điều này có thể khiến xác suất của toàn bộ chuỗi bằng 0.
+- **Giải pháp**: **Làm mịn Laplacian** (Laplacian smoothing), một kỹ thuật để tránh xác suất bằng không.
+- **Công thức gốc**: Xác suất có điều kiện $P(\text{từ} | \text{lớp})$ được tính bằng:
+    $\text{Tần số}(\text{từ}_i, \text{lớp}) / N_{\text{lớp}}$ (Số từ trong lớp đó).
+- **Công thức làm mịn (Smoothing)**:
+    1.  **Tử số**: Thêm 1 vào tần số:
+        $\text{Tần số}(\text{từ}_i, \text{lớp}) + 1$.
+        (Sự "biến đổi nhỏ" này tránh xác suất bằng 0).
+    2.  **Mẫu số**: Để chuẩn hóa (normalize) lại, bạn thêm **V** vào tổng số từ:
+        $N_{\text{lớp}} + V$
+    3.  **V** là **số lượng từ duy nhất trong từ vựng** (number of unique words in the vocabulary).
+- Quá trình này được gọi là **Làm mịn Laplacian** (Laplacian smoothing).
+- **Ví dụ tính toán**:
+    * Đầu tiên, tính **V**. Trong ví dụ, $V = 8$ (tám từ duy nhất).
+    * $P(\text{"I"} | \text{tích cực}) = (3 + 1) / (13 + 8) = 0.19$ (đã làm tròn).
+    * $P(\text{"I"} | \text{tiêu cực}) = (3 + 1) / (12 + 8) = 0.2$.
+    * Quá trình này được tiếp tục cho phần còn lại của bảng.
+- **Kết quả**: Tổng xác suất trong bảng vẫn là 1, và quan trọng là (ví dụ: từ "because" ở script trước) **không còn xác suất bằng 0**.
+- **Kết luận**: Bạn đã học về làm mịn Laplacian và hiểu tầm quan trọng của nó để xác suất không bằng không.
+- Video tiếp theo sẽ nói về **khả năng ghi nhật ký** (log likelihood).
 
 
 
@@ -124,13 +147,17 @@
 
 
 
-
-
+---
 ### Log Likelihood
+---
 ### Training Naive Bayes
+---
 ### Testing Naive Bayes
+---
 ### Applications og Naive Bayes
+---
 ### Naive Bayes Assumption
+---
 ### Error Analysis
 
 
