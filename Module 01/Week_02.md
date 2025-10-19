@@ -66,12 +66,20 @@
 
 > Quy trình của Naive Bayes
 
+![05_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/05_Naive_Bayes_Introduction.png)
+
+
 1.  **Chuẩn bị dữ liệu**:
     - Bắt đầu với hai **corpora** (kho dữ liệu): một cho tweet tích cực và một cho tweet tiêu cực.
     - Trích xuất **từ vựng** (vocabulary) (tất cả các từ khác nhau) và **số lượng (counts)** của chúng trong mỗi kho (tích cực và tiêu cực).
 2.  **Tính Tổng số từ**:
     - Đếm tổng số từ trong kho tích cực (ví dụ: 13) và tổng số từ trong kho âm (ví dụ: 12).
     - Đây là bước mới quan trọng cho Naive Bayes, cho phép tính **xác suất có điều kiện** (conditional probability).
+
+> Bảng xác suất có điều kiện
+
+![06_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/06_Naive_Bayes_Introduction.png)
+
 3.  **Tính Bảng Xác suất Có điều kiện**:
     - Tính $P(\text{từ} | \text{lớp})$ bằng cách: (tần suất của từ trong lớp) / (tổng số từ trong lớp đó).
     - Ví dụ: $P(\text{"I"} | \text{positive}) = 3/13 \approx 0.24$. $P(\text{"I"} | \text{negative}) = 3/12 = 0.25$.
@@ -87,6 +95,8 @@
 ---
 
 #### Áp dụng (Suy luận)
+
+![07_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/07_Naive_Bayes_Introduction.png)
 
 - Giả sử có tweet mới: “Hôm nay tôi hạnh phúc, tôi đang học hỏi.”
 - Sử dụng **quy tắc điều kiện suy luận Naive Bayes (Naive Bayes inference conditional rule)** để phân loại nhị phân.
@@ -105,25 +115,17 @@
 - Vì giá trị này **cao hơn một** (1.4 > 1), tweet được kết luận là tích cực.
 - Video tiếp theo sẽ xem xét các vấn đề và **đơn giản hóa các tính toán (simplify calculations)**.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### Laplacian Smoothing
+
+
+
+
+
+
+
+
+
+
 ### Log Likelihood
 ### Training Naive Bayes
 ### Testing Naive Bayes
