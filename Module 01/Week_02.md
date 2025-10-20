@@ -216,18 +216,68 @@
 ---
 ### Training Naive Bayes
 
-
-
-
-
-
-
-
-
-
+- Video này chỉ cách **đào tạo (train)** bộ phân loại **Naive Bayes** (Bayes ngây thơ).
+- "Đào tạo" trong bối cảnh này khác với hồi quy logistic hay học sâu; không có **độ dốc dốc (gradient descent)**, mà chỉ **đếm tần số (counting frequencies)** của từ.
 
 ---
+
+> Các bước đào tạo Naive Bayes
+
+1.  **Bước 1: Thu thập dữ liệu**
+- Lấy một tập hợp các tweet và chia nó thành hai nhóm: **tích cực (positive)** và **tiêu cực (negative)**.
+
+2.  **Bước 2: Tiền xử lý (Preprocessing)**
+- Đây là bước nền tảng, bao gồm 5 bước nhỏ:
+    1.  Viết thường (lowercase).
+    2.  Loại bỏ dấu câu, URL, và tay cầm (handles).
+    3.  Xóa các từ dừng (stop words).
+    4.  Tạo gốc (stemming).
+    5.  Mã hóa (tokenization) (chia tài liệu thành từ/mã thông báo).
+- Trong "thế giới thực", việc thu thập và xử lý văn bản chiếm phần lớn thời gian.
+
+3.  **Bước 3: Tính Tần suất và Xác suất - freq(w, class) - P(w|pos), P(w|neg)**
+
+![13_Training_Naive_Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/13_Training_Naive_Bayes.png)
+
+- Từ kho (corpus) đã xử lý, tính toán **từ vựng (vocabulary)** (bảng tần số) cho từng từ trong mỗi lớp.
+- Tính tổng các từ trong mỗi kho.
+- Từ bảng tần số, tính **xác suất có điều kiện (conditional probabilities)** bằng **công thức làm mịn Laplacian (Laplacian smoothing formula)**.
+- Lưu ý: **V** (số từ duy nhất) chỉ tính các từ trong bảng (ví dụ: V = 6), không phải tổng số từ trong kho gốc.
+- Điều này tạo ra một bảng xác suất chỉ chứa các giá trị lớn hơn 0.
+
+4.  **Bước 4: Tính Lambda**
+    - Nhận **điểm Lambda (Lambda score)** cho mỗi từ.
+    - Lambda là **nhật ký của tỷ lệ xác suất có điều kiện (log of the ratio of conditional probabilities)**.
+
+5.  **Bước 5: Ước tính Nhật ký Trước (Estimate Log Prior)**
+    - Đếm số lượng tweet tích cực và tiêu cực.
+    - **Nhật ký trước (Log prior)** là nhật ký của tỷ lệ (số lượng tweet tích cực / số lượng tweet tiêu cực).
+    - Trong các bài tập tới (bộ dữ liệu cân bằng - **balanced dataset**), log prior sẽ bằng 0.
+    - Thuật ngữ này quan trọng đối với **tập dữ liệu không cân bằng (unbalanced datasets)**.
+
+> Tóm tắt (6 bước logic)
+
+Việc đào tạo một mô hình Naive Bayes có thể được chia thành sáu bước logic:
+1.  Chú thích (annotate) một tập dữ liệu (tweet tích cực và tiêu cực).
+2.  Xử lý văn bản thô để có kho mã thông báo sạch.
+3.  Tính tần số từ điển (dictionary frequencies) cho từng từ trong lớp.
+4.  Tính xác suất có điều kiện (dùng làm mịn Laplacian).
+5.  Tính hệ số lambda cho mỗi từ.
+6.  Ước tính nhật ký trước (log prior) của mô hình.
+
+* **Kết luận:** Bây giờ bạn đã thấy cách xây dựng bảng xác suất cần thiết.
+* **Tiếp theo:** Phân loại câu của bạn.
+---
 ### Testing Naive Bayes
+
+
+
+
+
+
+
+
+
 ---
 ### Applications of Naive Bayes
 ---
