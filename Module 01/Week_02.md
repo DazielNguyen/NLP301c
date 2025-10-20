@@ -346,20 +346,101 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
 - Nó phổ biến vì **tương đối đơn giản** (relatively simple) để đào tạo, sử dụng và diễn giải.
 - **Tiếp theo:** Bạn sẽ học về những giả định (assumptions) làm nền tảng cho phương pháp Naive Bayes.
 
-
-
-
-
-
-
-
-
-
-
-
 ---
 ### Naive Bayes Assumption
+
+- Video này nói về các **giả định (assumptions)** làm nền tảng cho phương pháp **Naive Bayes (bayes ngây thơ)**.
+- Giả định chính là **sự độc lập của các từ (independence of words)** trong một câu.
+- Phương pháp này được gọi là **"ngây thơ" (naive)** vì những giả định nó đưa ra về dữ liệu:
+    1. **Sự độc lập giữa các yếu tố dự đoán (independence between predictors)** (tính năng) liên quan đến mỗi lớp.
+    2. (Giả định thứ hai liên quan đến bộ xác thực, nhưng kịch bản tập trung vào vấn đề phân phối dữ liệu).
+
+![15_Naive_Bayes_Assumptions_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/15_Naive_Bayes_Assumptions_01.png)
+
+
+> Vấn đề 1: Giả định về sự độc lập
+
+- **Ví dụ:** Câu "Trời nắng và nóng ở sa mạc Sahara" (It is sunny and hot in the Sahara desert). Naive Bayes giả định các từ này **độc lập** với nhau.
+- **Thực tế:** Điều này thường không xảy ra. "Nắng" (sunny) và "nóng" (hot) thường xuất hiện cùng nhau và có liên quan đến "sa mạc" (desert).
+- **Hệ quả:** Giả định ngây thơ này có thể khiến bạn **đánh giá thấp (underestimate)** hoặc **đánh giá quá cao (overestimate)** xác suất có điều kiện của từng từ.
+- **Ví dụ (Hạn chế):** Nếu hoàn thành câu "it always cold and snow is white in...", Naive Bayes có thể gán xác suất bằng nhau cho các mùa (xuân, hè, thu, đông), mặc dù "mùa đông" (winter) là có khả năng nhất theo ngữ cảnh.
+- (Các khóa học tiếp theo sẽ giới thiệu các phương pháp tinh vi hơn để giải quyết vấn đề này).
+
+![16_Naive_Bayes_Assumptions_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/16_Naive_Bayes_Assumptions_02.png)
+
+> Vấn đề 2: Phân phối dữ liệu (Data Distribution)
+
+- Naive Bayes dựa vào sự **phân phối của các bộ dữ liệu đào tạo (distribution of the training datasets)**.
+- Một tập dữ liệu tốt nên có tỷ lệ (tích cực/tiêu cực) giống như một mẫu ngẫu nhiên.
+= **Thực tế:** Hầu hết các **cơ thể có chú thích (annotated corpora)** có sẵn đều được **cân bằng nhân tạo (artificially balanced)** (giống như tập dữ liệu bạn dùng).
+- Trong **"tweet thực sự" (real tweet)** (thực tế), các tweet tích cực có xu hướng xảy ra thường xuyên hơn tweet tiêu cực.
+    + Lý do: Các tweet tiêu cực (ví dụ: **từ vựng không phù hợp hoặc xúc phạm - inappropriate or offensive vocabulary**) có thể bị nền tảng cấm hoặc người dùng tắt tiếng.
+- **Hệ quả:** Nếu dữ liệu đào tạo (ví dụ: cân bằng) không phản ánh thực tế (ví dụ: nhiều tích cực hơn), mô hình có thể trở nên rất **lạc quan (optimistic)** hoặc **bi quan (pessimistic)**.
+
+> Tóm tắt
+
+- Giả định về sự độc lập (ngây thơ) rất khó đảm bảo, nhưng mô hình vẫn hoạt động khá tốt trong một số tình huống.
+- Đối với các bài tập trong mô-đun này, tần suất tương đối (tích cực/tiêu cực) trong bộ dữ liệu đào tạo cần được **cân bằng** để mang lại kết quả chính xác.
+- **Video tiếp theo:** Sẽ chỉ cho bạn biết phải làm gì khi mô hình hoạt động không tốt trong một số trường hợp.
+
 ---
 ### Error Analysis
+
+Video này chỉ cho bạn cách **phân tích lỗi** (analyze errors) khi một phương pháp NLP (như Naive Bayes) **phân loại sai** (misclassify) một câu.
+
+> Các Nguồn Lỗi Tiềm Ẩn
+
+Có ba nguyên nhân chính gây ra lỗi dự đoán:
+1.  **Ý nghĩa ngữ nghĩa** (Semantic meaning) bị mất trong **bước xử lý trước** (preprocessing).
+2.  **Thứ tự từ** (Word order) ảnh hưởng đến ý nghĩa của câu.
+3.  Những **điều kỳ quặc về ngôn ngữ** (language quirks) mà các mô hình ngây thơ (naive models) nhầm lẫn.
+
+
+> Lỗi 1: Xử lý trước (Preprocessing)
+
+Một trong những cân nhắc chính là văn bản thực sự trông như thế nào sau khi được xử lý.
+
+![17_Error_Analysis_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/17_Error_Analysis_01.png)
+
+- **Dấu câu (Punctuation):**
+    + Ví dụ: Tweet "bà ngoại yêu dấu của tôi :(". Dấu câu khuôn mặt buồn (`:(`) rất quan trọng đối với tình cảm.
+    + Nếu bạn **xóa dấu câu**, văn bản được xử lý ("người bà yêu quý") trông giống như một tweet rất **tích cực** (positive).
+- **Từ trung lập (Neutral Words/Stop Words):**
+    + Ví dụ: "Điều này **không** tốt bởi vì thái độ của bạn..." (This **not** good...).
+    + Nếu bạn loại bỏ các từ trung lập như **"không" (not)**, bạn sẽ còn lại: "Tốt, thái độ, gần gũi, tốt đẹp". Bộ phân loại sẽ suy ra đây là một nội dung rất tích cực.
+- Kết luận: Luôn kiểm tra kỹ văn bản đã xử lý. **Đường ống đầu vào** (Input pipeline) là một nguồn rắc rối tiềm ẩn.
+
+---
+
+> Lỗi 2: Thứ tự từ (Word Order)
+
+**Bộ phân loại cơ sở ngây thơ** (Naive base classifier) bỏ lỡ tầm quan trọng của thứ tự từ.
+
+![18_Error_Analysis_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/18_Error_Analysis_02.png)
+
+- Ví dụ 1: "Tôi **hạnh phúc** vì tôi đã **không** đi." (Đây là tweet tích cực).
+- Ví dụ 2: "Tôi **không hạnh phúc** vì tôi **không** đi." (Đây là cảm xúc tiêu cực).
+- Thứ tự từ (vị trí của từ "không") rất quan trọng, nhưng Naive Bayes không nắm bắt được điều này.
+
+> Lỗi 3: "Cuộc tấn công đối thủ" (Adversarial Attack)
+
+Thuật ngữ này mô tả các hiện tượng ngôn ngữ phổ biến mà máy móc rất tệ trong việc xử lý, nhưng con người lại nhanh chóng nhận ra:
+
+- **Châm biếm (Sarcasm)**
+- **Mỉa mai (Irony)**
+- **Ẩn dụ (Metaphors)**
+
+**Ví dụ:** Một bài đánh giá phim: "Đây là một bộ phim mạnh mẽ đến mức **lố bịch**. Cốt truyện rất hấp dẫn và tôi đã **khóc** cho đến khi kết thúc."
+
+- Đây là một bài đánh giá **tích cực**.
+- Tuy nhiên, nếu bạn xử lý trước tweet này, bạn sẽ nhận được một danh sách các từ chủ yếu là tiêu cực (như "lố bịch", "khóc").
+- Naive Bayes, khi áp dụng trên danh sách từ này, sẽ cho **điểm rất tiêu cực** (very negative score).
+
+> Kết luận
+
+- Naive Bayes đưa ra **giả định độc lập** (independence assumption), điều này có thể dẫn đến sai sót.
+- Bạn đã biết cách phân tích những lỗi này.
+- Mặc dù vậy, NaVve Bayes vẫn là một **cơ sở rất mạnh mẽ** (strong baseline) vì nó dựa vào **số lượng tần số từ** (word frequency counts).
+- Tuần tới, bạn sẽ học cách sử dụng **vectơ từ** (word vectors), điều này có thể cho kết quả tốt hơn.
 
 
