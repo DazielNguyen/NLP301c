@@ -265,14 +265,15 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
 5.  Tính hệ số lambda cho mỗi từ.
 6.  Ước tính nhật ký trước (log prior) của mô hình.
 
-* **Kết luận:** Bây giờ bạn đã thấy cách xây dựng bảng xác suất cần thiết.
-* **Tiếp theo:** Phân loại câu của bạn.
+- **Kết luận:** Bây giờ bạn đã thấy cách xây dựng bảng xác suất cần thiết.
+- **Tiếp theo:** Phân loại câu của bạn.
+
 ---
 ### Testing Naive Bayes
 
-* Video này nói về việc áp dụng bộ phân loại **Naive Bayes** (Bayes ngây thơ) trên các **ví dụ thử nghiệm (test examples)** thực tế và đề cập đến một số "trường hợp góc đặc biệt" (special corner cases).
-* Sau khi **đào tạo (train)** mô hình (có được bảng Lambda và logprior), bước tiếp theo là **kiểm tra (test)** nó.
-* Bạn sử dụng mô hình để dự đoán tình cảm của các **tweet chưa được nhìn thấy (unseen tweets)**.
+- Video này nói về việc áp dụng bộ phân loại **Naive Bayes** (Bayes ngây thơ) trên các **ví dụ thử nghiệm (test examples)** thực tế và đề cập đến một số "trường hợp góc đặc biệt" (special corner cases).
+- Sau khi **đào tạo (train)** mô hình (có được bảng Lambda và logprior), bước tiếp theo là **kiểm tra (test)** nó.
+- Bạn sử dụng mô hình để dự đoán tình cảm của các **tweet chưa được nhìn thấy (unseen tweets)**.
 
 ![14_Testing_Naive_Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/14_Testing_Naive_Bayes.png)
 
@@ -295,9 +296,9 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
 
 > Quy trình Kiểm tra (Đánh giá) mô hình
 
-* Để kiểm tra hiệu suất, bạn sử dụng một **bộ xác nhận (validation set)** (gồm `X_val` - tweet thô và `Y_val` - tình cảm tương ứng).
-* Bạn cần triển khai hàm **độ chính xác (accuracy)**.
-* **Các bước tính độ chính xác:**
+- Để kiểm tra hiệu suất, bạn sử dụng một **bộ xác nhận (validation set)** (gồm `X_val` - tweet thô và `Y_val` - tình cảm tương ứng).
+- Bạn cần triển khai hàm **độ chính xác (accuracy)**.
+- **Các bước tính độ chính xác:**
     1.  Tính **điểm (score)** cho mỗi tweet trong `X_val` (như quy trình dự đoán ở trên).
     2.  Đánh giá xem mỗi điểm có **lớn hơn 0** hay không.
     3.  Thao tác này tạo ra một **vectơ dự đoán** (vector of predictions) chứa các số 0 (âm) và 1 (dương).
@@ -306,18 +307,56 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
     6.  **Độ chính xác** = (Tổng của vectơ so sánh này) / (Tổng số ví dụ trong bộ xác thực).
     * (Quy trình này giống như bạn đã làm cho hồi quy logistic).
 
-* **Tóm lại:** Bạn kiểm tra mô hình bằng cách dự đoán trên bộ xác thực, so sánh dự đoán với nhãn thực để có được **tỷ lệ phần trăm tweet được dự đoán chính xác**.
-* **Tiếp theo:** Bạn sẽ áp dụng Naive Bayes trong bài tập mã hóa và xem các ứng dụng khác của nó.
-
-
-
-
-
-
-
+- **Tóm lại:** Bạn kiểm tra mô hình bằng cách dự đoán trên bộ xác thực, so sánh dự đoán với nhãn thực để có được **tỷ lệ phần trăm tweet được dự đoán chính xác**.
+- **Tiếp theo:** Bạn sẽ áp dụng Naive Bayes trong bài tập mã hóa và xem các ứng dụng khác của nó.
 
 ---
+
 ### Applications of Naive Bayes
+
+- Bạn đã sử dụng **Naive Bayes** (Bayes ngây thơ) để phân loại tweet, nhưng nó cũng có thể được dùng để **xác định ai là tác giả** (identify author) của một văn bản.
+- Khi dùng Naive Bayes, bạn đang ước tính xác suất cho mỗi lớp. Công thức là **tỷ lệ** (ratio) giữa hai xác suất này (tích của **tiền trước - prior** và **khả năng xảy ra - likelihood**).
+- Tỷ lệ này có thể được sử dụng cho nhiều ứng dụng hơn là **phân tích tình cảm** (sentiment analysis).
+
+> Các ứng dụng khác của Naive Bayes
+
+1.  **Xác định tác giả (Author Identification)**
+    + Nếu bạn có hai **hạ sĩ lớn (corpora)** (ví dụ: một của Shakespeare, một của Hemingway), bạn có thể đào tạo mô hình để nhận ra ai đã viết một tài liệu mới.
+    + Bạn sẽ **tính toán Lambda** ($\lambda$) cho mỗi từ để dự đoán khả năng.
+    + Phương pháp này cho phép **Xác định Danh tính tác giả** (Author Identity).
+
+2.  **Lọc thư rác (Spam Filtering)**
+    + Sử dụng thông tin từ người gửi, chủ đề và nội dung để quyết định xem email có phải là **spam** hay không.
+
+3.  **Truy xuất thông tin (Information Retrieval)**
+    + Đây là một trong những ứng dụng sớm nhất.
+    + Nó lọc giữa các tài liệu **liên quan (relevant)** và **không liên quan (irrelevant)** trong cơ sở dữ liệu cho một **truy vấn (query)**.
+    + Trong trường hợp này, bạn **tính toán khả năng (calculate the likelihood)** của các tài liệu được cung cấp truy vấn (bạn không thể biết trước xác suất "trước").
+    + Bạn có thể lưu trữ (sắp xếp) tài liệu dựa trên khả năng và chọn **kết quả m đầu tiên** (top m results) hoặc những kết quả trên một ngưỡng nhất định.
+
+4.  **Phân biệt từ (Word Disambiguation)**
+    + Làm rõ nghĩa của từ dựa theo ngữ cảnh.
+    + Ví dụ: từ "bank" (ngân hàng) có thể là **bờ sông (river bank)** hoặc **tổ chức tài chính (financial institution)**.
+    + Để phân biệt, bạn **tính điểm (calculate the score)** của tài liệu, *vì nó đề cập đến từng ý nghĩa có thể*.
+    + Nếu văn bản đề cập đến khái niệm "sông" (river) thay vì "tiền" (money), điểm số sẽ lớn hơn một.
+
+> Tóm lại
+
+- **Quy tắc Bayes (Bayes' rule)** và **tính gần đúng ngây thơ (naive approximation)** của nó có nhiều ứng dụng (phân tích tình cảm, xác định tác giả, truy xuất thông tin, phân biệt từ).
+- Nó phổ biến vì **tương đối đơn giản** (relatively simple) để đào tạo, sử dụng và diễn giải.
+- **Tiếp theo:** Bạn sẽ học về những giả định (assumptions) làm nền tảng cho phương pháp Naive Bayes.
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 ### Naive Bayes Assumption
 ---
