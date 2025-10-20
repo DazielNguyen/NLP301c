@@ -270,6 +270,44 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
 ---
 ### Testing Naive Bayes
 
+* Video này nói về việc áp dụng bộ phân loại **Naive Bayes** (Bayes ngây thơ) trên các **ví dụ thử nghiệm (test examples)** thực tế và đề cập đến một số "trường hợp góc đặc biệt" (special corner cases).
+* Sau khi **đào tạo (train)** mô hình (có được bảng Lambda và logprior), bước tiếp theo là **kiểm tra (test)** nó.
+* Bạn sử dụng mô hình để dự đoán tình cảm của các **tweet chưa được nhìn thấy (unseen tweets)**.
+
+![14_Testing_Naive_Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/14_Testing_Naive_Bayes.png)
+
+> Quy trình dự đoán (Suy luận) trên Tweet mới
+
+1.  **Ví dụ Tweet mới:** “Tôi đã vượt qua cuộc phỏng vấn NLP.”
+2.  **Bước 1: Tiền xử lý (Pre-process)**
+    * Văn bản phải được xử lý trước (loại bỏ dấu câu, tạo gốc từ, mã hóa) để tạo ra một **vectơ từ (vector of words)**.
+3.  **Bước 2: Tính điểm (Score)**
+    * Tra cứu từng từ trong vectơ này trong **bảng Lambda** (bảng khả năng ghi).
+    * **Tính tổng** (sum) tất cả các **thuật ngữ Lambda** (Lambda terms) tương ứng cho các từ *được tìm thấy* (ví dụ: "I", "pass", "the", "NLP").
+4.  **Bước 3: Xử lý từ không xác định (Trường hợp góc)**
+    * Các từ **không tìm thấy** trong bảng Lambda (ví dụ: "phỏng vấn") được coi là **trung lập (neutral)** và **không đóng góp bất cứ điều gì vào điểm số** (tức là giá trị lambda bằng 0).
+    * Mô hình chỉ có thể chấm điểm các từ mà nó đã thấy trước đây.
+5.  **Bước 4: Thêm Log Prior**
+    * Thêm **nhật ký trước (logprior)** vào tổng điểm (để tính đến sự mất cân bằng của các lớp).
+6.  **Bước 5: Quyết định**
+    * Tổng điểm trong ví dụ là 0.48.
+    * Nếu điểm số **lớn hơn 0**, tweet có cảm xúc **tích cực (positive)**. (Nếu nhỏ hơn 0, tweet là âm).
+
+> Quy trình Kiểm tra (Đánh giá) mô hình
+
+* Để kiểm tra hiệu suất, bạn sử dụng một **bộ xác nhận (validation set)** (gồm `X_val` - tweet thô và `Y_val` - tình cảm tương ứng).
+* Bạn cần triển khai hàm **độ chính xác (accuracy)**.
+* **Các bước tính độ chính xác:**
+    1.  Tính **điểm (score)** cho mỗi tweet trong `X_val` (như quy trình dự đoán ở trên).
+    2.  Đánh giá xem mỗi điểm có **lớn hơn 0** hay không.
+    3.  Thao tác này tạo ra một **vectơ dự đoán** (vector of predictions) chứa các số 0 (âm) và 1 (dương).
+    4.  So sánh **vectơ dự đoán** này với các giá trị thực (labels) trong `Y_val`.
+    5.  Nếu dự đoán = nhãn thực $\rightarrow$ 1 (chính xác). Nếu không $\rightarrow$ 0 (không chính xác).
+    6.  **Độ chính xác** = (Tổng của vectơ so sánh này) / (Tổng số ví dụ trong bộ xác thực).
+    * (Quy trình này giống như bạn đã làm cho hồi quy logistic).
+
+* **Tóm lại:** Bạn kiểm tra mô hình bằng cách dự đoán trên bộ xác thực, so sánh dự đoán với nhãn thực để có được **tỷ lệ phần trăm tweet được dự đoán chính xác**.
+* **Tiếp theo:** Bạn sẽ áp dụng Naive Bayes trong bài tập mã hóa và xem các ứng dụng khác của nó.
 
 
 
