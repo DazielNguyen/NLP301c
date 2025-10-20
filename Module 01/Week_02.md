@@ -121,8 +121,9 @@
 
 - **Vấn đề**: Khi tính xác suất, nếu hai từ không bao giờ xuất hiện cạnh nhau trong tập tài liệu đào tạo, bạn sẽ nhận được **xác suất bằng 0**. Điều này có thể khiến xác suất của toàn bộ chuỗi bằng 0.
 - **Giải pháp**: **Làm mịn Laplacian** (Laplacian smoothing), một kỹ thuật để tránh xác suất bằng không.
-- **Công thức gốc**: Xác suất có điều kiện $P(\text{từ} | \text{lớp})$ được tính bằng:
-    $\text{Tần số}(\text{từ}_i, \text{lớp}) / N_{\text{lớp}}$ (Số từ trong lớp đó).
+- **Công thức gốc**: 
+    + Xác suất có điều kiện $P(\text{từ} | \text{lớp})$ được tính bằng:
+    + $\text{Tần số}(\text{từ}_i, \text{lớp}) / N_{\text{lớp}}$ (Số từ trong lớp đó).
 - **Công thức làm mịn (Smoothing)**:
     1.  **Tử số**: Thêm 1 vào tần số:
         $\text{Tần số}(\text{từ}_i, \text{lớp}) + 1$.
