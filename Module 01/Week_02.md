@@ -140,21 +140,95 @@
 - **Kết luận**: Bạn đã học về làm mịn Laplacian và hiểu tầm quan trọng của nó để xác suất không bằng không.
 - Video tiếp theo sẽ nói về **khả năng ghi nhật ký** (log likelihood).
 
-
-
-
-
-
-
-
 ---
 ### Log Likelihood
+
+#### Part 1:
+
+- Video này giới thiệu về **khả năng ghi lại** (log likelihoods), chính là **logarit (logarithm)** của xác suất đã tính ở video trước. Chúng thuận tiện hơn khi làm việc.
+- Từ ngữ được đơn giản hóa thành ba loại (trung lập, tích cực, tiêu cực) bằng cách **chia các xác suất có điều kiện** (tạo thành một tỷ lệ).
+> Cách tính Ratio
+
+![09_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/09_Log_Likelihood_Part_1.png)
+
+- **Quy tắc của tỷ lệ ($P(\text{word}|\text{pos}) / P(\text{word}|\text{neg})$):**
+    + **Trung lập (Neutral):** Tỷ lệ = 1 (ví dụ: "I", "am", "learning").
+    + **Tích cực (Positive):** Tỷ lệ > 1 (ví dụ: "happy" = 1.4). Tỷ lệ càng lớn, từ càng tích cực.
+    + **Tiêu cực (Negative):** Tỷ lệ < 1 (ví dụ: "sad", "not" = 0.6). Giá trị càng nhỏ, từ càng âm.
+- Tỷ lệ này rất cần thiết cho **phân loại nhị phân (binary classification)** của Naive Bayes.
+- **Quy tắc phân loại:**
+    + Một tweet là tích cực nếu **sản phẩm (product)** của các tỷ lệ (của các từ trong tweet) > 1.
+    + Sản phẩm này được gọi là **khả năng (likelihood)**.
+- **Công thức Naive Bayes đầy đủ:** $\text{Score} = \text{(Tỷ lệ trước)} \times \text{(Khả năng)}$.
+    + **Tỷ lệ trước (Prior ratio)** là tỷ lệ giữa các tweet tích cực và tiêu cực ($P(\text{pos}) / P(\text{neg})$).
+    + Trong ví dụ này, tỷ lệ trước là 1 (vì đây là **bộ dữ liệu cân bằng - balanced dataset**), nhưng nó rất quan trọng đối với các **tập dữ liệu không cân bằng (unbalanced datasets)**.
+- **Vấn đề khi triển khai:** Tính **khả năng (likelihood)** yêu cầu nhân nhiều số nhỏ (từ 0 đến 1), dẫn đến nguy cơ bị **thiếu số (underflow)** (số trả về quá nhỏ không thể lưu trữ).
+
+> Giải pháp tính toán trong slide
+
+![10_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/10_Log_Likelihood_Part_1.png)
+
+
+- **Giải pháp (Mẹo toán học):** Sử dụng **nhật ký điểm số (log of the score)** thay vì điểm thô.
+    + Sử dụng thuộc tính của logarit: $\log(\text{product}) = \text{sum}(\log)$.
+    + $\log(\text{Score}) = \log(\text{Prior}) + \log(\text{Likelihood})$
+    + $\log(\text{Likelihood})$ = **Tổng (sum)** của logarit của các tỷ lệ.
+
+> Sử dụng Lambda
+
+![11_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/11_Log_Likelihood_Part_1.png)
+
+- **Lambda ($\lambda$):**
+    + Định nghĩa: $\lambda = \log(\text{tỷ lệ}) = \log(P(\text{word}|\text{pos}) / P(\text{word}|\text{neg}))$.
+    + Ví dụ: $\lambda(\text{"I"}) = \log(1) = 0$ (trung lập). $\lambda(\text{"happy"}) = 2.2$ (> 0, tích cực).
+- **Kết luận:** Điểm nhật ký (log score) của tweet có thể được tính bằng cách **tổng các Lambdas (summing the Lambdas)**.
+- Việc lấy logarit của tỷ lệ giúp giảm nguy cơ "tràn đầy số" (underflow) khi sản phẩm của các xác suất tiến quá gần đến 0.
+
+#### Part 2: 
+
+- Video này chỉ cách thực hiện **suy luận (inference)** (dự đoán) bằng cách sử dụng từ điển **lambda** ($\lambda$) đã có.
+- **Quy trình tính toán:**
+    * Bạn tính **khả năng ghi nhật ký (log likelihood)** của tweet bằng cách **tổng các lambda** ($\sum \lambda$) từ mỗi từ có trong tweet.
+> **Ví dụ:**
+
+![12_Log_Likelihood_Part_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/12_Log_Likelihood_Part_2.png)
+- Tweet mẫu
+    + "I" $\rightarrow$ 0
+    + "am" $\rightarrow$ 0
+    + "happy" (hạnh phúc) $\rightarrow$ 2.2
+    + "because" (vì) $\rightarrow$ 0
+    + "I" $\rightarrow$ 0
+    + "learning" (học) $\rightarrow$ 1.1
+    + **Tổng (Khả năng ghi nhật ký):** 3.3
+- **Ngưỡng quyết định (Decision threshold):**
+    + Ngưỡng bây giờ là **0** (thay vì 1, vì $\log(1) = 0$).
+    + Giá trị **dương** (trên 0) $\rightarrow$ Tweet tích cực.
+    + Giá trị **âm** (dưới 0) $\rightarrow$ Tweet tiêu cực.
+- **Kết luận ví dụ:**
+    + 3.3 lớn hơn 0, do đó tweet được phân loại là **tích cực**.
+    + Điểm số này hoàn toàn dựa trên các từ "happy" và "learning" (từ tích cực), vì các từ trung lập (neutral words) có lambda bằng 0 và không đóng góp vào điểm số.
+- **Tóm tắt nhanh:**
+    + Bạn dự đoán tình cảm bằng cách tổng hợp các lambda.
+    + Điểm số này gọi là **khả năng log (log likelihood)**.
+    + Tweet tích cực có khả năng log > 0; tweet tiêu cực có khả năng log < 0.
+- **Tiếp theo:** Bạn sẽ học cách **đào tạo (train)** một mô hình Naive Bayes.
 ---
 ### Training Naive Bayes
+
+
+
+
+
+
+
+
+
+
+
 ---
 ### Testing Naive Bayes
 ---
-### Applications og Naive Bayes
+### Applications of Naive Bayes
 ---
 ### Naive Bayes Assumption
 ---
