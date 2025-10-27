@@ -51,7 +51,7 @@
 #### Hai thiết kế Mô hình Không gian Vectơ
 > Word by Word Design
 
-![02_Word_by_Word]()
+![02_Word_by_Word](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/02_Word_by_Word.png)
 
 1.  **Thiết kế Từng từ (Word-by-word)**
     - Bạn tạo một ma trận đồng xuất hiện và trích xuất vectơ (bản trình bày) cho các từ trong kho (corpus) của bạn.
@@ -61,7 +61,7 @@
 
 > Word by Document Design
 
-![03_Word_by_Document]()
+![03_Word_by_Document](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/03_Word_by_Document.png)
 
 2.  **Thiết kế Từ theo tài liệu (Word-by-document)**
     - Quá trình này khá giống nhau, nhưng bạn đếm số lần các từ xuất hiện trong các **tài liệu (documents)** thuộc các **danh mục (categories)** cụ thể.
@@ -74,7 +74,7 @@
 #### Xây dựng Không gian Vectơ và Sự tương đồng
 > Không gian Vectơ và Sự tương đồng
 
-![04_Vector_Space_and_Similarity]()
+![04_Vector_Space_and_Similarity](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/04_Vector_Space_and_Similarity.png)
 
 - Từ ma trận "Từ theo tài liệu", bạn có thể lấy biểu diễn cho *từ* (từ các hàng) hoặc cho *loại tài liệu* (từ các cột).
 - **Ví dụ (lấy theo cột):** Không gian vectơ sẽ có hai chiều (tương ứng với từ "dữ liệu" và "phim").
@@ -90,6 +90,53 @@
 - Bạn đã học cách xác định mối quan hệ (như **sự tương đồng - similarity**) giữa các loại tài liệu trong không gian vectơ.
 
 ### Euclidean Distance
+
+- Giới thiệu về **khoảng cách Euclide** (Euclidean distance), một **số liệu tương đồng** (similarity metric) dùng để xác định hai điểm (hoặc vectơ) cách nhau bao xa.
+
+---
+#### **Trường hợp 2 chiều (2D):**
+
+> Tính khoảng cách Euclidian giữa 2 vector
+
+![05_Euclidian_Distance]()
+
+- Sử dụng ví dụ về hai vectơ corpora ("giải trí" và "học máy") với hai chiều là số lần xuất hiện của từ "dữ liệu" và "phim".
+- Khoảng cách Euclide là **chiều dài của đoạn đường thẳng** (length of the line segment) nối hai vectơ đó trong không gian.
+- Công thức được sử dụng là một ví dụ của **định lý Pythagore** (Pythagorean theorem): 
+
+- $d(B,A)=\sqrt{(\text{khoảng cách ngang})^2 + (\text{khoảng cách dọc})^2}$.
+- Trong ví dụ, kết quả xấp xỉ 10.667.
+
+---
+#### **Trường hợp Kích thước cao hơn (n-Dimension):**
+
+> Tính tổng quát hóa việc tìm khoảng cách giữa hai điểm (A, B) sang khoảng cách giữa một vectơ n chiều như sau:
+
+![06_Euclidian_Distance_Generalization]()
+
+> Ví dụ tính khoảng cách giữa 2 vector (n = 3).
+
+![07_Example_Euclidian_Distance_Generalization]()
+
+- Quy trình này là sự **khái quát hóa** (generalization) của trường hợp 2D.
+- Để tìm khoảng cách giữa hai vectơ (ví dụ: 'ice-cream' và 'boba'):
+    1.  Lấy **sự khác biệt** (difference) giữa mỗi kích thước.
+    2.  **Bình phương** (Square) những khác biệt đó.
+    3.  **Tổng hợp** (Sum) chúng lại.
+    4.  Lấy **căn bậc hai** (square root) của kết quả.
+- Công thức này (từ đại số) được gọi là **định mức của sự khác biệt** (norm of the difference) giữa các vectơ.
+
+---
+#### **Triển khai trong Python:**
+
+- Bạn có thể sử dụng mô-đun `linalg` (linear algebra) từ **NumPy**.
+- Hàm `norm` (`np.linalg.norm(v - w)`) có thể tính toán định mức của chênh lệch (tức là khoảng cách Euclide) cho không gian n chiều.
+
+---
+#### **Điểm rút ra chính:**
+- Khoảng cách Euclide về cơ bản là chiều dài của đường thẳng nối hai vectơ.
+- Bằng cách sử dụng số liệu này, bạn có thể hiểu được hai tài liệu hoặc từ **giống nhau** (similar) như thế nào (khoảng cách càng nhỏ, càng giống nhau).
+
 ### Cosine Similarity: Intuition
 ### Cosine Similarity
 ### Manipulating Word in Vectors Spaces
