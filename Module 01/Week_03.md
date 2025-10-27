@@ -98,7 +98,7 @@
 
 > Tính khoảng cách Euclidian giữa 2 vector
 
-![05_Euclidian_Distance]()
+![05_Euclidian_Distance](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/05_Euclidian_Distance.png)
 
 - Sử dụng ví dụ về hai vectơ corpora ("giải trí" và "học máy") với hai chiều là số lần xuất hiện của từ "dữ liệu" và "phim".
 - Khoảng cách Euclide là **chiều dài của đoạn đường thẳng** (length of the line segment) nối hai vectơ đó trong không gian.
@@ -112,11 +112,11 @@
 
 > Tính tổng quát hóa việc tìm khoảng cách giữa hai điểm (A, B) sang khoảng cách giữa một vectơ n chiều như sau:
 
-![06_Euclidian_Distance_Generalization]()
+![06_Euclidian_Distance_Generalization](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/06_Euclidian_Distance_Generalization.png)
 
 > Ví dụ tính khoảng cách giữa 2 vector (n = 3).
 
-![07_Example_Euclidian_Distance_Generalization]()
+![07_Example_Euclidian_Distance_Generalization](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/07_Example_Euclidian_Distance_Generalization.png)
 
 - Quy trình này là sự **khái quát hóa** (generalization) của trường hợp 2D.
 - Để tìm khoảng cách giữa hai vectơ (ví dụ: 'ice-cream' và 'boba'):
