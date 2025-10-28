@@ -170,17 +170,20 @@
 - Cần nhớ lại các định nghĩa từ đại số:
     1.  **Định mức (Norm)** (hay **độ lớn - magnitude**) của một vectơ: Được định nghĩa là **căn bậc hai của tổng các phần tử bình phương** (square root of the sum of its squared elements) của nó.
     > Norm Equation
+
     $$\|\vec{v}\| = \sqrt{\sum_{i=1}^{n} v_{i}^{2}}$$
 
     2.  **Tích điểm (Dot product)** giữa hai vectơ: Là **tổng tích giữa các phần tử của chúng** (sum of the products between their elements) trong mỗi chiều
     + Ví dụ: Sử dụng hai corpora (thể tích nông nghiệp 'v' và kho lịch sử 'w') với các chiều là "bệnh" và "trứng". Góc giữa chúng là Beta.
     Đây là mã LaTeX cho công thức trong ảnh của bạn:
     > Dot Product Equation
+
     $$\vec{v} \cdot \vec{w} = \sum_{i=1}^{n} v_{i} \cdot w_{i}$$
 
 #### **Công thức Tương đồng Cosin:** 
 - Cosin của góc Beta bằng **tích chấm** giữa các vectơ chia cho **tích của hai định mức** (dot product between the vectors divided by the product of the two norms).
 > Cosine Similarity Equation
+
 $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 
 - Khi thay thế các giá trị (Tử số: tích điểm; Mẫu số: tích của các định mức), ví dụ cho kết quả tương đồng cosin là 0.87.
@@ -208,6 +211,39 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 ---
 ### Manipulating Word in Vectors Spaces
 ---
+
+- Phần này hướng dẫn cách **thao tác vectơ** (vector manipulation) bằng cách sử dụng **số học vectơ đơn giản** (simple vector arithmetic), cụ thể là cộng và trừ vectơ.
+- Mục tiêu là sử" dụng các phép toán này để **suy ra các mối quan hệ không xác định** (infer unknown relationships) giữa các từ, ví dụ như dự đoán thủ đô của một quốc gia.
+
+#### Quy trình
+
+> Ví dụ Tìm Thủ đô
+
+![10_Example_Manipulating_Word_in_Vectors_Spaces](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/10_Example_Manipulating_Word_in_Vectors_Spaces.png)
+
+1.  **Thiết lập:** Giả sử bạn có một không gian vectơ (ví dụ: 2D) chứa các quốc gia và thủ đô. Bạn biết thủ đô của **Hoa Kỳ (USA)** là **Washington DC** và muốn tìm thủ đô của **Nga (Russia)**.
+> Không gian Vector 2D của ví dụ trên 
+
+![11_Example_Manipulating_Word_in_Vectors_Spaces](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/11_Example_Manipulating_Word_in_Vectors_Spaces.png)
+
+2.  **Tìm Vectơ Mối quan hệ:**
+    - Đầu tiên, bạn tìm "vectơ mối quan hệ" (relationship vector) kết nối quốc gia với thủ đô của nó.
+    - Cách làm: Lấy **sự khác biệt** (difference) giữa vectơ của thủ đô đã biết và quốc gia tương ứng (ví dụ: $V_{\text{Washington}} - V_{\text{USA}}$).
+    - Vectơ kết quả này biểu thị "cần di chuyển bao nhiêu" từ một quốc gia để đến thủ đô của nó.
+3.  **Áp dụng Vectơ Mối quan hệ (Dự đoán):**
+    - Để tìm thủ đô của Nga, bạn **tính tổng** (sum) biểu diễn vectơ của "Nga" với vectơ mối quan hệ vừa tìm được ở bước trước (ví dụ: $V_{\text{Russia}} + (V_{\text{Washington}} - V_{\text{USA}})$).
+4.  **Tìm kết quả gần nhất:**
+    - Kết quả của phép cộng là một vectơ mới (ví dụ: [10, 4]).
+    - Tuy nhiên, có thể không có thành phố nào chính xác tại vị trí đó.
+    - Bạn phải tìm thành phố **giống nhất (most similar)** (gần nhất) với vectơ [10, 4] bằng cách so sánh nó với tất cả các vectơ thành phố khác, sử dụng **khoảng cách Euclide** (Euclidean distance) hoặc **điểm tương đồng cosin** (cosine similarity).
+    - Trong ví dụ, vectơ gần nhất là "Moscow".
+
+### Kết luận
+
+- **Mấu chốt:** Quá trình này chỉ hiệu quả khi bạn có một không gian vectơ nơi các biểu diễn (vectơ) **nắm bắt được ý nghĩa tương đối** (capture the relative meaning) của các từ.
+- **Sự phân cụm (Clustering):** Các từ xuất hiện ở những nơi (ngữ cảnh) tương tự sẽ được mã hóa theo cách tương tự. Bạn có thể tận dụng điều này để tìm các mẫu (ví dụ: các từ gần nhất với "bác sĩ" (doctor) có thể là "y tá" (nurse), "bác sĩ phẫu thuật" (surgeon)...).
+- Để chúng ta biết mối quan hệ không xác định giữa các từ, -> bằng cách sử dụng các mối quan hệ đã biết giữa những người khác. 
+* **Video tiếp theo:** Sẽ học cách vẽ các vectơ chiều d (d-dimensional vectors) lên mặt phẳng 2D.
 
 ---
 ### Visualization and PCA
