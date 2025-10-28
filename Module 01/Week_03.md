@@ -282,6 +282,124 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 ### PCA Algorithmn
 ---
 
+- Phần này nói về **giá trị riêng (eigenvalues)** và **vectơ riêng (eigenvectors)**, và cách sử dụng chúng để **giảm kích thước (reduce the dimension)** của các tính năng.
+- Mục tiêu là có được các **tính năng không tương quan (uncorrelated features)** và **giữ càng nhiều thông tin càng tốt** (keep as much information as possible) từ việc nhúng ban đầu.
+
+> Giảm chiều bằng PCA 
+
+![13_Visualization_PCA](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/13_Visualization_PCA.png)
+
+
+- Quy trình giảm kích thước bằng **PCA** (Phân tích thành phần chính):
+    1.  Bắt đầu với không gian vectơ ban đầu.
+    2.  Lấy các tính năng không tương quan cho dữ liệu.
+    3.  **Chiếu (project)** dữ liệu vào một số tính năng mong muốn, giữ lại nhiều thông tin nhất.
+- Trong PCA, **Eigenvector** (vectơ riêng) của **ma trận đồng phương sai (covariance matrix)** từ dữ liệu của bạn cung cấp **hướng (direction)** của các tính năng không tương quan. -> Giải pháp kiếm uncorrelated features
+- **Eigenvalues** (giá trị riêng) là **biến thể (variance)** của tập dữ liệu trong mỗi tính năng mới đó.
+- Để thực hiện PCA, bạn cần lấy Eigenvector và Eigenvalues từ ma trận phương sai đồng của dữ liệu. -> Giải pháp cho việc giữ càng nhiều thông tin càng tốt. 
+
+> Thuật toán PCA
+
+![14_PCA_Algorithmn](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/14_PCA_Algorithmn.png)
+
+
+- **Bước 1: Lấy các tính năng không tương quan.**
+    + **Bình thường hóa (normalize)** dữ liệu.
+    + Lấy **ma trận hiệp phương sai (covariance matrix)**.
+    + Thực hiện **Phân hủy giá trị đơn lẻ (Singular Value Decomposition - SVD)**.
+    + SVD trả về ba ma trận: Ma trận đầu tiên (ký hiệu là **U**) chứa các **Eigenvector** (xếp chồng lên nhau theo cột), và ma trận thứ hai (ký hiệu là **S**) có các **Eigenvalue** trên đường chéo.
+    + (SVD đã được triển khai trong nhiều thư viện lập trình).
+- **Bước 2: Chiếu dữ liệu (Project the data).**
+    + Sử dụng Eigenvector (U) và Eigenvalue (S).
+    + Thực hiện **tích chấm (dot product)** giữa ma trận chứa các **nhúng từ (word embeddings)** của bạn và **N cột đầu tiên (first N columns)** của ma trận U.
+    + **N** là số chiều bạn muốn có ở cuối (ví dụ: hai chiều để **hình dung - visualization**).
+- **Lưu ý quan trọng:** Các Eigenvector và Eigenvalue phải được **sắp xếp (sorted)** theo Eigenvalue theo **thứ tự giảm dần (descending order)** để đảm bảo giữ lại nhiều thông tin nhất (hầu hết các thư viện tự động làm điều này).
+- **Tóm lại:** 
+    + Eigenvector cho hướng của các tính năng không tương quan
+    + Eigenvalue cho biết biến thể. 
+    + (Dot product) Tích chấm sẽ chiếu dữ liệu lên một không gian vectơ mới.
+
+- **Các bước để tính toán PCA:**
+
+    + Chuẩn hóa trung bình (Mean normalize) dữ liệu của bạn.
+    + Tính toán ma trận hiệp phương sai (covariance matrix).
+    + Tính toán SVD (Phân rã giá trị suy biến) trên ma trận hiệp phương sai của bạn. Phép tính này trả về $[U S V] = svd(\Sigma)$. Ba ma trận $U$, $S$, $V$ được vẽ ở trên. $U$ được gán nhãn là vector riêng (eigenvectors), và $S$ được gán nhãn là giá trị riêng (eigenvalues).
+    + Sau đó, bạn có thể sử dụng $n$ cột đầu tiên của vector $U$, để lấy dữ liệu mới bằng cách nhân $XU[:, 0:n]$.
+
 ---
 ### The Rotation Matrix (Optional Reading)
 ---
+
+#### **Phép quay ngược chiều kim đồng hồ (Counterclockwise Rotation)**
+
+- Nếu bạn muốn quay một vector $r$ với tọa độ $(x, y)$ và góc $\alpha$ ngược chiều kim đồng hồ một góc $\beta$ để được vector $r'$ với tọa độ $(x', y')$ thì ta có:
+
+$$x = r * \cos(\alpha)$$
+$$y = r * \sin(\alpha)$$
+$$x' = r' * \cos(\alpha + \beta)$$
+$$y' = r' * \sin(\alpha + \beta)$$
+- Phép cộng lượng giác cho ta:
+
+$$\cos(\alpha + \beta) = \cos(\alpha)\cos(\beta) - \sin(\alpha)\sin(\beta)$$
+
+$$\sin(\alpha + \beta) = \cos(\alpha)\sin(\beta) + \sin(\alpha)\cos(\beta)$$
+- Để xem chứng minh, hãy xem [phần trang Wikipedia này](https://en.wikipedia.org/wiki/Proofs_of_trigonometric_identities#Angle_sum_identities).
+
+
+
+- [Chứng minh: Công thức cộng góc Lượng giác (SIN và COS)](https://www.youtube.com/watch?v=i_F-s2G-xDc)
+Video này giải thích cách chứng minh các công thức cộng góc cho sin và cosin, vốn là các công thức được đề cập trong ảnh của bạn.
+
+- Vì độ dài của vector không đổi,
+
+$$x' = r * \cos(\alpha)\cos(\beta) - r * \sin(\alpha)\sin(\beta)$$
+$$y' = r * \cos(\alpha)\sin(\beta) + r * \sin(\alpha)\cos(\beta)$$
+
+- Điều này tương đương với:
+
+$$x' = x * \cos(\beta) - y * \sin(\beta)$$
+$$y' = x * \sin(\beta) + y * \cos(\beta)$$
+
+- Viết dưới dạng phép nhân ma trận với **vector hàng**, ta có:
+
+$$[x', y'] = [x, y] \cdot \begin{bmatrix} \cos(\beta) & \sin(\beta) \\ -\sin(\beta) & \cos(\beta) \end{bmatrix}$$
+
+- với ma trận quay bằng,
+
+$$R = \begin{bmatrix} \cos(\beta) & \sin(\beta) \\ -\sin(\beta) & \cos(\beta) \end{bmatrix}$$
+
+- Viết dưới dạng phép nhân ma trận với **vector cột**, ta có:
+
+$$\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos(\beta) & -\sin(\beta) \\ \sin(\beta) & \cos(\beta) \end{bmatrix} \cdot \begin{bmatrix} x \\ y \end{bmatrix}$$
+
+- với ma trận quay bằng,
+
+$$R = \begin{bmatrix} \cos(\beta) & -\sin(\beta) \\ \sin(\beta) & \cos(\beta) \end{bmatrix}$$
+
+- Lưu ý rằng vị trí của $-\sin(\beta)$ trong ma trận quay đã thay đổi.
+
+#### **Phép quay cùng chiều kim đồng hồ (Clockwise Rotation)**
+
+- Nếu phép quay là cùng chiều kim đồng hồ, thì ma trận quay để nhân với **vector hàng** trở thành,
+
+$$R = \begin{bmatrix} \cos(-\beta) & \sin(-\beta) \\ -\sin(-\beta) & \cos(-\beta) \end{bmatrix}$$
+- Vì $\sin(-\beta) = -\sin(\beta)$ và $\cos(-\beta) = \cos(\beta)$
+
+- điều này tương đương với
+
+$$R = \begin{bmatrix} \cos(\beta) & -\sin(\beta) \\ \sin(\beta) & \cos(\beta) \end{bmatrix}$$
+
+- Vì vậy, phép quay cùng chiều kim đồng hồ của một vector $[x, y]$ có thể được biểu diễn là,
+
+$$[x', y'] = [x, y] \cdot \begin{bmatrix} \cos(\beta) & -\sin(\beta) \\ \sin(\beta) & \cos(\beta) \end{bmatrix}$$
+- Ma trận quay để nhân với **vector cột** trở thành,
+$$R = \begin{bmatrix} \cos(-\beta) & -\sin(-\beta) \\ \sin(-\beta) & \cos(-\beta) \end{bmatrix}$$
+
+- tương đương với,
+
+$$R = \begin{bmatrix} \cos(\beta) & \sin(\beta) \\ -\sin(\beta) & \cos(\beta) \end{bmatrix}$$
+- Vì vậy, phép quay cùng chiều kim đồng hồ của một vector $\begin{bmatrix} x \\ y \end{bmatrix}$ có thể được biểu diễn là,
+$$\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos(\beta) & \sin(\beta) \\ -\sin(\beta) & \cos(\beta) \end{bmatrix} \cdot \begin{bmatrix} x \\ y \end{bmatrix}$$
+
+**Tác giả:** Reinoud Bosch
+
