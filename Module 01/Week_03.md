@@ -383,6 +383,7 @@ $$R = \begin{bmatrix} \cos(\beta) & -\sin(\beta) \\ \sin(\beta) & \cos(\beta) \e
 - Nếu phép quay là cùng chiều kim đồng hồ, thì ma trận quay để nhân với **vector hàng** trở thành,
 
 $$R = \begin{bmatrix} \cos(-\beta) & \sin(-\beta) \\ -\sin(-\beta) & \cos(-\beta) \end{bmatrix}$$
+
 - Vì $\sin(-\beta) = -\sin(\beta)$ và $\cos(-\beta) = \cos(\beta)$
 
 - điều này tương đương với
@@ -392,7 +393,9 @@ $$R = \begin{bmatrix} \cos(\beta) & -\sin(\beta) \\ \sin(\beta) & \cos(\beta) \e
 - Vì vậy, phép quay cùng chiều kim đồng hồ của một vector $[x, y]$ có thể được biểu diễn là,
 
 $$[x', y'] = [x, y] \cdot \begin{bmatrix} \cos(\beta) & -\sin(\beta) \\ \sin(\beta) & \cos(\beta) \end{bmatrix}$$
+
 - Ma trận quay để nhân với **vector cột** trở thành,
+
 $$R = \begin{bmatrix} \cos(-\beta) & -\sin(-\beta) \\ \sin(-\beta) & \cos(-\beta) \end{bmatrix}$$
 
 - tương đương với,
