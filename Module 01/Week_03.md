@@ -238,16 +238,45 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
     - Bạn phải tìm thành phố **giống nhất (most similar)** (gần nhất) với vectơ [10, 4] bằng cách so sánh nó với tất cả các vectơ thành phố khác, sử dụng **khoảng cách Euclide** (Euclidean distance) hoặc **điểm tương đồng cosin** (cosine similarity).
     - Trong ví dụ, vectơ gần nhất là "Moscow".
 
-### Kết luận
+#### Kết luận
 
 - **Mấu chốt:** Quá trình này chỉ hiệu quả khi bạn có một không gian vectơ nơi các biểu diễn (vectơ) **nắm bắt được ý nghĩa tương đối** (capture the relative meaning) của các từ.
 - **Sự phân cụm (Clustering):** Các từ xuất hiện ở những nơi (ngữ cảnh) tương tự sẽ được mã hóa theo cách tương tự. Bạn có thể tận dụng điều này để tìm các mẫu (ví dụ: các từ gần nhất với "bác sĩ" (doctor) có thể là "y tá" (nurse), "bác sĩ phẫu thuật" (surgeon)...).
 - Để chúng ta biết mối quan hệ không xác định giữa các từ, -> bằng cách sử dụng các mối quan hệ đã biết giữa những người khác. 
-* **Video tiếp theo:** Sẽ học cách vẽ các vectơ chiều d (d-dimensional vectors) lên mặt phẳng 2D.
 
 ---
 ### Visualization and PCA
 ---
+
+- Thường thì bạn sẽ có các **vectơ ở kích thước rất cao** (high dimensions). Bạn muốn **giảm chiều** (reduce the dimension) của chúng xuống **hai chiều** (two dimensions) để có thể vẽ (plot) trên trục XY.
+- Bạn sẽ học về **Phân tích thành phần chính (Principal Component Analysis - PCA)**, thuật toán cho phép bạn làm điều này.
+- PCA được sử dụng để **hình dung (visualize)** các biểu diễn vectơ có kích thước cao.
+
+#### Động lực (Trực quan hóa)
+> Biểu đồ trực quan hóa
+
+![12_Example_Visualization](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/12_Example_Visualization.png)
+
+- Giả sử bạn có biểu diễn vectơ trong không gian chiều cao, và bạn biết rằng các từ "dầu khí" (oil and gas) và "thành phố và thị trấn" (city and town) có liên quan.
+- Bạn muốn xem liệu biểu diễn của mình có nắm bắt được mối quan hệ đó hay không.
+- **Giảm kích thước** (Dimensionality reduction) là lựa chọn hoàn hảo cho nhiệm vụ này.
+- Bạn có thể sử dụng PCA để lấy biểu diễn trong không gian có **ít chiều hơn** (fewer dimensions) (ví dụ: ba tính năng trở xuống).
+- Nếu bạn nhận được **biểu diễn hai chiều**, bạn có thể vẽ hình ảnh của các từ.
+- Trong hình ảnh đó, bạn có thể thấy liệu các từ liên quan (như "dầu khí" và "thành phố và thị trấn") có được **tập hợp (clustered)** lại với nhau hay không.
+- Bạn thậm chí có thể tìm thấy các mối quan hệ khác mà bạn không mong đợi.
+
+
+#### Cách thức hoạt động (Tổng quan)
+
+- Để đơn giản, hãy xét một không gian **hai chiều** (2D) mà bạn muốn giảm xuống **một tính năng** (1D).
+- Đầu tiên, PCA sẽ tìm một tập hợp các **tính năng không tương quan (uncorrelated features)**.
+- Sau đó, nó **chiếu (project)** dữ liệu của bạn vào không gian một chiều, cố gắng **giữ lại càng nhiều thông tin càng tốt (retain as much information as possible)**.
+
+#### Tóm tắt
+
+- PCA là một thuật toán **giảm kích thước** (dimensionality reduction) có thể tìm thấy các **tính năng không tương quan**.
+- Nó rất hữu ích cho việc **trực quan hóa dữ liệu** (visualizing your data).
+- Nó cho phép bạn biến một **vectơ chiều d** (d-dimensional vector) thành hai chiều để tạo ra một **biểu đồ** (plot).
 
 ---
 ### PCA Algorithmn
