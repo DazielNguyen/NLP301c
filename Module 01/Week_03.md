@@ -398,7 +398,10 @@ $$R = \begin{bmatrix} \cos(-\beta) & -\sin(-\beta) \\ \sin(-\beta) & \cos(-\beta
 - tương đương với,
 
 $$R = \begin{bmatrix} \cos(\beta) & \sin(\beta) \\ -\sin(\beta) & \cos(\beta) \end{bmatrix}$$
-- Vì vậy, phép quay cùng chiều kim đồng hồ của một vector $\begin{bmatrix} x \\ y \end{bmatrix}$ có thể được biểu diễn là,
+- Vì vậy, phép quay cùng chiều kim đồng hồ của một vector 
+$$\begin{bmatrix} x \\ y \end{bmatrix}$$
+- có thể được biểu diễn là,
+
 $$\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos(\beta) & \sin(\beta) \\ -\sin(\beta) & \cos(\beta) \end{bmatrix} \cdot \begin{bmatrix} x \\ y \end{bmatrix}$$
 
 **Tác giả:** Reinoud Bosch
