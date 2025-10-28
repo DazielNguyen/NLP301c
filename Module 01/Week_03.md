@@ -138,6 +138,39 @@
 - Bằng cách sử dụng số liệu này, bạn có thể hiểu được hai tài liệu hoặc từ **giống nhau** (similar) như thế nào (khoảng cách càng nhỏ, càng giống nhau).
 
 ### Cosine Similarity: Intuition
+
+- Phần này giới thiệu về **sự tương đồng cosin** (cosine similarity), một loại **chức năng tương đồng** (similarity function) khác.
+- Về cơ bản, nó sử dụng **cosin của góc** (cosine of the angle) giữa hai vectơ để cho biết chúng có gần nhau hay không.
+- Nó sẽ chỉ ra vấn đề của việc sử dụng **khoảng cách Euclide** (Euclidean distance) khi so sánh các tài liệu (corpora) và cách sự tương đồng cosin khắc phục điều này.
+
+---
+> Ví dụ Consine Similarity: Intuition
+
+![08_Example_Consine_Similarity_Intuition](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/08_Example_Consine_Similarity_Intuition.png)
+
+#### **Ví dụ về vấn đề của Khoảng cách Euclide:**
+
+- Giả sử có một không gian vectơ với các từ "bệnh" (disease) và "trứng" (eggs).
+- Có ba kho: **thực phẩm** (food), **nông nghiệp** (agriculture), và **lịch sử** (history).
+- Kho "thực phẩm" có số lượng từ nhỏ, trong khi "nông nghiệp" và "lịch sử" có số lượng từ tương tự (lớn hơn).
+- Khoảng cách Euclide $d_2$ (giữa nông nghiệp và lịch sử) **nhỏ hơn** khoảng cách $d_1$ (giữa thực phẩm và nông nghiệp).
+- Điều này (sai lầm) cho thấy kho "nông nghiệp" và "lịch sử" giống nhau hơn.
+
+---
+
+#### **Giải pháp (Sự tương đồng Cosin):**
+
+- Một phương pháp khác là tính cosin của góc trong (inner angle).
+- Nếu góc nhỏ, cosin gần bằng **một (1)**. Nếu góc gần 90 độ, cosin gần **không (0)**.
+- Trong ví dụ, **góc Alpha** (giữa thực phẩm và nông nghiệp) **nhỏ hơn** **góc Beta** (giữa nông nghiệp và lịch sử).
+- Do đó, cosin của các góc là một **đại diện tốt hơn** (better representation) về sự tương đồng so với khoảng cách Euclide.
+
+---
+
+#### **Ưu điểm chính:** 
+- Ưu điểm của số liệu này so với khoảng cách Euclide là nó **không bị sai lệch bởi sự khác biệt kích thước** (not biased by the size difference) giữa các biểu diễn.
+- **Tóm lại:** Khoảng cách Euclide không lý tưởng cho các tài liệu có kích thước khác nhau. Sự tương đồng cosin sử dụng góc và do đó **không phụ thuộc vào kích thước** (independent of the size) của các corpus.
+
 ### Cosine Similarity
 ### Manipulating Word in Vectors Spaces
 ### Visualization and PCA
