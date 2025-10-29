@@ -1,8 +1,8 @@
 # **Module 01** - Natural Language Processing with Classification and Vector Spaces
-## Week 3: Vector Space Models
+## **Week 3: Vector Space Models**
 
 ---
-### Vector Space Models
+### **Vector Space Models**
 ---
 
 - Tuần này, sẽ học về **không gian vectơ (vector spaces)** và loại thông tin mà chúng có thể mã hóa.
@@ -39,7 +39,7 @@
 - **Kết luận (Eureka):** Mô hình không gian vectơ cho phép bạn biểu diễn các từ và tài liệu dưới dạng **vectơ**, nắm bắt được ý nghĩa tương đối.
 
 ---
-### Word by Word and Word by Doc
+### **Word by Word and Word by Doc**
 ---
 
 - Hướng dẫn cách xây dựng **vectơ** (vectors) dựa trên **ma trận đồng xuất hiện** (co-occurrence matrices).
@@ -85,7 +85,7 @@
 - Bạn đã học cách xác định mối quan hệ (như **sự tương đồng - similarity**) giữa các loại tài liệu trong không gian vectơ.
 
 ---
-### Euclidean Distance
+### **Euclidean Distance**
 ---
 
 - Giới thiệu về **khoảng cách Euclide** (Euclidean distance), một **số liệu tương đồng** (similarity metric) dùng để xác định hai điểm (hoặc vectơ) cách nhau bao xa.
@@ -131,7 +131,7 @@
 - Bằng cách sử dụng số liệu này, bạn có thể hiểu được hai tài liệu hoặc từ **giống nhau** (similar) như thế nào (khoảng cách càng nhỏ, càng giống nhau).
 
 ---
-### Cosine Similarity: Intuition
+### **Cosine Similarity: Intuition**
 ---
 
 - Phần này giới thiệu về **sự tương đồng cosin** (cosine similarity), một loại **chức năng tương đồng** (similarity function) khác.
@@ -162,7 +162,7 @@
 - **Tóm lại:** Khoảng cách Euclide không lý tưởng cho các tài liệu có kích thước khác nhau. Sự tương đồng cosin sử dụng góc và do đó **không phụ thuộc vào kích thước** (independent of the size) của các corpus.
 
 ---
-### Cosine Similarity
+### **Cosine Similarity**
 ---
 
 - Phần này hướng dẫn cách tính **tích dấu chấm** (dot product) và **định mức** (norm) của vectơ. Khi biết hai điều này, bạn sẽ có thể tính được **điểm tương đồng cosin** (cosine similarity score).
@@ -209,7 +209,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 - Các vectơ tương tự có điểm (score) cao hơn.
 
 ---
-### Manipulating Word in Vectors Spaces
+### **Manipulating Word in Vectors Spaces**
 ---
 
 - Phần này hướng dẫn cách **thao tác vectơ** (vector manipulation) bằng cách sử dụng **số học vectơ đơn giản** (simple vector arithmetic), cụ thể là cộng và trừ vectơ.
@@ -245,7 +245,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 - Để chúng ta biết mối quan hệ không xác định giữa các từ, -> bằng cách sử dụng các mối quan hệ đã biết giữa những người khác. 
 
 ---
-### Visualization and PCA
+### **Visualization and PCA**
 ---
 
 - Thường thì bạn sẽ có các **vectơ ở kích thước rất cao** (high dimensions). Bạn muốn **giảm chiều** (reduce the dimension) của chúng xuống **hai chiều** (two dimensions) để có thể vẽ (plot) trên trục XY.
@@ -279,7 +279,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 - Nó cho phép bạn biến một **vectơ chiều d** (d-dimensional vector) thành hai chiều để tạo ra một **biểu đồ** (plot).
 
 ---
-### PCA Algorithmn
+### **PCA Algorithmn**
 ---
 
 - Phần này nói về **giá trị riêng (eigenvalues)** và **vectơ riêng (eigenvectors)**, và cách sử dụng chúng để **giảm kích thước (reduce the dimension)** của các tính năng.
@@ -327,7 +327,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
     + Sau đó, bạn có thể sử dụng $n$ cột đầu tiên của vector $U$, để lấy dữ liệu mới bằng cách nhân $XU[:, 0:n]$.
 
 ---
-### The Rotation Matrix (Optional Reading)
+### **The Rotation Matrix (Optional Reading)**
 ---
 
 #### **Phép quay ngược chiều kim đồng hồ (Counterclockwise Rotation)**
@@ -411,7 +411,7 @@ $$\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos(\beta) & \sin(\b
 
 **Tác giả:** Reinoud Bosch
 
-### Giải một số bài tập để hiểu cách tính Euclidian và Cosine Similarity
+### **Giải một số bài tập để hiểu cách tính Euclidian và Cosine Similarity**
 
 > Câu 1: Tính Euclidian
 
@@ -422,7 +422,7 @@ Tất nhiên, đây là cách tính chi tiết.
 
 Đáp án **5.91608** là chính xác.
 
-### 📐 Công thức Khoảng cách Euclidean (Euclidean Distance)
+#### 📐 Công thức Khoảng cách Euclidean (Euclidean Distance)
 
 Khoảng cách Euclidean giữa hai vector $A = (A_1, A_2, A_3)$ và $B = (B_1, B_2, B_3)$ được tính bằng công thức:
 
@@ -436,7 +436,7 @@ Nói đơn giản, đó là:
 
 ---
 
-### 📝 Các bước tính toán
+#### 📝 Các bước tính toán
 
 Với hai vector của bạn:
 * $A = (1, 2, 3)$
@@ -486,7 +486,7 @@ Sau khi tính ra "Vector quốc gia cần tìm" này, chúng ta sẽ dùng **cos
 
 ---
 
-### 1. Tính "Vector Quốc gia cần tìm" (Target Vector)
+#### 1. Tính "Vector Quốc gia cần tìm" (Target Vector)
 
 Hãy gọi vector này là $V_{\text{target}}$.
 
@@ -506,7 +506,7 @@ Vậy, vector chúng ta cần tìm là **$V_{\text{target}} = (4, 2)$**.
 
 ---
 
-### 2. So sánh $V_{\text{target}}$ với các Quốc gia
+#### 2. So sánh $V_{\text{target}}$ với các Quốc gia
 
 Bây giờ, chúng ta sẽ tính cosine similarity giữa $V_{\text{target}} = (4, 2)$ với từng vector quốc gia.
 
@@ -515,19 +515,19 @@ Công thức: $\cos(\theta) = \frac{A \cdot B}{\|A\| \|B\|}$
 * **Độ lớn của $V_{\text{target}} = (4, 2)$:**
     $\|V_{\text{target}}\| = \sqrt{4^2 + 2^2} = \sqrt{16 + 4} = \sqrt{20}$
 
-#### A. So sánh với Turkey = (3, 1)
+##### A. So sánh với Turkey = (3, 1)
 * **Tích vô hướng:** $(4 \times 3) + (2 \times 1) = 12 + 2 = 14$
 * **Độ lớn:** $\|Turkey\| = \sqrt{3^2 + 1^2} = \sqrt{9 + 1} = \sqrt{10}$
 * **Cosine Similarity:**
     $$\cos(\theta) = \frac{14}{\sqrt{20} \times \sqrt{10}} = \frac{14}{\sqrt{200}} \approx 0.9899$$
 
-#### B. So sánh với Russia = (5, 5)
+##### B. So sánh với Russia = (5, 5)
 * **Tích vô hướng:** $(4 \times 5) + (2 \times 5) = 20 + 10 = 30$
 * **Độ lớn:** $\|Russia\| = \sqrt{5^2 + 5^2} = \sqrt{25 + 25} = \sqrt{50}$
 * **Cosine Similarity:**
     $$\cos(\theta) = \frac{30}{\sqrt{20} \times \sqrt{50}} = \frac{30}{\sqrt{1000}} \approx 0.9487$$
 
-#### C. So sánh với Japan = (4, 3)
+##### C. So sánh với Japan = (4, 3)
 * **Tích vô hướng:** $(4 \times 4) + (2 \times 3) = 16 + 6 = 22$
 * **Độ lớn:** $\|Japan\| = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5$
 * **Cosine Similarity:**
@@ -535,7 +535,7 @@ Công thức: $\cos(\theta) = \frac{A \cdot B}{\|A\| \|B\|}$
 
 ---
 
-### 3. Kết luận
+#### 3. Kết luận
 
 So sánh các điểm tương đồng:
 * **Turkey:** 0.9899 (Cao nhất)
