@@ -411,3 +411,135 @@ $$\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos(\beta) & \sin(\b
 
 **Tác giả:** Reinoud Bosch
 
+### Giải một số bài tập để hiểu cách tính Euclidian và Cosine Similarity
+
+> Câu 1: Tính Euclidian
+
+![15_Câu_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/15_Câu_1.png)
+
+
+Tất nhiên, đây là cách tính chi tiết.
+
+Đáp án **5.91608** là chính xác.
+
+### 📐 Công thức Khoảng cách Euclidean (Euclidean Distance)
+
+Khoảng cách Euclidean giữa hai vector $A = (A_1, A_2, A_3)$ và $B = (B_1, B_2, B_3)$ được tính bằng công thức:
+
+$$d(A, B) = \sqrt{(B_1 - A_1)^2 + (B_2 - A_2)^2 + (B_3 - A_3)^2}$$
+
+Nói đơn giản, đó là:
+1.  Tính **hiệu** ở từng chiều.
+2.  **Bình phương** các kết quả hiệu đó.
+3.  **Cộng** tất cả lại.
+4.  Lấy **căn bậc hai** của tổng cuối cùng.
+
+---
+
+### 📝 Các bước tính toán
+
+Với hai vector của bạn:
+* $A = (1, 2, 3)$
+* $B = (4, 7, 2)$
+
+**1. Tính hiệu (B - A):**
+* $B_1 - A_1 = 4 - 1 = 3$
+* $B_2 - A_2 = 7 - 2 = 5$
+* $B_3 - A_3 = 2 - 3 = -1$
+
+**2. Bình phương các hiệu:**
+* $(3)^2 = 9$
+* $(5)^2 = 25$
+* $(-1)^2 = 1$
+
+**3. Cộng các kết quả bình phương:**
+$$9 + 25 + 1 = 35$$
+
+**4. Lấy căn bậc hai:**
+$$d(A, B) = \sqrt{35}$$
+
+Khi tính giá trị thập phân:
+$$\sqrt{35} \approx 5.916079...$$
+
+Giá trị này khớp với đáp án được chọn là **5.91608**.
+
+> Câu 2: Tính Cosine Similarity
+
+![16_Câu_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/16_Câu_2.png)
+
+- Hướng dẫn giải quyết bài toán
+
+Chào bạn, hướng dẫn trong ô màu xanh là hoàn toàn chính xác.
+
+Bài toán này dựa trên một khái niệm phổ biến trong xử lý ngôn ngữ tự nhiên gọi là "vector analogy" (tương tự vector). Ý tưởng là mối quan hệ giữa một quốc gia và thủ đô của nó có thể được biểu diễn bằng một vector.
+
+Mối quan hệ này có thể được tính bằng:
+$V_{\text{quan hệ}} = \text{Vector}(\text{USA}) - \text{Vector}(\text{Washington})$
+
+Chúng ta có thể áp dụng vector quan hệ này cho một thủ đô khác (Ankara) để tìm ra quốc gia tương ứng:
+$\text{Vector}(\text{Quốc gia cần tìm}) \approx V_{\text{quan hệ}} + \text{Vector}(\text{Ankara})$
+
+Kết hợp lại, chúng ta có công thức mà đề bài gợi ý:
+**$\text{Vector}(\text{Quốc gia cần tìm}) = (\text{USA} - \text{Washington}) + \text{Ankara}$**
+
+Sau khi tính ra "Vector quốc gia cần tìm" này, chúng ta sẽ dùng **cosine similarity** để so sánh nó với các vector quốc gia đã cho ($Turkey$, $Russia$, $Japan$) và chọn quốc gia có độ tương đồng cao nhất.
+
+---
+
+### 1. Tính "Vector Quốc gia cần tìm" (Target Vector)
+
+Hãy gọi vector này là $V_{\text{target}}$.
+
+* $USA = (5, 6)$
+* $Washington = (10, 5)$
+* $Ankara = (9, 1)$
+
+$$V_{\text{target}} = ( (5, 6) - (10, 5) ) + (9, 1)$$
+
+* **Bước 1: Trừ vector**
+    $$(5, 6) - (10, 5) = (5 - 10, 6 - 5) = (-5, 1)$$
+
+* **Bước 2: Cộng vector**
+    $$V_{\text{target}} = (-5, 1) + (9, 1) = (-5 + 9, 1 + 1) = (4, 2)$$
+
+Vậy, vector chúng ta cần tìm là **$V_{\text{target}} = (4, 2)$**.
+
+---
+
+### 2. So sánh $V_{\text{target}}$ với các Quốc gia
+
+Bây giờ, chúng ta sẽ tính cosine similarity giữa $V_{\text{target}} = (4, 2)$ với từng vector quốc gia.
+
+Công thức: $\cos(\theta) = \frac{A \cdot B}{\|A\| \|B\|}$
+
+* **Độ lớn của $V_{\text{target}} = (4, 2)$:**
+    $\|V_{\text{target}}\| = \sqrt{4^2 + 2^2} = \sqrt{16 + 4} = \sqrt{20}$
+
+#### A. So sánh với Turkey = (3, 1)
+* **Tích vô hướng:** $(4 \times 3) + (2 \times 1) = 12 + 2 = 14$
+* **Độ lớn:** $\|Turkey\| = \sqrt{3^2 + 1^2} = \sqrt{9 + 1} = \sqrt{10}$
+* **Cosine Similarity:**
+    $$\cos(\theta) = \frac{14}{\sqrt{20} \times \sqrt{10}} = \frac{14}{\sqrt{200}} \approx 0.9899$$
+
+#### B. So sánh với Russia = (5, 5)
+* **Tích vô hướng:** $(4 \times 5) + (2 \times 5) = 20 + 10 = 30$
+* **Độ lớn:** $\|Russia\| = \sqrt{5^2 + 5^2} = \sqrt{25 + 25} = \sqrt{50}$
+* **Cosine Similarity:**
+    $$\cos(\theta) = \frac{30}{\sqrt{20} \times \sqrt{50}} = \frac{30}{\sqrt{1000}} \approx 0.9487$$
+
+#### C. So sánh với Japan = (4, 3)
+* **Tích vô hướng:** $(4 \times 4) + (2 \times 3) = 16 + 6 = 22$
+* **Độ lớn:** $\|Japan\| = \sqrt{4^2 + 3^2} = \sqrt{16 + 9} = \sqrt{25} = 5$
+* **Cosine Similarity:**
+    $$\cos(\theta) = \frac{22}{\sqrt{20} \times 5} = \frac{22}{\sqrt{20} \times \sqrt{25}} = \frac{22}{\sqrt{500}} \approx 0.9839$$
+
+---
+
+### 3. Kết luận
+
+So sánh các điểm tương đồng:
+* **Turkey:** 0.9899 (Cao nhất)
+* **Japan:** 0.9839
+* **Russia:** 0.9487
+
+Vector của **Turkey** có độ tương đồng cosine cao nhất với vector (USA - Washington) + Ankara. Do đó, đáp án chính xác là **Turkey**.
