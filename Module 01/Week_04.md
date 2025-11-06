@@ -7,6 +7,10 @@
 
 - Tuần này, sẽ sử dụng **vectơ từ (word vectors)** (hay **nhúng từ - word embeddings**) để **sắp xếp (align)** các từ trong hai ngôn ngữ khác nhau, tạo ra chương trình **dịch thuật cơ bản (basic translation)** đầu tiên.
 
+> Biểu đồ hóa về việc sử dụng Transformation Matrix
+
+![01_Visualization_Transformation_Matrix]()
+
 #### 1. Ý tưởng Dịch máy
 
 - **Cách làm của máy:**
@@ -25,6 +29,10 @@
     - **Chìa khóa:** Các hàng phải được **sắp xếp (align)** (ví dụ: nếu hàng 1 của X là "cat", hàng 1 của Y phải là "chat").
 - **Lợi ích:** Bạn chỉ cần đào tạo R trên một *tập hợp con*. Nếu R tốt, nó có thể dịch các từ *không* nằm trong bộ đào tạo ban đầu.
 - **Mục tiêu:** Tìm R sao cho $X \cdot R$ (dự đoán) gần với $Y$ (thực tế) nhất.
+
+> Hình ảnh minh họa cho bạn thấy các vectơ đã được căn chỉnh:
+
+![02_Visualization_Aligned_Vectors]()
 
 #### 3. Hàm tổn thất (Loss Function) và Định mức Frobenius
 
@@ -45,7 +53,9 @@
     4.  Lặp lại quá trình này (trong một số lần lặp cố định hoặc cho đến khi tổn thất giảm xuống dưới một ngưỡng).
 
 - **Kết luận:** Chỉ với một ma trận R, bạn có thể học cách căn chỉnh các vectơ từ giữa các ngôn ngữ.
-- **Tiếp theo:** Sẽ xem xét về (nearest neighbors).
+
+![03_Calculate_R]()
+
 
 ---
 ### **K-nearest neighbors**
