@@ -4,7 +4,7 @@
 
 > Video này cung cấp cái nhìn tổng quan về **Quy tắc Bayes** (Bayes' rule) và **xác suất** (probability).
 
-![01_Probability_and_Bayes'_Rule](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/01_Probability_and_Bayes'_Rule.png)
+![01_Probability_and_Bayes'_Rule](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/01_Probability_and_Bayes'_Rule.png)
 
 - Xác suất là cơ bản cho nhiều ứng dụng trong **NLP**, ví dụ như phân loại tweet (tích cực hay tiêu cực).
     1. Xem xét **xác suất** và **xác suất có điều kiện** (conditional probability).
@@ -14,7 +14,7 @@
 - Trong khóa học tiếp theo, bạn cũng sẽ dùng nó để **tự động sửa** (auto-correct).
 > Ví dụ: Một kho (corpus) lớn các tweet được phân loại là **tích cực** hoặc **tiêu cực**, nhưng **không phải cả hai**. Từ "happy" (hạnh phúc) có thể xuất hiện ở cả hai loại.
 
-![02_Probability_and_Bayes'_Rule_Example](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/02_Probability_and_Bayes'_Rule_Example.png)
+![02_Probability_and_Bayes'_Rule_Example](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/02_Probability_and_Bayes'_Rule_Example.png)
 
 - Một cách nghĩ về xác suất là đếm **tần suất** (frequencies).
 - **Sự kiện A** (Event A): Tweet được gắn nhãn tích cực.
@@ -31,7 +31,7 @@
 - Video này xem xét **xác suất có điều kiện** (conditional probability) để hiểu **quy tắc Bayes** (Bayes' rule).
 > Ví dụ về xác suất có điều kiện: Đoán thời tiết dễ hơn nếu biết điều kiện (ví dụ: ở California vào mùa đông).
 
-![03_Bayes'_Rule_Example](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/03_Bayes'_Rule_Example.png)
+![03_Bayes'_Rule_Example](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/03_Bayes'_Rule_Example.png)
 
 > **CONDITIONNAL PROBABILITIES** giúp chúng ta **GIẢM SAMPLE SEARCH SPACE**
 - Để rút ra quy tắc Bayes, chúng ta bắt đầu bằng cách xem xét các tweet chỉ chứa từ "happy" (hạnh phúc) (vòng tròn màu xanh lam), thay vì toàn bộ tài liệu.
@@ -42,7 +42,7 @@
 - Ví dụ: 3 trên 13 (0.231).
 - **Xác suất có điều kiện** $P(B|A)$ là xác suất của kết quả B, biết rằng sự kiện A đã xảy ra.
 
-![04_Bayes'_Rule_Equations](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/04_Bayes'_Rule_Equations.png)
+![04_Bayes'_Rule_Equations](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/04_Bayes'_Rule_Equations.png)
 
 - Sử dụng biểu đồ Venn, phương trình là:
     $P(\text{tích cực} | \text{"happy"}) = P(\text{giao điểm tích cực và "happy"}) / P(\text{"happy"})$
@@ -65,7 +65,7 @@
 
 > Quy trình của Naive Bayes
 
-![05_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/05_Naive_Bayes_Introduction.png)
+![05_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/05_Naive_Bayes_Introduction.png)
 
 
 1.  **Chuẩn bị dữ liệu**:
@@ -77,7 +77,7 @@
 
 > Bảng xác suất có điều kiện
 
-![06_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/06_Naive_Bayes_Introduction.png)
+![06_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/06_Naive_Bayes_Introduction.png)
 
 3.  **Tính Bảng Xác suất Có điều kiện**:
     - Tính $P(\text{từ} | \text{lớp})$ bằng cách: (tần suất của từ trong lớp) / (tổng số từ trong lớp đó).
@@ -94,7 +94,7 @@
 
 #### Áp dụng (Suy luận)
 
-![07_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/07_Naive_Bayes_Introduction.png)
+![07_Naive_Bayes_Introduction](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/07_Naive_Bayes_Introduction.png)
 
 - Giả sử có tweet mới: “Hôm nay tôi hạnh phúc, tôi đang học hỏi.”
 - Sử dụng **quy tắc điều kiện suy luận Naive Bayes (Naive Bayes inference conditional rule)** để phân loại nhị phân.
@@ -117,7 +117,7 @@
 ### Laplacian Smoothing
 > Công thức tính Laplacian Smoothing
 
-![08_Laplacian_smoothing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/08_Laplacian_smoothing.png)
+![08_Laplacian_smoothing](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/08_Laplacian_smoothing.png)
 
 - **Vấn đề**: Khi tính xác suất, nếu hai từ không bao giờ xuất hiện cạnh nhau trong tập tài liệu đào tạo, bạn sẽ nhận được **xác suất bằng 0**. Điều này có thể khiến xác suất của toàn bộ chuỗi bằng 0.
 - **Giải pháp**: **Làm mịn Laplacian** (Laplacian smoothing), một kỹ thuật để tránh xác suất bằng không.
@@ -150,7 +150,7 @@
 - Từ ngữ được đơn giản hóa thành ba loại (trung lập, tích cực, tiêu cực) bằng cách **chia các xác suất có điều kiện** (tạo thành một tỷ lệ).
 > Cách tính Ratio
 
-![09_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/09_Log_Likelihood_Part_1.png)
+![09_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/09_Log_Likelihood_Part_1.png)
 
 - **Quy tắc của tỷ lệ ($P(\text{word}|\text{pos}) / P(\text{word}|\text{neg})$):**
     + **Trung lập (Neutral):** Tỷ lệ = 1 (ví dụ: "I", "am", "learning").
@@ -167,7 +167,7 @@
 
 > Giải pháp tính toán trong slide
 
-![10_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/10_Log_Likelihood_Part_1.png)
+![10_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/10_Log_Likelihood_Part_1.png)
 
 
 - **Giải pháp (Mẹo toán học):** Sử dụng **nhật ký điểm số (log of the score)** thay vì điểm thô.
@@ -177,7 +177,7 @@
 
 > Sử dụng Lambda
 
-![11_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/11_Log_Likelihood_Part_1.png)
+![11_Log_Likelihood_Part_1](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/11_Log_Likelihood_Part_1.png)
 
 - **Lambda ($\lambda$):**
     + Định nghĩa: $\lambda = \log(\text{tỷ lệ}) = \log(P(\text{word}|\text{pos}) / P(\text{word}|\text{neg}))$.
@@ -192,7 +192,7 @@
     * Bạn tính **khả năng ghi nhật ký (log likelihood)** của tweet bằng cách **tổng các lambda** ($\sum \lambda$) từ mỗi từ có trong tweet.
 > **Ví dụ:**
 
-![12_Log_Likelihood_Part_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/12_Log_Likelihood_Part_2.png)
+![12_Log_Likelihood_Part_2](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/12_Log_Likelihood_Part_2.png)
 - Tweet mẫu
     + "I" $\rightarrow$ 0
     + "am" $\rightarrow$ 0
@@ -237,7 +237,7 @@
 
 3.  **Bước 3: Tính Tần suất và Xác suất - freq(w, class) - P(w|pos), P(w|neg)**
 
-![13_Training_Naive_Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/13_Training_Naive_Bayes.png)
+![13_Training_Naive_Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/13_Training_Naive_Bayes.png)
 
 - Từ kho (corpus) đã xử lý, tính toán **từ vựng (vocabulary)** (bảng tần số) cho từng từ trong mỗi lớp.
 - Tính tổng các từ trong mỗi kho.
@@ -275,7 +275,7 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
 - Sau khi **đào tạo (train)** mô hình (có được bảng Lambda và logprior), bước tiếp theo là **kiểm tra (test)** nó.
 - Bạn sử dụng mô hình để dự đoán tình cảm của các **tweet chưa được nhìn thấy (unseen tweets)**.
 
-![14_Testing_Naive_Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/14_Testing_Naive_Bayes.png)
+![14_Testing_Naive_Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/14_Testing_Naive_Bayes.png)
 
 > Quy trình dự đoán (Suy luận) trên Tweet mới
 
@@ -355,7 +355,7 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
     1. **Sự độc lập giữa các yếu tố dự đoán (independence between predictors)** (tính năng) liên quan đến mỗi lớp.
     2. (Giả định thứ hai liên quan đến bộ xác thực, nhưng kịch bản tập trung vào vấn đề phân phối dữ liệu).
 
-![15_Naive_Bayes_Assumptions_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/15_Naive_Bayes_Assumptions_01.png)
+![15_Naive_Bayes_Assumptions_01](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/15_Naive_Bayes_Assumptions_01.png)
 
 
 > Vấn đề 1: Giả định về sự độc lập
@@ -366,7 +366,7 @@ Việc đào tạo một mô hình Naive Bayes có thể được chia thành s�
 - **Ví dụ (Hạn chế):** Nếu hoàn thành câu "it always cold and snow is white in...", Naive Bayes có thể gán xác suất bằng nhau cho các mùa (xuân, hè, thu, đông), mặc dù "mùa đông" (winter) là có khả năng nhất theo ngữ cảnh.
 - (Các khóa học tiếp theo sẽ giới thiệu các phương pháp tinh vi hơn để giải quyết vấn đề này).
 
-![16_Naive_Bayes_Assumptions_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/16_Naive_Bayes_Assumptions_02.png)
+![16_Naive_Bayes_Assumptions_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/16_Naive_Bayes_Assumptions_02.png)
 
 > Vấn đề 2: Phân phối dữ liệu (Data Distribution)
 
@@ -400,7 +400,7 @@ Có ba nguyên nhân chính gây ra lỗi dự đoán:
 
 Một trong những cân nhắc chính là văn bản thực sự trông như thế nào sau khi được xử lý.
 
-![17_Error_Analysis_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/17_Error_Analysis_01.png)
+![17_Error_Analysis_01](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/17_Error_Analysis_01.png)
 
 - **Dấu câu (Punctuation):**
     + Ví dụ: Tweet "bà ngoại yêu dấu của tôi :(". Dấu câu khuôn mặt buồn (`:(`) rất quan trọng đối với tình cảm.
@@ -416,7 +416,7 @@ Một trong những cân nhắc chính là văn bản thực sự trông như th
 
 **Bộ phân loại cơ sở ngây thơ** (Naive base classifier) bỏ lỡ tầm quan trọng của thứ tự từ.
 
-![18_Error_Analysis_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W2/18_Error_Analysis_02.png)
+![18_Error_Analysis_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W2/18_Error_Analysis_02.png)
 
 - Ví dụ 1: "Tôi **hạnh phúc** vì tôi đã **không** đi." (Đây là tweet tích cực).
 - Ví dụ 2: "Tôi **không hạnh phúc** vì tôi **không** đi." (Đây là cảm xúc tiêu cực).

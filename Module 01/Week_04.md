@@ -9,7 +9,7 @@
 
 > Biểu đồ hóa về việc sử dụng Transformation Matrix
 
-![01_Visualization_Transformation_Matrix]()
+![01_Visualization_Transformation_Matrix](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/01_Visualization_Transformation_Matrix.png)
 
 #### 1. Ý tưởng Dịch máy
 
@@ -32,7 +32,7 @@
 
 > Hình ảnh minh họa cho bạn thấy các vectơ đã được căn chỉnh:
 
-![02_Visualization_Aligned_Vectors]()
+![02_Visualization_Aligned_Vectors](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/02_Visualization_Aligned_Vectors.png)
 
 #### 3. Hàm tổn thất (Loss Function) và Định mức Frobenius
 
@@ -54,7 +54,7 @@
 
 - **Kết luận:** Chỉ với một ma trận R, bạn có thể học cách căn chỉnh các vectơ từ giữa các ngôn ngữ.
 
-![03_Calculate_R]()
+![03_Calculate_R](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/03_Calculate_R.png)
 
 
 ---

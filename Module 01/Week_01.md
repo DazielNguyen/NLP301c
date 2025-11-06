@@ -6,7 +6,7 @@
 ### **Logistic Regression**
 #### 1. Supervised Machine Learning (Học có giám sát)
 
-![M1_W1_01_Supervised ML](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_01_Supervised%20ML.png)
+![M1_W1_01_Supervised ML](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_01_Supervised%20ML.png)
 > Kiến trúc của Supervise ML
 
 - Trong máy học giám sát bạn có các tính năng đầu vào **X** và tập hợp các nhãn **Y**
@@ -21,7 +21,7 @@
 
 #### 2. Sentiment Analysis (Phân tích tình cảm)
 
-![Sentiment analysis Ví dụ](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_02_Sentiment%20analysis.png)
+![Sentiment analysis Ví dụ](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_02_Sentiment%20analysis.png)
 >Ví dụ về Sentiment analysis 
 
 - Trong ví dụ này bạn có: 
@@ -40,7 +40,7 @@
 
 - Dùng Logistic Regression đã dán nhãn, gán quan sát của nó cho hai lớp khác biệt
 
-![Cách xây dựng Sentiment analysis](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_02_Sentiment%20analysis.png)
+![Cách xây dựng Sentiment analysis](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_02_Sentiment%20analysis.png)
 > Cách xây dựng Sentiment analysis
 
 - Để xây dựng một bộ phân loại hồi quy logistic, có khả năng dự đoán tình cảm của một tweet tùy ý. 
@@ -52,7 +52,7 @@
 #### 3. Vocabulary 
 - Để biểu diễn text dưới dạng vector, cần phải xây dựng một bộ từ vựng và nó sẽ cho phép bạn mã hóa bất kỳ text nào hoặc bất kỳ tweet nào dưới dạng một mảng số.
 
-![M1_01_01_Vocabulary](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_03_Vocabulary.png)
+![M1_01_01_Vocabulary](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_03_Vocabulary.png)
 
 > Cách lưu các text thành mảng số
 
@@ -63,7 +63,7 @@
 
 #### 4. Feature Extraction
 
-![Biểu diễn Feature Extraction](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_04_Feature%20Extraction.png)
+![Biểu diễn Feature Extraction](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_04_Feature%20Extraction.png)
 > Giải thích ảnh trên: 
 
 - Chúng ta có một câu (I am happy because I am learning NLP)
@@ -73,7 +73,7 @@
 
 #### 5. Vấn đề biểu diễn thưa thớt 
 
-![M1_W1_05_Problem Spare Representation](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_05_Problem%20Spare%20Representation.png)
+![M1_W1_05_Problem Spare Representation](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_05_Problem%20Spare%20Representation.png)
 > Giải thích ảnh trên: 
 
 - Với sử biểu diễn thưa thớt, thì mô hình hồi quy Logistic sẽ phải học **n + 1 parameter**. 
@@ -93,24 +93,24 @@
 
 - Cho một tập hợp dữ liệu với các tweet tích cực và tiêu cực như sau
 
-![M1_W1_06_Feature Extraction with Frequencies_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_01.png)
+![M1_W1_06_Feature Extraction with Frequencies_01](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_06_Feature%20Extraction%20with%20Frequencies_01.png)
 
 - Bạn phải mã hóa mỗi tweet dưới dạng một vectơ. 
 - Trước đây, vectơ này có kích thước V. 
 - Bây giờ, như bạn sẽ thấy trong các video sắp tới, bạn sẽ biểu diễn nó bằng một vectơ có kích thước 3. 
 - Để làm được điều này, bạn phải tạo một từ điển để gán từ và lớp mà nó xuất hiện (tích cực hoặc tiêu cực) với số lần từ đó xuất hiện trong lớp tương ứng của nó.
 
-![M1_W1_06_Feature Extraction with Frequencies_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_02.png)
+![M1_W1_06_Feature Extraction with Frequencies_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_06_Feature%20Extraction%20with%20Frequencies_02.png)
 
 - Trong hai video trước, chúng tôi gọi từ điển này là `freqs`. 
 - Trong bảng trên, bạn có thể thấy các từ như happy và sad có xu hướng nghiêng về một thái cực rõ ràng, trong khi các từ khác như "I, am" thường có xu hướng trung lập hơn. 
 - Dựa trên từ điển này và tweet, "I am sad, I am not learning NLP", bạn có thể tạo một vector tương ứng với đặc trưng như sau:
 
-![M1_W1_06_Feature Extraction with Frequencies_03](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_03.png)
+![M1_W1_06_Feature Extraction with Frequencies_03](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_06_Feature%20Extraction%20with%20Frequencies_03.png)
 
 - Để mã hóa đặc điểm tiêu cực, bạn có thể làm việc tương tự
 
-![M1_W1_06_Feature Extraction with Frequencies_04](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_06_Feature%20Extraction%20with%20Frequencies_04.png)
+![M1_W1_06_Feature Extraction with Frequencies_04](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_06_Feature%20Extraction%20with%20Frequencies_04.png)
 
 - Do đó, bạn sẽ nhận được vectơ đặc trưng sau đây[1,8,11] . 1, tương ứng với độ lệch (bias), 8 là đặc trưng dương, và 11 là đặc trưng âm.
 
@@ -135,22 +135,22 @@
 
 - Sau khi tiền xử lý nó sẽ trở thành như sau: 
 
-![M1_W1_07_Preprocessing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_07_Preprocessing.png)
+![M1_W1_07_Preprocessing](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_07_Preprocessing.png)
 
 [*tun, great, ai, model*] Do đó, bạn có thể thấy cách chúng tôi **loại bỏ các ký tự xử lý**, phân tách thành các từ, **loại bỏ các từ dừng**, thực hiện chuyển đổi gốc và **chuyển đổi mọi thứ thành chữ thường.**
 
 #### 8. Putting it All Together
 - Nhìn chung, bạn bắt đầu với một văn bản cho trước, bạn thực hiện tiền xử lý, sau đó bạn trích xuất đặc điểm để chuyển đổi văn bản thành biểu diễn số như sau:
 
-![M1_W1_08_PuttingIAT](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_08_PuttingIAT.png)
+![M1_W1_08_PuttingIAT](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_08_PuttingIAT.png)
 
 - **X** của bạn, trở thành kích thước (*m*, 3) như sau:
 
-![M1_W1_08_PuttingIAT_01](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_08_PuttingIAT_01.png)
+![M1_W1_08_PuttingIAT_01](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_08_PuttingIAT_01.png)
 
 - Khi triển khai bằng code, nó sẽ như sau:
 
-![M1_W1_08_PuttingIAT_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_08_PuttingIAT_02.png)
+![M1_W1_08_PuttingIAT_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_08_PuttingIAT_02.png)
 
 - Bạn có thể thấy ở bước cuối cùng, bạn đang lưu trữ các **tính năng được trích xuất dưới dạng các hàng** (extract_features) trong ma trận **X** và bạn có *m* ví dụ này.
 
@@ -161,14 +161,14 @@
 - Hồi quy logistic sử dụng một **hàm sigmoid** (sigmoid function), xuất ra một xác suất từ 0 đến 1.
 > Overview of logistic regression
 
-![M1_W1_09_Logistic Regression Overview](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_09_Logistic_Regression_Overview.png)
+![M1_W1_09_Logistic Regression Overview](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_09_Logistic_Regression_Overview.png)
 
 - Trong **máy học được giám sát** (supervised machine learning), bạn có các tính năng đầu vào và nhãn. Bạn dùng một hàm với các tham số để ánh xạ các đối tượng với nhãn đầu ra.
 - Để có ánh xạ tối ưu, bạn **giảm thiểu hàm chi phí** (cost function) bằng cách so sánh đầu ra **Y hat** với nhãn thật **Y**. Các **tham số** (parameters) được cập nhật lặp lại cho đến khi chi phí được giảm thiểu.
 - Đối với hồi quy logistic, Hàm F trong hình là hàm Sigmoid
 > Biểu đạt bằng phương trình
 
-![M1_W1_10_Logistic_Regression_Overview_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_10_Logistic_Regression_Overview_02.png)
+![M1_W1_10_Logistic_Regression_Overview_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_10_Logistic_Regression_Overview_02.png)
 - Đối với hàm hồi quy logistic (H) là **hàm sigmoid**, phụ thuộc vào tham số **Theta** và vector tính năng **X dấu trên i** (quan sát thứ i, hoặc tweet thứ i).
 - Hàm sigmoid tiếp cận 0 khi tích chấm của **Theta transpose X** ($\theta^T X$) tiến đến âm vô cực, và tiếp cận 1 khi nó tiến đến dương vô cực.
 - Để phân loại, cần một **ngưỡng** (threshold), thường là **0.5**.
@@ -176,7 +176,7 @@
 - Khi tích chấm $\ge 0$, dự đoán là dương. Khi tích chấm $< 0$, dự đoán là âm.
 > Một ví dụ được đưa ra trong bối cảnh **phân tích tình cảm** (sentiment analysis) tweet.
 
-![M1_W1_10_Logistic_Regression_Overview_03](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_10_Logistic_Regression_Overview_03.png)
+![M1_W1_10_Logistic_Regression_Overview_03](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_10_Logistic_Regression_Overview_03.png)
 
 - Sau **tiền xử lý** (preprocessing) (ví dụ: chữ thường, giảm từ về gốc như 'tun'), bạn trích xuất các tính năng thành một vector.
 - Vector này bao gồm một **đơn vị thiên vị** (bias unit) và các tính năng (như tổng tần số tích cực và tiêu cực).
@@ -190,7 +190,7 @@
 - Một ví dụ trực quan cho thấy hàm chi phí (giả sử phụ thuộc vào **theta1** và **theta2**) và sự tiến hóa của nó qua các lần lặp (100, 200,...) để tiến gần đến chi phí tối ưu.
 > Kiến trúc Training LR
 
-![M1_W1_11_Logistic_Regression_Training](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_11_Logistic_Regression_Training.png)
+![M1_W1_11_Logistic_Regression_Training](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_11_Logistic_Regression_Training.png)
 
 - Quá trình chi tiết bao gồm:
     1.  **Khởi tạo** (Initialize) vector tham số **theta** ($\theta$).
@@ -201,7 +201,7 @@
 - Thuật toán này được gọi là **gradient descent**.
 > Thông thường bạn sẽ tiếp tục huấn luyện cho đến khi chi phí hội tụ. Nếu bạn vẽ biểu đồ số lần lặp so với chi phí, bạn sẽ thấy điều gì đó như sau:
 
-![M1_W1_12_Logistic_Regression_Training_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_12_Logistic_Regression_Training_02.png)
+![M1_W1_12_Logistic_Regression_Training_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_12_Logistic_Regression_Training_02.png)
 - Sau khi có **theta** ($\theta$), bạn cần **đánh giá** (evaluate) nó, tức là đánh giá bộ phân loại của bạn (tốt hay xấu).
 - Video tiếp theo sẽ chỉ cách đánh giá này.
 
@@ -210,7 +210,7 @@
 - Bạn sẽ sử dụng dữ liệu để dự đoán các điểm dữ liệu mới (ví dụ: tweet tích cực hay tiêu cực) và phân tích xem mô hình có **khái quát hóa** (generalize) tốt không.
 > Phần này chỉ cách tính **độ chính xác** (accuracy) của mô hình.
 
-![M1_W1_13_Logistic_Regression_Testing](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_13_Logistic_Regression_Testing.png)
+![M1_W1_13_Logistic_Regression_Testing](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_13_Logistic_Regression_Testing.png)
 
 - Để tính độ chính xác, bạn cần **X_Val** và **Y_Val** (dữ liệu để riêng trong quá trình đào tạo, còn gọi là **bộ xác nhận** - validation set) và **Theta** ($\theta$) (bộ thông số tối ưu).
 - Các bước thực hiện:
@@ -220,7 +220,7 @@
     4.  Kết quả là một **vector dự đoán** (prediction vector) gồm các số 0 (tiêu cực) và 1 (tích cực).
 > Công thức tính độ chính xác
 
-![M1_W1_14_Logistic_Regression_Testing_02](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_14_Logistic_Regression_Testing_02.png)
+![M1_W1_14_Logistic_Regression_Testing_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_14_Logistic_Regression_Testing_02.png)
 
 - Tính toán độ chính xác:
     1.  So sánh **vector dự đoán** với **giá trị thực sự** (Y_Val). Nếu khớp (ví dụ: dự đoán 0, nhãn 0) = 1; nếu không khớp (ví dụ: dự đoán 1, nhãn 0) = 0.
@@ -239,10 +239,10 @@
 
 > **Phương trình hàm chi phí** được phân tích thành các thành phần:
 
-![M1_W1_15_Logistic_Regression_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_15_Logistic_Regression_Cost_Function.png)
+![M1_W1_15_Logistic_Regression_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_15_Logistic_Regression_Cost_Function.png)
 
 
-![M1_W1_16_Logistic_Regression_Cost_Function_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_16_Logistic_Regression_Cost_Function_2.png)
+![M1_W1_16_Logistic_Regression_Cost_Function_2](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_16_Logistic_Regression_Cost_Function_2.png)
 
 - **Tổng** ($\sum$) trên **m** ví dụ đào tạo, cho thấy chi phí được tính trên mỗi ví dụ.
 - Hệ số **-1/m** phía trước có nghĩa là tính giá trị trung bình.
@@ -273,21 +273,21 @@
 
 - The general form of gradient descent is defined as:
 
-![M1_W1_17_Gradient_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_17_Gradient_1.png)
+![M1_W1_17_Gradient_1](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_17_Gradient_1.png)
 
 - For all j. We can work out the derivative part using calculus to get:
 
-![M1_W1_18_Gradient_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_18_Gradient_2.png)
+![M1_W1_18_Gradient_2](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_18_Gradient_2.png)
 
 - A vectorized implementation is:
 
-![M1_W1_19_Gradient_3](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_19_Gradient_3.png)
+![M1_W1_19_Gradient_3](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_19_Gradient_3.png)
 
 #### Partial derivative of J(θ)
 
 First calculate derivative of sigmoid function (it will be useful while finding partial derivative of J(θ)):
 
-![M1_W1_20_Gradient_4](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_20_Gradient_4.png)
+![M1_W1_20_Gradient_4](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_20_Gradient_4.png)
 
 
 - Note that we computed the partial derivative of the sigmoid function. If we were to derive `$h(x^{(i)}, \theta)$` with respect to `$\theta_j$`, you would get `$h(x^{(i)}, \theta) (1 - h(x^{(i)}, \theta)) x_j^{(i)}$`. Note that we used the chain rule there, because we multiply by the derivative of `$\theta^T x^{(i)}$` with respect to `$\theta_j$`. Now we are ready to find out resulting partial derivative:
@@ -296,7 +296,7 @@ $$
 \frac{\partial}{\partial \theta_j} h(x^{(i)}, \theta) = h(x^{(i)}, \theta) (1 - h(x^{(i)}, \theta)) x_j^{(i)}
 $$
 
-![M1_W1_21_Gradient_5](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W1_21_Gradient_5.png)
+![M1_W1_21_Gradient_5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W1/M1_W1_21_Gradient_5.png)
 
 - The vectorized version:
 

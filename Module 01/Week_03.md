@@ -12,7 +12,7 @@
 
 > Ví dụ
 
-![01_Example_Application_Vector_Spaces_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/01_Example_Application_Vector_Spaces_Model.png)
+![01_Example_Application_Vector_Spaces_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/01_Example_Application_Vector_Spaces_Model.png)
 
 1.  **Nắm bắt ý nghĩa (Semantic Meaning):**
     - Các mô hình không gian vectơ giúp xác định các câu có ý nghĩa giống nhau, ngay cả khi chúng *không* chia sẻ cùng một từ (ví dụ: hai câu hỏi khác nhau nhưng có cùng ý nghĩa).
@@ -48,7 +48,7 @@
 #### Hai thiết kế Mô hình Không gian Vectơ
 > Word by Word Design
 
-![02_Word_by_Word](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/02_Word_by_Word.png)
+![02_Word_by_Word](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/02_Word_by_Word.png)
 
 1.  **Thiết kế Từng từ (Word-by-word)**
     - Bạn tạo một ma trận đồng xuất hiện và trích xuất vectơ (bản trình bày) cho các từ trong kho (corpus) của bạn.
@@ -58,7 +58,7 @@
 
 > Word by Document Design
 
-![03_Word_by_Document](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/03_Word_by_Document.png)
+![03_Word_by_Document](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/03_Word_by_Document.png)
 
 2.  **Thiết kế Từ theo tài liệu (Word-by-document)**
     - Quá trình này khá giống nhau, nhưng bạn đếm số lần các từ xuất hiện trong các **tài liệu (documents)** thuộc các **danh mục (categories)** cụ thể.
@@ -69,7 +69,7 @@
 #### Xây dựng Không gian Vectơ và Sự tương đồng
 > Không gian Vectơ và Sự tương đồng
 
-![04_Vector_Space_and_Similarity](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/04_Vector_Space_and_Similarity.png)
+![04_Vector_Space_and_Similarity](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/04_Vector_Space_and_Similarity.png)
 
 - Từ ma trận "Từ theo tài liệu", bạn có thể lấy biểu diễn cho *từ* (từ các hàng) hoặc cho *loại tài liệu* (từ các cột).
 - **Ví dụ (lấy theo cột):** Không gian vectơ sẽ có hai chiều (tương ứng với từ "dữ liệu" và "phim").
@@ -94,7 +94,7 @@
 
 > Tính khoảng cách Euclidian giữa 2 vector
 
-![05_Euclidian_Distance](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/05_Euclidian_Distance.png)
+![05_Euclidian_Distance](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/05_Euclidian_Distance.png)
 
 - Sử dụng ví dụ về hai vectơ corpora ("giải trí" và "học máy") với hai chiều là số lần xuất hiện của từ "dữ liệu" và "phim".
 - Khoảng cách Euclide là **chiều dài của đoạn đường thẳng** (length of the line segment) nối hai vectơ đó trong không gian.
@@ -107,11 +107,11 @@
 
 > Tính tổng quát hóa việc tìm khoảng cách giữa hai điểm (A, B) sang khoảng cách giữa một vectơ n chiều như sau:
 
-![06_Euclidian_Distance_Generalization](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/06_Euclidian_Distance_Generalization.png)
+![06_Euclidian_Distance_Generalization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/06_Euclidian_Distance_Generalization.png)
 
 > Ví dụ tính khoảng cách giữa 2 vector (n = 3).
 
-![07_Example_Euclidian_Distance_Generalization](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/07_Example_Euclidian_Distance_Generalization.png)
+![07_Example_Euclidian_Distance_Generalization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/07_Example_Euclidian_Distance_Generalization.png)
 
 - Quy trình này là sự **khái quát hóa** (generalization) của trường hợp 2D.
 - Để tìm khoảng cách giữa hai vectơ (ví dụ: 'ice-cream' và 'boba'):
@@ -140,7 +140,7 @@
 
 > Ví dụ Consine Similarity: Intuition
 
-![08_Example_Consine_Similarity_Intuition](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/08_Example_Consine_Similarity_Intuition.png)
+![08_Example_Consine_Similarity_Intuition](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/08_Example_Consine_Similarity_Intuition.png)
 
 #### **Ví dụ về vấn đề của Khoảng cách Euclide:**
 
@@ -191,7 +191,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 #### **Giải thích ý nghĩa số liệu:**
 > Ví dụ về sự tương đồng và sự không tương đồng của 2 vector
 
-![09_Example_Consine_Similarity](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/09_Example_Consine_Similarity.png)
+![09_Example_Consine_Similarity](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/09_Example_Consine_Similarity.png)
 
 - (Đối với không gian vectơ chỉ có giá trị dương bạn đã thấy cho đến nay):
 - **Trực giao (Orthogonal)** (góc 90 độ): Cosin = 0. (Nghĩa là chúng **không giống nhau tối đa** - maximally dissimilar).
@@ -219,12 +219,12 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 
 > Ví dụ Tìm Thủ đô
 
-![10_Example_Manipulating_Word_in_Vectors_Spaces](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/10_Example_Manipulating_Word_in_Vectors_Spaces.png)
+![10_Example_Manipulating_Word_in_Vectors_Spaces](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/10_Example_Manipulating_Word_in_Vectors_Spaces.png)
 
 1.  **Thiết lập:** Giả sử bạn có một không gian vectơ (ví dụ: 2D) chứa các quốc gia và thủ đô. Bạn biết thủ đô của **Hoa Kỳ (USA)** là **Washington DC** và muốn tìm thủ đô của **Nga (Russia)**.
 > Không gian Vector 2D của ví dụ trên 
 
-![11_Example_Manipulating_Word_in_Vectors_Spaces](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/11_Example_Manipulating_Word_in_Vectors_Spaces.png)
+![11_Example_Manipulating_Word_in_Vectors_Spaces](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/11_Example_Manipulating_Word_in_Vectors_Spaces.png)
 
 2.  **Tìm Vectơ Mối quan hệ:**
     - Đầu tiên, bạn tìm "vectơ mối quan hệ" (relationship vector) kết nối quốc gia với thủ đô của nó.
@@ -255,7 +255,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 #### Động lực (Trực quan hóa)
 > Biểu đồ trực quan hóa
 
-![12_Example_Visualization](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/12_Example_Visualization.png)
+![12_Example_Visualization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/12_Example_Visualization.png)
 
 - Giả sử bạn có biểu diễn vectơ trong không gian chiều cao, và bạn biết rằng các từ "dầu khí" (oil and gas) và "thành phố và thị trấn" (city and town) có liên quan.
 - Bạn muốn xem liệu biểu diễn của mình có nắm bắt được mối quan hệ đó hay không.
@@ -287,7 +287,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 
 > Giảm chiều bằng PCA 
 
-![13_Visualization_PCA](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/13_Visualization_PCA.png)
+![13_Visualization_PCA](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/13_Visualization_PCA.png)
 
 
 - Quy trình giảm kích thước bằng **PCA** (Phân tích thành phần chính):
@@ -300,7 +300,7 @@ $$\cos(\beta) = \frac{v \cdot w}{||v|| \times ||w||}$$
 
 > Thuật toán PCA
 
-![14_PCA_Algorithmn](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/14_PCA_Algorithmn.png)
+![14_PCA_Algorithmn](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/14_PCA_Algorithmn.png)
 
 
 - **Bước 1: Lấy các tính năng không tương quan.**
@@ -415,7 +415,7 @@ $$\begin{bmatrix} x' \\ y' \end{bmatrix} = \begin{bmatrix} \cos(\beta) & \sin(\b
 
 > Câu 1: Tính Euclidian
 
-![15_Câu_1](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/15_Câu_1.png)
+![15_Câu_1](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/15_Câu_1.png)
 
 
 Tất nhiên, đây là cách tính chi tiết.
@@ -465,7 +465,7 @@ Giá trị này khớp với đáp án được chọn là **5.91608**.
 
 > Câu 2: Tính Cosine Similarity
 
-![16_Câu_2](https://github.com/DazielNguyen/NLP301c/blob/main/Image%20on%20courses/M1_W3/16_Câu_2.png)
+![16_Câu_2](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W3/16_Câu_2.png)
 
 - Hướng dẫn giải quyết bài toán
 
