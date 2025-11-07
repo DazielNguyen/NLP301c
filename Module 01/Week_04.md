@@ -218,28 +218,137 @@ $$hash_v \text{ alue} = \sum_i^H 2^i \times h_i$$
 - `P_l` là danh sách các mặt phẳng (list of planes). Bạn khởi tạo giá trị bằng 0, và sau đó bạn duyệt qua (iterate) tất cả các mặt phẳng (`P`), và bạn theo dõi `index` (chỉ số). Bạn lấy `sign` (dấu) bằng cách tìm dấu của `dot product` (tích vô hướng) giữa `v` và mặt phẳng `P` của bạn. Nếu nó `positive` (dương) bạn gán nó bằng 1, ngược lại bạn gán nó bằng 0. Sau đó, bạn cộng `score` (điểm) cho mặt phẳng thứ `i` vào `hash value` (giá trị băm) bằng cách tính $2^i \times h_i$.
 - **Kết luận:** Đây là cách bạn có được **hàm băm nhạy cảm với địa phương** (locality-sensitive hash function).
 
-
 ---
 ### **Approximate nearest neighbors**
 ---
 
+- Phần này giải thích cách sử dụng **Hashing Nhạy cảm với Địa phương (Locality-Sensitive Hashing - LSH)** để tăng tốc độ tìm kiếm **k hàng xóm gần nhất (k-nearest neighbors)**.
+
+#### Vấn đề và Giải pháp
+
+- **Vấn đề:** Một bộ mặt phẳng (planes) có thể chia không gian vectơ, nhưng chúng ta không biết đó có phải là cách tốt nhất hay không.
+- **Giải pháp:** Thay vì chỉ dùng một bộ, hãy tạo **nhiều bộ mặt phẳng ngẫu nhiên** (multiple sets of random planes). Điều này giống như tạo ra nhiều **bảng băm độc lập** (independent hash tables) (video gọi đây là "đa vũ trụ" - multiverse).
+
+> Approximate nearest neighbors không cung cấp full nearest neighbors nhưng cung cấp cho mình một xấp xỉ aproximate. Nó thường đánh đổi độ chính xác để lấy hiệu quả. Tham khảo vào biểu đồ sau: 
+
+![14_Example_ANN](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/14_Example_ANN.png)
+
+
+#### Cách thức hoạt động
+
+1.  Giả sử bạn có một vectơ truy vấn (query vector) (ví dụ: chấm đỏ tươi).
+2.  **Bộ mặt phẳng 1 (Vũ trụ 1):** Vectơ đỏ và các vectơ xanh lá cây được gán vào **cùng một túi băm** (same hash bucket).
+3.  **Bộ mặt phẳng 2 (Vũ trụ 2):** Vectơ đỏ và các vectơ xanh lam rơi vào cùng một túi.
+4.  **Bộ mặt phẳng 3 (Vũ trụ 3):** Vectơ đỏ và các vectơ màu cam rơi vào cùng một túi.
+5.  Bằng cách sử dụng nhiều bộ mặt phẳng ngẫu nhiên, bạn có một cách mạnh mẽ hơn để tìm kiếm một tập hợp các vectơ có thể là **ứng cử viên gần nhất** (closest candidates).
+
+=>  Vì vậy, bạn có thể thấy rằng khi làm nhiều lần hơn, bạn có khả năng nhận được tất cả các hàng xóm. Đây là mã cho một tập hợp các mặt phẳng ngẫu nhiên. Hãy đảm bảo rằng bạn hiểu những gì đang diễn ra.
+#### Hàng xóm gần nhất Xấp xỉ (ANN)
+
+- Phương pháp này được gọi là **Hàng xóm gần nhất Xấp xỉ** (Approximate Nearest Neighbors - ANN).
+- Nó "xấp xỉ" (approximate) bởi vì bạn không tìm kiếm toàn bộ không gian vectơ mà chỉ tìm kiếm một **tập hợp con** (subset) của nó (chỉ những vectơ rơi vào cùng túi băm với vectơ truy vấn).
+- **Sự đánh đổi:** Bạn **hy sinh một số độ chính xác** (sacrifice some accuracy) để đạt được **hiệu quả** (efficiency) (tốc độ) cao hơn nhiều trong tìm kiếm.
+
+#### Triển khai trong Code
+
+- Để tạo (ví dụ) 3 mặt phẳng ngẫu nhiên trong không gian 2 chiều, bạn có thể sử dụng `np.random.normal` để tạo một ma trận (ví dụ: 3 hàng x 2 cột).
+- Thay vì sử dụng vòng lặp `for`, bạn có thể sử dụng `np.dot` để tính tích chấm của vectơ (V) với *tất cả* các mặt phẳng trong một bước, nhằm xác định vectơ nằm ở phía dương hay âm của mỗi mặt phẳng.
+
+![15_Code_ANN](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/15_Code_ANN.png)
 
 ---
 ### **Searching Documents**
 ---
 
+- Bạn có thể sử dụng **k-near láng giềng (k-nearest neighbors)** nhanh để **tìm kiếm tài liệu** (document search) liên quan đến một truy vấn trong một bộ sưu tập lớn.
+> Video trước đã cho bạn thấy một ví dụ minh họa về cách bạn thực sự có thể biểu diễn một tài liệu dưới dạng vector.
 
----
-### Acknowledgements
----
+![16_Searching_Document](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/16_Searching_Document.png)
 
+- Bạn cần tạo vectơ cho cả truy vấn và tài liệu.
+- **Cách biểu diễn tài liệu (document) dưới dạng vectơ:**
+    + Ví dụ: Tài liệu "Tôi thích học tập".
+    + Lấy **vectơ từ (word vector)** cho từng từ riêng lẻ ("Tôi", "thích", "học tập").
+    + **Kết hợp chúng lại** (combine them). Cụ thể, **tổng (sum)** của tất cả các vectơ từ này trở thành **vectơ tài liệu (document vector)**.
+    + Vectơ tài liệu này có **cùng chiều (same dimension)** với các vectơ từ (ví dụ: 3 chiều).
 
+- **Code (logic):**
+    + Tạo một từ điển để **nhúng từ (word embeddings)**.
+    + Khởi tạo **nhúng tài liệu (document embedding)** là một mảng zero.
+    + Lặp qua mỗi từ trong tài liệu, lấy vectơ của nó (nếu tồn tại) và **cộng (add)** vào vectơ nhúng tài liệu.
+    + Trả về vectơ nhúng tài liệu (tổng).
+- **Kết luận:** Đây là một phương pháp chung: văn bản có thể được **nhúng vào không gian vectơ** (embedded into vector space). Trong không gian đó, **hàng xóm gần nhất (nearest neighbors)** đề cập đến văn bản có **ý nghĩa tương tự (similar meaning)**.
 
----
-### **Bibliography**
----
+- **Cấu trúc cơ bản** (basic structure) này được sử dụng lặp đi lặp lại trong toàn bộ **NLP hiện đại** (modern NLP).
 
+> Trong ví dụ này, bạn chỉ cần cộng các vector từ của một tài liệu để nhận được vector của tài liệu đó. Tóm lại, bây giờ bạn nên quen thuộc với các khái niệm sau:
+
+![17_Tong_hop](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/17_Tong_hop.png)
 
 ---
 ### **Andrew Ng with Kathleen McKeown**
 ---
+
+Dưới đây là tóm tắt các ý chính từ cuộc phỏng vấn của Andrew Ng với Kathy McKeown:
+
+#### Giới thiệu
+
+* Andrew Ng giới thiệu **Kathy McKeown**, Giáo sư Khoa học Máy tính tại **Đại học Columbia**, Giám đốc sáng lập **Viện Khoa học Dữ liệu và Kỹ thuật** (Data Science and Engineering Institute), và là **Học giả Amazon** (Amazon Scholar).
+* Bà được biết đến nhiều nhất với công trình về **tóm tắt văn bản** (text summarization).
+
+#### Con đường đến với NLP
+
+* Andrew hỏi về hành trình của Kathy, lưu ý rằng bà học chuyên ngành **Văn học So sánh** (Comparative Literature) tại **Đại học Brown**, mặc dù cũng có định hướng toán học.
+* Kathy giải thích rằng bà đã làm công việc lập trình sau khi tốt nghiệp và thấy nó "rất nhàm chán".
+* Một người bạn (chuyên ngành ngôn ngữ học) đã giới thiệu cho bà về **ngôn ngữ học tính toán** (computational linguistics).
+* Bà đã dành một năm trong thư viện *tự mình* đọc về AI và NLP. Bà nộp đơn vào trường cao học (Cao học) vì nó kết hợp cả hai mối quan tâm của bà là ngôn ngữ và toán học.
+
+#### Tự học và Hội chứng Kẻ mạo danh
+
+* Khi mới bắt đầu tự học, bà không có hướng dẫn và tự mình tìm kiếm các tài liệu tham khảo.
+* Khi vào Cao học tại **Penn** (điều mà bà thừa nhận là "hoàn toàn may mắn" vì đó là nơi tốt nhất về NLP vào thời điểm đó), bà cảm thấy "rất đáng sợ" và như một **"kẻ mạo danh"** (imposter).
+* Bà khuyên những người học ngày nay đang cảm thấy cô đơn hoặc bị cô lập hãy tiếp cận và nói chuyện với mọi người, tham gia các nhóm đọc trực tuyến, hoặc tham gia các khóa học (như của Andrew).
+
+#### Công việc hiện tại và Tóm tắt tiểu thuyết
+
+* Công việc chính của bà trong những năm gần đây là **tóm tắt** (summarization).
+* Một dự án thú vị bà làm với Amazon là **tóm tắt các chương tiểu thuyết** (summarizing novel chapters).
+* Đây là một nhiệm vụ rất khó khăn vì hai lý do chính:
+    1.  Các chương dài hơn nhiều so với các bài báo tin tức (nơi hầu hết các công việc tóm tắt hiện tại được thực hiện).
+    2.  Có một **"sự diễn giải cực kỳ"** (extreme paraphrasing) giữa đầu vào (tiểu thuyết thế kỷ 19) và đầu ra (bản tóm tắt bằng ngôn ngữ ngày nay).
+* Bà quan tâm đến **tóm tắt trừu tượng** (abstractive summarization), nơi bản tóm tắt sử dụng các từ và cấu trúc cú pháp khác với bản gốc.
+
+#### Về việc chọn các Vấn đề Nghiên cứu Mới
+
+* Kathy thích **công việc liên ngành** (interdisciplinary work) (với báo chí, y tế, v.v.) vì nó mang lại một góc nhìn khác.
+* Bà khuyên các nhà nghiên cứu nên chọn những vấn đề *khác biệt* và *quan trọng*.
+* Bà chỉ trích công việc tập trung vào **tóm tắt tài liệu đơn của tin tức** (single document news summarization). Mặc dù có nhiều dữ liệu (như **CNN Daily Mail**) và **bảng xếp hạng** (leaderboards), nhưng đó không phải là một nhiệm vụ thực sự cần thiết, vì **câu dẫn đầu** (hai câu đầu tiên) của một bài báo đã là một bản tóm tắt tốt và rất khó bị đánh bại.
+* Bà thích đi theo hướng mới (như tóm tắt tiểu thuyết hoặc tóm tắt câu chuyện cá nhân sau thảm họa) vì nó giải quyết một vấn đề quan trọng và bạn sẽ là "người đầu tiên đi đến giải pháp".
+* Thách thức của việc này là các bài báo rất khó được đánh giá do không có **điểm chuẩn** (benchmarks) hoặc công việc trước đó.
+
+#### Về các Số liệu (Metrics)
+
+* Cả hai đều đồng ý rằng các **số liệu tự động** (automatic metrics) (ví dụ: **Rouge** trong tóm tắt, hoặc trong dịch máy) thường bị **sai sót** (flawed), nhưng mọi người vẫn tiếp tục sử dụng chúng vì lý do lịch sử (để so sánh).
+
+#### Tác động xã hội và Thuật toán Không thiên vị
+
+* Kathy đang làm việc với các nhà nghiên cứu công tác xã hội và ngôn ngữ học để phân tích ngôn ngữ từ **cộng đồng da đen** (Black community) ở **Harlem**.
+* Họ đang xem xét các phản ứng (cảm xúc) đối với các sự kiện lớn như **Black Lives Matter** và **COVID-19**.
+* Các mục tiêu bao gồm:
+    1.  Hiểu cách **ngôn ngữ người Mỹ gốc Phi** (African American language) thể hiện cảm xúc so với tiếng Anh tiêu chuẩn.
+    2.  Phát triển các **thuật toán không thiên vị** (unbiased algorithms), vì hầu hết các hệ thống hiện tại được đào tạo trên ngôn ngữ tin tức (ví dụ: Tạp chí Phố Wall).
+    3.  Xem xét tác động của **chấn thương** (trauma) (cá nhân hoặc khi chứng kiến người khác bị hại).
+* Bà cũng đề cập đến các công việc có tác động xã hội trước đây, như phân tích các bài đăng trên mạng xã hội liên quan đến **băng đảng** và tạo **cập nhật thảm họa** (sau cơn bão Sandy).
+
+#### Sự phát triển của NLP
+
+* Kathy (lấy bằng Ph.D. năm '82) mô tả lĩnh vực NLP thời kỳ đầu:
+    1.  Rất **liên ngành** (interdisciplinary), lấy lý thuyết từ ngôn ngữ học, triết học và tâm lý học.
+    2.  Bà bị ảnh hưởng rất nhiều bởi các **phụ nữ cao cấp** (senior women) trong lĩnh vực, bao gồm **Bonnie Weber**, **Eva Hychova**, **Barbara Gross**, và **Karen Spark Jones**.
+    3.  Họ đã rút ra các lý thuyết (ví dụ: "trọng tâm của sự chú ý" (focus of attention) từ ngôn ngữ học, hoặc lý thuyết của Grice từ triết học) và cố gắng thể hiện chúng trong các hệ thống.
+
+#### Suy nghĩ cuối cùng
+
+* Các lĩnh vực bà thấy thú vị nhất bao gồm tóm tắt trừu tượng, phân tích ngôn ngữ từ **cộng đồng đa dạng** (diverse communities), giải quyết **thiên vị** (bias), và hiểu **nghĩa ngôn ngữ/thực dụng** (pragmatic meaning) (như cảm xúc và ý định).
+* Bà đề cập đến một bài báo yêu thích cũ về "Floating Constraints on Lexical Choice", lưu ý rằng sự **kiểm soát** (control) là thứ còn thiếu trong các mô hình tạo sinh học sâu (deep learning generation) ngày nay.
+* BDY nhấn mạnh rằng dù học sâu đã có những tiến bộ lớn, NLP vẫn còn nhiều hướng đi. Bà muốn thấy nhiều **công việc liên ngành** (interdisciplinary work) hơn và muốn các nhà nghiên cứu nhìn vào **dữ liệu và đầu ra** (data and output) chứ không chỉ là **số** (numbers).
