@@ -168,6 +168,11 @@ Bây giờ bất kỳ `vector` nào trên `dashed line` được `multiplied by`
 
 - **Trực quan hóa Tích chấm:** Tích chấm có thể được coi là **phép chiếu** (projection) của vectơ V lên vectơ P.
 - **Dấu hiệu của tích chấm** (sign of the dot product) cho biết hướng của phép chiếu (so với P), từ đó cho biết vectơ nằm ở bên nào của "máy bay".
+
+> Tính side_of_plan bằng Python
+
+![11_Python_Code](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/11_Python_Code.png)
+
 - **Python:** Một hàm (`side_of_plane`) được minh họa, sử dụng `np.dot` (tích chấm) và `np.sign` (dấu) để trả về +1 (dương), -1 (âm), hoặc 0.
 - **Điểm rút ra chính:** Dấu hiệu của phép chiếu (tích chấm) cho bạn biết điểm nằm ở phần nào của đường thẳng (trên hoặc dưới).
 
@@ -175,6 +180,43 @@ Bây giờ bất kỳ `vector` nào trên `dashed line` được `multiplied by`
 ### **Multiple Planes**
 ---
 
+> Phần này chỉ bạn cách kết hợp thông tin từ **nhiều mặt phẳng** (multiple planes) để có được một **giá trị băm** (hash value).
+
+![12_Multi_Planes](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/12_Multi_Planes.png)
+
+- Video trước đã chỉ ra **dấu của tích chấm** (sign of the dot product) cho biết vị trí tương đối của vectơ so với *một* mặt phẳng.
+- Bạn sử dụng nhiều hơn một mặt phẳng để chia **không gian vectơ** (vector space) thành các **vùng** (regions) nhỏ hơn, dễ quản lý hơn.
+- Bạn cần kết hợp các "tín hiệu" (signals) (mỗi mặt phẳng một tín hiệu) thành một **giá trị băm duy nhất** (single hash value) để xác định một vùng cụ thể (hoặc "thùng" - bucket).
+
+#### Quy trình tạo giá trị băm
+
+1.  **Lấy tín hiệu từ mỗi mặt phẳng:**
+    - **Quy tắc:** Dấu của tích chấm giữa vectơ (V) và vectơ bình thường của mặt phẳng ($P_i$) quyết định **giá trị băm trung gian** ($h_i$).
+    - Nếu (tích chấm) $\ge 0 \rightarrow$ $h_i = 1$.
+    - Nếu (tích chấm) $< 0 \rightarrow$ $h_i = 0$.
+
+2.  **Kết hợp các tín hiệu:**
+    - Bạn kết hợp các giá trị băm trung gian ($h_1, h_2, h_3, ...$) thành một giá trị băm duy nhất bằng một công thức tổng trọng số.
+    - **Công thức:** $\text{Hash} = (2^0 \times h_1) + (2^1 \times h_2) + (2^2 \times h_3) + \dots$
+    - **Ví dụ:** Nếu một vectơ có $h_1=1$ (dương ở P1), $h_2=1$ (dương ở P2), và $h_3=0$ (âm ở P3), giá trị băm kết hợp là:
+        $(2^0 \times 1) + (2^1 \times 1) + (2^2 \times 0) = 1 + 2 + 0 = 3$.
+
+$$hash_v \text{ alue} = \sum_i^H 2^i \times h_i$$
+
+*(Lưu ý: Dường như có một lỗi đánh máy nhỏ trong hình ảnh gốc. Dựa trên nội dung các video trước đó, công thức này có thể được dự định là $\text{hash\_value}$ (giá trị băm).)*
+3.  **Code (Logic):**
+> Code hash_multiple_plane
+
+![13_Code_hash_multiple_plane](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/13_Code_hash_multiple_plane.png)
+
+
+- Bắt đầu với `hash_value = 0`.
+- Lặp qua các mặt phẳng (i = 0, 1, 2, ...).
+- Tính dấu của tích chấm.
+- Gán `hash_i` là 1 (nếu dấu $\ge 0$) hoặc 0 (nếu dấu $< 0$).
+- Cộng dồn vào giá trị băm: `hash_value += h_i * (2**i)`.
+- `P_l` là danh sách các mặt phẳng (list of planes). Bạn khởi tạo giá trị bằng 0, và sau đó bạn duyệt qua (iterate) tất cả các mặt phẳng (`P`), và bạn theo dõi `index` (chỉ số). Bạn lấy `sign` (dấu) bằng cách tìm dấu của `dot product` (tích vô hướng) giữa `v` và mặt phẳng `P` của bạn. Nếu nó `positive` (dương) bạn gán nó bằng 1, ngược lại bạn gán nó bằng 0. Sau đó, bạn cộng `score` (điểm) cho mặt phẳng thứ `i` vào `hash value` (giá trị băm) bằng cách tính $2^i \times h_i$.
+- **Kết luận:** Đây là cách bạn có được **hàm băm nhạy cảm với địa phương** (locality-sensitive hash function).
 
 
 ---
