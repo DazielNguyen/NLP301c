@@ -130,7 +130,46 @@
 ---
 ### **Locality sensitive hashing**
 ---
+- `Locality sensitive hashing` (băm nhạy cảm với vị trí) là một kỹ thuật cho phép bạn băm các `input` (đầu vào) tương tự vào cùng một `bucket` (thùng) với xác suất cao.
 
+> Ví dụ dễ hình dung
+
+![08_Example_Locality_Sensitive_Hashing](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/08_Example_Locality_Sensitive_Hashing.png)
+
+- Một phương pháp để giảm chi phí tính toán khi tìm kiếm hàng xóm (neighbor search) trong không gian chiều cao là **băm nhạy cảm với địa phương** (Locality-Sensitive Hashing - LSH).
+- Video này giới thiệu về **hash** (băm) là gì.
+- **Ví dụ (2D):** Giả sử bạn có các vectơ (chấm xanh, chấm xám). Bạn muốn biết các chấm xanh ở gần nhau và các chấm xám cũng gần nhau.
+- **Ý tưởng:** Chia không gian bằng các đường đứt nét, được gọi là **máy bay** (planes).
+- **Quan sát:** Các vectơ liên quan (ví dụ: các chấm xanh) thường nằm ở cùng một phía của một "máy bay" cụ thể. Điều này giúp xếp các vectơ thành các tập con dựa trên vị trí của chúng.
+- Một hàm băm nhạy cảm với **vị trí (locality)** của các mục được gọi là **băm nhạy cảm với địa phương**.
+- **Định nghĩa "Máy bay":** Một "máy bay" (plane) (ví dụ: đường màu đỏ tươi) có thể được xác định bằng một **vectơ bình thường** (normal vector - P) duy nhất, là vectơ **vuông góc** (perpendicular) với "máy bay" đó.
+
+> Thay vì các `bucket` (thùng) thông thường mà chúng ta đã sử dụng, bạn có thể nghĩ đến việc phân cụm (clustering) các điểm bằng cách quyết định xem chúng ở trên hay dưới một đường thẳng (line). Bây giờ khi chúng ta đi đến các chiều cao hơn (ví dụ các véc-tơ n-chiều), bạn sẽ sử dụng các mặt phẳng (planes) thay vì các đường thẳng. Chúng ta hãy xem một ví dụ cụ thể:
+
+![09_Example_Locality_Sensitive_Hashing_02](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/09_Example_Locality_Sensitive_Hashing_02.png)
+
+> Cho một `point` (điểm) tại $(1,1)$ và ba `vectors` (véc-tơ) $V_1=(1,2)$, $V_2=(-1,1)$, $V_3=(-2,-1)$
+bạn sẽ thấy điều gì xảy ra khi chúng ta thực hiện `dot product` (tích vô hướng).
+Đầu tiên lưu ý rằng `dashed line` (đường nét đứt) là `plane` (mặt phẳng) của chúng ta.
+`Vector` (véc-tơ) với `point` $P=(1,1)$ thì `perpendicular` (vuông góc) với `line` (`plane`) đó.
+Bây giờ bất kỳ `vector` nào ở trên `dashed line` mà được `multiplied by` (nhân với) $(1,1)$ sẽ có một `positive number` (số dương).
+Bất kỳ `vector` nào bên dưới `dashed line` khi được `dotted with` $(1,1)$ sẽ có một `negative number` (số âm).
+Bây giờ bất kỳ `vector` nào trên `dashed line` được `multiplied by` (nhân với) $(1,1)$ sẽ cho bạn một `dot product` bằng 0.
+- **Câu hỏi:** Làm thế nào để biết một vectơ nằm ở bên nào của "máy bay" bằng toán học?
+- **Giải pháp:** Sử dụng **tích chấm** (dot product) của vectơ (V) với vectơ bình thường (P).
+- **Ý nghĩa của Dấu (Sign):**
+    + Tích chấm **dương** (positive) (ví dụ: V1 · P = 3) $\rightarrow$ Vectơ nằm ở một bên của "máy bay".
+    + Tích chấm **âm** (negative) (ví dụ: V3 · P = -3) $\rightarrow$ Vectơ nằm ở phía đối diện.
+    + Tích chấm **bằng 0** (zero) (ví dụ: V2 · P = 0) $\rightarrow$ Vectơ nằm trên "máy bay".
+
+> Trực quan hóa Tích chấm
+
+![10_Visualization_Production_Dot](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Image_Module_01/M1_W4/10_Visualization_Production_Dot.png)
+
+- **Trực quan hóa Tích chấm:** Tích chấm có thể được coi là **phép chiếu** (projection) của vectơ V lên vectơ P.
+- **Dấu hiệu của tích chấm** (sign of the dot product) cho biết hướng của phép chiếu (so với P), từ đó cho biết vectơ nằm ở bên nào của "máy bay".
+- **Python:** Một hàm (`side_of_plane`) được minh họa, sử dụng `np.dot` (tích chấm) và `np.sign` (dấu) để trả về +1 (dương), -1 (âm), hoặc 0.
+- **Điểm rút ra chính:** Dấu hiệu của phép chiếu (tích chấm) cho bạn biết điểm nằm ở phần nào của đường thẳng (trên hoặc dưới).
 
 ---
 ### **Multiple Planes**
