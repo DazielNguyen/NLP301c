@@ -1,5 +1,5 @@
-# **Module 01** - Natural Language Processing with Classification and Vector Spaces
-## Week 1: Sentiment Analysis with Logistic Regression
+# **Module 01 - Natural Language Processing with Classification and Vector Spaces**
+## **Week 1: Sentiment Analysis with Logistic Regression**
 
 - Biểu diễn văn bản dưới dạng text thành vector và xây dựng một bộ phân loại sẽ phân loại văn bản mẫu thành hai loại (Tâm lý tích cực hoặc Tâm lý tiêu cực). Sử dụng Logistic Regression. 
 

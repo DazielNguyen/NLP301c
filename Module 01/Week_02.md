@@ -1,5 +1,5 @@
-# **Module 01** - Natural Language Processing with Classification and Vector Spaces
-## Week 2: Sentiment Analysis with Naive Bayes
+# **Module 01 - Natural Language Processing with Classification and Vector Spaces**
+## **Week 2: Sentiment Analysis with Naive Bayes**
 ### Probability and Bayes' Rule
 
 > Video này cung cấp cái nhìn tổng quan về **Quy tắc Bayes** (Bayes' rule) và **xác suất** (probability).

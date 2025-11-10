@@ -1,4 +1,4 @@
-# **Module 01** - Natural Language Processing with Classification and Vector Spaces
+# **Module 01 - Natural Language Processing with Classification and Vector Spaces**
 ## **Week 3: Vector Space Models**
 
 ---

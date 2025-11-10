@@ -1,55 +1,51 @@
-# **Module 02** - Template
-## Week 5: Template
-- Template
+# **Module 02 - Natural Language Processing with Probabilistic Models**
+## **Week 1: Autocorrect and Minimum Edit Distance**
 ---
-### **Template**
----
-
-
----
-### **K-nearest neighbors**
+### **Overview**
 ---
 
 
-
 ---
-### **Hash tables and hash functions**
+### **Autocorrect**
 ---
 
 
 
 ---
-### **Locality sensitive hashing**
----
-
-
----
-### **Multiple Planes**
+### **Building the model**
 ---
 
 
 
 ---
-### **Approximate nearest neighbors**
+### **Building the model II**
 ---
 
 
 ---
-### **Searching Documents**
----
-
-
----
-### Acknowledgements
+### **Minimum edit distance**
 ---
 
 
 
 ---
-### **Bibliography**
+### **Minimum edit distance algorithmn**
 ---
 
 
 ---
-### **Andrew Ng with Kathleen McKeown**
+### **Minimum edit distance algorithmn II**
 ---
+
+
+---
+### **Minimum edit distance algorithmn III**
+---
+
+
+
+---
+### **Minimum edit distance III**
+---
+
+
