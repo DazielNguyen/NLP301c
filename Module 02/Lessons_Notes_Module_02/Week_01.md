@@ -182,9 +182,17 @@ Script tóm tắt lại toàn bộ quy trình tự động sửa lỗi (ví dụ
 ---
 ### **Minimum edit distance algorithmn III**
 ---
+![08_Example_MED_Algorithmn_III](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W1/08_Example_MED_Algorithmn_III.png)
 
+- Tóm lại, bạn đã thấy **khoảng cách Levenshtein**, xác định **chi phí** cho mỗi phép toán. 
+- Nếu bạn cần tái tạo đường đi từ một chuỗi đến chuỗi khác, bạn có thể sử dụng **phương pháp theo dấu vết ngược (backtrace)**. 
+- Bạn nên giữ một con trỏ đơn giản trong mỗi ô để biết bạn đã đến từ đâu. 
+- Như vậy, bạn sẽ biết đường đi qua bảng từ góc trên bên trái đến góc dưới bên phải. 
+- Sau đó, bạn có thể tái tạo lại đường đi đó.
 
-
+- Phương pháp này để **tính toán** thay vì sử dụng cách thử tất cả là một kỹ thuật được biết đến là lập trình động. 
+- Trước tiên, bạn giải quyết vấn đề con nhỏ nhất, sau đó sử dụng kết quả này để giải quyết vấn đề con lớn tiếp theo, lưu trữ kết quả đó, sử dụng lại, và tiếp tục như vậy. 
+- Đây chính xác là những gì bạn đã làm khi điền dữ liệu vào mỗi ô từ trên cùng sang trái đến dưới cùng bên phải. Đây là một kỹ thuật đã được biết đến rộng rãi trong khoa học máy tính!
 ---
 ### **Minimum edit distance III**
 ---
