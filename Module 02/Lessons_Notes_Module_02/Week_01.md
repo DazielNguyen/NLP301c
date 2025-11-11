@@ -151,12 +151,33 @@ Script tóm tắt lại toàn bộ quy trình tự động sửa lỗi (ví dụ
 ---
 ### **Minimum edit distance algorithmn**
 ---
+> Khi tính toán khoảng cách chỉnh sửa tối thiểu, bạn sẽ bắt đầu với một **source word** và chuyển đổi nó thành **target word**. 
 
+> Ví dụ 
+
+![05_Example_MED_Algorithmn](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W1/04_Minium_edit_distance.png)
+
+- Để đi từ **#** $\rightarrow$ **#** bạn cần một chi phí là **0**
+- Từ **p** $\rightarrow$ **#** bạn nhận **1**, bởi vì đó là chi phí của 1 lần **Delete**
+- **p** $\rightarrow$ **s** là 2, vì đó là chi phí tổi thiểu có thể dùng để đi từ **p** đến **s**
+- Bạn có thể tiếp tục theo cách này bằng cách điền từng phần tử một, nhưng hóa ra có một cách nhanh hơn để làm việc này.
 
 ---
 ### **Minimum edit distance algorithmn II**
 ---
+> Để điền vào bảng trống bên dưới 
 
+![06_Example_MED_Algorithmn_II](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W1/06_Example_MED_Algorithmn_II.png)
+
+> Có 3 công thức tính như sau: 
+
+- **D[i,j] = D[i-1,j] + del_cost**: Điều này chỉ ra rằng bạn muốn điền vào ô hiện tại (i,j) bằng cách sử dụng chi phí trong ô ngay phía trên.
+- **D[i,j] = D[i,j-1] + ins_cost**: Điều này cho thấy bạn muốn điền giá trị vào ô hiện tại (i,j) bằng cách sử dụng chi phí trong ô nằm ngay bên trái nó.
+- **D[i,j] = D[i-1,j-1] + rep_cost**: Chi phí thay thế có thể là 2 hoặc 0 tùy thuộc vào việc bạn có thực sự thay thế nó hay không.
+
+> Ở mỗi bước thời gian, bạn kiểm tra ba đường có thể mà bạn có thể đến từ đó và chọn đường ít tốn kém nhất. Khi bạn hoàn tất, bạn sẽ nhận được kết quả sau:
+
+![07_Example_MED_Algorithmn_II](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W1/07_Example_MED_Algorithmn_II.png)
 
 ---
 ### **Minimum edit distance algorithmn III**
