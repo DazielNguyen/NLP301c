@@ -114,10 +114,6 @@ Script tóm tắt lại toàn bộ quy trình tự động sửa lỗi (ví dụ
 - Nếu bạn muốn xây dựng một hệ thống **tự động sửa lỗi (auto-correct) tinh vi hơn**, bạn có thể theo dõi **hai từ xuất hiện liền kề nhau**.
 - Điều này cho phép bạn sử dụng từ đứng trước để quyết định (ví dụ: tổ hợp "there friend" hay "their friend" có khả năng cao hơn).
 - Tuy nhiên, trong tuần này, bạn sẽ chỉ triển khai xác suất bằng cách sử dụng **tần suất từ (đơn lẻ)**.
-- (Script này cũng lưu ý rằng đây là bản tóm tắt của hai video trước đó).
-
-
-
 
 ---
 ### **Minimum edit distance**
