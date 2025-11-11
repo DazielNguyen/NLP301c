@@ -68,8 +68,55 @@
     + (3) Lọc các ứng cử viên. Bước thứ tư và cũng là bước cuối cùng—**tính toán xác suất**
 
 ---
-### **Building the model II**
+### **Building the model II + Bổ sung thêm Bước 4**
 ---
+
+- Cách tính **xác suất** (probability) của từng từ ứng cử viên chính xác.
+- Đây là **Bước 4** (bước cuối cùng): Tính xác suất giá trị (probability values) và tìm từ có **khả năng nhất** (most likely) từ danh sách ứng cử viên.
+- Ví dụ: Từ "and" phổ biến hơn "an" trong một **kho tài liệu** (corpus). Đây là cách tự động sửa (auto-correct) biết nên chọn từ nào.
+
+> Ví dụ về cách tính xác suất từ 
+
+![02_Example_Calculating_Word_Prob](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W1/02_Example_Calculating_Word_Prob.png)
+
+#### Cách tính Xác suất
+
+1.  **Tính Tần số:**
+    - Để tính xác suất, trước tiên bạn cần **tần số từ** (word frequencies) và **tổng số từ** (total number of words) trong kho tài liệu.
+    - (Một kho tài liệu thường rất lớn, như tất cả các cuốn sách Harry Potter).
+2.  **Ví dụ đơn giản:**
+    - Script sử dụng kho tài liệu (corpus) được định nghĩa là một câu duy nhất: "Tôi hạnh phúc vì tôi đang học hỏi."
+    - Ví dụ về đếm (từ script): Từ "I" xuất hiện 2 lần, từ "am" cũng xuất hiện 2 lần.
+    - Tổng số từ trong kho này là 7.
+3.  **Công thức Xác suất:**
+    - Xác suất của một từ = (Số lần từ xuất hiện) / (Tổng số từ trong kho).
+    - Ví dụ (từ script): $P(\text{am}) = 2 / 7$.
+4.  **Lựa chọn:** Tự động sửa sẽ tìm và chọn từ ứng cử viên có **xác suất cao nhất** (highest probability) làm từ thay thế.
+
+
+#### Tóm tắt toàn bộ 4 bước
+
+Script tóm tắt lại toàn bộ quy trình tự động sửa lỗi (ví dụ: sửa từ "deah"):
+
+1.  **Xác định** (Identify) từ ("deah") là sai chính tả (bằng cách kiểm tra nó so với các từ đã biết/từ điển).
+2.  **Tạo** (Generate) một danh sách tất cả các chuỗi cách *n* **chỉnh sửa** (edits) (hay *n* **khoảng cách chỉnh sửa** - edit distance).
+3.  **Lọc** (Filter) danh sách này để chỉ bao gồm những từ có thật (có trong từ điển).
+4.  **Tính toán xác suất** (Calculate probabilities) cho mỗi từ còn lại và chọn từ có xác suất cao nhất làm thay thế.
+
+#### **Kết luận:** 
+> Tổng quan về các bước xây dựng mô hình Autocorrect
+
+![03_Step_by_Step_Built_Autocorrect_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W1/03_Step_by_Step_Built_Autocorrect_Model.png)
+
+- Bạn đã học về **chỉnh sửa** (edits) và **khoảng cách chỉnh sửa** (edit distance) và cách chúng đo lường **sự tương đồng** (similarity) giữa các từ.
+- Bạn đang lưu trữ **số lượng từ (count of words)**, và sau đó bạn có thể sử dụng chúng để tạo ra **xác suất (probabilities)**.
+- Trong tuần này, bạn sẽ chỉ đếm **xác suất của các từ (đơn lẻ) xuất hiện**.
+- Nếu bạn muốn xây dựng một hệ thống **tự động sửa lỗi (auto-correct) tinh vi hơn**, bạn có thể theo dõi **hai từ xuất hiện liền kề nhau**.
+- Điều này cho phép bạn sử dụng từ đứng trước để quyết định (ví dụ: tổ hợp "there friend" hay "their friend" có khả năng cao hơn).
+- Tuy nhiên, trong tuần này, bạn sẽ chỉ triển khai xác suất bằng cách sử dụng **tần suất từ (đơn lẻ)**.
+- (Script này cũng lưu ý rằng đây là bản tóm tắt của hai video trước đó).
+
+
 
 
 ---
