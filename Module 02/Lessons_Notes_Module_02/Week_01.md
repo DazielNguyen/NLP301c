@@ -118,8 +118,35 @@ Script tóm tắt lại toàn bộ quy trình tự động sửa lỗi (ví dụ
 ---
 ### **Minimum edit distance**
 ---
+> Làm thế nào để đánh giá giữa 2 chuỗi có điểm tương đồng?
+
+> Số lượng tối thiểu của chỉnh sửa cần thiết để chuyển đổi 1 chuỗi sang một chuỗi khác. 
+
+- **Chủ đề:** **Khoảng cách chỉnh sửa tối thiểu** (Minimum Edit Distance).
+- **Định nghĩa:** Đây là **số phép toán (operations) thấp nhất** cần thiết để biến đổi một chuỗi thành chuỗi kia.
+- **Ứng dụng:** Nó có nhiều ứng dụng trong NLP (như **chỉnh sửa chính tả**, **tương tự tài liệu**, **dịch máy**) và trong sinh học tính toán (như **giải trình tự DNA**).
+- **Các loại thao tác (Chỉnh sửa):** Bạn sẽ sử dụng ba thao tác bạn đã biết: **chèn** (insert), **xóa** (delete), và **thay thế** (replace).
+- **Ví dụ (Chi phí bằng nhau):** Để biến "play" thành "stay", bạn cần 2 lần "thay thế" (p $\rightarrow$ s và l $\rightarrow$ t). Tổng số chỉnh sửa là 2.
+
+> Ví dụ cụ thể nơi chúng ta tính toán chi phí (tức là khoảng cách chỉnh sửa) giữa hai chuỗi.
+
+![04_Minium_edit_distance](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W1/04_Minium_edit_distance.png)
 
 
+- **Khái niệm mới: Chi phí Chỉnh sửa (Edit Costs):**
+    + Thay vì mọi hoạt động đều có chi phí (cost) là 1, bây giờ bạn sẽ xem xét các chi phí khác nhau cho mỗi loại.
+    + Mục tiêu là giảm thiểu **tổng chi phí chỉnh sửa** (total edit cost).
+    + **Ví dụ về chi phí:** Chèn = 1, Xóa = 1, **Thay thế = 2**.
+    + Lý do (trực quan): "Thay thế" giống như một thao tác "Xóa" theo sau là một thao tác "Chèn".
+- **Ví dụ (Với chi phí mới):** Để biến "play" thành "stay" (2 lần thay thế), tổng chi phí bây giờ là 2 + 2 = 4.
+
+- **Vấn đề với chuỗi dài:**
+    + Bạn có thể tìm ra khoảng cách chỉnh sửa cho các ví dụ đơn giản "chỉ bằng cách nhìn vào nó".
+    + Tuy nhiên, đối với các chuỗi dài (văn bản lớn, DNA), việc thử **"lực thô"** (brute force) (liệt kê tất cả các khả năng) sẽ mất thời gian rất, rất dài.
+    + Độ phức tạp tính toán **tăng theo cấp số nhân** (increases exponentially).
+- **Giải pháp (Cách nhanh hơn):**
+    + Sử dụng **cách tiếp cận dạng bảng** (tabular approach) để tăng tốc độ.
+    + Phương pháp này sử dụng một khái niệm mới gọi là **lập trình động** (dynamic programming).
 
 ---
 ### **Minimum edit distance algorithmn**
