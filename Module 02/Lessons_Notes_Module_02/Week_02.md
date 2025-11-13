@@ -82,11 +82,11 @@ Thẻ POS mô tả cấu trúc và giúp đưa ra các giả định về ngữ 
 
 > Bạn có thể sử dụng chuỗi Markov để xác định xác suất của từ tiếp theo. Ví dụ dưới đây, bạn có thể thấy rằng từ có khả năng xuất hiện nhất sau một động từ là một danh từ.
 
-![02_Part_of_Speech_Tagging](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/02_Part_of_Speech_Tagging.png)
+![02_Markov_Chains](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/02_Markov_Chains.png)
 
 > Để mô hình hóa xác suất một cách đúng đắn, chúng ta cần xác định xác suất của các nhãn từ loại (POS) và của các từ.
 
-![03_Part_of_Speech_Tagging](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/03_Part_of_Speech_Tagging.png)
+![03_Markov_Chains](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/03_Markov_Chains.png)
 
 > Các vòng tròn trong đồ thị đại diện cho các trạng thái của mô hình. Một trạng thái đề cập đến một điều kiện nhất định của thời điểm hiện tại. Bạn có thể nghĩ về chúng như là các nhãn từ loại của từ hiện tại.
 
@@ -96,7 +96,50 @@ Thẻ POS mô tả cấu trúc và giúp đưa ra các giả định về ngữ 
 ### **Markov Chains and POS Tags**
 ---
 
+- Phần này giới thiệu cách bạn đi từ trạng thái (state) này sang trạng thái khác, xác định một thuật ngữ gọi là **xác suất chuyển tiếp** (transition probabilities).
 
+
+#### Chuỗi Markov và POS Tagging
+
+* Bạn có thể biểu diễn một câu (chuỗi các từ) bằng một biểu đồ.
+* **Trạng thái (States):** Chính là các **phần của thẻ giọng nói** (POS tags). (Ví dụ: `NN` cho danh từ, `VB` cho động từ, `Other` cho các thẻ khác).
+* **Cạnh (Edges):** Các mũi tên có trọng số, đại diện cho **xác suất chuyển tiếp**. Chúng xác định xác suất đi từ trạng thái này sang trạng thái khác.
+
+#### Property Thuộc tính Markov (Markov Property)
+
+* Đây là một đặc tính quan trọng giúp giữ cho mô hình đơn giản.
+* **Định nghĩa:** Xác suất của sự kiện *tiếp theo* **chỉ phụ thuộc vào sự kiện *hiện tại***.
+* Nó không cần thông tin từ bất kỳ trạng thái nào trước đó (lịch sử).
+* **Ví dụ (POS Tagging):** Để biết xác suất từ tiếp theo (sau "learn") là danh từ, bạn chỉ cần biết trạng thái *hiện tại* là động từ (`VB`). Xác suất này chính là xác suất chuyển tiếp từ `VB` đến `NN` (ví dụ: 0.4).
+
+
+#### Ma trận Chuyển tiếp (Transition Matrix)
+
+* Bạn có thể sử dụng một **bảng** (table) để lưu trữ các xác suất chuyển tiếp. Đây là một biểu diễn tương đương và nhỏ gọn hơn của chuỗi Markov.
+* Bảng này được gọi là **ma trận chuyển tiếp (A)**.
+* **Kích thước:** N x N (với N là số trạng thái).
+* **Hàng (Rows):** Đại diện cho **trạng thái hiện tại** (ví dụ: `NN`).
+* **Cột (Columns):** Đại diện cho **trạng thái tương lai** (ví dụ: `NN`, `VB`, `Other`).
+* **Giá trị:** Xác suất chuyển đổi (ví dụ: $P(\text{NN} | \text{NN})$, $P(\text{VB} | \text{NN})$).
+* **Quy tắc quan trọng:** Tổng tất cả các xác suất chuyển tiếp đi từ một trạng thái nhất định (tức là, **tổng của mỗi hàng**) phải **luôn luôn bằng 1**.
+
+#### Trạng thái Ban đầu (Initial State)
+
+* **Vấn đề:** Mô hình không cho bạn biết cách gán thẻ POS cho **từ đầu tiên** trong câu (vì không có từ *trước đó*).
+* **Giải pháp:** Giới thiệu một **trạng thái ban đầu** (initial state) (thường ký hiệu là $\pi$).
+* Trạng thái này được thêm vào ma trận A, làm cho nó có kích thước **(N+1) x N**. Hàng đầu tiên (hàng 0) chứa các xác suất ban đầu (ví dụ: xác suất câu bắt đầu bằng `NN`, `VB`, v.v.).
+
+* **Video tiếp theo:** Sẽ tìm hiểu về **Mô hình Markov ẩn** (Hidden Markov Models).
+
+> Để giúp xác định các loại từ cho mỗi từ, bạn cần xây dựng một ma trận chuyển tiếp cung cấp cho bạn xác suất từ trạng thái này sang trạng thái khác.
+
+![04_Markov_Chainsand_POS_Tags](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/04_Markov_Chainsand_POS_Tags.png)
+
+> Trong sơ đồ ở trên, các vòng tròn màu xanh tương ứng với các nhãn loại từ, và các mũi tên tương ứng với xác suất chuyển tiếp từ loại từ này sang loại từ khác. Bạn có thể điền bảng bên phải từ sơ đồ bên trái. Hàng đầu tiên trong ma trận **A** của bạn tương ứng với phân phối ban đầu giữa tất cả các trạng thái. Theo bảng, câu có 40% khả năng bắt đầu bằng danh từ, 10% khả năng bắt đầu bằng động từ, và 50% khả năng bắt đầu bằng một nhãn loại từ khác.
+
+> Trong ký hiệu tổng quát hơn, bạn có thể viết ma trận chuyển tiếp **A**, cho trước một số trạng thái **Q**, như sau:
+
+![05_Markov_Chainsand_POS_Tags](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/05_Markov_Chainsand_POS_Tags.png)
 
 ---
 ### **Hidden Markov Models**
