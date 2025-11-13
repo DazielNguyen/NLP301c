@@ -189,11 +189,52 @@ Mô hình HMM có hai bộ xác suất chính:
 ![07_Hidden_Markov_Models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/07_Hidden_Markov_Models.png)
 
 > Lưu ý rằng tổng của mỗi hàng trong **ma trận A và B** của bạn phải bằng 1. Tiếp theo, tôi sẽ chỉ cho bạn cách bạn có thể tính các xác suất bên trong các ma trận này.
+
 ---
 ### **Calculating Probabilities**
 ---
 
+- Phần này giải thích cách tính toán xác suất cho **ma trận chuyển tiếp (transition matrix)** (Ma trận A) từ một **kho tài liệu (corpus)** đã được gán thẻ.
 
+#### 1. Ý tưởng Khái niệm (Conceptual Idea)
+
+* **Mục tiêu:** Tính xác suất chuyển tiếp, ví dụ: $P(\text{Thẻ Tím} | \text{Thẻ Xanh})$.
+* **Cách làm:**
+    1.  **Đếm (Count):** Đếm số lần tổ hợp (cặp thẻ) đó xuất hiện. (Ví dụ: "Xanh" theo sau là "Tím" xuất hiện **2 lần**).
+    2.  **Đếm Tổng:** Đếm tổng số lần "Thẻ Xanh" xuất hiện (tức là, tất cả các cặp bắt đầu bằng "Xanh"). (Ví dụ: **3 lần**).
+    3.  **Tính toán:** Xác suất = (Số lần đếm) / (Tổng số lần đếm) = **2/3**.
+
+#### 2. Công thức Chính thức (Formal Formula)
+
+Để tính toán ma trận chuyển tiếp (xác suất $P(t_i | t_{i-1})$), bạn cần hai phép đếm:
+
+1.  **$C(t_{i-1}, t_i)$:** (Tử số) Số lần thẻ $t_{i-1}$ được theo sau ngay lập tức bởi thẻ $t_i$ trong kho tài liệu.
+2.  **$C(t_{i-1})$:** (Mẫu số) Tổng số lần thẻ $t_{i-1}$ xuất hiện (tức là, tổng của $C(t_{i-1}, t_j)$ cho mọi $t_j$ có thể).
+
+Công thức là:
+$$P(t_i | t_{i-1}) = \frac{C(t_{i-1}, t_i)}{C(t_{i-1})}$$
+
+
+
+#### 3. Chuẩn bị Kho tài liệu (Corpus Preparation)
+
+Để tính toán các xác suất này một cách chính xác (sử dụng ví dụ về bài thơ Haiku), bạn cần chuẩn bị kho tài liệu:
+
+* Coi mỗi dòng (line) là một **câu riêng biệt**.
+* Thêm một **mã thông báo bắt đầu** (start token) vào mỗi câu. (Điều này rất quan trọng để tính toán **xác suất ban đầu** - initial probabilities, tức là hàng đầu tiên của ma trận A).
+* Chuyển đổi tất cả các từ thành **chữ thường** (lowercase) để mô hình không phân biệt chữ hoa/thường.
+* **Dấu câu** (Punctuation) được giữ nguyên (trong mô hình đồ chơi này).
+
+* **Kết luận:** Bạn đã học cách lấy **số đếm (counts)** và biến chúng thành **xác suất (probabilities)**.
+> Đây là một biểu đồ trực quan về cách tính xác suất:
+
+![08_Calculating_Probabilities](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/08_Calculating_Probabilities.png)
+
+> Số lần màu xanh lam (blue) được theo sau bởi màu tím (purple) là 2 trên 3. Chúng ta sẽ sử dụng logic tương tự để điền vào **ma trận chuyển tiếp** (transition matrices) và **ma trận phát xạ** (emission matrices) của mình. Trong ma trận chuyển tiếp, chúng ta sẽ đếm số lần cặp thẻ $t_{i-1}, t_i$ xuất hiện gần nhau và chia cho tổng số lần $t_{i-1}$ xuất hiện (điều này tương tự như số lần nó xuất hiện và được theo sau bởi bất cứ thứ gì khác).
+
+![09_Calculating_Probabilities](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/09_Calculating_Probabilities.png)
+
+> $C(t_{i-1}, t_i)$ là số lần mà nhãn (i-1) xuất hiện trước nhãn i. Từ đó, bạn có thể tính xác suất một nhãn xuất hiện sau nhãn khác.
 
 ---
 ### **Populating the Transition Matrix**
