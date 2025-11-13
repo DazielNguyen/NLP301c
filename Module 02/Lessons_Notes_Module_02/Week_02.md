@@ -432,9 +432,12 @@ Cả hai ma trận này đều có **n hàng** (n = số trạng thái/thẻ POS
 ![17_Viterbi_Initialization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/17_Viterbi_Initialization.png)
 
 > Hai ma trận này sẽ dễ hiểu hơn trong các video tiếp theo.
+
 ---
 ### **Viterbi: Forward Pass**
 ---
+
+
 
 ---
 ### **Viterbi: Backward Pass**
