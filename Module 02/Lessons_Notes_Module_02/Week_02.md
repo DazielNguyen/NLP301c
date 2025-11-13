@@ -145,7 +145,50 @@ Thẻ POS mô tả cấu trúc và giúp đưa ra các giả định về ngữ 
 ### **Hidden Markov Models**
 ---
 
+#### Mô hình Markov ẩn (HMM)
 
+- Video này giới thiệu về **Mô hình Markov ẩn (Hidden Markov Models - HMMs)**.
+- Chúng được sử dụng để giải mã (decode) các **trạng thái ẩn (hidden states)** của một từ. Trong trường hợp của chúng ta, các trạng thái ẩn chính là **phần của lời nói (parts of speech - POS)** của từ đó.
+- Video này cũng giới thiệu một khái niệm mới: **xác suất phát xạ (emission probabilities)**.
+
+#### Ẩn (Hidden) vs. Quan sát được (Observable)
+
+* Tên "ẩn" ngụ ý rằng các trạng thái (thẻ POS như danh từ, động từ) **không thể quan sát trực tiếp** (not directly observable) từ góc độ của máy móc.
+* Mặc dù con người có thể nhìn vào từ "nhảy" (jump) và biết đó là động từ, nhưng máy tính chỉ nhìn thấy văn bản "nhảy" và không tự động biết thẻ của nó.
+* **Thể quan sát được (Observables):** Đây là các **từ thực tế** (actual words) mà máy tính có thể thấy (ví dụ: "nhảy", "chạy", "bay").
+
+#### Các thành phần của HMM
+
+Mô hình HMM có hai bộ xác suất chính:
+
+**1. Xác suất chuyển tiếp (Transition Probabilities)**
+
+* Giống như Chuỗi Markov (đã học trước đó), HMM có **xác suất chuyển tiếp**, được biểu diễn bằng **ma trận A** (kích thước N x N, với N là số trạng thái).
+* Chúng mô tả xác suất chuyển từ trạng thái ẩn này (ví dụ: `động từ`) sang trạng thái ẩn khác (ví dụ: `danh từ`).
+
+**2. Xác suất phát xạ (Emission Probabilities)**
+* Đây là các xác suất bổ sung. Chúng mô tả sự chuyển đổi từ một **trạng thái ẩn** (ví dụ: vòng tròn `động từ`) sang một **thể quan sát được** (ví dụ: hình chữ nhật `ăn`).
+* **Ma trận phát xạ (B):**
+    * Đây là một bảng (kích thước N x V, với V là số từ trong kho) nơi:
+    * **Hàng** (Rows) = Trạng thái ẩn (N trạng thái).
+    * **Cột** (Columns) = Thể quan sát được (V từ).
+    * **Ví dụ:** $P(\text{từ 'ăn'} | \text{trạng thái 'động từ'}) = 0.5$. Điều này có nghĩa là khi mô hình ở trạng thái "động từ", có 50% khả năng nó sẽ "phát ra" (emit) từ "ăn".
+* **Quy tắc:** Giống như ma trận A, **tổng của mỗi hàng** (sum of each row) trong ma trận phát xạ B phải bằng 1.
+
+#### Tại sao cần Xác suất Phát xạ?
+
+* Bởi vì các từ có thể có các thẻ POS khác nhau tùy thuộc vào **ngữ cảnh** (context).
+* **Ví dụ:** Từ "trở lại" (back) có thể là một **danh từ** (trong "anh nằm ngửa" - he lay on his back) hoặc một **trạng từ** (trong "tôi sẽ trở lại" - I'll be back). Xác suất phát xạ giúp mô hình hóa khả năng này.
+
+> Trong video trước, tôi đã chỉ cho bạn một ví dụ với mô hình Markov đơn giản. **Xác suất chuyển tiếp (transition probabilities)** cho phép bạn xác định xác suất chuyển tiếp từ một loại từ (POS) này sang loại từ khác. Bây giờ chúng ta sẽ khám phá các mô hình Markov ẩn. Trong các mô hình Markov ẩn, bạn sử dụng **xác suất phát ra (emission probabilities)**, xác suất này cho bạn biết khả năng chuyển từ một trạng thái (nhãn POS) sang một từ cụ thể.
+
+![06_Hidden_Markov_Models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/06_Hidden_Markov_Models.png)
+
+> Ví dụ, giả sử bạn đang ở trạng thái động từ, bạn có thể đi đến các từ khác với một số xác suất nhất định. **Ma trận phát xạ B** này sẽ được sử dụng cùng với **ma trận chuyển tiếp A** của bạn, để giúp bạn xác định từ loại của một từ trong câu. Để điền vào **ma trận B** của bạn, bạn chỉ cần có một tập dữ liệu đã được gán nhãn và tính xác suất từ một từ loại chuyển sang mỗi từ trong từ vựng của bạn. Dưới đây là tóm tắt những gì bạn đã học được cho đến nay:
+
+![07_Hidden_Markov_Models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/07_Hidden_Markov_Models.png)
+
+> Lưu ý rằng tổng của mỗi hàng trong **ma trận A và B** của bạn phải bằng 1. Tiếp theo, tôi sẽ chỉ cho bạn cách bạn có thể tính các xác suất bên trong các ma trận này.
 ---
 ### **Calculating Probabilities**
 ---
