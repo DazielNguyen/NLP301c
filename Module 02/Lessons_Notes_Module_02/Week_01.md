@@ -193,8 +193,6 @@ Script tóm tắt lại toàn bộ quy trình tự động sửa lỗi (ví dụ
 - Phương pháp này để **tính toán** thay vì sử dụng cách thử tất cả là một kỹ thuật được biết đến là lập trình động. 
 - Trước tiên, bạn giải quyết vấn đề con nhỏ nhất, sau đó sử dụng kết quả này để giải quyết vấn đề con lớn tiếp theo, lưu trữ kết quả đó, sử dụng lại, và tiếp tục như vậy. 
 - Đây chính xác là những gì bạn đã làm khi điền dữ liệu vào mỗi ô từ trên cùng sang trái đến dưới cùng bên phải. Đây là một kỹ thuật đã được biết đến rộng rãi trong khoa học máy tính!
----
-### **Minimum edit distance III**
----
+
 
 
