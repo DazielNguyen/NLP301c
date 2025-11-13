@@ -472,6 +472,51 @@ $$c_{i,j} = \max_{k} c_{k, j-1} \cdot a_{k,i} \cdot b_{i, \text{cindex}(w_j)}$$
 ![19_Viterbi_Forward_Pass](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/19_Viterbi_Forward_Pass.png)
 
 > Lưu ý rằng điểm khác biệt duy nhất giữa $c_{ij}$ và $d_{ij}$ là ở $c_{ij}$, bạn tính toán xác suất, còn ở $d_{ij}$, bạn theo dõi chỉ số của hàng (index) mà xác suất đó đến từ đâu. Tức là bạn theo dõi xem $k$ nào đã được sử dụng để có được xác suất tối đa đó.
+
 ---
 ### **Viterbi: Backward Pass**
 ---
+
+* Đây là **bước cuối cùng** (final step) trong ba bước của thuật toán Viterbi (Sau Khởi tạo và Chuyển tiếp).
+* **Mục tiêu:** Truy xuất (reconstruct) **chuỗi các phần của thẻ giọng nói (POS tags)** có khả năng nhất cho chuỗi từ đã cho, bằng cách sử dụng các ma trận C và D đã được điền.
+
+#### Quy trình Bước lùi
+
+Thuật toán hoạt động bằng cách đi ngược từ cuối câu về đầu:
+
+1.  **Tìm điểm kết thúc (Find the End):**
+    * Bắt đầu bằng cách nhìn vào **cột cuối cùng** (last column, K) của **ma trận C** (ma trận xác suất).
+    * Tìm mục (ô) có **xác suất cao nhất** (highest probability) trong cột đó.
+    * **Chỉ số (index) `s`** của hàng (row) này chính là **trạng thái ẩn cuối cùng** (tức là thẻ POS cho từ cuối cùng $W_K$) trong đường dẫn có khả năng nhất.
+
+2.  **Truy ngược đường dẫn (Trace the Path Backward):**
+    * Bạn sử dụng **ma trận D** (ma trận lưu đường dẫn) để đi ngược lại.
+    * **Tại bước K:** Bạn đang ở hàng `s` (từ bước 1). Thêm trạng thái `s` vào đường dẫn của bạn.
+    * **Tại bước K-1:** Nhìn vào giá trị được lưu trữ tại `D[s, K]`. Giá trị này (ví dụ: `k_prev`) cho bạn biết bạn *đến từ hàng nào* ở bước trước.
+    * **Tại bước K-2:** Bây giờ bạn chuyển sang cột `K-1` và hàng `k_prev`. Thêm trạng thái `k_prev` vào đường dẫn của bạn. Nhìn vào giá trị được lưu trữ tại `D[k_prev, K-1]`, giá trị này sẽ cho bạn biết hàng tiếp theo để đi đến.
+    * Quá trình này được lặp lại, đi sang trái (lùi) qua từng cột của ma trận D, cho đến khi bạn đến cột đầu tiên.
+
+3.  **Kết quả:** Dãy thẻ (ví dụ: $t_2, t_3, t_1, \dots$) mà bạn đã phục hồi chính là chuỗi các phần của thẻ giọng nói có xác suất cao nhất.
+
+#### Những vấn đề cần lưu ý khi triển khai
+
+Script cũng đưa ra hai cảnh báo cụ thể khi lập trình:
+
+1.  **Chỉ số (Indexing):** Hãy cẩn thận vì các chỉ số (index) trong ma trận của Python bắt đầu bằng **số 0** (zero-based), không phải 1.
+2.  **Vấn đề về số (Numerical Issues):** Khi bạn nhân (multiply) nhiều xác suất (các số rất nhỏ) với nhau, bạn sẽ gặp phải các vấn đề về số (underflow).
+    * **Giải pháp:** Thay vào đó, bạn nên sử dụng **xác suất nhật ký (log probabilities)** và **cộng (sum)** chúng lại thay vì nhân.
+
+* **Kết luận:** Bạn đã học xong về thuật toán Viterbi và cách sử{ d}ụng nó để gắn thẻ POS (POS tagging), một kỹ thuật hữu ích cho tìm kiếm, dịch máy, và nhận dạng giọng nói.
+* **Tuần tới:** Bạn sẽ tìm hiểu về **mô hình ngôn ngữ n-gram** (n-gram language models).
+
+> Tuyệt vời, bây giờ bạn đã biết cách tính A, B, C và D, chúng ta sẽ tổng hợp tất cả lại và hướng dẫn bạn cách xây dựng đường đi để nhận các nhãn từ loại cho câu của bạn.
+
+![20_Viterbi_Forward_Pass](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/20_Viterbi_Forward_Pass.png)
+
+> Phương trình trên chỉ cho bạn chỉ số của hàng cao nhất trong cột cuối cùng của ma trận C. Khi có được điều đó, bạn có thể tiếp tục và bắt đầu sử dụng ma trận D của mình như sau:
+
+![21_Viterbi_Forward_Pass](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/21_Viterbi_Forward_Pass.png)
+
+> Lưu ý rằng vì chúng ta bắt đầu ở chỉ số một, do đó từ cuối cùng ($w_5$) là $t_1$. Sau đó, chúng ta đi đến hàng đầu tiên của $D$ và bất kể con số đó là gì, nó chỉ ra hàng của thẻ từ loại (part-of-speech tag) tiếp theo. Thẻ từ loại tiếp theo đó lại chỉ ra hàng của thẻ kế tiếp, và cứ như vậy.
+
+> Điều này cho phép bạn tái tạo lại các thẻ POS cho câu của mình. Bạn sẽ triển khai điều này trong bài tập lập trình của tuần này. Chúc may mắn!
