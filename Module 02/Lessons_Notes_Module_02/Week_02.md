@@ -354,12 +354,51 @@ $$= \frac{C\left(t_i, w_i\right) + \epsilon}{C\left(t_i\right) + N \cdot \epsilo
 > Trong đó $C(t_i, w_i)$ là số lần gắn nhãn $t_i$ được liên kết với từ $w_i$. Epsilon ở trên là tham số làm mượt (smoothing parameter). Trong video tiếp theo, chúng ta sẽ nói về thuật toán Viterbi và thảo luận cách bạn có thể sử dụng ma trận chuyển tiếp và ma trận phát một ra để đưa ra các xác suất. 
 
 ---
-
 ### **The Viterbi Algorithm**
 ---
 
+#### Vấn đề cần giải quyết
 
+* Bạn đã có **xác suất chuyển tiếp** (A) (transition probabilities) và **xác suất phát xạ** (B) (emission probabilities).
+* Nhưng nếu bạn được đưa ra một câu (ví dụ: "tại sao không học một cái gì đó?"), làm thế nào để bạn tìm ra **trình tự có khả năng nhất** (most likely sequence) của các **thẻ POS** (trạng thái ẩn) cho *toàn bộ* câu đó?
+* **Thuật toán Viterbi** (Viterbi algorithm) được sử dụng để tính toán trình tự này.
 
+#### Cách tiếp cận (Trực quan hóa)
+
+* Thuật toán Viterbi về cơ bản là một **thuật toán đồ thị** (graph algorithm). Việc hình dung nó sẽ giúp hiểu dễ dàng hơn.
+* **Ví dụ:** Cho câu "Tôi thích học" (I love to learn).
+* Vấn đề là một từ (như "love") có thể được phát ra bởi nhiều trạng thái (ví dụ: `NN` - danh từ hoặc `VB` - động từ). Viterbi phải chọn con đường tốt nhất.
+* Thuật toán hoạt động bằng cách tính toán xác suất của một đường dẫn theo từng bước:
+    1.  **Bước 1 ("I"):** Tính **xác suất chung** (joint probability) của $\text{Start} \rightarrow \text{O} \rightarrow \text{"I"}$.
+        * (Xác suất chuyển tiếp $P(\text{O} | \text{Start})$) $\times$ (Xác suất phát xạ $P(\text{"I"} | \text{O})$).
+        * Ví dụ (từ script): 0.3 $\times$ 0.5 = 0.15.
+    2.  **Bước 2 ("love"):** So sánh hai khả năng (đi qua `NN` hoặc `VB`). Thuật toán chọn đường dẫn có xác suất tổng hợp cao hơn (ví dụ: chọn `VB`).
+    3.  **Toàn bộ câu:** Viterbi tính toán nhiều đường dẫn như vậy **cùng một lúc** (at the same time) để tìm ra chuỗi trạng thái ẩn có xác suất tổng (tích) cao nhất.
+* **Tổng xác suất** (Total probability) của một đường dẫn là **tích (product)** của tất cả các xác suất của các bước đơn lẻ trong đường dẫn đó.
+
+#### Các bước của Thuật toán
+
+Thuật toán Viterbi sử dụng biểu diễn ma trận và có thể được chia thành **ba bước chính**:
+
+1.  **Khởi tạo** (Initialization)
+2.  **Chuyển tiếp** (Forward)
+3.  **Chuyển ngược** (Backward)
+
+Để thực hiện điều này, thuật toán điền vào hai **ma trận phụ** (auxiliary matrices) (ký hiệu là C và D):
+
+* **Ma trận C:** Lưu trữ **xác suất tối ưu trung gian** (intermediate optimal probabilities).
+* **Ma trận D:** Lưu trữ các **chỉ số của các trạng thái đã truy cập** (indices of visited states) (tức là con đường đã đi).
+
+Cả hai ma trận này đều có **n hàng** (n = số trạng thái/thẻ POS) và **k cột** (k = số từ trong câu).
+> Thuật toán Viterbi sử dụng xác suất chuyển trạng thái và xác suất phát xạ như sau.
+
+![14_The_Viterbi_Algorithm](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/14_The_Viterbi_Algorithm.png)
+
+> Để đi từ $π$ đến $O$, bạn cần nhân xác suất chuyển tiếp tương ứng (0,3) với xác suất phát ra tương ứng (0,5), kết quả là 0,15. Bạn tiếp tục làm như vậy với tất cả các từ, cho đến khi có được xác suất của toàn bộ chuỗi.
+
+![15_The_Viterbi_Algorithm](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/15_The_Viterbi_Algorithm.png)
+
+> Bạn sau đó có thể thấy cách bạn chỉ cần chọn chuỗi có xác suất cao nhất. Chúng tôi sẽ chỉ cho bạn một cách hệ thống để thực hiện điều này (Viterbi!).
 ---
 ### **Viterbi: Initialization**
 ---
