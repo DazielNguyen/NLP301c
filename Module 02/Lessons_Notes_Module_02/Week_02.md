@@ -302,12 +302,59 @@ $$P\left(t_i \mid t_{i-1}\right) = \frac{C\left(t_{i-1}, t_i\right)}{\sum_{j=1}^
 
 
 > Thuộc tính $ε$ epsilon cho phép bạn không có bất kỳ hai chuỗi nào hiển thị với xác suất bằng 0. Tại sao điều này lại quan trọng?
+
 ---
 ### **Populating the Emission Matrix**
 ---
 
+* Phần trước đã nói về **ma trận chuyển tiếp** (transition matrix) ($P(\text{Tag} | \text{Tag})$), nhưng điều này là không đủ. Chúng ta cần "đưa các từ vào phương trình".
+* Video này giới thiệu một loại ma trận mới: **ma trận phát xạ** (emission matrix) (Ma trận B).
+* Ma trận phát xạ cho bạn biết xác suất đi từ một **trạng thái ẩn** (hidden state - tức là một **phần của thẻ giọng nói**) đến một **thể quan sát được** (observable - tức là một **từ**). Đây là xác suất $P(\text{Word} | \text{Tag})$.
+
+
+#### Cách tính toán Ma trận Phát xạ
+
+Giống như ma trận chuyển tiếp, bạn tính toán ma trận phát xạ bằng cách **đếm** (counting) từ kho tài liệu (corpus):
+
+1.  **Ý tưởng Khái niệm:**
+    * Bạn muốn **đếm sự xuất hiện đồng thời** (co-occurrence) của một thẻ POS (ví dụ: "Thẻ Xanh") với một từ cụ thể (ví dụ: "You").
+    * **Ví dụ (từ script):**
+        * Từ "You" xuất hiện **2 lần** được gắn thẻ "Xanh".
+        * "Thẻ Xanh" xuất hiện tổng cộng **3 lần**.
+        * Do đó, xác suất phát xạ $P(\text{You} | \text{Thẻ Xanh}) = 2/3$.
+
+2.  **Công thức (Áp dụng):**
+    * Thay vì đếm (thẻ, thẻ), bây giờ bạn đếm tần suất một **từ** (ví dụ: "in") được gắn thẻ với một **thẻ** cụ thể (ví dụ: `NN`, `VB`, `O`).
+    * **Ví dụ (Haiku):**
+        * $C(\text{Thẻ O}, \text{từ "in"}) = 2$ (từ "in" được gắn thẻ `O` 2 lần).
+    * Công thức tổng quát (tương tự như ma trận chuyển tiếp) là:
+        $P(\text{Word}_i | \text{Tag}_j) = \frac{\text{Count}(\text{Tag}_j, \text{Word}_i)}{\text{Count}(\text{Tag}_j)}$
+
+#### Làm mịn (Smoothing)
+
+* Giống như ma trận chuyển tiếp, bạn cũng áp dụng **làm mịn** (smoothing) cho ma trận phát xạ (B).
+* Điều này là để **khái quát hóa** (generalize) mô hình, đảm bảo bạn không có xác suất bằng 0 cho các từ chưa thấy (hoặc các kết hợp thẻ/từ chưa thấy).
+* (Script đề cập đến N - số thẻ, và V - kích thước từ vựng, liên quan đến công thức làm mịn).
+
+#### Tóm lại
+
+* Bây giờ bạn có thể tính toán cả **ma trận chuyển tiếp (A)** và **ma trận phát xạ (B)**.
+* **Tiếp theo:** Bạn sẽ học cách sử dụng cả hai ma trận này **cùng nhau** để suy luận (hoặc "giải mã") phần thẻ lời nói của một câu nhất định.
+
+> Để điền ma trận phát thải, bạn phải theo dõi các từ kèm theo nhãn từ loại của chúng.
+
+![13_Populating_the_Emission_Matrix](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/13_Populating_the_Emission_Matrix.png)
+
+> Để điền đầy ma trận, chúng ta cũng sẽ sử dụng làm mượt như chúng ta đã từng sử dụng trước đây:
+
+$$P\left(w_i \mid t_i\right) = \frac{C\left(t_i, w_i\right) + \epsilon}{\sum_{j=1}^{V} C\left(t_i, w_j\right) + N \cdot \epsilon}$$
+
+$$= \frac{C\left(t_i, w_i\right) + \epsilon}{C\left(t_i\right) + N \cdot \epsilon}$$
+
+> Trong đó $C(t_i, w_i)$ là số lần gắn nhãn $t_i$ được liên kết với từ $w_i$. Epsilon ở trên là tham số làm mượt (smoothing parameter). Trong video tiếp theo, chúng ta sẽ nói về thuật toán Viterbi và thảo luận cách bạn có thể sử dụng ma trận chuyển tiếp và ma trận phát một ra để đưa ra các xác suất. 
 
 ---
+
 ### **The Viterbi Algorithm**
 ---
 
