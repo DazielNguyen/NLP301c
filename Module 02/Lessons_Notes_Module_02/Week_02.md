@@ -370,7 +370,7 @@ $$= \frac{C\left(t_i, w_i\right) + \epsilon}{C\left(t_i\right) + N \cdot \epsilo
 * Vấn đề là một từ (như "love") có thể được phát ra bởi nhiều trạng thái (ví dụ: `NN` - danh từ hoặc `VB` - động từ). Viterbi phải chọn con đường tốt nhất.
 * Thuật toán hoạt động bằng cách tính toán xác suất của một đường dẫn theo từng bước:
     1.  **Bước 1 ("I"):** Tính **xác suất chung** (joint probability) của $\text{Start} \rightarrow \text{O} \rightarrow \text{"I"}$.
-        * (Xác suất chuyển tiếp $P(\text{O} | \text{Start})$) $\times$ (Xác suất phát xạ $P(\text{"I"} | \text{O})$).
+        * Xác suất chuyển tiếp: ($P(\text{O} | \text{Start})$) $\times$ (Xác suất phát xạ $P(\text{"I"} | \text{O})$).
         * Ví dụ (từ script): 0.3 $\times$ 0.5 = 0.15.
     2.  **Bước 2 ("love"):** So sánh hai khả năng (đi qua `NN` hoặc `VB`). Thuật toán chọn đường dẫn có xác suất tổng hợp cao hơn (ví dụ: chọn `VB`).
     3.  **Toàn bộ câu:** Viterbi tính toán nhiều đường dẫn như vậy **cùng một lúc** (at the same time) để tìm ra chuỗi trạng thái ẩn có xác suất tổng (tích) cao nhất.
@@ -399,11 +399,39 @@ Cả hai ma trận này đều có **n hàng** (n = số trạng thái/thẻ POS
 ![15_The_Viterbi_Algorithm](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/15_The_Viterbi_Algorithm.png)
 
 > Bạn sau đó có thể thấy cách bạn chỉ cần chọn chuỗi có xác suất cao nhất. Chúng tôi sẽ chỉ cho bạn một cách hệ thống để thực hiện điều này (Viterbi!).
+
 ---
 ### **Viterbi: Initialization**
 ---
 
+* Đây là bước đầu tiên trong ba bước của Viterbi (Khởi tạo, Chuyển tiếp, Chuyển ngược).
+* Bước này dùng để điền vào **cột đầu tiên** (first column) của hai ma trận phụ: **C** và **D**.
 
+#### Ma trận C (Xác suất)
+
+* **Cột đầu tiên của C** biểu thị xác suất của bước đầu tiên: đi từ **trạng thái bắt đầu** ($\pi$) đến **thẻ đầu tiên** ($t_i$) và "phát ra" (emitting) **từ đầu tiên** ($w_1$).
+* **Cách tính:** Giá trị của mỗi ô trong cột đầu tiên của C là **tích** (product) của:
+    1.  **Xác suất chuyển tiếp ban đầu:** (Xác suất của thẻ $t_i$ là thẻ đầu tiên). Giá trị này được lấy từ **hàng đầu tiên của ma trận chuyển tiếp A**.
+    2.  **Xác suất phát xạ tương ứng:** (Xác suất phát ra từ $w_1$ khi ở thẻ $t_i$). Giá trị này được lấy từ **ma trận phát xạ B**.
+* (Script sử dụng công thức $a_{1,i}$ nhân với xác suất phát xạ $b$).
+
+#### Ma trận D (Đường dẫn)
+
+* **Cột đầu tiên của D** lưu trữ các nhãn/chỉ số của các trạng thái.
+* Trong bước khởi tạo (cột đầu tiên), bạn chỉ cần đặt **tất cả các mục nhập thành số 0** (set all entries to zero).
+* Lý do: Tại thời điểm này, không có "phần trước của thẻ giọng nói" (previous part of speech tag) nào mà chúng ta đã đi qua.
+
+> Bây giờ bạn sẽ điền vào một ma trận $C$ có kích thước (num_tags, num_words). Ma trận này sẽ chứa các xác suất cho bạn biết mỗi từ thuộc loại từ nào.
+
+![16_Viterbi_Initialization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/16_Viterbi_Initialization.png)
+
+> Bây giờ để điền vào cột đầu tiên, bạn chỉ cần nhân phân phối $\pi$ ban đầu, cho mỗi thẻ, với $b_{i, \text{cindex}(w_1)}$. Trong đó $i$ tương ứng với thẻ của phân phối ban đầu và $\text{cindex}(w_1)$ là chỉ số của từ **word 1** trong ma trận phát xạ (emission matrix).
+
+> Và thế là xong, bạn đã hoàn tất việc điền vào cột đầu tiên của ma trận $C$ mới của mình. Bây giờ bạn sẽ cần theo dõi xem bạn đang đến từ từ loại (part of speech) nào. Do đó, chúng ta giới thiệu một ma trận $D$, cho phép bạn lưu trữ các nhãn đại diện cho các trạng thái khác nhau mà bạn đang đi qua khi tìm chuỗi thẻ POS (từ loại) có khả năng xảy ra cao nhất cho chuỗi từ đã cho $w_1, \dots, w_K$. Ban đầu, bạn đặt cột đầu tiên thành $0$, vì bạn không đến từ bất kỳ thẻ POS nào.
+
+![17_Viterbi_Initialization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/17_Viterbi_Initialization.png)
+
+> Hai ma trận này sẽ dễ hiểu hơn trong các video tiếp theo.
 ---
 ### **Viterbi: Forward Pass**
 ---
