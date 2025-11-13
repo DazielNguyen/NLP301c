@@ -437,8 +437,41 @@ Cả hai ma trận này đều có **n hàng** (n = số trạng thái/thẻ POS
 ### **Viterbi: Forward Pass**
 ---
 
+* Đây là **bước thứ hai** (second step) trong ba bước của Viterbi (sau Khởi tạo, trước Chuyển ngược).
+* Mục tiêu của bước này là điền vào **tất cả các mục còn lại** (all remaining entries) trong hai ma trận **C** và **D**.
+* Quá trình điền được thực hiện **từng cột một** (column by column).
 
+#### Ma trận C (Lưu trữ Xác suất)
 
+* Các mục nhập trong ma trận C được tính bằng một "hàm trông phức tạp" (complex looking function).
+* Script sử dụng hình dung biểu đồ để làm rõ công thức.
+* Để tính một ô (ví dụ: `Ci,j`), bạn phải tính toán dựa trên các giá trị ở cột *trước đó*.
+* Công thức này về cơ bản là tìm giá trị **tối đa** (maximize) của:
+    * (Xác suất của đường dẫn trước đó $c_{k, j-1}$) $\times$ (Xác suất chuyển tiếp $a_{k, i}$) $\times$ (Xác suất phát xạ $b_{i}(\text{từ } w_j)$).
+* Bạn phải chọn **trạng thái trước đó (k)** (ví dụ: $k=1, 2, \text{hoặc } 3$) để **tối đa hóa** (maximize) toàn bộ công thức này. Giá trị tối đa đó được lưu vào `Ci,j`.
+
+#### Ma trận D (Lưu trữ Đường dẫn)
+
+* Ma trận D được điền bằng một "công thức trông đáng sợ" (scary looking formula) tương tự, nhưng sử dụng **argmax**.
+* Tại ô `Di,j`, bạn **lưu chỉ số (k)** (tức là trạng thái trước đó) đã tối đa hóa công thức trong ma trận C.
+* Hàm **argmax** trả về **đối số (k)** (argument) tạo ra giá trị tối đa, chứ không phải chính giá trị tối đa đó.
+
+* **Kết luận:** Bạn đã tính toán xong ma trận xác suất (C) và ma trận đường dẫn (D).
+* **Video tiếp theo:** Sẽ chỉ cho bạn cách sử dụng các ma trận này để **tái tạo lại đường dẫn** (reconstruct the path) (Bước Chuyển ngược) và xác định các thẻ POS.
+
+> Điều này sẽ được minh họa rõ nhất bằng một ví dụ:
+
+![18_Viterbi_Forward_Pass](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/18_Viterbi_Forward_Pass.png)
+
+> Vì vậy, để điền một ô (ví dụ ô 1,2) trong hình trên, bạn phải lấy giá trị lớn nhất của [các ô thứ k trong cột trước, nhân với xác suất chuyển tiếp tương ứng từ POS thứ k sang POS đầu tiên, nhân với xác suất phát ra từ POS đầu tiên và từ hiện tại mà bạn đang xem]. Bạn làm điều đó cho tất cả các ô. Lấy một tờ giấy và một cây bút chì, và chắc chắn rằng bạn hiểu cách làm nó.
+
+> Quy tắc chung là:
+$$c_{i,j} = \max_{k} c_{k, j-1} \cdot a_{k,i} \cdot b_{i, \text{cindex}(w_j)}$$
+> Bây giờ để điền vào ma trận $D$, bạn sẽ theo dõi `argmax` của trạng thái mà bạn đến từ đó như sau:
+
+![19_Viterbi_Forward_Pass](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/19_Viterbi_Forward_Pass.png)
+
+> Lưu ý rằng điểm khác biệt duy nhất giữa $c_{ij}$ và $d_{ij}$ là ở $c_{ij}$, bạn tính toán xác suất, còn ở $d_{ij}$, bạn theo dõi chỉ số của hàng (index) mà xác suất đó đến từ đâu. Tức là bạn theo dõi xem $k$ nào đã được sử dụng để có được xác suất tối đa đó.
 ---
 ### **Viterbi: Backward Pass**
 ---
