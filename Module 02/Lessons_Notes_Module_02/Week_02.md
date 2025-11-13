@@ -240,7 +240,68 @@ $$P(t_i | t_{i-1}) = \frac{C(t_{i-1}, t_i)}{C(t_{i-1})}$$
 ### **Populating the Transition Matrix**
 ---
 
+* Phần này hướng dẫn cách điền (populate) **ma trận chuyển tiếp** (transition matrix) (Ma trận A) bằng cách tính toán xác suất.
+* Bạn cũng sẽ học về **làm mịn** (smoothing) để xử lý các vấn đề dữ liệu.
 
+#### 1. Tính toán Số đếm (Counts)
+
+* **Ma trận chuyển tiếp** có các **hàng** (rows) đại diện cho **trạng thái hiện tại** (current state) (thẻ POS $t_{i-1}$) và các **cột** (columns) đại diện cho **trạng thái tiếp theo** (next state) (thẻ POS $t_i$).
+* Bạn bắt đầu bằng cách điền **số lượng (counts)** của tất cả các tổ hợp thẻ (cặp thẻ) vào ma trận.
+* **Ví dụ (từ kho tài liệu):**
+    * (Hàng `START`, Cột `NN`): Một danh từ (`NN`) sau mã thông báo bắt đầu $\rightarrow$ **1 lần**.
+    * (Hàng `NN`, Cột `NN`): Một danh từ sau một danh từ $\rightarrow$ **0 lần**.
+    * (Hàng `O`, Cột `NN`): Một danh từ sau một thẻ khác (`O`) $\rightarrow$ **6 lần**.
+    * (Hàng `START`, Cột `O`): Thẻ `O` sau mã thông báo bắt đầu $\rightarrow$ **2 lần**.
+    * (Hàng `NN`, Cột `O`): Thẻ `O` sau thẻ `NN` $\rightarrow$ **6 lần**.
+    * (Hàng `O`, Cột `O`): Thẻ `O` sau thẻ `O` $\rightarrow$ **8 lần**.
+* (Script lưu ý rằng trong ví dụ này, không có thẻ `VB` (động từ), vì vậy tất cả các số đếm liên quan đến `VB` đều bằng 0).
+
+#### 2. Tính toán Xác suất (Chuẩn hóa)
+
+* Sau khi có ma trận số đếm (tử số), bạn tính toán **xác suất chuyển tiếp**.
+* Bạn **chia mỗi số đếm** trong một hàng cho **tổng của hàng đó** (row sum).
+* (Tổng hàng đại diện cho tổng số lần trạng thái hiện tại (hàng đó) xuất hiện).
+* **Ví dụ:** $P(\text{Other} | \text{NN})$ = (Số đếm `NN` $\rightarrow$ `O`) / (Tổng hàng `NN`) = 6 / 14.
+
+#### 3. Vấn đề (Số 0)
+
+Việc chuẩn hóa trực tiếp này gây ra hai vấn đề:
+
+1.  **Xác suất bằng 0:** Rất nhiều mục nhập trong ma trận là 0. Điều này có nghĩa là mô hình sẽ không **khái quát hóa** (generalize) được cho các dữ liệu mới (ví dụ: một câu haiku có động từ).
+2.  **Chia cho 0:** Nếu một hàng không có dữ liệu (ví dụ: tổng hàng `VB` là 0), bạn sẽ gặp lỗi chia cho 0.
+
+#### 4. Giải pháp: Làm mịn (Smoothing)
+
+* Để xử lý điều này, bạn thay đổi công thức bằng cách sử dụng **làm mịn** (tương tự như làm mịn Laplace/cộng thêm).
+* **Công thức mới:**
+    * **Tử số (Numerator):** Thêm một giá trị nhỏ **Epsilon ($\epsilon$)** vào *mỗi số đếm*.
+        * $\text{Count}(t_{i-1}, t_i) + \epsilon$
+    * **Mẫu số (Denominator):** Thêm **N * Epsilon ($N \times \epsilon$)** vào *tổng hàng* (với N là tổng số thẻ/trạng thái).
+        * $\text{Count}(t_{i-1}) + (N \times \epsilon)$
+* **Kết quả:**
+    * Không còn bất kỳ mục nhập giá trị 0 nào.
+    * Các trạng thái không có dữ liệu (như `VB`) giờ đây có xác suất phân bổ đều (khả năng tương đương nhau), điều này hợp lý vì không có dữ liệu để ước tính chúng.
+* **Lưu ý:** Trong thực tế, bạn có thể **không muốn áp dụng làm mịn** cho **hàng đầu tiên** (xác suất ban đầu), để ngăn mô hình cho phép một câu bắt đầu bằng các thẻ không mong muốn (như dấu câu).
+
+> Để điền đầy ma trận chuyển tiếp, bạn phải theo dõi số lần mỗi thẻ xuất hiện trước một thẻ khác.
+
+![10_Populating_the_Transition_Matrix](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/10_Populating_the_Transition_Matrix.png)
+
+> Trong bảng trên, bạn có thể thấy màu xanh lá cây tương ứng với danh từ (NN), màu tím tương ứng với động từ (VB), và màu xanh dương tương ứng với các loại khác (O). Màu cam ($π$) tương ứng với trạng thái ban đầu. Các con số bên trong ma trận tương ứng với số lần một nhãn từ loại xuất hiện ngay sau nhãn từ loại khác.
+> Để đi từ O đến NN hay nói cách khác là để tính $P(N N O)$, bạn phải tính toán các giá trị sau:
+
+![11_Populating_the_Transition_Matrix](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/11_Populating_the_Transition_Matrix.png)
+
+> Tóm lại:
+
+$$P\left(t_i \mid t_{i-1}\right) = \frac{C\left(t_{i-1}, t_i\right)}{\sum_{j=1}^{N} C\left(t_{i-1}, t_j\right)}$$
+
+> Thật không may, đôi khi bạn có thể không thấy hai nhãn từ loại đứng liền kề nhau. Điều này sẽ cho bạn xác suất bằng 0. Để giải quyết vấn đề này, bạn sẽ "làm mịn" nó như sau:
+
+![12_Populating_the_Transition_Matrix](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W2/12_Populating_the_Transition_Matrix.png)
+
+
+> Thuộc tính $ε$ epsilon cho phép bạn không có bất kỳ hai chuỗi nào hiển thị với xác suất bằng 0. Tại sao điều này lại quan trọng?
 ---
 ### **Populating the Emission Matrix**
 ---
