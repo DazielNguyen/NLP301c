@@ -1,0 +1,8 @@
+import spacy
+nlp = spacy.load("en_core_web_sm")
+text = "James works at Microsoft. She lives in Manchester and likes to play the flute."
+doc = nlp(text)
+nouns = [token.text for token in doc if token.pos_ == "NOUN"]
+for token in doc:
+    if token.pos_ == "NOUN" and token.text.lower() not in ["he", "she", "it", "i", "they", "we"]:
+        print(token.text)
