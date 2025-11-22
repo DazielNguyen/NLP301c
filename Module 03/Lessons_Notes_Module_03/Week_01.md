@@ -75,12 +75,67 @@ tf.keras.layers.Dense(32, activation='relu')
 ### **Embedding and Mean Layers**
 ---
 
+- Nội dung này giới thiệu hai `layers` quan trọng được sử dụng trong `neural networks` cho `natural language processing` (NLP): `embedding layers` và `mean layers`.
 
+- **Embedding Layers**
+
+    + Một `embedding layer` ánh xạ các từ duy nhất từ một `vocabulary` sang một `vector representation` của một `dimension` được chỉ định, cho phép `model` học được các `word representations` hiệu quả.
+    + Kích thước của `embedding` là một `hyperparameter`, và `layer` này học một `matrix of weights` giúp cải thiện `performance` cho các tác vụ `NLP` cụ thể.
+
+- **Purpose of Embedding Layers**
+
+    + Mục đích của một `embedding layer` là chuyển đổi `categorical data`, cụ thể là các từ từ một `vocabulary`, thành các `continuous vector representations`. Dưới đây là các chức năng chính mà nó phục vụ:
+
+    + **Mapping Words to Vectors**: Nó lấy một `index` được gán cho mỗi từ và ánh xạ nó sang một `dense vector` có kích thước cố định, cho phép `model` biểu diễn các từ theo cách nắm bắt được ý nghĩa và mối quan hệ của chúng.
+    + **Learning Representations**: `Embedding layer` học `representation` tốt nhất cho các từ trong quá trình `training`, tối ưu hóa các `vectors` để cải thiện `performance` trên các tác vụ `NLP` cụ thể, chẳng hạn như `sentiment analysis` hoặc `text classification`.
+    + **Reducing Dimensionality**: Bằng cách chuyển đổi `categorical data` nhiều chiều (như `one-hot encoded vectors`) thành các `continuous vectors` ít chiều hơn, nó giúp giảm độ phức tạp của `model`.
+
+- Nhìn chung, `embedding layers` rất quan trọng để cho phép `neural networks` hiểu và xử lý `natural language` một cách hiệu quả.
+
+
+
+- **Mean Layers**
+
+    + Một `mean layer` tính toán giá trị trung bình của các `word embeddings`, giúp giảm số lượng `parameters` cần `train` trong khi vẫn duy trì cùng số lượng `features` như `embedding size`.
+    + `Layer` này không có các `trainable parameters`, vì nó chỉ đơn giản là tính toán `mean` của các `embeddings`.
+
+- Tóm lại, `embedding layers` giúp ích trong việc học `word representations`, trong khi `mean layers` đơn giản hóa `output` bằng cách tính trung bình các `embeddings`, cả hai đều thiết yếu để xây dựng các `neural networks` hiệu quả trong các tác vụ `NLP`.
+
+- **Some functions of Mean Layers**
+
+
+    + Chức năng của một `mean layer` là tính toán giá trị trung bình của các `word embeddings` từ một `embedding layer`. Dưới đây là các khía cạnh chính trong chức năng của nó:
+
+    + * **Averaging Embeddings**: Nó lấy một `matrix` các `word embeddings` (ví dụ: từ một `sequence` các từ) và tính toán `mean` cho mỗi `feature` trên toàn bộ các `embeddings`, dẫn đến kết quả là một `vector representation` duy nhất.
+    + **Reducing Parameters**: Không giống như các `layers` khác, `mean layer` không có các `trainable parameters`. Nó đơn giản hóa `model` bằng cách giảm số lượng `parameters` cần được `trained`, điều này có thể giúp ngăn chặn `overfitting`.
+    + **Maintaining Feature Size**: `Output` của `mean layer` giữ lại cùng số lượng `features` như `embedding size`, giúp dễ dàng đưa vào các `layers` tiếp theo của `neural network`.
+
+- Tóm lại, `mean layer` giúp tóm tắt thông tin từ nhiều `word embeddings` thành một `vector` duy nhất, tạo điều kiện thuận lợi cho việc `processing` các `sequences` văn bản trong khi giữ cho `model` hiệu quả.
+
+- **Nếu bạn không sử dụng một `mean layer` sau một `embedding layer`, những điều sau có thể xảy ra:**
+
+    + **Increased Complexity**: `Output` từ `embedding layer` sẽ là một `matrix` các `word embeddings` cho mỗi từ trong một `sequence`. `Matrix` này có thể trở nên lớn, đặc biệt là đối với các `sequences` dài, dẫn đến sự gia tăng `complexity` trong `model`.
+    + **More Parameters to Train**: Nếu không có `mean layer`, các `layers` tiếp theo sẽ cần xử lý toàn bộ `matrix` các `embeddings`, dẫn đến số lượng lớn hơn các `parameters` cần `train`. Điều này có thể làm cho `model` dễ bị `overfitting` hơn, đặc biệt là với `training data` hạn chế.
+    + **Difficulty in Handling Variable-Length Inputs**: Nếu các `input sequences` thay đổi về độ dài, việc quản lý `matrix` các `embeddings` mà không tóm tắt chúng có thể làm phức tạp hóa `architecture` của `neural network`, vì nó sẽ cần phải thích ứng với các kích thước `input` khác nhau.
+    + **Loss of Contextual Information**: `Mean layer` giúp tóm tắt thông tin từ nhiều `embeddings` thành một `vector` duy nhất. Nếu không có nó, bạn có thể mất khả năng biểu diễn hiệu quả ý nghĩa tổng thể của một `sequence` các từ.
+
+- Tóm lại, việc không sử dụng một `mean layer` có thể dẫn đến một `model` phức tạp hơn với nguy cơ `overfitting` cao hơn và gặp thách thức trong việc xử lý các `variable-length sequences`.
+
+> Sử dụng một `embedding layer`, bạn có thể học các `word embeddings` cho mỗi từ trong `vocabulary` của bạn như sau:
+
+![05_Embedding_and_Mean_Layers](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/05_Embedding_and_Mean_Layers.png)
+
+- `Mean layer` cho phép bạn tính trung bình các `embeddings`. Bạn có thể trực quan hóa nó như sau:
+
+![06_Embedding_and_Mean_Layers](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/06_Embedding_and_Mean_Layers.png)
+
+- `Layer` này không có bất kỳ `trainable parameters` nào.
 
 ---
 ### **Traditional Language models**
 ---
 
+![08_Traditional_Language_models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/08_Traditional_Language_models.png)
 
 ---
 ### **Recurrent Neural Networks**
