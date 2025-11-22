@@ -135,7 +135,45 @@ tf.keras.layers.Dense(32, activation='relu')
 ### **Traditional Language models**
 ---
 
+- Nội dung này tập trung vào các hạn chế của `N-gram language models` trong `natural language processing`.
+
+- **N-gram Language Models**
+
+    + Các `N-gram models` tính toán `probability` của một `sequence` các từ dựa trên N-1 từ trước đó.
+    + Ví dụ, trong một `bigram model`, `probability` của một từ phụ thuộc vào từ đứng ngay trước nó (`preceding word`).
+
+- **Limitations of N-gram Models**
+
+    + Các `N-gram models` yêu cầu `memory` và `storage space` đáng kể để tính đến tất cả các `word combinations` có thể xảy ra.
+    + Chúng gặp khó khăn trong việc nắm bắt các `long-range dependencies` giữa các từ, khiến chúng trở nên không thực tế đối với các `datasets` lớn hơn.
+
+- **Introduction to Recurrent Neural Networks (RNNs)**
+
+    + `RNNs` được đề xuất như một sự thay thế hiệu quả hơn cho các `N-gram models` đối với các tác vụ như `machine translation`.
+    + Chúng có thể xử lý các `sequences` văn bản dài hơn mà không gặp các hạn chế về `memory` tương tự như các `N-gram models`.
+
+- **The main limitations of N-gram models (hạn chế chính của `N-gram models`) include**
+
+    + **Memory Requirements**: `N-gram models` yêu cầu rất nhiều bộ nhớ để lưu trữ các `probabilities` của tất cả các tổ hợp từ có thể, đặc biệt là khi giá trị của N tăng lên.
+    + **Long-Range Dependencies**: Chúng gặp khó khăn trong việc nắm bắt các `dependencies` giữa các từ nằm cách xa nhau trong một câu, vì chúng chỉ xem xét một `context` giới hạn ($N-1$ từ trước đó).
+    + **Data Sparsity**: Khi kích thước `vocabulary` tăng lên, số lượng các `N-grams` có thể có sẽ tăng theo cấp số nhân, dẫn đến nhiều tổ hợp có thể không xuất hiện trong `training data`, dẫn đến các vấn đề về dữ liệu thưa thớt (`sparse data`).
+    + **Inflexibility**: `N-gram models` rất cứng nhắc và không thích ứng tốt với các `contexts` mới hoặc các biến thể trong ngôn ngữ, khiến chúng kém hiệu quả hơn đối với các tác vụ ngôn ngữ phức tạp.
+
+- Những hạn chế này làm cho các `N-gram models` ít thực tế hơn đối với các `datasets` lớn hơn và các tác vụ `natural language processing` phức tạp hơn.
+
+
+> Các `traditional language models` sử dụng `probabilities` để giúp xác định xem câu nào có nhiều khả năng xảy ra nhất.
+
+![07_Traditional_Language_models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/07_Traditional_Language_models.png)
+
+> Trong ví dụ ở trên, câu thứ hai là câu có nhiều khả năng xảy ra nhất vì nó có `probability` xảy ra cao nhất. Để tính toán các `probabilities`, bạn có thể làm như sau:
+
 ![08_Traditional_Language_models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/08_Traditional_Language_models.png)
+
+Các `Large N-grams` nắm bắt các `dependencies` giữa các từ ở xa nhau và cần rất nhiều không gian và `RAM`. Do đó, chúng ta phải dùng đến các loại `alternatives` khác nhau.
+
+
+
 
 ---
 ### **Recurrent Neural Networks**
