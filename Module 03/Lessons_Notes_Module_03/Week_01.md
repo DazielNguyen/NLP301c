@@ -22,11 +22,11 @@
 
 > Trước đây trong khóa học, bạn đã thực hiện `sentiment analysis` (phân tích cảm xúc) với `logistic regression` và `naive Bayes`. Những mô hình đó theo một nghĩa nào đó thì `naive` (ngây thơ) hơn, và không có khả năng nắm bắt `sentiment` từ một `tweet` như: "I am not happy" hoặc "If only it was a good day". Khi sử dụng một `neural network` để dự đoán `sentiment` của một câu, bạn có thể sử dụng cách sau đây. Lưu ý rằng hình ảnh bên dưới có ba `outputs`, trong trường hợp này bạn có thể muốn dự đoán "positive", "neutral", hoặc "negative".
 
-![01_Neural_Networks_for_Sentiment_Analysis]()
+![01_Neural_Networks_for_Sentiment_Analysis](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/01_Neural_Networks_for_Sentiment_Analysis.png)
 
 > Lưu ý rằng `network` ở trên có ba `layers`. Để đi từ `layer` này sang `layer` khác bạn có thể sử dụng một `matrix` $W$ để `propagate` tới `layer` tiếp theo. Do đó, chúng ta gọi khái niệm đi từ `input` cho đến `final layer` này là `forward propagation`. Để biểu diễn một `tweet`, bạn có thể sử dụng cách sau:
 
-![02_Neural_Networks_for_Sentiment_Analysis]()
+![02_Neural_Networks_for_Sentiment_Analysis](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/02_Neural_Networks_for_Sentiment_Analysis.png)
 
 > Lưu ý rằng, chúng ta thêm các số không (zeros) để `padding` nhằm khớp với kích thước của `tweet` dài nhất.
 
@@ -34,12 +34,6 @@
 
 ---
 ### **Dense Layers and ReLU**
----
-
-
-
----
-### **Embedding and Mean Layers**
 ---
 - Nội dung tập trung vào hai `layers` thiết yếu thường được sử dụng trong `neural networks`: `dense layer` và `ReLU layer`.
 
@@ -52,6 +46,35 @@
     + Nó giữ lại các giá trị dương một cách hiệu quả trong khi chuyển đổi các giá trị âm thành không, điều này giúp ổn định `performance` của `network`.
 
 - Tổng quan này làm nổi bật các thành phần cơ bản của `neural networks` đóng góp vào chức năng của chúng.
+
+- Lưu ý rằng `Dense` và `ReLU` được mô tả là hai `layers` khác nhau ở đây. Trong `TensorFlow`, bạn có thể sử dụng mỗi cái như một `layer` riêng biệt như thế này: 
+
+```
+tf.keras.layers.Dense(32)` và `tf.keras.layers.ReLU()
+```    
+
+- Trong đó dòng `code` đầu tiên định nghĩa một `Dense layer` với 32 `units` và dòng thứ hai định nghĩa một `ReLU layer`.
+- Tuy nhiên, thông thường bạn sẽ muốn `ReLU layer` ngay sau `dense layer`, vì vậy bạn có thể thực hiện điều này theo một cách nhanh hơn, bằng cách chỉ sử dụng một `dense layer`, nhưng truyền `ReLU activation` như một `parameter`:
+
+```
+tf.keras.layers.Dense(32, activation='relu')
+```
+> `Dense layer` là sự tính toán của `inner product` (tích trong) giữa một tập hợp các `trainable weights` (`weight matrix`) và một `input vector`. `Visualization` (trực quan hóa) của `dense layer` có thể được nhìn thấy trong hình ảnh bên dưới.
+
+![03_Dense_Layers_and_ReLU](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/03_Dense_Layers_and_ReLU.png)
+
+> Hộp màu cam trong hình ảnh phía trên hiển thị `dense layer`. Một `activation layer` là tập hợp các `nodes` màu xanh dương được hiển thị cùng với hộp màu cam trong hình ảnh bên dưới. Cụ thể, một trong những `activation layers` được sử dụng phổ biến nhất là `rectified linear unit` (`ReLU`).
+
+
+![04_Dense_Layers_and_ReLU](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/04_Dense_Layers_and_ReLU.png)
+
+> `ReLU(x)` được định nghĩa là `max(0,x)` cho bất kỳ `input` x nào.
+
+
+---
+### **Embedding and Mean Layers**
+---
+
 
 
 ---
