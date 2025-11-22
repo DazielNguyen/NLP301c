@@ -172,13 +172,38 @@ tf.keras.layers.Dense(32, activation='relu')
 
 Các `Large N-grams` nắm bắt các `dependencies` giữa các từ ở xa nhau và cần rất nhiều không gian và `RAM`. Do đó, chúng ta phải dùng đến các loại `alternatives` khác nhau.
 
-
-
-
 ---
 ### **Recurrent Neural Networks**
 ---
 
+- Nội dung này tập trung vào các ưu điểm của `recurrent neural networks` (`RNNs`) trong `natural language processing`.
+
+- **Understanding RNNs**
+
+    + `RNNs` có thể nắm bắt các `dependencies` trong các `sequences` mà các `n-gram models` truyền thống không thể, cho phép đưa ra các `predictions` tốt hơn trong các `language tasks`.
+    + Không giống như các `n-gram models`, `RNNs` `propagate` (lan truyền) thông tin từ đầu câu đến cuối câu, giúp cải thiện việc hiểu `context`.
+
+- **RNN Functionality**
+
+    + `RNNs` `compute` (tính toán) các giá trị cho mỗi từ trong một `sequence`, sử dụng thông tin từ tất cả các từ trước đó để đưa ra `predictions`.
+    + Các `weights` giống nhau được áp dụng trên toàn bộ `sequence`, cho phép `RNNs` chia sẻ `parameters` và học tập một cách hiệu quả.
+
+- **Advantages of RNNs**
+
+    + `RNNs` có thể xử lý các `sequences` dài hơn mà không gặp phải tính thiếu thực tế của các `n-gram models` truyền thống.
+    + Chúng được thiết kế để đưa ra các `predictions` dựa trên toàn bộ `context` của một câu, dẫn đến việc `language modeling` chính xác hơn.
+
+
+> Trước đây, chúng ta đã thử sử dụng các `traditional language models`, nhưng hóa ra chúng chiếm rất nhiều không gian và `RAM`. Ví dụ, trong câu bên dưới:
+
+![09_Recurrent_Neural_Networks](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/09_Recurrent_Neural_Networks.png)
+
+> Một `N-gram` (`trigram`) sẽ chỉ nhìn vào "did not" và sẽ cố gắng hoàn thành câu từ đó. Kết quả là, `model` sẽ không thể nhìn thấy phần đầu của câu "I called her but she". Có lẽ từ có khả năng nhất là "have" sau "did not". `RNNs` giúp chúng ta giải quyết vấn đề này bằng cách có khả năng theo dõi các `dependencies` nằm cách xa nhau hơn nhiều. Khi `RNN` đi qua một 
+`text corpus`, nó thu thập một số thông tin như sau:
+
+![10_Recurrent_Neural_Networks](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/10_Recurrent_Neural_Networks.png)
+
+> Lưu ý rằng khi bạn đưa thêm thông tin vào `model`, sự lưu giữ của từ trước đó trở nên yếu hơn, nhưng nó vẫn ở đó. Hãy nhìn vào hình chữ nhật màu cam ở trên và xem nó trở nên nhỏ hơn như thế nào khi bạn đi qua văn bản. Điều này cho thấy rằng `model` của bạn có khả năng nắm bắt các `dependencies` và nhớ một từ trước đó mặc dù nó nằm ở đầu câu hoặc đoạn văn. Một ưu điểm khác của `RNNs` là rất nhiều tính toán chia sẻ các `parameters`.
 
 
 ---
