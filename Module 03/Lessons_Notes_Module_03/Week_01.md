@@ -210,11 +210,38 @@ Các `Large N-grams` nắm bắt các `dependencies` giữa các từ ở xa nha
 ### **Applications of RNNs**
 ---
 
+Nội dung tập trung vào các loại `Recurrent Neural Network` (`RNN`) `architectures` (kiến trúc) khác nhau và các ứng dụng của chúng trong các tác vụ `AI` khác nhau.
+
+**Types of AI Tasks** (Các loại tác vụ AI)
+
+* **One to One**: Liên quan đến một `input` duy nhất và một `output` duy nhất, chẳng hạn như dự đoán vị trí của một đội dựa trên điểm số. `RNNs` không đặc biệt hữu ích ở đây.
+* **One to Many**: Một `RNN` lấy một `input` duy nhất (như một hình ảnh) và tạo ra nhiều `outputs` (như một `caption` mô tả hình ảnh).
+
+**Different RNN Architectures** (Các kiến trúc RNN khác nhau)
+
+* **Many to One**: Được sử dụng trong các tác vụ như `sentiment analysis` (phân tích cảm xúc), trong đó một `sequence` (chuỗi) các từ được đưa vào, và `model` xuất ra một `sentiment` duy nhất (tích cực hoặc tiêu cực).
+* **Many to Many**: Liên quan đến nhiều `inputs` và `outputs`, chẳng hạn như `machine translation` (dịch máy), trong đó một `sequence` bằng ngôn ngữ này được dịch sang ngôn ngữ khác. `Architecture` `encoder-decoder` thường được sử dụng ở đây.
+
+
+
+`RNNs` là những công cụ linh hoạt trong `Natural Language Processing` (`NLP`) cho các tác vụ như `machine translation` và `caption generation`, thích ứng với các tình huống khác nhau dựa trên yêu cầu của tác vụ.
+
+`RNNs` có thể được sử dụng trong nhiều tác vụ khác nhau, từ `machine translation` đến `caption generation`. Có nhiều cách để triển khai một `RNN model`:
+
+- `One to One`: cho một vài điểm số của một giải vô địch, bạn có thể dự đoán người chiến thắng.
+- `One to Many`: cho một hình ảnh, bạn có thể dự đoán `caption` sẽ là gì.
+- `Many to One`: cho một `tweet`, bạn có thể dự đoán `sentiment` của `tweet` đó.
+- `Many to Many`: cho một câu tiếng Anh, bạn có thể dịch nó sang câu tương đương tiếng Đức.
 
 ---
 ### **Math in Simple RNNs**
 ---
 
+
+
+
+
+![11_Math_in_Simple_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/11_Math_in_Simple_RNNs.png)
 
 ---
 ### **Cost Function for RNNs**
