@@ -244,3 +244,25 @@ Nội dung tập trung vào kỹ thuật `beam search` được sử dụng tron
 
 * `Beam search` có thể phạt các `sequences` dài hơn do việc nhân các `conditional probabilities`.
 * Một kỹ thuật `normalization` có thể được áp dụng để giảm thiểu vấn đề này, nhưng phương pháp này vẫn tốn tài nguyên so với các cách tiếp cận đơn giản hơn như `greedy decoding`.
+
+---
+### **Minimum Bayes Risk**
+---
+
+Nội dung tập trung vào phương pháp `Minimum Bayes Risk` (`MBR`) `decoding` để đánh giá các hệ thống `Neural Machine Translation` (`NMT`).
+
+**Understanding MBR**
+
+* `MBR` cải thiện `translation accuracy` bằng cách so sánh nhiều `candidate translations`.
+* Nó bao gồm việc tạo ra một vài `random samples` và sử dụng một `similarity score`, chẳng hạn như `ROUGE`, để đánh giá chúng.
+
+**Implementing MBR**
+
+* Tính toán các `ROUGE scores` giữa các `candidate translations` để tìm `average similarity`.
+* Chọn `candidate translation` có `average ROUGE score` cao nhất làm `best option`.
+
+**Comparison with Other Methods**
+
+* `MBR` cung cấp một bản dịch chính xác hơn về mặt ngữ cảnh so với `random sampling` và `greedy decoding`.
+* Phương pháp này đơn giản để triển khai (`implement`) và sẽ được sử dụng trong các bài tập sắp tới.
+
