@@ -217,9 +217,25 @@ Tổng thể, video này phác thảo ba loại `attention mechanisms` chính v�
 > Bạn lấy `input`, (véc-tơ màu đỏ) chạy nó qua `self-attention` và sau đó là một `feedforward` với `ReLU`. Ở cuối `decoder`, bạn chỉ cần chạy một `linear layer` và một `softmax`.
 
 ---
-### **The Viterbi Algorithm**
+### **Transformer Summarizer**
 ---
 
+Nội dung khóa học này tập trung vào việc xây dựng một bộ tóm tắt (`summarizer`) sử dụng một `transformer model`.
+
+**Overview of the Transformer Model**
+
+* `Transformer model` xử lý `input text`, dự đoán từ tiếp theo dựa trên các từ trước đó.
+* Đối với `summarization` (tóm tắt), `input` bao gồm một bài báo tin tức theo sau là một bản tóm tắt, được phân tách bằng các `EOS tags`.
+
+**Data Processing for Summarization**
+
+* Các `input features` được tạo ra bằng cách `concatenating` (nối) bài báo và bản tóm tắt, được `tokenized` thành các số nguyên (`integers`).
+* Một `weighted loss function` được sử dụng để tập trung `model` vào `summarization`, cho phép học các mối quan hệ từ tốt hơn.
+
+**Inference with the Language Model**
+
+* Trong quá trình `inference`, `model` tạo ra một bản tóm tắt bằng cách dự đoán từng từ một cho đến khi nó đạt đến `EOS token`.
+* Tác vụ `summarization` được coi là `text generation` (tạo văn bản), nơi `model` lấy mẫu từ một `probability distribution` để tạo ra các bản tóm tắt đa dạng.
 
 
 ---
