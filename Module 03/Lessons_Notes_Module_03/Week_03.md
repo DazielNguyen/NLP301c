@@ -73,10 +73,37 @@ Nội dung tập trung vào `architecture` và cách thức hoạt động của
 
 
 ---
-### **Sequence Probabilities**
+### **Cost Function**
 ---
 
+Nội dung tập trung vào `triplet loss function` được sử dụng trong `Siamese networks` để xác định độ tương đồng giữa các câu hỏi.
 
+**Siamese Network Overview**
+
+* `Siamese network` dự đoán xem hai câu hỏi là tương tự hay khác biệt.
+* Nó sử dụng một `anchor` question để so sánh với các câu hỏi `positive` (nghĩa tương tự) và `negative` (nghĩa khác biệt).
+
+**Cosine Similarity**
+
+* `Cosine similarity` đo lường độ tương đồng giữa hai `vectors`, nằm trong khoảng từ -1 (hoàn toàn khác biệt) đến 1 (gần như giống hệt nhau).
+* Một `model` được `trained` tốt nhắm tới độ tương đồng gần bằng 1 cho các cặp `anchor-positive` và gần bằng -1 cho các cặp `anchor-negative`.
+
+**Loss Function Development**
+
+* `Loss function` được tạo ra bằng cách trừ độ tương đồng của `anchor` và câu hỏi `negative` từ độ tương đồng của `anchor` và câu hỏi `positive`.
+* Việc giảm thiểu (`minimizing`) `loss` này trong quá trình `training` giúp `model` phân biệt hiệu quả giữa các câu hỏi tương tự và khác biệt.
+
+> Hãy xem kỹ `slide` sau:
+
+![05_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/05_Cost_Function.png)
+
+
+> Lưu ý rằng khi cố gắng tính toán `cost` cho một `siamese network` bạn sử dụng `triplet loss`. `Triplet loss` xem xét một ví dụ `Anchor`, một `Positive` và một `Negative`. Điều quan trọng cần lưu ý là bạn nhắm đến việc điều chỉnh các `weights` của `model` theo cách mà `anchor` và ví dụ `positive` có một `cosine similarity score` gần bằng 1. Ngược lại, `anchor` và ví dụ `negative` nên có một `cosine similarity score` gần bằng -1. Cụ thể hơn, bạn tìm cách giảm thiểu (`minimize`) phương trình sau:
+$-\cos(A,P)+\cos(A,N)\le 0$
+
+> Lưu ý rằng nếu $\cos(A,P)=1$ và $\cos(A,N)=-1$, thì phương trình chắc chắn nhỏ hơn 0. Tuy nhiên, khi $\cos(A,P)$ lệch khỏi 1 và $\cos(A,N)$ lệch khỏi -1, thì cuối cùng bạn có thể nhận được một `cost` > 0. Đây là một `visualization` sẽ giúp bạn hiểu những gì đang diễn ra. Hãy thoải mái thử nghiệm với các con số khác nhau.
+
+![06_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/06_Cost_Function.png)
 
 ---
 ### **Starting and Ending Sentences**
