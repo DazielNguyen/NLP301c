@@ -78,10 +78,58 @@ Nội dung tập trung vào các mạng `Long Short-Term Memory` (`LSTM`), đư�
 
 
 ---
-### **Markov Chains and POS Tags**
+### **LSTM Architecture**
 ---
 
+Video bài giảng tập trung vào `architecture` và các `computations` của các mạng `Long Short-Term Memory` (`LSTM`), vốn rất quan trọng để xử lý các `sequences` trong `natural language processing`.
 
+**LSTM Architecture**
+
+* `LSTMs` bao gồm một `cell state`, `hidden state`, `input`, và `output`, trong đó `cell state` đóng vai trò là bộ nhớ của `network`.
+* `Architecture` bao gồm ba `gates`: `forget gate` (quyết định cái gì cần loại bỏ), `input gate` (chọn thông tin liên quan), và `output gate` (xác định `output`).
+
+**Gate Functions**
+
+* Các `sigmoid activation functions` được sử dụng cho các `gates`, đảm bảo các giá trị nằm trong khoảng từ 0 đến 1, trong đó 0 nghĩa là `gate` đóng và 1 nghĩa là nó mở.
+* `Candidate cell state` được tính toán bằng cách sử dụng một `hyperbolic tangent activation function`, giúp chuyển đổi thông tin để cải thiện `training performance`.
+
+**Updating States**
+
+* `Cell state` mới được cập nhật bằng cách kết hợp thông tin từ `candidate cell state` và `cell state` trước đó, được lọc qua các `forget` và `input gates`.
+* `Hidden state` mới được suy ra từ `cell state` mới, cái mà có thể đi qua `output gate`, đôi khi trực tiếp mà không cần `hyperbolic tangent transformation`.
+
+Nhìn chung, bài giảng cung cấp một sự hiểu biết toàn diện về cách `LSTMs` hoạt động và chuẩn bị cho người học để triển khai `LSTMs` trong các ứng dụng thực tế.
+
+> Kiến trúc `LSTM` có thể trở nên phức tạp và đừng lo lắng về điều đó nếu bạn không hiểu nó. Cá nhân tôi thích nhìn vào phương trình hơn, nhưng tôi sẽ cố gắng đưa ra một `visualization` (trực quan hóa) cho bạn bây giờ và cuối tuần này chúng ta sẽ xem xét các phương trình.
+
+![04_LSTM_Architecture](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W2/04_LSTM_Architecture.png)
+
+
+> Lưu ý `forget gate` (1), `input gate` (2) và `output gate` (3) được đánh dấu màu xanh dương. Ngược lại với `vanilla RNNs`, có `cell state` bên cạnh `hidden state`. Ý tưởng của `forget gate` là loại bỏ thông tin không còn quan trọng nữa. Nó sử dụng `hidden state` trước đó $h^{<t_0>}$ và `input` $x^{<t_1>}$. `Input gate` đảm bảo giữ lại các thông tin liên quan cần được lưu trữ. Cuối cùng `output gate` tạo ra một `output` được sử dụng tại bước hiện tại.
+
+> Các phương trình `LSTM` (tùy chọn):
+Để hiểu rõ hơn, hãy xem các phương trình `LSTM` và liên hệ chúng với hình trên.
+
+> `Forget gate`:
+$$f=\sigma(W_f[h_{t-1};x_t]+b_f)$$
+(được đánh dấu bằng số 1 màu xanh dương)
+
+> `Input gate`:
+$$i=\sigma(W_i[h_{t-1};x_t]+b_i)$$
+(được đánh dấu bằng số 2 màu xanh dương)
+
+> `Gate gate` (candidate memory cell):
+$$g=\tanh(W_g[h_{t-1};x_t]+b_g)$$
+
+> `Cell state`:
+$$c_t=f \odot c_{t-1} + i \odot g$$
+
+> `Output gate`:
+$$o=\sigma(W_o[h_{t-1};x_t]+b_o)$$
+(được đánh dấu bằng số 3 màu xanh dương)
+
+> `Output` của `LSTM unit`:
+$$h_t=o_t \odot \tanh(c_t)$$
 
 ---
 ### **Hidden Markov Models**
