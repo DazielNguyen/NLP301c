@@ -20,7 +20,7 @@ Bài giảng tập trung vào `transformer model`, một `architecture` hoàn to
 
 * Bài giảng đặt nền móng cho việc khám phá sâu hơn về `transformers` trong video tiếp theo, hứa hẹn một cái nhìn tổng quan cụ thể về `structure` và `functionality` của chúng.
 
-![01_Transformers_vs_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/01_Transformers_vs_RNNs.png)
+![01_Transformers_vs_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/01_Transformers_vs_RNNs.png)
 
 > Trong hình ảnh phía trên, bạn có thể thấy một `RNN` điển hình được sử dụng để dịch câu tiếng Anh "How are you?" sang câu tương đương tiếng Pháp, "Comment allez-vous?".
 
@@ -82,13 +82,13 @@ Nội dung tập trung vào các ứng dụng và khả năng của `transformer
 
 > Dưới đây là bản tóm tắt ngắn gọn về tất cả các ứng dụng khác nhau mà bạn có thể xây dựng bằng cách sử dụng `transformers`:
 
-![02_Transformer_Applications](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/02_Transformer_Applications.png)
+![02_Transformer_Applications](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/02_Transformer_Applications.png)
 
 > Sẽ rất tuyệt nếu bạn thực sự có thể chơi đố vui (`trivia`) với một `transformer` tại đây: [https://t5-trivia.glitch.me/](https://t5-trivia.glitch.me/)
 
 > Một lĩnh vực nghiên cứu thú vị khác là việc sử dụng `transfer learning` với `transformers`. Ví dụ, để `train` một `model` dịch tiếng Anh sang tiếng Đức, bạn chỉ cần đặt trước (`prepend`) văn bản "translate English to German" vào `inputs` mà bạn sắp đưa vào `model`. Sau đó, bạn có thể giữ nguyên `model` đó để `detect sentiment` (phát hiện cảm xúc) bằng cách đặt trước một `tag` khác. Hình ảnh sau đây tóm tắt `T5 model` sử dụng khái niệm này:
 
-![03_Transformer_Applications](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/03_Transformer_Applications.png)
+![03_Transformer_Applications](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/03_Transformer_Applications.png)
 
 
 > `GPT`, `BERT`, và `T5` là một số `transformer models` mới nhất.
@@ -154,7 +154,7 @@ Tổng thể, video này phác thảo ba loại `attention mechanisms` chính v�
 
 > Bài giảng này chuẩn bị cho người học triển khai `multi-head attention` một cách hiệu quả trong việc xây dựng các `transformer models`.
 
-![04_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/04_Multi-head_Attention.png)
+![04_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/04_Multi-head_Attention.png)
 
 
 > Trong bài đọc này, bạn sẽ thấy bản tóm tắt về `intuition` (trực giác) đằng sau `multi-head attention` và `scaled dot product attention`.
@@ -163,20 +163,20 @@ Tổng thể, video này phác thảo ba loại `attention mechanisms` chính v�
 
 > Dưới đây là hướng dẫn từng bước, đầu tiên bạn nhận được các `matrices` $Q, K, V$:
 
-![05_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/05_Multi-head_Attention.png)
+![05_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/05_Multi-head_Attention.png)
 
 > Đối với mỗi từ, bạn nhân nó với các `matrices` $W_Q, W_K, W_V$ tương ứng để có được `word embedding` tương ứng. Sau đó, bạn phải tính toán `scores` với các `embedding` đó như sau:
 
-![06_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/06_Multi-head_Attention.png)
+![06_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/06_Multi-head_Attention.png)
 
 > Lưu ý rằng `computation` trên được thực hiện cho một `head`. Nếu bạn có nhiều `heads`, cụ thể là $n$, thì bạn sẽ có $Z_1, Z_2, \dots, Z_n$. Trong trường hợp đó, bạn chỉ cần `concatenate` (nối) chúng lại và nhân với một `matrix` $W_O$ như sau:
 
-![07_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/07_Multi-head_Attention.png)
+![07_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/07_Multi-head_Attention.png)
 
 
 > Trong hầu hết các trường hợp, `dimensionality` của các $Z$ được cấu hình để căn chỉnh với $d_{model}$ (trong đó `head size` được xác định bởi $d_{head}=d_{model}/h$), đảm bảo tính nhất quán với `input dimensions`. Do đó, các `representations` (embeddings) được kết hợp thường trải qua một `final projection` bởi $W_O$ thành một `attention embedding` mà không thay đổi `dimensions`.
 
-![08_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W1/08_Multi-head_Attention.png)
+![08_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/08_Multi-head_Attention.png)
 
 > Ví dụ, nếu $d_{model}$ là 16, với hai `heads`, việc `concatenate` $Z_1$ và $Z_2$ dẫn đến một `dimension` là 16 (8 + 8). Tương tự, với bốn `heads`, việc `concatenate` $Z_1, Z_2, Z_3,$ và $Z_4$ cũng dẫn đến một `dimension` là 16 (4 + 4 + 4 + 4). Trong ví dụ này, và trong hầu hết các `architectures` phổ biến, đáng chú ý là số lượng `heads` không làm thay đổi `dimensionality` của `concatenated output`. Điều này vẫn đúng ngay cả sau `final projection` với $W_O$, cái mà cũng thường duy trì các `dimensions` nhất quán.
 
