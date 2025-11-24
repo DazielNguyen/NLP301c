@@ -155,9 +155,40 @@ Nội dung tập trung vào `Bidirectional Encoder Representations from Transfor
 ### **BERT Objective**
 ---
 
+Nội dung tập trung vào `input representation` và `objective` của `BERT model` trong `natural language processing`.
 
-![07_BERT](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/07_BERT.png)
+**Input Representation**
 
+* `BERT` sử dụng `position embeddings` để chỉ ra vị trí của mỗi từ trong một câu.
+* `Segment embeddings` phân biệt giữa `sentence A` và `sentence B`, điều này cần thiết cho `next sentence prediction`.
+
+**Combining Inputs**
+
+* `Token embeddings`, bao gồm một **CLS token** cho điểm bắt đầu và một **SEP token** cho điểm kết thúc của câu, được cộng tổng với `position` và `segment embeddings` để tạo ra `final input`.
+* `Input` được chuyển đổi thành các `embeddings` được xử lý qua các `transformer blocks`.
+
+**BERT Objective**
+
+* `Model` sử dụng một **Multi-Mask language model** dùng `cross-entropy loss` để dự đoán các từ bị `masked`.
+* Một **binary loss** được thêm vào cho **next sentence prediction**, xác định xem hai câu có theo sau nhau hay không.
+
+> Chúng ta sẽ bắt đầu bằng cách trực quan hóa (`visualizing`) `input`.
+
+![08_BERT_Objective](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/08_BERT_Objective.png)
+
+> Các `input embeddings` là tổng của các `token embeddings`, các `segmentation embeddings` và các `position embeddings`.
+* Các `input embeddings`: bạn có một **CLS token** để chỉ ra điểm bắt đầu của câu và một **SEP** để chỉ ra điểm kết thúc của câu.
+* Các `segment embeddings`: cho phép bạn chỉ ra đó là `sentence A` hay `B`.
+* Các `positional embeddings`: cho phép bạn chỉ ra vị trí của từ trong câu.
+
+![09_BERT_Objective](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/09_BERT_Objective.png)
+
+
+> `C token` trong hình ảnh phía trên có thể được sử dụng cho các mục đích phân loại (`classification purposes`). Cặp `unlabeled sentence A/B` sẽ phụ thuộc vào những gì bạn đang cố gắng `predict` (dự đoán), nó có thể bao gồm từ `question answering` đến `sentiment` (trong trường hợp đó, câu thứ hai có thể chỉ là trống). `BERT objective` được định nghĩa như sau:
+
+![10_BERT_Objective](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/10_BERT_Objective.png)
+
+> Bạn chỉ cần kết hợp các `losses`!
 
 ---
 ### **Fine tuning BERT**
