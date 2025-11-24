@@ -244,13 +244,38 @@ Nội dung tập trung vào khái niệm `one-shot learning` và ứng dụng c�
 > Do đó, chúng ta phải dùng đến `one shot learning`. Thay vì `retraining` `model` của bạn cho mỗi chữ ký, bạn chỉ cần học một `similarity score` như sau:
 
 ![12_One_Shot_Learning](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/12_One_Shot_Learning.png)
----
-### **Smoothing**
----
-
-
 
 ---
-### **Week Summary**
+### **Training / Testing**
 ---
 
+Nội dung này tập trung vào việc triển khai và `training` một `Siamese network` sử dụng các `Quora question duplicate datasets`.
+
+**Siamese Network Overview**
+
+* `Dataset` bao gồm các cặp câu hỏi được gán nhãn là `duplicates` (true) hoặc không (false).
+* Mỗi `batch` dữ liệu sẽ chứa các cặp câu hỏi là `duplicates`, trong khi đảm bảo không có `duplicates` nào tồn tại trong cùng một `batch`.
+
+**Data Processing and Model Training**
+
+* Các câu hỏi được `preprocessed` thành các `batches`, trong đó mỗi câu hỏi trong một `batch` là một `duplicate` của câu hỏi tương ứng trong `batch` khác.
+* `Model` sử dụng `cosine similarity` để so sánh các `output vectors` từ hai `subnetworks`, những mạng chia sẻ cùng các `learned parameters`.
+
+**Testing and One-Shot Learning**
+
+* Trong quá trình `testing`, `model` thực hiện `one-shot learning` để xác định xem hai `input` câu hỏi có phải là `duplicates` hay không dựa trên một `similarity score`.
+* `Similarity score` được so sánh với một `tunable threshold` (Tau) để phân loại các câu hỏi là `duplicates` hay không.
+
+> Sau khi chuẩn bị các `batches` các `vectors`, bạn có thể tiến hành nhân hai `matrices`. Dưới đây là tóm tắt nhanh về bước đầu tiên:
+
+![13_Training_Testing](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/13_Training_Testing.png)
+
+> Bước tiếp theo là triển khai `siamese model` như sau:
+
+![14_Training_Testing](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/14_Training_Testing.png)
+
+> Cuối cùng khi `testing`:
+* Chuyển đổi hai `inputs` thành một `array` các số
+* Đưa nó vào `model` của bạn
+* So sánh $v_1, v_2$ sử dụng `cosine similarity`
+* Kiểm tra với một `threshold` $\tau$
