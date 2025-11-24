@@ -101,7 +101,7 @@ Bản tóm tắt này gói gọn các điểm chính liên quan đến sự phá
 
 > Các `models` được đề cập trong video trước đã được khám phá theo thứ tự sau:
 
-![05_ELMo_GPT_BERT_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/05_Transfer_Learning_in_NLP.png)
+![05_ELMo_GPT_BERT_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/05_ELMo_GPT_BERT_T5.png)
 
 
 > Trong `CBOW`, bạn muốn mã hóa một từ dưới dạng một `vector`. Để làm điều này, chúng ta sử dụng `context` trước từ và `context` sau từ và chúng ta sử dụng `model` đó để học và tạo ra các `features` cho từ. Tuy nhiên, `CBOW` sử dụng một `fixed window C` (cho `context`).
@@ -114,7 +114,7 @@ Bản tóm tắt này gói gọn các điểm chính liên quan đến sự phá
 
 > Cuối cùng, `T5` được giới thiệu, cái mà sử dụng `transfer learning` và sử dụng cùng một `model` để `predict` (dự đoán) trên nhiều `tasks`. Dưới đây là một minh họa về cách nó hoạt động:
 
-![06_ELMo_GPT_BERT_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/06_Transfer_Learning_in_NLP.png)
+![06_ELMo_GPT_BERT_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/06_ELMo_GPT_BERT_T5.png)
 
 ---
 ### **Bidirectional Encoder Representations from Transformers (BERT)**
@@ -196,7 +196,6 @@ Nội dung tập trung vào `input representation` và `objective` của `BERT m
 
 Nội dung này tập trung vào việc `fine-tuning` `BERT model` cho các `natural language processing tasks` khác nhau.
 
-
 **Fine-Tuning BERT for Different Tasks**
 
 * `BERT` có thể được `fine-tuned` cho các `tasks` như `MNLI` (`Multi-Genre Natural Language Inference`) bằng cách sử dụng một `hypothesis` và `premise` thay vì các `sentence pairs`.
@@ -219,10 +218,41 @@ Nội dung này tập trung vào việc `fine-tuning` `BERT model` cho các `nat
 > Ví dụ, cho một `hypothesis`, bạn có thể xác định `premise`. Cho một câu hỏi, bạn có thể tìm thấy câu trả lời. Bạn cũng có thể sử dụng nó cho `named entity recognition`, `paraphrasing sentences`, `sequence tagging`, `classification` và nhiều `tasks` khác.
 
 ![12_Fine_tuning_BERT](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/12_Fine_tuning_BERT.png)
+
 ---
 ### **Transformer: T5**
 ---
 
+Nội dung tập trung vào `T5 model`, cái mà được tận dụng cho các `natural language processing` (`NLP tasks`) khác nhau và áp dụng một chiến lược `training` tương tự như `BERT`.
+
+**T5 Model Overview**
+
+* `T5`, hay **Text-to-Text Transfer Transformer**, có thể được áp dụng cho các `tasks` như `classification`, `question answering`, `machine translation`, `summarization`, và `sentiment analysis`.
+* `Model architecture` bao gồm một `encoder-decoder structure` với các `transformers`, sử dụng `transfer learning` và `masked language modeling` để `training`.
+
+**Training Process**
+
+* `Training` liên quan đến việc `masking` các từ nhất định trong một văn bản và thay thế chúng bằng các `tokens`, cái mà `model` học cách dự đoán.
+* `Architecture` có các **fully visible attention** trong `encoder` và **causal attention** trong `decoder`, với các chiến lược `masking` khác nhau được áp dụng.
+
+**Attention Mechanisms**
+
+* Bài giảng thảo luận về các `attention types` khác nhau, bao gồm `prefix language model attention` và `causal masking`.
+* `T5 model` bao gồm 12 `transformer blocks` và có xấp xỉ 220 triệu `parameters`, cho phép nó xử lý nhiều `NLP tasks` một cách hiệu quả.
+
+> Một trong những kỹ thuật chính cho phép `T5 model` đạt tới `state of the art` là khái niệm `masking`: 
+
+![13_Transformer_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/13_Transformer_T5.png)
+
+> Ví dụ, bạn biểu diễn "for inviting" bằng `<X>` và "last" bằng `<Y>`, sau đó `model` dự đoán `<X>` nên là gì và `<Y>` nên là gì. Đây chính xác là những gì chúng ta đã thấy trong `BERT loss`. Bạn cũng có thể `mask out` một vài vị trí, không chỉ một. `Loss` chỉ được tính trên `mask` đối với `BERT`, còn đối với `T5` thì nó được tính trên `target`.
+
+![14_Transformer_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/14_Transformer_T5.png)
+
+> Vì vậy, chúng ta bắt đầu với biểu diễn `encoder-decoder` cơ bản. Ở đó bạn có một **fully visible attention** trong `encoder` và sau đó là **causal attention** trong `decoder`. Vì vậy, các đường màu xám nhạt tương ứng với `causal masking`. Và các đường màu xám đậm tương ứng với `fully visible masking`.
+
+> Ở giữa, chúng ta có `language model` bao gồm một `single transformer layer stack`. Và nó được nạp đầu vào (`fed`) bằng cách `concatenation` (nối) của các `inputs` và `target`. Vì vậy, nó sử dụng `causal masking` xuyên suốt như bạn thấy vì chúng đều là các đường màu xám. Và bạn có $X_1$ đi vào bên trong, bạn nhận được $X_2$, $X_2$ đi vào `model` và bạn nhận được $X_3$ và cứ thế tiếp diễn.
+
+> Ở bên phải, chúng ta có `prefix language model` tương ứng với việc cho phép `fully visible masking` trên các `inputs` như bạn thấy với các mũi tên màu tối. Và sau đó là `causal masking` ở phần còn lại.
 
 ---
 ### **Multi-Task Training Strategy**
