@@ -274,12 +274,36 @@ $$\hat{y}^{<t>}=g(W_{yh}h^{<t>}+b_y)$$
 
 ![12_Math_in_Simple_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/12_Math_in_Simple_RNNs.png)
 
-
 ---
 ### **Cost Function for RNNs**
 ---
 
+Nội dung tập trung vào `cost function` cho `Recurrent Neural Networks` (`RNNs`) và cách điều chỉnh `cross-entropy loss` để tính đến nhiều `time steps`.
 
+**Cost Function for RNNs**
+
+* `Sequential model` bao gồm một `input vector`, nhiều `hidden units`, và các `output units` dự đoán các `class probabilities`.
+* `Cross-entropy loss` được tính toán bằng cách so sánh các `predicted probabilities` với các `true labels` cho mỗi quan sát.
+
+**Adapting Cross-Entropy Loss**
+
+* `Loss` cho một quan sát đơn lẻ được tính trung bình qua các `time steps`, sử dụng phép tính tổng theo thời gian và chia cho tổng số bước.
+* `Average loss` này nắm bắt `individual loss` trong `model` qua tất cả các `time steps`.
+
+**Implementation Notes**
+
+* `Overall cost` của `model` đạt được bằng cách cộng tổng `average cross-entropy loss` trên tất cả các ví dụ trong `dataset`.
+* Nội dung tương lai sẽ bao gồm các `RNN architectures` phức tạp hơn và các `implementations` của chúng.
+
+> `Cost function` được sử dụng trong một `RNN` là `cross entropy loss`. Nếu bạn muốn trực quan hóa nó về cơ bản bạn đang tính tổng trên tất cả các `classes` và sau đó nhân $y_j$ với $\log \hat{y}_j$. 
+
+![13_Cost_Function_for_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/13_Cost_Function_for_RNNs.png)
+
+> Nếu bạn muốn tính toán `loss` qua nhiều `time steps`, hãy sử dụng công thức sau:
+
+$$J=-\frac{1}{T}\sum_{t=1}^{T}\sum_{j=1}^{K}y_j^{<t>}\log\hat{y}_j^{<t>}$$
+
+> Lưu ý rằng chúng ta chỉ đơn giản là tính tổng trên tất cả các `time steps` và chia cho $T$, để có được `average cost` trong mỗi `time step`. Do đó, chúng ta chỉ đang lấy trung bình theo thời gian.
 
 ---
 ### **Implementation Note**
