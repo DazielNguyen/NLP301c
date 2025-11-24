@@ -41,17 +41,40 @@ Bài giảng đặt nền móng cho việc giới thiệu `LSTMs` như một gi�
 
 ![02_RNNs_and_Vanishing_Gradients](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W2/02_RNNs_and_Vanishing_Gradients.png)
 
-
-
-
-
-
-
-
 ---
-### **Markov Chains**
+### **Introduction to LSTMs**
 ---
 
+Nội dung tập trung vào các mạng `Long Short-Term Memory` (`LSTM`), được thiết kế để giải quyết vấn đề `vanishing gradients` trong `recurrent neural networks` (`RNNs`).
+
+**LSTM Architecture**
+
+* Bao gồm `cell state` (bộ nhớ) và `hidden state` (nơi các `computations` diễn ra).
+* Sử dụng nhiều `gates` để quản lý luồng thông tin, cho phép các `gradients` lưu thông hiệu quả.
+
+**Gates in LSTM**
+
+* `Forget Gate`: Quyết định thông tin nào cần loại bỏ khỏi `cell state`.
+* `Input Gate`: Xác định thông tin mới nào cần thêm vào `cell state`.
+* `Output Gate`: Chọn thông tin từ `cell state` để được `outputted` tại mỗi `timestep`.
+
+**Applications of LSTMs**
+
+* Hữu ích trong `language modeling`, chẳng hạn như dự đoán ký tự tiếp theo trong văn bản hoặc xây dựng `chatbots`.
+* Có thể áp dụng trong `music composition`, `automatic image captioning`, và `speech recognition`.
+* `LSTMs` đã thúc đẩy đáng kể các khả năng của `natural language processing` (`NLP`).
+
+> `LSTM` cho phép `model` của bạn ghi nhớ và quên một số `inputs` nhất định. Nó bao gồm một `cell state` và một `hidden state` với ba `gates`. Các `gates` cho phép các `gradients` lưu thông mà không bị thay đổi. Bạn có thể hình dung về ba `gates` như sau:
+
+* `Input gate`: cho bạn biết lượng thông tin cần đưa vào (`input`) tại bất kỳ `time point` nào.
+* `Forget gate`: cho bạn biết lượng thông tin cần quên tại bất kỳ `time point` nào.
+* `Output gate`: cho bạn biết lượng thông tin cần truyền qua tại bất kỳ `time point` nào.
+
+> Có nhiều ứng dụng bạn có thể sử dụng `LSTMs`, chẳng hạn như:
+
+> Dưới đây là một bài viết kinh điển về `LSTMs`[https://colah.github.io/posts/2015-08-Understanding-LSTMs/] với các giải thích trực quan và sơ đồ, để bổ sung cho tài liệu của tuần này.
+
+![03_Introduction_to_LSTMs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W2/03_Introduction_to_LSTMs.png)
 
 
 ---
