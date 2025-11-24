@@ -194,7 +194,31 @@ Nội dung tập trung vào `input representation` và `objective` của `BERT m
 ### **Fine tuning BERT**
 ---
 
+Nội dung này tập trung vào việc `fine-tuning` `BERT model` cho các `natural language processing tasks` khác nhau.
 
+
+**Fine-Tuning BERT for Different Tasks**
+
+* `BERT` có thể được `fine-tuned` cho các `tasks` như `MNLI` (`Multi-Genre Natural Language Inference`) bằng cách sử dụng một `hypothesis` và `premise` thay vì các `sentence pairs`.
+* Đối với `Named Entity Recognition` (`NER`), `model` nhận một câu và các `tags` tương ứng để xác định các `entities`.
+
+**Visual Representation of Input**
+
+* `Input structure` cho `question answering` bao gồm một câu hỏi và một đoạn văn (`paragraph`) mà từ đó câu trả lời được suy ra.
+* Đối với `NER`, `input` bao gồm một câu được ghép nối với các `named entities` của nó, trong khi `MNLI` sử dụng định dạng `hypothesis` và `premise`.
+
+**Summary of Input Types**
+
+* Các `tasks` khác nhau yêu cầu các định dạng `input` cụ thể: các `classification tasks` sử dụng văn bản với `labels`, `question answering` sử dụng các cặp câu hỏi-đoạn văn, và `summarization` có thể liên quan đến các bài báo và bản tóm tắt của chúng.
+* Việc hiểu các `input structures` này là rất quan trọng để `fine-tuning` `BERT` hiệu quả cho các ứng dụng khác nhau.
+
+> Khi bạn đã có một `pre-trained model`, bạn có thể `fine tune` nó trên các `tasks` khác nhau.
+
+![11_Fine_tuning_BERT](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/11_Fine_tuning_BERT.png)
+
+> Ví dụ, cho một `hypothesis`, bạn có thể xác định `premise`. Cho một câu hỏi, bạn có thể tìm thấy câu trả lời. Bạn cũng có thể sử dụng nó cho `named entity recognition`, `paraphrasing sentences`, `sequence tagging`, `classification` và nhiều `tasks` khác.
+
+![12_Fine_tuning_BERT](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/12_Fine_tuning_BERT.png)
 ---
 ### **Transformer: T5**
 ---
