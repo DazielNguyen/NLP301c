@@ -1,5 +1,5 @@
-# **Module 02 - Natural Language Processing with Probabilistic Models**
-## **Week 2: Part of Speech Tagging and Hidden Markov Models**
+# **Module 03 - Natural Language Processing with Sequence Models**
+## **Week 2: LSTMs and Named Entity Recognition**
 ---
 ### **Part of Speech Tagging**
 ---
