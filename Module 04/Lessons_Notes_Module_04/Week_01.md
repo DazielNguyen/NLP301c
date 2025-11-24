@@ -160,10 +160,25 @@ Nội dung này cung cấp một cái nhìn tổng quan về việc `training` m
 Tóm tắt này gói gọn các bước và thành phần thiết yếu liên quan đến việc xây dựng `NMT model`, với các chi tiết khác sẽ được khám phá trong các bài tập lập trình sắp tới.
 
 ---
-### **Minimum edit distance algorithmn III**
+### **BLEU Score** (**B**i**L**ingual **E**valuation **U**nderStudy)
 ---
 
+Bài giảng này tập trung vào việc đánh giá các mô hình dịch máy (`machine translation models`) sử dụng `BLEU score`, một thước đo được áp dụng rộng rãi trong xử lý ngôn ngữ tự nhiên (`natural language processing`).
 
+**Understanding the BLEU Score**
+
+* `BLEU score` so sánh một bản dịch do máy tạo ra (`machine-generated translation`) với một hoặc nhiều bản dịch tham chiếu của con người (`human reference translations`), với điểm số càng gần 1 biểu thị chất lượng càng tốt.
+* Nó tính toán độ chính xác (`precision`) bằng cách đếm xem có bao nhiêu từ từ bản dịch ứng viên (`candidate translation`) xuất hiện trong các bản dịch tham chiếu (`reference translations`).
+
+**Calculating the BLEU Score**
+
+* Phương pháp cơ bản đếm các từ khớp nhưng có thể mang lại kết quả gây hiểu lầm (`misleading results`), như thấy trong một ví dụ nơi một bản dịch kém nhận được điểm số hoàn hảo.
+* Một `modified BLEU score` cải thiện độ chính xác (`accuracy`) bằng cách loại bỏ (`exhausting`) các từ tham chiếu sau khi khớp, dẫn đến một đánh giá thực tế hơn.
+
+**Limitations of the BLEU Score**
+
+* `BLEU score` không tính đến ý nghĩa ngữ nghĩa (`semantic meaning`) hoặc cấu trúc câu (`sentence structure`), điều này có thể dẫn đến điểm số cao cho các bản dịch vô nghĩa (`nonsensical translations`).
+* Bất chấp sự phổ biến của nó, người dùng nên nhận thức được những hạn chế này khi sử dụng `BLEU score` để đánh giá mô hình (`model evaluation`).
 
 ---
 ### **Minimum edit distance III**
