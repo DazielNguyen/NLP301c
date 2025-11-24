@@ -205,3 +205,21 @@ Nội dung này tập trung vào `ROUGE score`, một `performance metric` (thư
 
 * Cả `BLEU` và `ROUGE scores` đều tập trung vào việc khớp `n-gram` (`n-gram matching`) và không tính đến cấu trúc câu (`sentence structure`) hoặc ngữ nghĩa (`semantics`).
 * Hiểu những hạn chế này là rất quan trọng để giải thích kết quả đánh giá dịch máy.
+
+---
+### **Sampling and Decoding**
+---
+
+Nội dung này tập trung vào hai phương pháp để xây dựng các câu trong `natural language processing`: `greedy decoding` và `random sampling`.
+
+**Greedy Decoding**
+
+* Phương pháp này chọn từ có xác suất cao nhất (`most probable word`) tại mỗi bước, điều này có thể dẫn đến các `outputs` lặp đi lặp lại, chẳng hạn như "I am, am, am" thay vì "I am hungry."
+* Mặc dù hiệu quả đối với các `sequences` ngắn hơn, nó có thể không phải lúc nào cũng mang lại kết quả tốt nhất cho các câu dài hơn hoặc phức tạp hơn.
+
+**Random Sampling**
+
+* Cách tiếp cận này lấy mẫu các từ dựa trên các `probabilities` của chúng, cho phép có nhiều sự biến đổi (`variability`) hơn trong các `outputs`.
+* Để cải thiện kết quả, một `temperature parameter` có thể được điều chỉnh để kiểm soát tính ngẫu nhiên (`randomness`), trong đó `temperature` thấp hơn dẫn đến các `predictions` thận trọng hơn và `temperature` cao hơn cho phép các `outputs` sáng tạo hơn, mặc dù rủi ro hơn.
+
+Nhìn chung, cả hai phương pháp đều có những ưu điểm và hạn chế, và sự lựa chọn giữa chúng có thể ảnh hưởng đáng kể đến chất lượng của các câu được tạo ra.
