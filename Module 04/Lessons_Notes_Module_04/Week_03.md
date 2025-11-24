@@ -80,6 +80,42 @@ Nội dung bài giảng này tập trung vào khái niệm `transfer learning` t
 ### **ELMo, GPT, BERT, T5**
 ---
 
+Nội dung thảo luận về sự tiến hóa của các `models natural language processing` (`NLP`) khác nhau cùng các ưu điểm và nhược điểm tương ứng của chúng.
+
+**Model Evolution**
+
+* Dòng thời gian bao gồm các `models` như `Continuous Bag of Words`, `ELMo`, `GPT`, `BERT`, và `T5`, làm nổi bật sự phát triển của chúng và các vấn đề mà chúng giải quyết.
+* Mỗi `model` xây dựng dựa trên các khái niệm trước đó, dẫn đến những cải tiến trong việc hiểu `context` và `word embeddings`.
+
+**Contextual Understanding**
+
+* Tầm quan trọng của `context` trong việc hiểu các từ được nhấn mạnh, với các phương pháp như `fixed window sizes` và `bi-directional LSTMs` được khám phá.
+* Cách tiếp cận `bi-directional` của `BERT` cho phép sử dụng `context` tốt hơn so với các `models` trước đó.
+
+**Model Architectures**
+
+* Các `architectures` khác nhau được thảo luận: `GPT` sử dụng `decoder-only stack`, trong khi `BERT` sử dụng `encoder-only stack`.
+* `T5` kết hợp cả `encoder` và `decoder stacks`, cho thấy `performance` được cải thiện trong các `tasks` khác nhau thông qua các `multi-task training strategies`.
+
+Bản tóm tắt này gói gọn các điểm chính liên quan đến sự phát triển và chức năng của các `NLP models`.
+
+> Các `models` được đề cập trong video trước đã được khám phá theo thứ tự sau:
+
+![05_ELMo_GPT_BERT_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/05_Transfer_Learning_in_NLP.png)
+
+
+> Trong `CBOW`, bạn muốn mã hóa một từ dưới dạng một `vector`. Để làm điều này, chúng ta sử dụng `context` trước từ và `context` sau từ và chúng ta sử dụng `model` đó để học và tạo ra các `features` cho từ. Tuy nhiên, `CBOW` sử dụng một `fixed window C` (cho `context`).
+
+> `ElMo` sử dụng một `bi-directional LSTM`, đây là một phiên bản khác của `RNN` và bạn có các `inputs` từ bên trái và bên phải.
+
+> Sau đó `Open AI` đã giới thiệu `GPT`, một `uni-directional model` sử dụng `transformers`. Mặc dù `ElMo` là `bi-directional`, nó vẫn gặp một số vấn đề như nắm bắt các `longer-term dependencies`, điều mà `transformers` giải quyết tốt hơn nhiều.
+
+> Sau đó, `Bi-directional Encoder Representation from Transformers` (`BERT`) được giới thiệu, cái mà tận dụng các `bi-directional transformers` như tên gọi của nó.
+
+> Cuối cùng, `T5` được giới thiệu, cái mà sử dụng `transfer learning` và sử dụng cùng một `model` để `predict` (dự đoán) trên nhiều `tasks`. Dưới đây là một minh họa về cách nó hoạt động:
+
+![06_ELMo_GPT_BERT_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/06_Transfer_Learning_in_NLP.png)
+
 
 
 ---
