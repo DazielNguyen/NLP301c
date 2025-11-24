@@ -106,8 +106,41 @@ $-\cos(A,P)+\cos(A,N)\le 0$
 ![06_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/06_Cost_Function.png)
 
 ---
-### **Starting and Ending Sentences**
+### **Triplets**
 ---
+
+Nội dung này tập trung vào khái niệm `triplet loss` trong việc `training` các `models` để xác định các `inputs` tương đương.
+
+**Triplet Loss and Its Components**
+
+* `Triplet loss` bao gồm ba thành phần: một `anchor` (A), một ví dụ `positive` (P), và một ví dụ `negative` (N).
+* Mục tiêu là tối đa hóa sự tương đồng (`similarity`) giữa `anchor` và ví dụ `positive`, trong khi giảm thiểu sự tương đồng giữa `anchor` và ví dụ `negative`.
+
+**Understanding the Loss Function**
+
+* `Triplet loss function` đơn giản nhất giảm thiểu sự khác biệt giữa các độ tương đồng của A và P, và A và N.
+* Một `margin` (alpha) được đưa vào để đảm bảo `model` học cho đến khi sự khác biệt giữa các độ tương đồng đạt đến một giá trị cụ thể, ngăn chặn `loss` trở nên âm.
+
+**Selecting Triplets for Training**
+
+* Việc chọn `hard triplets`, nơi `anchor` và các ví dụ `negative` có độ tương đồng gần nhau, giúp `model` học tập hiệu quả.
+* Cách tiếp cận này tập trung quá trình `training` vào các trường hợp thách thức, cải thiện `performance` của `model` bằng cách cung cấp nhiều ví dụ mang tính thông tin hơn.
+
+> Để có được `full cost function` bạn sẽ thêm một `margin` vào `cost function` trước đó.
+
+![07_Triplets](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/07_Triplets.png)
+
+> Lưu ý $\alpha$ trong phương trình ở trên, đại diện cho `margin`. Điều này cho phép bạn có một chút "safety", khi so sánh các câu. Khi tính toán `full cost`, bạn lấy `max` của kết quả $-\cos(A,P)+\cos(A,N)+\alpha$ và 0. Lưu ý, chúng ta không muốn lấy một số âm làm `cost`.
+
+> Dưới đây là một tóm tắt nhanh:
+
+> $\alpha$: kiểm soát $\cos(A,P)$ cách xa $\cos(A,N)$ bao nhiêu
+
+> `Easy negative triplet`: $\cos(A,N) < \cos(A,P)$
+
+> `Semi-hard negative triplet`: $\cos(A,N) < \cos(A,P) < \cos(A,N) + \alpha$
+
+> `Hard negative triplet`: $\cos(A,P) < \cos(A,N)$
 
 
 ---
