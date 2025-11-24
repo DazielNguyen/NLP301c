@@ -183,6 +183,39 @@ Bài giảng này tập trung vào việc xây dựng một `cost function` và 
 ### **Computing The Cost II**
 ---
 
+Nội dung tập trung vào các khái niệm `diagonals` và `off-diagonals` trong một `cost matrix` được sử dụng trong việc `training` `Siamese networks`.
+
+**Understanding Diagonals and Off-Diagonals**
+
+* Các `diagonal values` đại diện cho các `similarities` cho các câu hỏi trùng lặp (`duplicate questions`), cái mà nên cao hơn các `off-diagonal values` đối với một `well-trained model`.
+* Các `off-diagonal values` đại diện cho các `similarities` cho các câu hỏi không trùng lặp (`non-duplicate questions`) và có thể được sử dụng để nâng cao `model performance`.
+
+**Mean Negative and Closest Negative Concepts**
+
+* `Mean negative` đề cập đến trung bình của các `off-diagonal values` trong mỗi hàng, giúp giảm `noise` trong quá trình `training`.
+* `Closest negative` là `off-diagonal value` gần nhất với `diagonal value`, cung cấp các cơ hội học tập giá trị cho `model`.
+
+**Loss Function Modifications**
+
+* `Triplet loss function` có thể được cải thiện bằng cách kết hợp `mean negative` và `closest negative` để tạo ra một `loss function` mới.
+* Sự điều chỉnh này giúp `model` `converge` (hội tụ) nhanh hơn bằng cách tập trung vào các ví dụ thách thức hơn, cuối cùng là nâng cao `training efficiency`.
+
+> Bây giờ bạn đã có `matrix` với các `cosine similarity scores`, vốn là `product` (tích) của hai `matrices`, chúng ta tiếp tục tính toán `cost`.
+
+![10_Computing_The_Cost_II](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/10_Computing_The_Cost_II.png)
+
+> Bây giờ chúng ta giới thiệu hai khái niệm, `mean_neg`, là `mean negative` của tất cả các `off diagonals` khác trong `row`, và `closest_neg`, tương ứng với số cao nhất trong các `off diagonals`.
+
+$$Cost=\max(-\cos(A,P)+\cos(A,N)+\alpha,0)$$
+
+> Vì vậy bây giờ chúng ta sẽ có hai `costs`:
+
+$$Cost1=\max(-\cos(A,P)+mean\_neg+\alpha,0)$$
+
+$$Cost2=\max(-\cos(A,P)+closest\_neg+\alpha,0)$$
+
+> `Full cost` được định nghĩa là: `Cost 1` + `Cost 2`.
+
 
 ---
 ### **Out of Vocabulary Words**
