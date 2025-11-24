@@ -116,17 +116,47 @@ Bản tóm tắt này gói gọn các điểm chính liên quan đến sự phá
 
 ![06_ELMo_GPT_BERT_T5](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/06_Transfer_Learning_in_NLP.png)
 
-
-
 ---
 ### **Bidirectional Encoder Representations from Transformers (BERT)**
 ---
 
+Nội dung tập trung vào `Bidirectional Encoder Representations from Transformers` (`BERT`), một `model` sử dụng `transformer architecture` để xử lý các `inputs` theo cả hai hướng (`bidirectional`).
+
+**BERT Architecture**
+
+* `BERT` sử dụng một `multi-layer bidirectional transformer` với `positional embeddings`.
+* `Base model` bao gồm 12 `layers`, 12 `attention heads`, và 110 triệu `parameters`.
+
+**Pre-training Process**
+
+* `BERT` được `pre-trained` trên dữ liệu không có nhãn (`unlabeled data`) bằng cách sử dụng các `tasks` như `masked language modeling` và `next sentence prediction`.
+* Trong quá trình `pre-training`, 15% số từ trong `input` được `masked` (che), và `model` dự đoán các từ bị `masked` này.
+
+**Fine-tuning**
+
+* Sau `pre-training`, `BERT` được `fine-tuned` trên dữ liệu có nhãn (`labeled data`) cho các `downstream tasks` cụ thể.
+* Các `parameters` của `model` được điều chỉnh để cải thiện `performance` trên các `tasks` này, chẳng hạn như `classification` hoặc `prediction`.
+
+> Bây giờ bạn sẽ tìm hiểu về `BERT architecture` và hiểu cách `pre-training` hoạt động.
+
+![07_BERT](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/07_BERT.png)
+
+
+> Có hai bước trong `BERT framework`: `pre-training` và `fine-tuning`. Trong quá trình `pre-training`, `model` được `trained` trên dữ liệu không có nhãn (`unlabeled data`) thông qua các `pre-training tasks` khác nhau. Đối với `fine-tuning`, `BERT model` đầu tiên được `initialize` (khởi tạo) với các `pre-trained parameters`, và tất cả các `parameters` đều được `fine-tuned` bằng cách sử dụng dữ liệu có nhãn (`labeled data`) từ các `downstream tasks`.
+
+> Ví dụ, trong hình ảnh phía trên, bạn nhận được các `embeddings` tương ứng cho các từ `input`, bạn chạy nó qua một vài `transformer blocks`, và sau đó bạn đưa ra `prediction` tại mỗi `time point` $T_i$.
+
+> Trong quá trình `pre-training`:
+* Chọn 15% `tokens` một cách ngẫu nhiên: `mask` chúng 80% thời gian, thay thế chúng bằng một `random token` 10% thời gian, hoặc giữ nguyên 10% thời gian.
+* Có thể có nhiều `masked spans` (khoảng che) trong một câu.
+* `Next sentence prediction` cũng được sử dụng khi `pre-training`.
 
 ---
 ### **BERT Objective**
 ---
 
+
+![07_BERT](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/07_BERT.png)
 
 
 ---
