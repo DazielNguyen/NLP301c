@@ -309,9 +309,28 @@ $$J=-\frac{1}{T}\sum_{t=1}^{T}\sum_{j=1}^{K}y_j^{<t>}\log\hat{y}_j^{<t>}$$
 ### **Implementation Note**
 ---
 
+Nội dung tập trung vào việc triển khai `Recurrent Neural Networks` (`RNNs`) sử dụng `scan functions` trong `TensorFlow` để `computation` (tính toán) hiệu quả.
 
+**Scan Functions in RNNs**
 
+* `Scan functions` là các sự trừu tượng hóa (`abstractions`) cho phép `computation` nhanh hơn bằng cách áp dụng một `function` lên một danh sách các phần tử (`list of elements`) một cách tuần tự.
+* Trong `TensorFlow`, `scan function` nhận vào một `function` (`fn`) và một danh sách các `inputs` (`elems`), với một `initializer` tùy chọn cho lần `computation` đầu tiên.
 
+**Implementation Process**
+
+* `RNN` khởi tạo `hidden state` và chuẩn bị một danh sách trống cho các `predictions`.
+* Đối với mỗi `input` trong danh sách, `function` được gọi với `input` hiện tại và `hidden state` trước đó, tính toán các `predictions` tại mỗi `time step`.
+
+**Importance of Scan Functions**
+
+* Mặc dù nó có vẻ giống như một vòng lặp (`loop`) đơn giản, `scan functions` cho phép các `deep learning frameworks` thực hiện các `parallel computations` (tính toán song song) và tận dụng `GPUs` một cách hiệu quả.
+* Sự trừu tượng hóa (`abstraction`) này rất quan trọng để tối ưu hóa `performance` của `RNNs` trong các ứng dụng `deep learning`.
+
+> `Scan function` được xây dựng như sau:
+
+![14_Implementation_Note](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/14_Implementation_Note.png)
+
+> Lưu ý rằng, đó về cơ bản là những gì một `RNN` đang làm. Nó lấy `initializer`, và trả về một danh sách các `outputs` (`ys`), và sử dụng `current value`, để lấy `next y` và `next current value`. Những loại `abstractions` này cho phép `computation` nhanh hơn nhiều.
 
 ---
 ### **Gated Recurrent Units**
