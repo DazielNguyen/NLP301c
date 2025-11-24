@@ -38,9 +38,38 @@ Bài giảng đặt nền tảng cho việc khám phá sâu hơn về `architect
 ![02_Siamese_Networks](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/02_Siamese_Networks.png)
 
 ---
-### **N-grams and Probabilities**
+### **Architecture**
 ---
 
+Nội dung tập trung vào `architecture` và cách thức hoạt động của `Siamese networks`, được sử dụng để so sánh các `inputs` và tạo ra các `similarity scores`.
+
+**Siamese Network Architecture**
+
+* Bao gồm hai `subnetworks` giống hệt nhau xử lý hai `inputs` (ví dụ: các câu hỏi) để tạo ra các `outputs`.
+* Mỗi `subnetwork` chuyển đổi `input` của nó thành một `embedding` và chuyển nó qua một `LSTM layer` để nắm bắt ý nghĩa.
+
+
+**Parameter Sharing and Output**
+
+* Các `subnetworks` chia sẻ các `parameters` giống hệt nhau, cho phép `training` chỉ một tập hợp các `weights`.
+* `Outputs` từ cả hai `subnetworks` được so sánh bằng cách sử dụng `cosine similarity` để xác định mức độ tương tự của các `inputs`.
+
+**Cosine Similarity and Thresholding**
+
+* `Cosine similarity` đo góc giữa hai `vectors`, biểu thị sự tương đồng của chúng.
+* Một `threshold` (tau) được thiết lập để phân loại các `inputs` là tương tự hoặc khác biệt dựa trên `cosine similarity score`.
+
+> `Model architecture` của một `siamese network` điển hình có thể trông như sau:
+
+![03_Architecture](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/03_Architecture.png)
+
+
+![04_Architecture](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/04_Architecture.png)
+
+
+> Hai `sub-networks` này là `sister-networks` kết hợp với nhau để tạo ra một `similarity score`. Không phải tất cả `Siamese networks` sẽ được thiết kế để chứa `LSTMs`. Một điều cần nhớ là các `sub-networks` chia sẻ các `identical parameters`. Điều này có nghĩa là bạn chỉ cần `train` một tập hợp các `weights` chứ không phải hai.
+
+> `Output` của mỗi `sub-network` là một `vector`. Sau đó bạn có thể chạy `output` qua một `cosine similarity function` để lấy `similarity score`. Trong video tiếp theo, chúng ta sẽ nói về `cost function` cho một `network` như vậy.
 
 
 ---
