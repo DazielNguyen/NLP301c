@@ -334,28 +334,109 @@ Nội dung tập trung vào `GLUE Benchmark`, một công cụ được sử d�
 ### **Hugging Face Introduction**
 ---
 
+Nội dung tập trung vào các công cụ và tài nguyên do `Hugging Face` cung cấp để tạo điều kiện thuận lợi cho `machine learning`.
+
+**Hugging Face Tools**
+
+* **Transformers library** hỗ trợ nhiều `transformer architectures` khác nhau cho các dự án `natural language processing`, `computer vision`, và `speech`.
+* **Datasets library** cho phép người dùng dễ dàng tải xuống và `preprocess` hơn 1.000 `datasets` khác nhau.
+
+**Hugging Face Hub**
+
+* **Model hub** lưu trữ hơn 15.000 `models` do cộng đồng đóng góp, cho phép người dùng chọn `models` dựa trên các `tasks` và `datasets` cụ thể.
+* **Dataset hub** cung cấp hàng nghìn `datasets` với các `data set cards` toàn diện, mô tả chi tiết thiết kế và các cân nhắc khi sử dụng.
+
+**Upcoming Labs**
+
+* Khóa học sẽ bao gồm các `labs` thực hành, nơi người học sẽ sử dụng các công cụ của `Hugging Face` để tìm và `fine-tune` các `pre-trained models`.
+* Những người tham gia sẽ có kinh nghiệm thực hành với các công cụ như `transformers` và `datasets` trong bối cảnh các ứng dụng `machine learning`.
 
 ---
 ### **Hugging Face I**
 ---
 
+Nội dung giới thiệu `Hugging Face` và `transformers library` của nó, tập trung vào các ứng dụng trong `natural language processing` (`NLP`).
 
+**Hugging Face Overview**
+
+* `Hugging Face` cung cấp một hệ sinh thái được ghi chép tốt (`well-documented ecosystem`) cho `NLP`, bao gồm một khóa học để khám phá sâu hơn.
+* `Transformers library` cho phép tích hợp với các `frameworks` phổ biến như `PyTorch`, `TensorFlow`, và `Flax`.
+
+**Transformers Library Features**
+
+* `Library` này hỗ trợ hai chức năng chính: áp dụng các `state-of-the-art transformer models` cho các `NLP tasks` khác nhau và `fine-tuning` các `pre-trained models` với các `datasets` tùy chỉnh.
+* `Pipelines` đơn giản hóa quy trình bằng cách xử lý `input pre-processing`, thực thi `model`, và `output post-processing`.
+
+**Fine-Tuning and Model Checkpoints**
+
+* `Hugging Face` cung cấp hơn 15.000 `pre-trained model checkpoints` để `fine-tuning` các `transformer architectures` phổ biến.
+* `Library` bao gồm các `tokenizers` cho `data pre-processing` và các công cụ để `training models` sử dụng `PyTorch` hoặc `TensorFlow`, cùng với các `evaluation metrics` cho `model performance`.
 
 ---
 ### **Hugging Face II**
 ---
 
+Nội dung tập trung vào việc sử dụng `transformers library` cho các `natural language processing` (`NLP tasks`) khác nhau thông qua `pipeline object` của nó.
 
+**Pipeline Overview**
 
+* **Pipeline object** đơn giản hóa quy trình áp dụng các `transformer models` cho các `NLP tasks` khác nhau bằng cách xử lý `input pre-processing`, thực thi `model`, và `output post-processing`.
+* Người dùng có thể chỉ định `task` cho `pipeline`, chẳng hạn như `question answering` hoặc `sentiment analysis`, và cung cấp các `inputs` cần thiết.
+
+**Supported Tasks**
+
+* `Library` hỗ trợ một loạt các `NLP tasks`, bao gồm `sentiment analysis`, `question answering`, và `text completion` (`fill-mask`).
+* Mỗi `task` yêu cầu các `inputs` cụ thể, chẳng hạn như `context` và câu hỏi cho `question answering`, hoặc các câu có chỗ trống cho các `fill-mask tasks`.
+
+**Model Selection**
+
+* Người dùng có thể chọn các `model checkpoints` cụ thể cho các `pipelines` của họ, với `Hugging Face` cung cấp nhiều loại `pre-trained models` được điều chỉnh cho các `tasks` khác nhau.
+* Điều quan trọng là phải chọn `checkpoint` thích hợp dựa trên các yêu cầu của `task`, vì không phải tất cả các `models` đều phù hợp cho mọi `task`.
+
+**Model Hub**
+
+* `Hugging Face` cung cấp một **model hub** nơi người dùng có thể tìm và lọc các `pre-trained models` dựa trên các `tasks` hoặc `datasets` mong muốn của họ.
+* Giao diện `model card` cung cấp thông tin chi tiết về mỗi `model`, bao gồm mô tả và các `code snippets` để triển khai.
 
 ---
 ### **Hugging Face III**
 ---
 
+Nội dung tập trung vào việc tận dụng các công cụ của `Hugging Face` để `fine-tuning` các `transformer models` trong `natural language processing`.
 
+**Hugging Face Tools Overview**
+
+* Cung cấp hơn 1.000 `datasets` cho các `tasks` cụ thể, dễ dàng truy cập thông qua `datasets library`.
+* Cung cấp hơn 15.000 `model checkpoints` có thể được tải từ `transformers library`.
+
+**Data Preparation and Tokenization**
+
+* **Tokenizers** có sẵn để `pre-process` dữ liệu trước khi `training` và `post-process` `outputs` sau khi thực thi `model`.
+* **Datasets library** được tối ưu hóa cho các `large datasets`, đơn giản hóa việc tải và `pre-processing` dữ liệu.
+
+**Training and Evaluation**
+
+* **Trainer object** trong `Hugging Face` cho phép `training model` dễ dàng với mã hóa tối thiểu.
+* Các `metrics` được định nghĩa trước có sẵn để đánh giá `model performance`, và các `custom metrics` cũng có thể được định nghĩa.
 
 ---
 ### **Andrew Ng with Quoc Le**
 ---
 
+**Quoc Le's Journey in AI**
 
+* `Quoc` bắt đầu sự quan tâm của mình đối với `AI` trong thời gian trung học, tạo ra các chương trình đơn giản như một `rule-based chatbot`.
+* Ông theo học bằng cử nhân tại `Australia`, nơi ông thực tập với `Alex Smola`, dẫn đến niềm đam mê của ông với `machine learning`.
+* Hành trình học thuật của ông bao gồm bằng `PhD` tại `Stanford`, nơi ông chịu ảnh hưởng bởi công trình của `Andrew Ng` về `machine learning` cho `AI`.
+
+**Contributions to NLP**
+
+* `Quoc` đóng vai trò chủ chốt trong `Google Cat Project`, cái mà đã chứng minh khả năng của `unsupervised learning` (học không giám sát) bằng cách nhận diện mèo trong các video `YouTube`.
+* Ông đồng phát triển `sequence-to-sequence model` (`seq2seq`), cái mà đã cách mạng hóa `machine translation` (dịch máy) bằng cách cho phép dịch cấp độ câu thay vì từng từ.
+
+**Future of NLP**
+
+* `Quoc` bày tỏ sự hào hứng về các `generative models` trong `NLP`, nhấn mạnh tiềm năng tạo ra văn bản mạch lạc và liên quan đến ngữ cảnh.
+* Ông nhấn mạnh tầm quan trọng của việc cải thiện độ chính xác thực tế (`factual accuracy`) và hiểu biết thông thường (`common sense understanding`) trong `AI-generated content`.
+
+Cuộc phỏng vấn giới thiệu những đóng góp đáng kể của `Quoc Le` cho `NLP` và những hiểu biết sâu sắc của ông về tương lai của công nghệ `AI`.
