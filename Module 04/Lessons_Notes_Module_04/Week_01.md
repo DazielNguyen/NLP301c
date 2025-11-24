@@ -137,9 +137,27 @@ Phần này tập trung vào việc `training` các hệ thống `neural machine
 * Cách tiếp cận này giúp `fine-tuning` (tinh chỉnh) `performance` của `model` và cải thiện `accuracy` trong các bản dịch.
 
 ---
-### **Minimum edit distance algorithmn II**
+### **NMT Model with Attention**
 ---
 
+Nội dung này cung cấp một cái nhìn tổng quan về việc `training` một hệ thống `neural machine translation` (`NMT`) từ đầu, chi tiết hóa `model architecture` và các thành phần của nó.
+
+**Model Architecture Overview**
+
+* `Model` bao gồm một `encoder`, một `pre-attention decoder`, và một `post-attention decoder`, với một `Attention Mechanism` để tập trung vào các phần quan trọng của `input`.
+* `Pre-attention decoder` sử dụng các `shifted target sequences` cho `teacher forcing`, trong khi các `hidden states` từ cả `encoder` và `decoder` được sử dụng cho các `context vectors`.
+
+**Components of the Model**
+
+* `Input tokens` và `target tokens` được nhân đôi để sử dụng trong các phần khác nhau của `model`, với một bộ đi đến `encoder` và bộ kia đến `pre-attention decoder`.
+* `Encoder` chuyển đổi các `input tokens` thành các `key` và `value vectors`, trong khi `pre-attention decoder` xử lý các `target tokens` thông qua một `embedding layer` và `LSTMs`.
+
+**Attention Mechanism**
+
+* `Queries`, `keys`, `values`, và một `padding mask` được chuẩn bị cho `attention layer`, nơi tính toán các `context vectors`.
+* `Post-attention decoder` sử dụng các `context vectors` này để tạo ra `predicted sequence`, trả về các `log probabilities` và các `target tokens` ban đầu.
+
+Tóm tắt này gói gọn các bước và thành phần thiết yếu liên quan đến việc xây dựng `NMT model`, với các chi tiết khác sẽ được khám phá trong các bài tập lập trình sắp tới.
 
 ---
 ### **Minimum edit distance algorithmn III**
