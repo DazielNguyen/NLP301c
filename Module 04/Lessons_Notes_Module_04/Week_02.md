@@ -176,15 +176,45 @@ Tổng thể, video này phác thảo ba loại `attention mechanisms` chính v�
 
 > Trong hầu hết các trường hợp, `dimensionality` của các $Z$ được cấu hình để căn chỉnh với $d_{model}$ (trong đó `head size` được xác định bởi $d_{head}=d_{model}/h$), đảm bảo tính nhất quán với `input dimensions`. Do đó, các `representations` (embeddings) được kết hợp thường trải qua một `final projection` bởi $W_O$ thành một `attention embedding` mà không thay đổi `dimensions`.
 
-![08_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/08_Multi-head_Attention.png)
+![08_Multi-head_Attention](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/08_Multi-head_Attention.jpg)
 
 > Ví dụ, nếu $d_{model}$ là 16, với hai `heads`, việc `concatenate` $Z_1$ và $Z_2$ dẫn đến một `dimension` là 16 (8 + 8). Tương tự, với bốn `heads`, việc `concatenate` $Z_1, Z_2, Z_3,$ và $Z_4$ cũng dẫn đến một `dimension` là 16 (4 + 4 + 4 + 4). Trong ví dụ này, và trong hầu hết các `architectures` phổ biến, đáng chú ý là số lượng `heads` không làm thay đổi `dimensionality` của `concatenated output`. Điều này vẫn đúng ngay cả sau `final projection` với $W_O$, cái mà cũng thường duy trì các `dimensions` nhất quán.
 
 
 ---
-### **Populating the Emission Matrix**
+### **Transformer Decoder**
 ---
 
+**Transformer Decoder Structure**
+
+* `Model` nhận một `tokenized sentence` làm `input`, cái mà được `embedded` với `word embeddings` và `positional information`.
+* `Input` được xử lý thông qua một `multi-headed attention layer` theo sau là một `feed-forward layer`, với `residual connections` và `layer normalization` được áp dụng sau mỗi `layer`.
+
+**Decoder Block Details**
+
+* `Decoder block` bao gồm `positional input embeddings`, `multi-headed attention`, và `feed-forward layers`, với `residual connections` và `layer normalization` để nâng cao `training efficiency`.
+* `Output` được xử lý thông qua một `final dense layer` và một `softmax layer` cho các `predictions`, sử dụng `cross-entropy loss`.
+
+**Key Takeaways**
+
+* Bạn đã thấy các `building blocks` thiết yếu của một `transformer decoder`, bao gồm `attention mechanism` và `feed-forward layers`.
+* Đến cuối bài giảng, bạn sẽ có hiểu biết nền tảng về cách triển khai `transformer model` của riêng mình.
+
+> Đó là rất nhiều thông tin! Đừng lo lắng nếu bạn chưa hiểu hết, chúng ta sẽ đi qua mọi thứ từng bước một.
+
+![09_Transformer_Decoder](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/09_Transformer_Decoder.png)
+
+> Khi bạn có được các `embeddings`, bạn thêm `positional encoding` vào, cái mà bạn có thể coi là một con số cho bạn biết thông tin về vị trí của từ. Sau đó, bạn thực hiện `multi-head attention` như đã giải thích trong video/bài đọc trước. Sau đó là một `feedforward layer` (màu xanh dương) với `ReLU` (và tùy chọn một số `linear layers`), sau đó là một `residual connection` với `layer normalization` (lặp lại `block` được hiển thị ở trên $N$ lần), cuối cùng là một `linear layer` với `softmax`.
+
+> Zooming vào `decoder block` được lặp lại $N$ lần, bạn nhận được:
+
+![10_Transformer_Decoder](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/10_Transformer_Decoder.png)
+
+> Bây giờ đối với `feedforward block`, bạn chỉ cần triển khai như sau:
+
+![11_Transformer_Decoder](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W2/11_Transformer_Decoder.png)
+
+> Bạn lấy `input`, (véc-tơ màu đỏ) chạy nó qua `self-attention` và sau đó là một `feedforward` với `ReLU`. Ở cuối `decoder`, bạn chỉ cần chạy một `linear layer` và một `softmax`.
 
 ---
 ### **The Viterbi Algorithm**
