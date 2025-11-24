@@ -95,10 +95,25 @@ Nội dung này tập trung vào các khái niệm `queries`, `keys`, và `value
 * Việc `scaling` các điểm số và việc sử dụng `softmax function` giúp tạo ra các `weights` có tổng bằng một, tạo điều kiện cho việc tạo ra các `attention vectors` cho mỗi `query`.
 
 ---
-### **Minimum edit distance**
+### **Setup for Machine Translation**
 ---
 
+Nội dung này tập trung vào cách các từ được biểu diễn (`represented`) trong bối cảnh `neural machine translation` (dịch máy thần kinh) và cấu trúc của `dataset` được sử dụng để `training` các `models`.
 
+**Understanding Word Representation**
+
+* Các từ ban đầu được biểu diễn bằng cách sử dụng `one-hot vectors`, sau đó được chuyển đổi thành các chỉ số (`indices`) để xử lý.
+* Một từ điển `word-to-index` và `index-to-word` được duy trì để tạo điều kiện cho sự chuyển đổi này.
+
+**Dataset Structure**
+
+* Dữ liệu đầu vào (`Input data`) bao gồm các câu tiếng Anh được ghép nối với các bản dịch tiếng Pháp của chúng, hiển thị các ví dụ như "I'm hungry" và "I watch the soccer game."
+* Một `end-of-sequence` (`EOS`) `token` được thêm vào, và các `sequences` được `padded` với các số không để khớp với độ dài của `sequence` dài nhất.
+
+**Model Training Preparation**
+
+* Sau khi biểu diễn các từ và cấu trúc hóa `dataset`, người học có thể tiến hành `train` `models` của họ.
+* Các bước tiếp theo sẽ liên quan đến việc `training` thực tế của `model` dựa trên dữ liệu đã chuẩn bị.
 
 ---
 ### **Minimum edit distance algorithmn**
