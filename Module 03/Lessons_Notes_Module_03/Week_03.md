@@ -216,12 +216,34 @@ $$Cost2=\max(-\cos(A,P)+closest\_neg+\alpha,0)$$
 
 > `Full cost` được định nghĩa là: `Cost 1` + `Cost 2`.
 
-
 ---
-### **Out of Vocabulary Words**
+### **One Shot Learning**
 ---
 
+Nội dung tập trung vào khái niệm `one-shot learning` và ứng dụng của nó trong các tác vụ phân loại (`classification tasks`), đặc biệt là trong việc nhận diện chữ ký.
 
+**Understanding One-Shot Learning**
+
+* `One-shot learning` cho phép phân loại các ví dụ mới mà không cần `retraining` `model`, điều này rất có lợi khi dữ liệu mới được giới thiệu.
+* Nó tương phản với các phương pháp `classification` truyền thống yêu cầu một `model` phải được `retrained` cho mỗi `class` mới.
+
+**Application in Signature Recognition**
+
+* Một `similarity function` đã học được sử dụng để đo lường độ tương đồng giữa hai chữ ký thay vì phân loại chúng vào các `classes` được định nghĩa trước.
+* `Cosine similarity` có thể được áp dụng để xác định xem hai chữ ký có giống nhau hay không dựa trên một `threshold score`.
+
+**Siamese Networks**
+
+* `One-shot learning` được triển khai hiệu quả bằng cách sử dụng `Siamese networks`, được thiết kế để học các `similarity functions`.
+* Các bước tiếp theo liên quan đến việc `training` và `testing` các `networks` này để nâng cao `performance` của chúng trong việc nhận diện các chữ ký mới.
+
+> Hãy tưởng tượng bạn đang làm việc trong một ngân hàng và bạn cần xác minh chữ ký của một tấm séc. Bạn có thể xây dựng một bộ phân loại (`classifier`) với K chữ ký có thể làm `output` hoặc bạn có thể xây dựng một bộ phân loại cho bạn biết liệu hai chữ ký có giống nhau hay không.
+
+![11_One_Shot_Learning](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/11_One_Shot_Learning.png)
+
+> Do đó, chúng ta phải dùng đến `one shot learning`. Thay vì `retraining` `model` của bạn cho mỗi chữ ký, bạn chỉ cần học một `similarity score` như sau:
+
+![12_One_Shot_Learning](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/12_One_Shot_Learning.png)
 ---
 ### **Smoothing**
 ---
