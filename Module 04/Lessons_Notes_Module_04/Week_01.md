@@ -181,7 +181,27 @@ Bài giảng này tập trung vào việc đánh giá các mô hình dịch máy
 * Bất chấp sự phổ biến của nó, người dùng nên nhận thức được những hạn chế này khi sử dụng `BLEU score` để đánh giá mô hình (`model evaluation`).
 
 ---
-### **Minimum edit distance III**
+### **ROUGE-N Score**
 ---
 
+Nội dung này tập trung vào `ROUGE score`, một `performance metric` (thước đo hiệu suất) được sử dụng để đánh giá các hệ thống dịch máy (`machine translation systems`).
 
+**ROUGE Score Overview**
+
+* `ROUGE` là viết tắt của Recall-Oriented Understudy for Gisting Evaluation, nhấn mạnh vào độ thu hồi (`recall`) hơn là độ chính xác (`precision`).
+* Nó so sánh các bản dịch do máy tạo ra (`machine-generated translations`) với các bản dịch tham chiếu do con người tạo ra (`human-created reference translations`).
+
+**ROUGE-N Score Calculation**
+
+* `ROUGE-N score` đo lường sự trùng lặp `n-gram` giữa các bản dịch ứng viên (`candidate translations`) và các tham chiếu (`references`).
+* Phiên bản cơ bản tính toán `recall` bằng cách đếm các từ khớp (`word matches`) và chia cho số lượng từ trong tham chiếu (`reference`).
+
+**Combining Metrics for Better Evaluation**
+
+* `F1 score` kết hợp `precision` (từ `BLEU`) và `recall` (từ `ROUGE-N`) để cung cấp một đánh giá toàn diện hơn.
+* Công thức cho `F1 score` kết hợp cả hai thước đo để đánh giá `machine translation performance` một cách hiệu quả.
+
+**Limitations of Evaluation Metrics**
+
+* Cả `BLEU` và `ROUGE scores` đều tập trung vào việc khớp `n-gram` (`n-gram matching`) và không tính đến cấu trúc câu (`sentence structure`) hoặc ngữ nghĩa (`semantics`).
+* Hiểu những hạn chế này là rất quan trọng để giải thích kết quả đánh giá dịch máy.
