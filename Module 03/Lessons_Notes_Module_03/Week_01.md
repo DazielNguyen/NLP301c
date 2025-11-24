@@ -3,7 +3,7 @@
 ---
 ### **Neural Networks for Sentiment Analysis**
 ---
-- Nội dung này tập trung vào cấu trúc và chức năng của mạng nơ-ron, đặc biệt trong bối cảnh phân tích cảm xúc.
+Nội dung này tập trung vào cấu trúc và chức năng của mạng nơ-ron, đặc biệt trong bối cảnh phân tích cảm xúc.
 
 - **Cấu trúc Mạng Nơ-ron**
     + Mạng nơ-ron mô phỏng khả năng nhận dạng mẫu của não người và hiệu quả trong nhiều ứng dụng AI, bao gồm xử lý ngôn ngữ tự nhiên (NLP).
@@ -18,7 +18,7 @@
     + Các tweet được biểu diễn dưới dạng các vectơ nguyên, trong đó mỗi từ được gán một chỉ mục từ danh sách từ vựng.
     + Đệm được sử dụng để đảm bảo tất cả các vectơ có cùng kích thước, phù hợp với các tweet có độ dài khác nhau.
 
-- Tổng quan này đặt nền tảng cho việc triển khai mạng nơ-ron để phân loại cảm xúc trong các tweet phức tạp, điều này sẽ được tìm hiểu thêm trong video tiếp theo.
+Tổng quan này đặt nền tảng cho việc triển khai mạng nơ-ron để phân loại cảm xúc trong các tweet phức tạp, điều này sẽ được tìm hiểu thêm trong video tiếp theo.
 
 > Trước đây trong khóa học, bạn đã thực hiện `sentiment analysis` (phân tích cảm xúc) với `logistic regression` và `naive Bayes`. Những mô hình đó theo một nghĩa nào đó thì `naive` (ngây thơ) hơn, và không có khả năng nắm bắt `sentiment` từ một `tweet` như: "I am not happy" hoặc "If only it was a good day". Khi sử dụng một `neural network` để dự đoán `sentiment` của một câu, bạn có thể sử dụng cách sau đây. Lưu ý rằng hình ảnh bên dưới có ba `outputs`, trong trường hợp này bạn có thể muốn dự đoán "positive", "neutral", hoặc "negative".
 
@@ -35,7 +35,7 @@
 ---
 ### **Dense Layers and ReLU**
 ---
-- Nội dung tập trung vào hai `layers` thiết yếu thường được sử dụng trong `neural networks`: `dense layer` và `ReLU layer`.
+Nội dung tập trung vào hai `layers` thiết yếu thường được sử dụng trong `neural networks`: `dense layer` và `ReLU layer`.
 
 - **Dense Layer**
     + `Dense layer` tạo điều kiện cho các kết nối giữa các `layers` trong một `neural network` bằng cách thực hiện một `dot product` giữa `weights` và `activations` từ `layer` trước đó.
@@ -45,9 +45,9 @@
     + `ReLU` (Rectified Linear Unit) `layer` áp dụng một `non-linear function` lên `output` của `dense layer`, ánh xạ các giá trị âm về không (zero).
     + Nó giữ lại các giá trị dương một cách hiệu quả trong khi chuyển đổi các giá trị âm thành không, điều này giúp ổn định `performance` của `network`.
 
-- Tổng quan này làm nổi bật các thành phần cơ bản của `neural networks` đóng góp vào chức năng của chúng.
+Tổng quan này làm nổi bật các thành phần cơ bản của `neural networks` đóng góp vào chức năng của chúng.
 
-- Lưu ý rằng `Dense` và `ReLU` được mô tả là hai `layers` khác nhau ở đây. Trong `TensorFlow`, bạn có thể sử dụng mỗi cái như một `layer` riêng biệt như thế này: 
+**Lưu ý** rằng `Dense` và `ReLU` được mô tả là hai `layers` khác nhau ở đây. Trong `TensorFlow`, bạn có thể sử dụng mỗi cái như một `layer` riêng biệt như thế này: 
 
 ```
 tf.keras.layers.Dense(32)` và `tf.keras.layers.ReLU()
@@ -75,7 +75,7 @@ tf.keras.layers.Dense(32, activation='relu')
 ### **Embedding and Mean Layers**
 ---
 
-- Nội dung này giới thiệu hai `layers` quan trọng được sử dụng trong `neural networks` cho `natural language processing` (NLP): `embedding layers` và `mean layers`.
+Nội dung này giới thiệu hai `layers` quan trọng được sử dụng trong `neural networks` cho `natural language processing` (NLP): `embedding layers` và `mean layers`.
 
 - **Embedding Layers**
 
@@ -90,7 +90,7 @@ tf.keras.layers.Dense(32, activation='relu')
     + **Learning Representations**: `Embedding layer` học `representation` tốt nhất cho các từ trong quá trình `training`, tối ưu hóa các `vectors` để cải thiện `performance` trên các tác vụ `NLP` cụ thể, chẳng hạn như `sentiment analysis` hoặc `text classification`.
     + **Reducing Dimensionality**: Bằng cách chuyển đổi `categorical data` nhiều chiều (như `one-hot encoded vectors`) thành các `continuous vectors` ít chiều hơn, nó giúp giảm độ phức tạp của `model`.
 
-- Nhìn chung, `embedding layers` rất quan trọng để cho phép `neural networks` hiểu và xử lý `natural language` một cách hiệu quả.
+Nhìn chung, `embedding layers` rất quan trọng để cho phép `neural networks` hiểu và xử lý `natural language` một cách hiệu quả.
 
 
 
@@ -99,43 +99,42 @@ tf.keras.layers.Dense(32, activation='relu')
     + Một `mean layer` tính toán giá trị trung bình của các `word embeddings`, giúp giảm số lượng `parameters` cần `train` trong khi vẫn duy trì cùng số lượng `features` như `embedding size`.
     + `Layer` này không có các `trainable parameters`, vì nó chỉ đơn giản là tính toán `mean` của các `embeddings`.
 
-- Tóm lại, `embedding layers` giúp ích trong việc học `word representations`, trong khi `mean layers` đơn giản hóa `output` bằng cách tính trung bình các `embeddings`, cả hai đều thiết yếu để xây dựng các `neural networks` hiệu quả trong các tác vụ `NLP`.
+Tóm lại, `embedding layers` giúp ích trong việc học `word representations`, trong khi `mean layers` đơn giản hóa `output` bằng cách tính trung bình các `embeddings`, cả hai đều thiết yếu để xây dựng các `neural networks` hiệu quả trong các tác vụ `NLP`.
 
-- **Some functions of Mean Layers**
+**Some functions of Mean Layers**
 
+- Chức năng của một `mean layer` là tính toán giá trị trung bình của các `word embeddings` từ một `embedding layer`. Dưới đây là các khía cạnh chính trong chức năng của nó:
 
-    + Chức năng của một `mean layer` là tính toán giá trị trung bình của các `word embeddings` từ một `embedding layer`. Dưới đây là các khía cạnh chính trong chức năng của nó:
+- **Averaging Embeddings**: Nó lấy một `matrix` các `word embeddings` (ví dụ: từ một `sequence` các từ) và tính toán `mean` cho mỗi `feature` trên toàn bộ các `embeddings`, dẫn đến kết quả là một `vector representation` duy nhất.
+- **Reducing Parameters**: Không giống như các `layers` khác, `mean layer` không có các `trainable parameters`. Nó đơn giản hóa `model` bằng cách giảm số lượng `parameters` cần được `trained`, điều này có thể giúp ngăn chặn `overfitting`.
+- **Maintaining Feature Size**: `Output` của `mean layer` giữ lại cùng số lượng `features` như `embedding size`, giúp dễ dàng đưa vào các `layers` tiếp theo của `neural network`.
 
-    + * **Averaging Embeddings**: Nó lấy một `matrix` các `word embeddings` (ví dụ: từ một `sequence` các từ) và tính toán `mean` cho mỗi `feature` trên toàn bộ các `embeddings`, dẫn đến kết quả là một `vector representation` duy nhất.
-    + **Reducing Parameters**: Không giống như các `layers` khác, `mean layer` không có các `trainable parameters`. Nó đơn giản hóa `model` bằng cách giảm số lượng `parameters` cần được `trained`, điều này có thể giúp ngăn chặn `overfitting`.
-    + **Maintaining Feature Size**: `Output` của `mean layer` giữ lại cùng số lượng `features` như `embedding size`, giúp dễ dàng đưa vào các `layers` tiếp theo của `neural network`.
+Tóm lại, `mean layer` giúp tóm tắt thông tin từ nhiều `word embeddings` thành một `vector` duy nhất, tạo điều kiện thuận lợi cho việc `processing` các `sequences` văn bản trong khi giữ cho `model` hiệu quả.
 
-- Tóm lại, `mean layer` giúp tóm tắt thông tin từ nhiều `word embeddings` thành một `vector` duy nhất, tạo điều kiện thuận lợi cho việc `processing` các `sequences` văn bản trong khi giữ cho `model` hiệu quả.
+**Nếu bạn không sử dụng một `mean layer` sau một `embedding layer`, những điều sau có thể xảy ra:**
 
-- **Nếu bạn không sử dụng một `mean layer` sau một `embedding layer`, những điều sau có thể xảy ra:**
+- **Increased Complexity**: `Output` từ `embedding layer` sẽ là một `matrix` các `word embeddings` cho mỗi từ trong một `sequence`. `Matrix` này có thể trở nên lớn, đặc biệt là đối với các `sequences` dài, dẫn đến sự gia tăng `complexity` trong `model`.
+- **More Parameters to Train**: Nếu không có `mean layer`, các `layers` tiếp theo sẽ cần xử lý toàn bộ `matrix` các `embeddings`, dẫn đến số lượng lớn hơn các `parameters` cần `train`. Điều này có thể làm cho `model` dễ bị `overfitting` hơn, đặc biệt là với `training data` hạn chế.
+- **Difficulty in Handling Variable-Length Inputs**: Nếu các `input sequences` thay đổi về độ dài, việc quản lý `matrix` các `embeddings` mà không tóm tắt chúng có thể làm phức tạp hóa `architecture` của `neural network`, vì nó sẽ cần phải thích ứng với các kích thước `input` khác nhau.
+- **Loss of Contextual Information**: `Mean layer` giúp tóm tắt thông tin từ nhiều `embeddings` thành một `vector` duy nhất. Nếu không có nó, bạn có thể mất khả năng biểu diễn hiệu quả ý nghĩa tổng thể của một `sequence` các từ.
 
-    + **Increased Complexity**: `Output` từ `embedding layer` sẽ là một `matrix` các `word embeddings` cho mỗi từ trong một `sequence`. `Matrix` này có thể trở nên lớn, đặc biệt là đối với các `sequences` dài, dẫn đến sự gia tăng `complexity` trong `model`.
-    + **More Parameters to Train**: Nếu không có `mean layer`, các `layers` tiếp theo sẽ cần xử lý toàn bộ `matrix` các `embeddings`, dẫn đến số lượng lớn hơn các `parameters` cần `train`. Điều này có thể làm cho `model` dễ bị `overfitting` hơn, đặc biệt là với `training data` hạn chế.
-    + **Difficulty in Handling Variable-Length Inputs**: Nếu các `input sequences` thay đổi về độ dài, việc quản lý `matrix` các `embeddings` mà không tóm tắt chúng có thể làm phức tạp hóa `architecture` của `neural network`, vì nó sẽ cần phải thích ứng với các kích thước `input` khác nhau.
-    + **Loss of Contextual Information**: `Mean layer` giúp tóm tắt thông tin từ nhiều `embeddings` thành một `vector` duy nhất. Nếu không có nó, bạn có thể mất khả năng biểu diễn hiệu quả ý nghĩa tổng thể của một `sequence` các từ.
-
-- Tóm lại, việc không sử dụng một `mean layer` có thể dẫn đến một `model` phức tạp hơn với nguy cơ `overfitting` cao hơn và gặp thách thức trong việc xử lý các `variable-length sequences`.
+Tóm lại, việc không sử dụng một `mean layer` có thể dẫn đến một `model` phức tạp hơn với nguy cơ `overfitting` cao hơn và gặp thách thức trong việc xử lý các `variable-length sequences`.
 
 > Sử dụng một `embedding layer`, bạn có thể học các `word embeddings` cho mỗi từ trong `vocabulary` của bạn như sau:
 
 ![05_Embedding_and_Mean_Layers](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/05_Embedding_and_Mean_Layers.png)
 
-- `Mean layer` cho phép bạn tính trung bình các `embeddings`. Bạn có thể trực quan hóa nó như sau:
+> `Mean layer` cho phép bạn tính trung bình các `embeddings`. Bạn có thể trực quan hóa nó như sau:
 
 ![06_Embedding_and_Mean_Layers](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/06_Embedding_and_Mean_Layers.png)
 
-- `Layer` này không có bất kỳ `trainable parameters` nào.
+> `Layer` này không có bất kỳ `trainable parameters` nào.
 
 ---
 ### **Traditional Language models**
 ---
 
-- Nội dung này tập trung vào các hạn chế của `N-gram language models` trong `natural language processing`.
+Nội dung này tập trung vào các hạn chế của `N-gram language models` trong `natural language processing`.
 
 - **N-gram Language Models**
 
@@ -152,14 +151,14 @@ tf.keras.layers.Dense(32, activation='relu')
     + `RNNs` được đề xuất như một sự thay thế hiệu quả hơn cho các `N-gram models` đối với các tác vụ như `machine translation`.
     + Chúng có thể xử lý các `sequences` văn bản dài hơn mà không gặp các hạn chế về `memory` tương tự như các `N-gram models`.
 
-- **The main limitations of N-gram models (hạn chế chính của `N-gram models`) include**
+**The main limitations of N-gram models (hạn chế chính của `N-gram models`) include**
 
-    + **Memory Requirements**: `N-gram models` yêu cầu rất nhiều bộ nhớ để lưu trữ các `probabilities` của tất cả các tổ hợp từ có thể, đặc biệt là khi giá trị của N tăng lên.
-    + **Long-Range Dependencies**: Chúng gặp khó khăn trong việc nắm bắt các `dependencies` giữa các từ nằm cách xa nhau trong một câu, vì chúng chỉ xem xét một `context` giới hạn ($N-1$ từ trước đó).
-    + **Data Sparsity**: Khi kích thước `vocabulary` tăng lên, số lượng các `N-grams` có thể có sẽ tăng theo cấp số nhân, dẫn đến nhiều tổ hợp có thể không xuất hiện trong `training data`, dẫn đến các vấn đề về dữ liệu thưa thớt (`sparse data`).
-    + **Inflexibility**: `N-gram models` rất cứng nhắc và không thích ứng tốt với các `contexts` mới hoặc các biến thể trong ngôn ngữ, khiến chúng kém hiệu quả hơn đối với các tác vụ ngôn ngữ phức tạp.
+- **Memory Requirements**: `N-gram models` yêu cầu rất nhiều bộ nhớ để lưu trữ các `probabilities` của tất cả các tổ hợp từ có thể, đặc biệt là khi giá trị của N tăng lên.
+- **Long-Range Dependencies**: Chúng gặp khó khăn trong việc nắm bắt các `dependencies` giữa các từ nằm cách xa nhau trong một câu, vì chúng chỉ xem xét một `context` giới hạn ($N-1$ từ trước đó).
+- **Data Sparsity**: Khi kích thước `vocabulary` tăng lên, số lượng các `N-grams` có thể có sẽ tăng theo cấp số nhân, dẫn đến nhiều tổ hợp có thể không xuất hiện trong `training data`, dẫn đến các vấn đề về dữ liệu thưa thớt (`sparse data`).
+- **Inflexibility**: `N-gram models` rất cứng nhắc và không thích ứng tốt với các `contexts` mới hoặc các biến thể trong ngôn ngữ, khiến chúng kém hiệu quả hơn đối với các tác vụ ngôn ngữ phức tạp.
 
-- Những hạn chế này làm cho các `N-gram models` ít thực tế hơn đối với các `datasets` lớn hơn và các tác vụ `natural language processing` phức tạp hơn.
+Những hạn chế này làm cho các `N-gram models` ít thực tế hơn đối với các `datasets` lớn hơn và các tác vụ `natural language processing` phức tạp hơn.
 
 
 > Các `traditional language models` sử dụng `probabilities` để giúp xác định xem câu nào có nhiều khả năng xảy ra nhất.
@@ -176,7 +175,7 @@ Các `Large N-grams` nắm bắt các `dependencies` giữa các từ ở xa nha
 ### **Recurrent Neural Networks**
 ---
 
-- Nội dung này tập trung vào các ưu điểm của `recurrent neural networks` (`RNNs`) trong `natural language processing`.
+Nội dung này tập trung vào các ưu điểm của `recurrent neural networks` (`RNNs`) trong `natural language processing`.
 
 - **Understanding RNNs**
 
@@ -365,9 +364,43 @@ $$\begin{aligned} \Gamma_{u} &=\sigma\left(W_{u}\left[h^{<t_{0}>}, x^{<t_{1}>}\r
 
 > `Gate` đầu tiên $\Gamma_u$ cho phép bạn quyết định mức độ bạn muốn `update` các `weights`. `Gate` thứ hai $\Gamma_r$, giúp bạn tìm ra một `relevance score`. Bạn có thể tính toán $h$ mới bằng cách sử dụng `relevance gate`. Cuối cùng bạn có thể tính toán $h$, sử dụng `update gate`. `GRUs` “quyết định” cách `update` `hidden state`. `GRUs` giúp bảo tồn thông tin quan trọng.
 
-
-
-
 ---
 ### **Deep and Bi-directional RNNs**
 ---
+
+Nội dung này tập trung vào `deep recurrent neural networks` (`RNNs`) và các ưu điểm của chúng so với `shallow RNNs` trong việc nắm bắt các `dependencies` trong các `sequences`.
+
+**Deep RNNs and Bidirectional RNNs**
+
+- `Deep RNNs` bao gồm nhiều `layers` xếp chồng các `RNNs` lại với nhau, cho phép thực hiện các `tasks` phức tạp hơn.
+- `Bidirectional RNNs` xử lý thông tin theo cả hai hướng (từ quá khứ đến tương lai và ngược lại), giúp tăng cường `prediction accuracy`.
+
+**Information Flow in RNNs**
+
+- Trong `bidirectional RNNs`, thông tin luân chuyển độc lập theo cả hai hướng, cho phép hiểu `context` tốt hơn.
+- Các `predictions` được tạo ra bằng cách kết hợp các `hidden states` từ cả hai hướng, sử dụng cùng một `formula` như `unidirectional RNNs`.
+
+**Implementation of Deep RNNs**
+
+- `Deep RNNs` `propagate` (lan truyền) thông tin qua thời gian và sau đó đi sâu hơn vào `network`, lặp lại quá trình này cho mỗi `layer`.
+- `Architecture` của `deep RNNs` tương tự như các `conventional deep neural networks`, tạo điều kiện thuận lợi cho việc học các `patterns` phức tạp.
+
+Nhìn chung, bài giảng nhấn mạnh tầm quan trọng của các `RNN architectures` nâng cao này trong các tác vụ `natural language processing`.
+
+
+> `Bi-directional RNNs` rất quan trọng, bởi vì việc biết cái gì ở tiếp theo trong câu có thể cung cấp cho bạn nhiều `context` hơn về chính câu đó.
+
+![16_Deep_and_Bi-directional_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/16_Deep_and_Bi-directional_RNNs.png)
+
+> Vì vậy bạn có thể thấy, để đưa ra một `prediction` $\hat{y}$, bạn sẽ sử dụng các `hidden states` từ cả hai hướng và kết hợp chúng để tạo thành một `hidden state`, sau đó bạn có thể tiếp tục như bạn làm với một `simple vanilla RNN`. Khi triển khai `Deep RNNs`, bạn sẽ tính toán như sau.
+
+![17_Deep_and_Bi-directional_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/17_Deep_and_Bi-directional_RNNs.png)
+
+> Lưu ý rằng tại `layer` $l$, bạn đang sử dụng `input` từ phía dưới $a^{[l-1]}$ và `hidden state` $h^l$. Điều đó cho phép bạn có được $h$ mới của mình, và sau đó để có được $a$ mới, bạn sẽ `train` một `weight matrix` $W_a$ khác, cái mà bạn sẽ nhân với $h$ tương ứng, cộng thêm `bias` và sau đó chạy nó qua một `activation layer`.
+
+
+
+
+
+
+
