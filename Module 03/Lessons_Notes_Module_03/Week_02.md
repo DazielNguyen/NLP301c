@@ -132,9 +132,33 @@ $$o=\sigma(W_o[h_{t-1};x_t]+b_o)$$
 $$h_t=o_t \odot \tanh(c_t)$$
 
 ---
-### **Hidden Markov Models**
+### **Introduction to Named Entity Recognition**
 ---
 
+Video bài giảng tập trung vào `named entity recognition` (`NER`), một thành phần quan trọng trong các hệ thống `natural language processing` (`NLP`).
+
+**Understanding Named Entity Recognition**
+
+* Các hệ thống `NER` xác định và trích xuất các `named entities` từ văn bản, có thể bao gồm con người, tổ chức, địa điểm, ngày tháng, và nhiều hơn nữa.
+* Các ví dụ về `named entities` bao gồm "Sharon" (người), "Miami" (thực thể địa lý), và "Friday" (chỉ báo thời gian).
+
+**Applications of NER**
+
+* `NER` tăng cường hiệu quả của `search engine` bằng cách quét và gắn thẻ hàng triệu trang web, cho phép khớp nhanh các `search queries`.
+* Nó cũng được sử dụng trong `customer service` để khớp người dùng với các `agents` phù hợp dựa trên yêu cầu của họ.
+
+**Real-World Use Cases**
+
+* `NER` có thể tối ưu hóa các `recommendations` bằng cách so sánh lịch sử người dùng và đề xuất các mục liên quan.
+* Trong tài chính, `NER` có thể được áp dụng trong `automatic trading` bằng cách phân tích các bài báo tin tức liên quan đến các cổ phiếu hoặc tiền điện tử cụ thể.
+
+Bài giảng kết luận bằng cách nêu bật các ứng dụng khác nhau của `NER` trong `deep learning` và tầm quan trọng của nó trong `NLP`.
+
+> `Named Entity Recognition` (`NER`) định vị và trích xuất các `entities` (thực thể) được xác định trước từ văn bản. Nó cho phép bạn tìm các địa điểm, tổ chức, tên, thời gian và ngày tháng. Dưới đây là một ví dụ về `model` mà bạn sẽ xây dựng:
+
+![05_Introduction_to_Named_Entity_Recognition](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W2/05_Introduction_to_Named_Entity_Recognition.png)
+
+> Các hệ thống `NER` đang được sử dụng trong `search efficiency` (hiệu quả tìm kiếm), `recommendation engines` (công cụ đề xuất), `customer service` (dịch vụ khách hàng), `automatic trading` (giao dịch tự động), và nhiều hơn nữa.
 
 ---
 ### **Calculating Probabilities**
