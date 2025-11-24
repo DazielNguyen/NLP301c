@@ -206,33 +206,34 @@ Dưới đây là một ví dụ về `architecture`:
 
 Lưu ý rằng đây chỉ là một ví dụ về hệ thống `NER`. Bạn có thể có các `architectures` khác nhau.
 
-
-
 ---
-### **Populating the Transition Matrix**
+### **Computing Accuracy**
 ---
 
+Nội dung này tập trung vào việc đánh giá một hệ thống `Named Entity Recognition` (`NER`) sau khi `training` nó.
 
----
-### **Populating the Emission Matrix**
----
+**Evaluation Process**
 
+* Bắt đầu bằng cách đưa các `test sets` qua `model` đã được `trained` để thu được các `predictions`.
+* Tính toán `arg max`, xác định điểm cực đại trong `prediction array`.
 
----
-### **The Viterbi Algorithm**
----
+**Data Preparation**
 
+* Đảm bảo rằng các `arrays` được `padded` bằng cách sử dụng một `pad token` để duy trì độ dài nhất quán.
+* Sử dụng một biến `mask` để bỏ qua các `token IDs` không nên được đánh giá, chẳng hạn như `pad token`.
 
+**Accuracy Calculation**
 
----
-### **Viterbi: Initialization**
----
+* So sánh các `outputs` của `model` với các `test labels` để xác định `accuracy`.
+* `Accuracy metric` được tính toán bằng cách chia tổng của các `test labels` cho tổng của các `mask tokens`.
 
+**Conclusion**
 
----
-### **Viterbi: Forward Pass**
----
+* Hãy nhớ `mask` các `padded tokens` trước khi tính toán `accuracy`.
+* Giờ đây bạn đã được trang bị để `process data`, tạo `batches`, và kiểm tra `accuracy` trong bài tập lập trình (`coding assignment`) của mình.
 
----
-### **Viterbi: Backward Pass**
----
+> Để so sánh `accuracy`, chỉ cần làm theo các bước sau:
+- Đưa `test set` qua `model`
+- Lấy `arg max` trên toàn bộ `prediction array`
+- `Mask` các `padded tokens`
+- So sánh với các `true labels`.
