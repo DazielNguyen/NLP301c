@@ -258,7 +258,46 @@ Nội dung tập trung vào `T5 model`, cái mà được tận dụng cho các 
 ### **Multi-Task Training Strategy**
 ---
 
+Nội dung này tập trung vào việc `training` một `model` để thực hiện các `Natural Language Processing` (`NLP tasks`) khác nhau bằng cách sử dụng một `multitask training strategy`.
 
+**Multitask Training Strategy**
+
+* Một `model` có thể được `trained` để thực hiện nhiều `tasks` bằng cách thêm các `tags` cụ thể, chẳng hạn như "translate" cho các `translation tasks` hoặc "summarize" cho các `summarization tasks`.
+* Đối với các `tasks` như `entailment prediction`, `model` được cung cấp `premises` và `hypotheses` để phân loại các mối quan hệ.
+
+**Data Training Strategies**
+
+* Các ví dụ về chiến lược `data training` bao gồm `proportional mixing` (trộn tỷ lệ), nơi các tỷ lệ dữ liệu bằng nhau từ mỗi `task` được sử dụng, và `equal mixing` (trộn đều), nơi các mẫu bằng nhau được lấy bất kể kích thước `dataset`.
+* `Temperature-scaled mixing` là một cách tiếp cận lai điều chỉnh các `parameters` cho một sự pha trộn cân bằng.
+
+**Gradual Unfreezing and Adapter Layers**
+
+* **Gradual unfreezing** (rã đông dần dần) liên quan đến việc `unfreezing` một `layer` của `neural network` tại một thời điểm để `fine-tuning`.
+* **Adapter layers** là các `neural networks` bổ sung được thêm vào mỗi `transformer block`, cho phép `fine-tuning` mà không làm thay đổi `model's structure`.
+
+**Evaluation with GLUE Benchmark**
+
+* **GLUE benchmark** được giới thiệu như một phương pháp để đánh giá `performance` của `model` trên các `NLP tasks` khác nhau, với trọng tâm là đạt được kết quả `state-of-the-art`.
+
+> Đây là lời nhắc về cách `T5 model` hoạt động:
+
+![15_Multi-Task_Training_Strategy](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/15_Multi-Task_Training_Strategy.png)
+
+> Bạn có thể thấy rằng bạn chỉ cần thêm một `prefix` nhỏ vào `input` và `model` sẽ giải quyết `task` cho bạn. Có nhiều `tasks` mà `T5 model` có thể thực hiện cho bạn.
+
+> Có thể xây dựng hầu hết các `NLP tasks` dưới định dạng “`text-to-text`” – tức là một `task` nơi `model` được cung cấp một số văn bản để làm `context` hoặc điều kiện hóa (`conditioning`) và sau đó được yêu cầu tạo ra một số văn bản đầu ra. `Framework` này cung cấp một `objective training` nhất quán cho cả `pre-training` và `fine-tuning`. Cụ thể, `model` được `trained` với `maximum likelihood objective` (sử dụng “`teacher forcing`”) bất kể đó là `task` gì.
+
+> **Training data strategies**
+
+* **Examples-proportional mixing** (Trộn tỷ lệ theo ví dụ): lấy mẫu theo tỷ lệ kích thước `dataset` của mỗi `task`.
+* **Temperature scaled mixing** (Trộn theo tỷ lệ nhiệt độ): điều chỉnh “`temperature`” (nhiệt độ) của `mixing rates`. `Parameter temperature` này cho phép bạn cân nhắc một số ví dụ hơn những ví dụ khác. Để triển khai `temperature scaling` với `temperature` $T$, chúng ta nâng `mixing rate` $r_m$ của mỗi `task` lên lũy thừa $1/T$ và `renormalize` các `rates` sao cho tổng của chúng bằng 1. Khi $T = 1$, cách tiếp cận này tương đương với `examples-proportional mixing` và khi $T$ tăng, các tỷ lệ trở nên gần hơn với `equal mixing`.
+* **Equal mixing** (Trộn đều): Trong trường hợp này, bạn lấy mẫu các ví dụ từ mỗi `task` với xác suất bằng nhau. Cụ thể, mỗi ví dụ trong mỗi `batch` được lấy mẫu ngẫu nhiên đồng nhất từ một trong các `datasets` bạn `train` trên.
+
+> **Fine tuning example**
+
+![16_Multi-Task_Training_Strategy](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/16_Multi-Task_Training_Strategy.png)
+
+> Bạn có thể thấy ở trên cách `fine tuning` trên một `task` cụ thể có thể hoạt động ngay cả khi bạn `pre-training` trên các `tasks` khác nhau.
 
 ---
 ### **GLUE Benchmark**
