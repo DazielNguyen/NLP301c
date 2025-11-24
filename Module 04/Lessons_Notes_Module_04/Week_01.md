@@ -74,9 +74,25 @@ Nói cách khác, nếu bạn dựa vào các `sequences` và bạn cần biết
 Do đó, các `attention mechanisms` đã trở nên quan trọng đối với `sequence modeling` trong các tác vụ khác nhau, cho phép mô hình hóa các `dependencies` mà không cần quan tâm quá nhiều về khoảng cách của chúng trong các `input` hoặc `output sequences`.
 
 ---
-### **Building the model II**
+### **Queries, Keys, Values, and Attention**
 ---
 
+Nội dung này tập trung vào các khái niệm `queries`, `keys`, và `values` trong bối cảnh các `attention mechanisms` trong `natural language processing`.
+
+**Understanding Attention Mechanisms**
+
+* `Attention mechanism` được giới thiệu vào năm 2014, với những tiến bộ đáng kể như `transformer model` vào năm 2017.
+* `Queries`, `keys`, và `values` là các thành phần thiết yếu, trong đó `queries` được khớp với `keys` để truy xuất các `values` liên quan.
+
+**Alignment and Similarity**
+
+* `Keys` và `values` có thể được coi như một `lookup table`, với `alignment` đại diện cho sự tương đồng (`similarity`) giữa các từ trong các ngôn ngữ khác nhau.
+* Các `alignment scores` được tính toán để xác định mức độ khớp nhau giữa `queries` và `keys`, sau đó được sử dụng để tạo ra các `attention vectors`.
+
+**Scale Dot-Product Attention**
+
+* Phương pháp này liên quan đến các `matrix multiplications` để tính toán hiệu quả (`efficient computation`), cho phép xử lý đồng thời các `queries`.
+* Việc `scaling` các điểm số và việc sử dụng `softmax function` giúp tạo ra các `weights` có tổng bằng một, tạo điều kiện cho việc tạo ra các `attention vectors` cho mỗi `query`.
 
 ---
 ### **Minimum edit distance**
