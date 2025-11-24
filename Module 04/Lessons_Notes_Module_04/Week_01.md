@@ -223,3 +223,24 @@ Nội dung này tập trung vào hai phương pháp để xây dựng các câu 
 * Để cải thiện kết quả, một `temperature parameter` có thể được điều chỉnh để kiểm soát tính ngẫu nhiên (`randomness`), trong đó `temperature` thấp hơn dẫn đến các `predictions` thận trọng hơn và `temperature` cao hơn cho phép các `outputs` sáng tạo hơn, mặc dù rủi ro hơn.
 
 Nhìn chung, cả hai phương pháp đều có những ưu điểm và hạn chế, và sự lựa chọn giữa chúng có thể ảnh hưởng đáng kể đến chất lượng của các câu được tạo ra.
+
+---
+### **Beam Search**
+---
+
+Nội dung tập trung vào kỹ thuật `beam search` được sử dụng trong `natural language processing` để tìm ra các `sequences` từ tốt nhất.
+
+**Beam Search Overview**
+
+* `Beam search` giúp xác định các `sequences` có xác suất cao nhất trên một kích thước cửa sổ cố định, được gọi là `beam width`.
+* Nó cải thiện so với các phương pháp chỉ xem xét từ có `probability` cao nhất tại mỗi `time step`, điều này có thể không mang lại `translation` tổng thể tốt nhất.
+
+**Process of Beam Search**
+
+* Tại mỗi `time step`, `beam search` tính toán các `probabilities` của các `potential sequences` dựa trên các `outputs` trước đó, chỉ giữ lại các `sequences` có xác suất cao nhất.
+* Phương pháp này `computationally intensive` (tốn kém tính toán), vì nó yêu cầu lưu trữ và đánh giá nhiều `sequences`, điều này có thể tiêu tốn `memory` đáng kể.
+
+**Limitations and Considerations**
+
+* `Beam search` có thể phạt các `sequences` dài hơn do việc nhân các `conditional probabilities`.
+* Một kỹ thuật `normalization` có thể được áp dụng để giảm thiểu vấn đề này, nhưng phương pháp này vẫn tốn tài nguyên so với các cách tiếp cận đơn giản hơn như `greedy decoding`.
