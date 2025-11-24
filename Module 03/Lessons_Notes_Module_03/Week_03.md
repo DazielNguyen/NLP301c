@@ -144,13 +144,43 @@ Nội dung này tập trung vào khái niệm `triplet loss` trong việc `train
 
 
 ---
-### **The N-gram Language Model**
+### **Computing The Cost I**
 ---
+Bài giảng này tập trung vào việc xây dựng một `cost function` và tối ưu hóa nó bằng cách sử dụng `gradient descent` trong bối cảnh của một `Siamese network` cho `natural language processing`.
 
+**Batch Preparation**
 
+* Dữ liệu được tổ chức thành các `batches`, với mỗi câu hỏi có các bản sao (`duplicates`) tương ứng.
+* Mỗi `batch` chứa các câu hỏi duy nhất, đảm bảo không có `duplicates` trong cùng một `batch`.
+
+**Model Output**
+
+* `Model` xử lý `batch` để tạo ra một `vector output`, với các kích thước (`dimensions`) được xác định bởi `embedding layer`.
+* `Output` là một `matrix` của các `stacked vectors`, đại diện cho nhiều quan sát (`observations`) trong `batch`.
+
+**Similarity Calculation**
+
+* `Model` tính toán độ tương đồng (`similarity`) giữa các cặp `vector` từ hai `batches`, xác định các `duplicates` thông qua các `similarity scores` cao hơn.
+* Các ví dụ `positive` (`duplicates`) hiển thị các giá trị `similarity` cao hơn so với các ví dụ `negative` (`non-duplicates`).
+
+**Cost Function and Training**
+
+* `Overall cost` cho `Siamese network` được suy ra từ các `losses` riêng lẻ trên các `training sets`.
+* `Hard negative mining` được giới thiệu để nâng cao `model performance` bằng cách sử dụng các `duplicates` hiện có làm các ví dụ `positive` và các `non-duplicates` làm các ví dụ `negative`.
+
+> Để tính toán `cost`, bạn chuẩn bị các `batches` như sau:
+
+![08_Computing_The_Cost_I](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/08_Computing_The_Cost_I.png)
+
+> Lưu ý rằng mỗi ví dụ ở bên trái có một ví dụ tương tự ở bên phải nó, nhưng không có ví dụ nào khác ở trên hoặc dưới nó có nghĩa giống như vậy.
+> Sau đó, bạn có thể tính toán `similarity matrix` giữa mỗi cặp có thể từ các cột bên trái và bên phải.
+
+![09_Computing_The_Cost_I](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W3/09_Computing_The_Cost_I.png)
+
+> `Diagonal line` (đường chéo) tương ứng với các điểm số của các câu tương tự, (thông thường chúng nên là `positive`). Các `off-diagonals` (phần nằm ngoài đường chéo) tương ứng với các `cosine scores` giữa `anchor` và các ví dụ `negative`.
 
 ---
-### **Language Model Evaluation**
+### **Computing The Cost II**
 ---
 
 
