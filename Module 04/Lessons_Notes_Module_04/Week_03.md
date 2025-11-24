@@ -303,6 +303,32 @@ Nội dung này tập trung vào việc `training` một `model` để thực hi
 ### **GLUE Benchmark**
 ---
 
+Nội dung tập trung vào `GLUE Benchmark`, một công cụ được sử dụng rộng rãi trong `natural language processing` (`NLP`) để `training`, đánh giá (`evaluating`), và phân tích các hệ thống hiểu ngôn ngữ.
+
+**GLUE Benchmark Overview**
+
+* `GLUE` là viết tắt của **General Language Understanding Evaluation** và bao gồm một bộ sưu tập các `datasets` cho các `NLP tasks` khác nhau.
+* Nó bao gồm các `datasets` thuộc nhiều thể loại, kích thước và độ khó khác nhau, bao gồm các `tasks` như `co-reference resolution`, `sentiment analysis`, và `question answering`.
+
+**Evaluation and Research**
+
+* `Benchmark` này có một `leaderboard` (bảng xếp hạng) để so sánh `model performance` trên các `datasets` khác nhau.
+* Các `tasks` được đánh giá bao gồm tính đúng ngữ pháp (`grammaticality`) của các câu, `sentiment analysis`, `paraphrasing` (diễn giải lại), và xác định các mâu thuẫn (`contradictions`) hoặc `entailments` (suy luận logic).
+
+**Model Agnosticism and Transfer Learning**
+
+* `GLUE` là **model agnostic** (bất khả tri về mô hình), cho phép bất kỳ `model` nào cũng được đánh giá trên các `datasets` của nó.
+* Nó hỗ trợ `transfer learning`, cho phép các `models` học từ nhiều `datasets` để cải thiện `performance` trên các `tasks` mới trong `GLUE`.
+
+> `General Language Understanding Evaluation` (`GLUE`) chứa:
+
+* Một bộ sưu tập được sử dụng để `train`, đánh giá (`evaluate`), phân tích các hệ thống hiểu ngôn ngữ tự nhiên (`natural language understanding systems`).
+* Các `datasets` với nhiều thể loại khác nhau, và có các kích thước và độ khó khác nhau.
+* `Leaderboard` (bảng xếp hạng).
+
+![17_GLUE_Benchmark](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Image_Module_04/M4_W3/17_GLUE_Benchmark.png)
+
+> `GLUE benchmark` này được sử dụng cho các mục đích nghiên cứu, nó là `model agnostic` (bất khả tri về mô hình), và dựa vào các `models` sử dụng `transfer learning`.
 
 ---
 ### **Hugging Face Introduction**
