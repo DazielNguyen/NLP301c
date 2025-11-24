@@ -116,9 +116,25 @@ Nội dung này tập trung vào cách các từ được biểu diễn (`repres
 * Các bước tiếp theo sẽ liên quan đến việc `training` thực tế của `model` dựa trên dữ liệu đã chuẩn bị.
 
 ---
-### **Minimum edit distance algorithmn**
+### **Teacher Forcing**
 ---
 
+Phần này tập trung vào việc `training` các hệ thống `neural machine translation` (`NMT`), đặc biệt là sử dụng kỹ thuật được gọi là `teacher forcing`.
+
+**Understanding Teacher Forcing**
+
+* `Teacher forcing` liên quan đến việc sử dụng các từ mục tiêu (`target words`) thực tế làm `inputs` cho `decoder` trong quá trình `training`, thay vì sử dụng các dự đoán (`predictions`) của chính `model`.
+* Phương pháp này giúp `model` học hiệu quả hơn, đặc biệt là trong các giai đoạn đầu khi nó có xu hướng đưa ra các `incorrect predictions` (dự đoán sai).
+
+**Challenges in NMT Training**
+
+* Các dự đoán sớm (`early predictions`) có thể dẫn đến `compounding error` (lỗi tích lũy), nơi các `outputs` sai lệch ngày càng xa so với `target sequence`.
+* Một ví dụ minh họa cách một `wrong prediction` có thể dẫn đến một ý nghĩa hoàn toàn khác trong bản dịch.
+
+**Curriculum Learning**
+
+* Một biến thể của `teacher forcing` là `curriculum learning`, nơi `model` chuyển đổi dần dần từ việc sử dụng các `target words` sang sử dụng các `outputs` của chính nó theo thời gian.
+* Cách tiếp cận này giúp `fine-tuning` (tinh chỉnh) `performance` của `model` và cải thiện `accuracy` trong các bản dịch.
 
 ---
 ### **Minimum edit distance algorithmn II**
