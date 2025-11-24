@@ -336,6 +336,34 @@ Nội dung tập trung vào việc triển khai `Recurrent Neural Networks` (`RN
 ### **Gated Recurrent Units**
 ---
 
+Nội dung này giới thiệu `Gated Recurrent Units` (`GRUs`) như một `advanced model` để xử lý các `long sequences` trong `natural language processing`, giải quyết các hạn chế của `vanilla RNNs`.
+
+**Understanding GRUs**
+
+* `GRUs` giữ lại thông tin liên quan trong `hidden state` qua các `long sequences`, cho phép đưa ra các `predictions` tốt hơn trong các tác vụ như hoàn thành câu.
+* Chúng sử dụng `relevance and update gates` để xác định thông tin nào cần giữ lại hoặc cập nhật từ các `previous hidden states`.
+
+**Comparison with Vanilla RNNs**
+
+* Không giống như `vanilla RNNs`, vốn có thể gặp phải `vanishing gradient problem`, `GRUs` thực hiện các `additional computations` để quản lý luồng thông tin một cách hiệu quả.
+* `GRUs` tính toán nhiều `operations` hơn, điều này có thể dẫn đến thời gian xử lý lâu hơn nhưng tăng cường khả năng của `model` trong việc học và lưu giữ thông tin quan trọng.
+
+**Applications and Future Learning**
+
+* `GRUs` đặc biệt hữu ích cho các tác vụ `NLP` khác nhau và đóng vai trò là phiên bản đơn giản hóa của `LSTMs`, sẽ được khám phá sau trong khóa học.
+* Chủ đề tiếp theo sẽ bao gồm `bidirectional and deep RNNs`, mở rộng các khái niệm được giới thiệu với `GRUs`.
+
+> `Gated recurrent units` rất giống với `vanilla RNNs`, ngoại trừ việc chúng có một "relevance" và "update" `gate` cho phép `model` cập nhật và lấy thông tin liên quan. Cá nhân tôi thấy dễ hiểu hơn bằng cách nhìn vào các công thức:
+
+![15_Gated_Recurrent_Units](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/15_Gated_Recurrent_Units.png)
+
+
+
+> Ở bên trái, bạn có sơ đồ và các phương trình cho một `simple RNN`. Ở bên phải, chúng tôi giải thích về `GRU`. Lưu ý rằng chúng ta thêm 3 `layers` trước khi tính toán $h$ và $y$.
+
+$$\begin{aligned} \Gamma_{u} &=\sigma\left(W_{u}\left[h^{<t_{0}>}, x^{<t_{1}>}\right]+b_{u}\right) \\ \Gamma_{r} &=\sigma\left(W_{r}\left[h^{<t_{0}>}, x^{<t_{1}>}\right]+b_{r}\right) \\ h^{\prime<t_{1}>}=& \tanh \left(W_{h}\left[\Gamma_{r} * h^{<t_{0}>}, x^{<t_{1}>}\right]+b_{h}\right) \end{aligned}$$
+
+> `Gate` đầu tiên $\Gamma_u$ cho phép bạn quyết định mức độ bạn muốn `update` các `weights`. `Gate` thứ hai $\Gamma_r$, giúp bạn tìm ra một `relevance score`. Bạn có thể tính toán $h$ mới bằng cách sử dụng `relevance gate`. Cuối cùng bạn có thể tính toán $h$, sử dụng `update gate`. `GRUs` “quyết định” cách `update` `hidden state`. `GRUs` giúp bảo tồn thông tin quan trọng.
 
 
 
