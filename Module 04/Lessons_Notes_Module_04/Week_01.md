@@ -32,13 +32,46 @@ Nội dung này cung cấp một cái nhìn tổng quan về `neural machine tra
 ### **Seq2seq Model with Attention**
 ---
 
+Nội dung tập trung vào khái niệm `attention` trong `machine learning`, đặc biệt là trong bối cảnh `natural language processing`.
 
+**Understanding Attention**
+
+* `Attention` cho phép các `models` tập trung vào các phần cụ thể của `input` khi đưa ra các `predictions`, cải thiện các tác vụ như dịch thuật.
+* Nó được giới thiệu trong một bài báo bởi Bahdanau, Cho, và Bengio để nâng cao `performance` của các `sequence-to-sequence models` trong việc dịch các câu dài hơn.
+
+**Performance Comparison**
+
+* Các `attention-based models` hoạt động tốt hơn các `sequence-to-sequence models` truyền thống, đặc biệt là với các câu dài hơn.
+* Các `RNN search models` với `attention` duy trì `performance` mà không bị suy giảm đáng kể khi độ dài câu tăng lên.
+
+**Mechanism of Attention**
+
+* Các `models` truyền thống sử dụng `final hidden state` của `encoder`, điều này có thể hạn chế `performance`; `attention` cho phép sử dụng tất cả các `hidden states`.
+* `Context vector` được tạo ra bằng cách đánh trọng số các `encoder states`, tập trung vào các `inputs` liên quan nhất cho các `predictions` của `decoder`.
+
+**Calculating Weights**
+
+* `Weights` được xác định bằng cách so sánh các `previous hidden states` của `decoder` với các `encoder states` để xác định các `inputs` quan trọng.
+* `Attention layer` tính toán các `alignment scores`, các điểm này được chuyển đổi thành `weights` bằng cách sử dụng một `softmax function`, dẫn đến một `context vector` tóm tắt thông tin liên quan.
+
+**Next Steps**
+
+* Nội dung tiếp theo sẽ giải thích các khái niệm về `keys`, `queries`, và `values` trong các `attention mechanisms`.
 
 ---
-### **Building the model**
+### **Background on seq2seq**
 ---
+Các `recurrent models` thường nhận vào một `sequence` theo thứ tự nó được viết và sử dụng nó để xuất ra một `sequence`. Mỗi phần tử trong `sequence` được liên kết với bước của nó trong thời gian tính toán $t$. (tức là nếu một từ nằm ở phần tử thứ ba, nó sẽ được tính toán tại $t_3$). Các `models` này tạo ra một `sequence` các `hidden states` $h_t$, như một hàm của `hidden state` trước đó $h_{t-1}$ và `input` cho vị trí $t$.
+
+Bản chất tuần tự (`sequential nature`) của các `models` bạn đã học trong khóa học trước (`RNNs`, `LSTMs`, `GRUs`) không cho phép `parallelization` (song song hóa) trong các `training examples`, điều này trở nên quan trọng ở các độ dài `sequence` dài hơn, vì các hạn chế về bộ nhớ giới hạn việc `batching` giữa các ví dụ.
 
 
+
+Nói cách khác, nếu bạn dựa vào các `sequences` và bạn cần biết phần đầu của văn bản trước khi có thể tính toán điều gì đó về phần cuối của nó, thì bạn không thể sử dụng `parallel computing` (tính toán song song). Bạn sẽ phải đợi cho đến khi các tính toán ban đầu hoàn tất. Điều này không tốt, bởi vì nếu văn bản của bạn quá dài, thì 
+- 1) sẽ mất nhiều thời gian để bạn `process` nó và 
+- 2) bạn sẽ mất một lượng lớn thông tin được đề cập trước đó trong văn bản khi bạn tiến về phía cuối.
+
+Do đó, các `attention mechanisms` đã trở nên quan trọng đối với `sequence modeling` trong các tác vụ khác nhau, cho phép mô hình hóa các `dependencies` mà không cần quan tâm quá nhiều về khoảng cách của chúng trong các `input` hoặc `output sequences`.
 
 ---
 ### **Building the model II**
