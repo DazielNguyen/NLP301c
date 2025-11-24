@@ -237,11 +237,43 @@ Nội dung tập trung vào các loại `Recurrent Neural Network` (`RNN`) `arch
 ### **Math in Simple RNNs**
 ---
 
+Nội dung tập trung vào các nguyên tắc cơ bản của `Recurrent Neural Networks` (`RNNs`) và các `computations` của chúng.
 
+**Understanding RNNs**
 
+* `RNNs` được thiết kế để xử lý các `sequences` dữ liệu, cho phép thông tin được `propagated` theo thời gian.
+* `Architecture` bao gồm các `inputs` ($X$), `hidden states` ($H$), và `predictions` ($\hat{Y}$) tại mỗi `time step`.
 
+**Mathematical Foundations**
+
+* `Hidden state` tại thời điểm $T$ được tính toán bằng cách sử dụng một `activation function` và liên quan đến `hidden state` trước đó và `input` hiện tại.
+* `Prediction` $\hat{Y}$ được suy ra từ `hidden state` hiện tại và các `parameters` bổ sung.
+
+**Computation Process**
+
+* `Cell` đầu tiên của `RNN` lấy `hidden state` trước đó và `input` hiện tại để tính toán `hidden state` hiện tại.
+* Quy trình này liên quan đến các `matrix multiplications` và `summations`, theo sau là việc đi qua một `activation function` để tạo ra các `predictions`.
+
+> Tốt nhất là giải thích toán học đằng sau một `simple RNN` với một sơ đồ:
 
 ![11_Math_in_Simple_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/11_Math_in_Simple_RNNs.png)
+
+> Lưu ý rằng:
+
+$$h^{<t>}=g(W_h[h^{<t-1>},x^{<t>}]+b_h)$$
+
+> Giống như việc nhân $W_{hh}$ với $h$ và $W_{hx}$ với $x$. Nói cách khác, bạn có thể `concatenate` nó như sau:
+
+$$h^{<t>}=g(W_{hh}h^{<t-1>} \oplus W_{hx}x^{<t>} + b_h)$$
+
+> Đối với `prediction` tại mỗi `time step`, bạn có thể sử dụng công thức sau:
+
+$$\hat{y}^{<t>}=g(W_{yh}h^{<t>}+b_y)$$
+
+> Lưu ý rằng cuối cùng bạn sẽ `training` $W_{hh},W_{hx},W_{yh},b_h,b_y$. Đây là một `visualization` của `model`.
+
+![12_Math_in_Simple_RNNs](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Image_Module_03/M3_W1/12_Math_in_Simple_RNNs.png)
+
 
 ---
 ### **Cost Function for RNNs**
