@@ -266,3 +266,38 @@ Nội dung tập trung vào phương pháp `Minimum Bayes Risk` (`MBR`) `decodin
 * `MBR` cung cấp một bản dịch chính xác hơn về mặt ngữ cảnh so với `random sampling` và `greedy decoding`.
 * Phương pháp này đơn giản để triển khai (`implement`) và sẽ được sử dụng trong các bài tập sắp tới.
 
+---
+### **Andrew Ng with Oren Etzioni**
+---
+
+**Andrew Ng with Oren Etzioni  Nov 24, 2025**
+
+Nội dung thảo luận về hành trình và những hiểu biết sâu sắc của `Oren Etzioni`, một nhân vật nổi bật trong `Natural Language Processing` (`NLP`) và là CEO của `Allen Institute for Artificial Intelligence`.
+
+**Early Fascination with AI**
+
+* Sự quan tâm của `Oren` đối với `AI` bắt đầu từ trung học sau khi đọc cuốn "Godel, Escher, Bach," cuốn sách đã khơi dậy sự tò mò của ông về bản chất của trí thông minh.
+* Ông đã học lập trình `Lisp` trước khi theo đuổi khoa học máy tính tại `Harvard`, với mục tiêu đóng góp cho `AI`.
+
+**Information Extraction and NLP Advances**
+
+* `Oren` đã làm việc trên `Open Information Extraction`, nhắm tới việc trích xuất thông tin có cấu trúc từ dữ liệu web phi cấu trúc.
+* Ông nhấn mạnh tầm quan trọng của việc tổng quát hóa các kỹ thuật để xử lý các `predicates` đa dạng trong `natural language`, dẫn đến những đột phá trong `unsupervised learning`.
+
+**Semantic Scholar and AI for Good**
+
+* Dự án `Semantic Scholar` của `Allen Institute` nhằm mục đích giúp các nhà nghiên cứu điều hướng khối lượng tài liệu khoa học ngày càng tăng bằng cách cung cấp các công cụ như `extreme summaries` và `figure extraction`.
+* Trong đại dịch `COVID-19`, viện đã hợp tác với nhiều tổ chức khác nhau để tạo ra một `dataset` toàn diện về các bài báo nghiên cứu liên quan.
+
+**Advice for Aspiring NLP Professionals**
+
+* `Oren` khuyên nên tập trung vào `data sourcing` và `labeling` khi bắt đầu các công ty dựa trên `AI`.
+* Ông nhấn mạnh tầm quan trọng của kiến thức nền tảng về `statistics` và `machine learning`, cùng với kinh nghiệm thực tế thông qua các dự án.
+
+**Future of NLP and AI Regulation**
+
+* `Oren` dự đoán sự tăng trưởng liên tục về `model sizes` và yêu cầu về dữ liệu trong `NLP`, đồng thời ủng hộ tính hiệu quả và khả năng tiếp cận trong nghiên cứu `AI`.
+* Ông thảo luận về sự cần thiết của quy định (`regulation`) trong các ứng dụng cụ thể của `NLP` để giải quyết các thành kiến (`biases`), thay vì quy định bản thân việc nghiên cứu.
+
+Bản tóm tắt này gói gọn những hiểu biết của `Oren Etzioni` về `AI`, những tiến bộ của `NLP`, và hướng dẫn cho các chuyên gia tương lai trong lĩnh vực này.
+
