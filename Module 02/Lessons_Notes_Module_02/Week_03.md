@@ -203,27 +203,64 @@ Nội dung này tập trung vào việc xử lý điểm bắt đầu và kết 
 
 Nội dung này tập trung vào việc tạo và sử dụng một **count matrix** (ma trận đếm) cho `n-grams` trong `natural language processing`.
 
----
+#### Count Matrix Creation
 
-### Count Matrix Creation
+- **Count matrix** ghi lại sự xuất hiện của `n-grams`, với các `rows` (hàng) đại diện cho các `n-1 grams` độc nhất (`unique`) và các `columns` (cột) đại diện cho các từ độc nhất.
+- Đối với `bigrams`, phương pháp **sliding window** (cửa sổ trượt) được sử dụng để đếm sự xuất hiện khi bạn `process` `corpus`.
 
-* **Count matrix** ghi lại sự xuất hiện của `n-grams`, với các `rows` (hàng) đại diện cho các `n-1 grams` độc nhất (`unique`) và các `columns` (cột) đại diện cho các từ độc nhất.
-* Đối với `bigrams`, phương pháp **sliding window** (cửa sổ trượt) được sử dụng để đếm sự xuất hiện khi bạn `process` `corpus`.
+#### Probability Matrix Transformation
 
-### Probability Matrix Transformation
+- **Count matrix** được chuyển đổi thành **probability matrix** (ma trận xác suất) bằng cách `normalizing` (chuẩn hóa) mỗi ô dựa trên tổng của `row` tương ứng.
+- `Matrix` này cung cấp **conditional probabilities** (xác suất có điều kiện) của `n-grams`, điều cần thiết cho `language modeling`.
 
-* **Count matrix** được chuyển đổi thành **probability matrix** (ma trận xác suất) bằng cách `normalizing` (chuẩn hóa) mỗi ô dựa trên tổng của `row` tương ứng.
-* `Matrix` này cung cấp **conditional probabilities** (xác suất có điều kiện) của `n-grams`, điều cần thiết cho `language modeling`.
+#### Language Model Implementation
+
+- `Language model` sử dụng `probability matrix` để ước tính `sentence probabilities` và dự đoán từ tiếp theo trong một `sequence`.
+- Nó giải quyết các vấn đề **numerical underflow** (tràn số âm) phát sinh từ việc nhân các `probabilities` nhỏ, thường sử dụng các **logarithmic transformations** để đảm bảo `stability` (ổn định).
+
+> Bạn đã xem qua rất nhiều khái niệm trong video trước. Bạn đã thấy:
+
+- **Count matrix** (Ma trận đếm)
+- **Probability matrix** (Ma trận xác suất)
+- **Language model** (Mô hình ngôn ngữ)
+- **Log probability** (Xác suất log) để tránh tràn số âm (`underflow`)
+- **Generative language model** (Mô hình ngôn ngữ sinh)
+
+#### Count Matrix và Chuyển đổi sang Probability Matrix
+
+> Trong **Count matrix**:
+
+- Các **Rows** (Hàng) tương ứng với các `N-1 grams` độc nhất (`unique`) của `corpus`.
+- Các **Columns** (Cột) tương ứng với các từ độc nhất của `corpus`.
+
+> Dưới đây là một ví dụ về **count matrix** của một `bigram` (Ngụ ý trong hình trên).
+
+![06_The_N-gram_Language_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/06_The_N-gram_Language_Model.png)
 
 
+> Để chuyển đổi nó thành **probability matrix**, bạn có thể sử dụng công thức sau:
 
----
+- $$P(w_{n} \mid w_{n-N+1}^{n-1}) = \frac{C(w_{n-N+1}^{n-1}, w_{n})}{C(w_{n-N+1}^{n-1})}$$
 
-### Language Model Implementation
+> Trong đó, tổng của mỗi hàng chính là số lần đếm của `prefix` ($N-1$ gram), được sử dụng để chuẩn hóa (`normalize`):
 
-* `Language model` sử dụng `probability matrix` để ước tính `sentence probabilities` và dự đoán từ tiếp theo trong một `sequence`.
-* Nó giải quyết các vấn đề **numerical underflow** (tràn số âm) phát sinh từ việc nhân các `probabilities` nhỏ, thường sử dụng các **logarithmic transformations** để đảm bảo `stability` (ổn định).
+- $$sum(row)=\sum_{w \in V} C(w_{n-N+1}^{n-1}, w) = C(w_{n-N+1}^{n-1})$$
 
+#### Mô hình hóa và Khử Underflow
+
+> Bây giờ với **probability matrix**, bạn có thể tạo ra `language model`. Bạn có thể tính toán `sentence probability` (xác suất câu) và `next word prediction` (dự đoán từ tiếp theo).
+
+> Để tính `probability` của một `sequence` (chuỗi) ($w_1, \dots, w_n$), bạn cần tính:
+
+- $$P(w_{1}^{n}) \approx \prod_{i=1}^{n} P(w_i \mid w_{i-1})$$
+
+> Để tránh **underflow** (tràn số âm), bạn có thể nhân bằng `log` (logarit):
+
+- $$\log(P(w_{1}^{n})) \approx \sum_{i=1}^{n} \log(P(w_i \mid w_{i-1}))$$
+
+> Cuối cùng, đây là bản tóm tắt để tạo ra **generative model**:
+
+![07_The_N-gram_Language_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/07_The_N-gram_Language_Model.png)
 
 ---
 ### **Language Model Evaluation**
