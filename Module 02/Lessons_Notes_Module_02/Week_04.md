@@ -467,15 +467,178 @@ Trong đó $V$ là kích thước của `vector` $z$ (tức là kích thước `
 ### **Training a CBOW Model: Cost Function**
 ---
 
+Nội dung này tập trung vào **cost function** (hàm chi phí) cho **Softmax** trong `machine learning`, đặc biệt trong bối cảnh dự đoán từ bằng **continuous bag of words model** (**CBOW**).
+
+#### Tổng quan Cost Function
+
+* **Cost function** rất cần thiết để dự đoán một trong những từ có thể có bằng cách tối thiểu hóa một chi phí cụ thể.
+* Một **training example** (ví dụ huấn luyện) đơn lẻ bao gồm một `input`, một **true target** (mục tiêu thực tế), và giá trị dự đoán của `model`.
+
+#### Loss Function và Tham số
+
+* **Loss function** (hàm mất mát) đo lường sai số giữa `prediction` và **true value** cho một `training example`.
+* Trong **CBOW model**, các **parameters** (tham số) được điều chỉnh bao gồm **weight matrices** ($W_1, W_2$) và **bias factors** ($b_1, b_2$).
+
+#### Cross Entropy Loss
+
+* **Cross entropy loss** (mất mát entropy chéo) thường được sử dụng với các **classification models** và có liên quan đến lớp `output Softmax`.
+* Công thức cho **cross entropy loss** ($J$) liên quan đến tổng âm của tích giữa **true value** ($y_i$) và `log` của **predicted value** ($\hat{y}_i$):
+$$J = - \sum_{i=1}^{V} y_i \log(\hat{y}_i)$$
+
+#### Ví dụ Dự đoán
+
+* **Loss function** thưởng cho các `predictions` đúng và phạt các `predictions` không chính xác (cho thấy `loss` tăng lên với các `predictions` không chính xác), với ý nghĩa đối với **model performance**.
+
+![19_Training_a_CBOW_Model_Cost_Function](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/19_Training_a_CBOW_Model_Cost_Function.png)
+
+> Mức **chi phí (cost)** là $4.61$ trong ví dụ trên là do **mô hình đã dự đoán một xác suất rất thấp cho từ đúng (true target)**.
+
+> Giá trị $4.61$ không phải là ngẫu nhiên; nó thể hiện mối quan hệ nghịch đảo giữa chi phí và xác suất dự đoán thông qua hàm $\log$ tự nhiên ($\ln$).
+
+Dưới đây là lý do chi tiết:
+
+#### 1. Công thức Đơn giản hóa
+
+Công thức **Cross-Entropy Loss** cho một ví dụ huấn luyện đơn lẻ, nơi **true target ($y$)** là một **one-hot vector** (chỉ có 1 ở vị trí từ đúng $k^*$) được đơn giản hóa thành:
+
+$$J = - \sum_{k=1}^{V} y_k \log(\hat{y}_k) = - \log(\hat{y}_{k^*})$$
+
+Trong đó:
+* $V$ là kích thước từ vựng.
+* $y_{k^*}$ là $1$ (xác suất $100\%$ rằng từ $k^*$ là đúng).
+* $\hat{y}_{k^*}$ là xác suất mà mô hình dự đoán cho từ đúng $k^*$.
+
+#### 2. Tính toán Xác suất Dự đoán
+
+Nếu chi phí được tính là $J = 4.61$ (sử dụng $\log$ tự nhiên, $\ln$, là tiêu chuẩn):
+
+$$4.61 = - \ln(\hat{y}_{k^*})$$
+
+Chúng ta có thể giải phương trình này để tìm xác suất dự đoán $\hat{y}_{k^*}$:
+
+$$\ln(\hat{y}_{k^*}) = -4.61$$
+$$\hat{y}_{k^*} = e^{-4.61} \approx 0.010$$
+
+#### Kết luận
+
+Giá trị $4.61$ cho thấy **mô hình chỉ dự đoán xác suất khoảng $0.01$ (tức $1\%$) cho từ lẽ ra phải là đáp án đúng** trong ví dụ này. Chi phí cao (như $4.61$) là cách **loss function** trừng phạt mô hình vì đã đưa ra một dự đoán sai lệch cao (xác suất thấp) cho kết quả đúng.
+
 ---
 ### **Training a CBOW Model: Forward Propagation**
 ---
 
+Nội dung tập trung vào quá trình **forward propagation** (lan truyền tiến) trong `Continuous Bag-of-Words` (**CBOW**) `model` được sử dụng trong `neural networks`.
+
+#### Tổng quan Forward Propagation
+
+* **Forward propagation** bao gồm việc truyền các giá trị `input` qua `neural network` từ `input` đến `output`, tính toán các giá trị ở mỗi lớp.
+* Một **batch of examples** (lô ví dụ) được biểu diễn dưới dạng một `matrix`, và **output matrix** được tạo ra bằng cách lan truyền `input` này qua `network`.
+
+#### Tính toán Cost
+
+* **Cost function** (hàm chi phí) là một phần mở rộng của **loss function** (hàm mất mát), được sử dụng để đo lường sai số cho một `batch of training examples`.
+* **Cross-entropy cost** cho một `batch` là **mean** (giá trị trung bình) của các **cross-entropy losses** riêng lẻ cho mỗi ví dụ, cho phép hình dung `cost` như là một giá trị trung bình của các `losses`.
+
+#### Quá trình Optimization
+
+* Sau khi tính toán `cost`, **back propagation** (lan truyền ngược) và **gradient descent** (giảm độ dốc) được sử dụng để điều chỉnh các `parameters` (tham số) của `network` nhằm cải thiện `predictions`.
+* Các bước tiếp theo bao gồm `training word vectors` bằng cách sử dụng **cost function** để nâng cao `model's performance`.
+
+> Forward Propagation (Lan truyền tiến)
+
+> **Forward Propagation** được định nghĩa là:
+
+$$Z_1 = W_1 X + B_1$$
+
+$$H = \text{ReLU}(Z_1)$$
+
+$$Z_2 = W_2 H + B_2$$
+
+$$\hat{Y} = \text{softmax}(Z_2)$$
+
+> Trong đó $X$ là ma trận `input` (đầu vào theo lô), $W_1, W_2$ là ma trận `weights` (trọng số), $B_1, B_2$ là ma trận `bias` (độ lệch), $H$ là **hidden layer** (lớp ẩn), và $\hat{Y}$ là ma trận dự đoán `output` (`predicted output matrix`).
+
+> Trong hình ảnh dưới đây, bạn bắt đầu từ bên trái và **forward propagate** (lan truyền tiến) suốt tới bên phải.
+
+![20_Training_a_CBOW_Model_FP](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/20_Training_a_CBOW_Model_FP.png)
+
+> Batch Cost Function (Hàm chi phí theo lô)
+
+> Để tính **loss** (tổn thất) của một **batch** (lô), bạn phải tính công thức sau. Công thức này là giá trị trung bình (`mean`) của các **Cross-Entropy losses** trên $M$ ví dụ trong `batch`:
+
+$$J_{\text{batch}} = -\frac{1}{M}\sum_{i=1}^{M}\sum_{j=1}^{V}y_{j}^{(i)}\log\hat{y}_{j}^{(i)}$$
+
+> Trong đó:
+
+* $M$: Kích thước `batch`.
+* $V$: Kích thước `vocabulary`.
+* $y_{j}^{(i)}$: Giá trị thực tế (`actual`) của từ thứ $j$ trong ví dụ thứ $i$.
+* $\hat{y}_{j}^{(i)}$: Giá trị dự đoán (`predicted`) của từ thứ $j$ trong ví dụ thứ $i$.
+
+> Cho ma trận **predicted center word** của bạn ($\hat{Y}$) và ma trận **actual center word** ($Y_{\text{true}}$), bạn có thể tính `loss`.
+
+![21_Training_a_CBOW_Model_FP](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/21_Training_a_CBOW_Model_FP.png)
 
 ---
 ### **Training a CBOW Model: Backpropagation and Gradient Descent**
 ---
 
+Nội dung này tập trung vào các kỹ thuật để tối thiểu hóa **cost** (chi phí) trong `neural networks`, cụ thể thông qua **backpropagation** và **gradient descent**.
+
+#### Backpropagation (Lan truyền ngược)
+
+* **Backpropagation** là một `algorithm` (thuật toán) tính toán các **partial derivatives** (đạo hàm riêng) của `cost` đối với các `weights` (trọng số) và `biases` (độ lệch) của `neural network`.
+* Nó sử dụng **chain rule** (quy tắc chuỗi) cho các đạo hàm, bắt đầu từ `output layer` và tính toán ngược trở lại qua các lớp.
+
+#### Gradient Descent (Giảm độ dốc)
+
+* **Gradient Descent** là một phương pháp điều chỉnh các `weights` và `biases` bằng cách sử dụng các **gradients** (độ dốc) đã tính toán để tối thiểu hóa `cost`.
+* **Learning rate** ($\alpha$) là một **hyperparameter** (siêu tham số) kiểm soát kích thước của các `updates` (cập nhật) đối với các `weights` và `biases`.
+
+#### Công thức cập nhật Trọng số và Độ lệch
+
+Các công thức sau được sử dụng để điều chỉnh `weights` ($W$) và `biases` ($b$) trong mỗi bước lặp:
+
+* **Cập nhật Trọng số:**
+
+$$W := W - \alpha \frac{\partial J}{\partial W}$$
+
+* **Cập nhật Độ lệch:**
+
+$$b := b - \alpha \frac{\partial J}{\partial b}$$
+
+`Learning rates` **nhỏ hơn** cho phép `updates` dần dần và chính xác, trong khi `rates` **lớn hơn** cho phép `updates` nhanh hơn, nhưng có nguy cơ bỏ lỡ điểm tối thiểu.
+
+Bản tóm tắt này gói gọn các khái niệm chính liên quan đến `training` một **continuous bag of words model** (`CBOW`) trong bối cảnh `neural networks`.
+
+Quá trình **Backpropagation** (lan truyền ngược) và **Gradient Descent** (giảm độ dốc) được tóm tắt như sau:
+
+> Backpropagation (Lan truyền ngược)
+
+> **Backpropagation** là quá trình tính toán **partial derivatives** (đạo hàm riêng) của hàm chi phí (`cost function`) $J_{\text{batch}}$ đối với tất cả các tham số (`parameters`) của mô hình: $\mathbf{W}_1, \mathbf{W}_2, \mathbf{b}_1, \mathbf{b}_2$.
+
+> Khi thực hiện **back-prop** trong mô hình **CBOW** này, bạn cần tính toán các đạo hàm sau:
+
+$$\frac{\partial J_{\text{batch}}}{\partial \mathbf{W}_1}, \quad \frac{\partial J_{\text{batch}}}{\partial \mathbf{W}_2}, \quad \frac{\partial J_{\text{batch}}}{\partial \mathbf{b}_1}, \quad \frac{\partial J_{\text{batch}}}{\partial \mathbf{b}_2}$$
+
+> Gradient Descent (Giảm độ dốc)
+
+> **Gradient Descent** sử dụng các đạo hàm đã tính ở trên để cập nhật các tham số, nhằm tối thiểu hóa chi phí $J_{\text{batch}}$. Các công thức cập nhật được lặp lại (`iterate`) như sau:
+
+$$\mathbf{W}_{1} := \mathbf{W}_{1} - \alpha \frac{\partial J_{\text {batch }}}{\partial \mathbf{W}_{1}}$$
+
+$$\mathbf{W}_{2} := \mathbf{W}_{2} - \alpha \frac{\partial J_{\text {batch }}}{\partial \mathbf{W}_{2}}$$
+
+$$\mathbf{b}_{1} := \mathbf{b}_{1} - \alpha \frac{\partial J_{\text {batch }}}{\partial \mathbf{b}_{1}}$$
+
+$$\mathbf{b}_{2} := \mathbf{b}_{2} - \alpha \frac{\partial J_{\text {batch }}}{\partial \mathbf{b}_{2}}$$
+
+> **Learning rate** ($\alpha$) là một **hyperparameter** (siêu tham số) quan trọng kiểm soát tốc độ học:
+
+* **$\alpha$ nhỏ hơn** cho phép các cập nhật **gradual** (dần dần) đối với các `weights` và `biases`.
+* **$\alpha$ lớn hơn** cho phép cập nhật **faster** (nhanh hơn).
+
+> **Lưu ý:** Nếu $\alpha$ quá lớn, bạn có thể **vượt quá** điểm tối thiểu và không học được gì; nếu nó quá nhỏ, `model` của bạn sẽ mất rất nhiều thời gian để `training`.
 
 ---
 ### **Extracting Word Embedding Vectors**
