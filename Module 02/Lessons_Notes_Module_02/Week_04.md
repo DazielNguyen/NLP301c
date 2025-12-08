@@ -197,6 +197,36 @@ Trong các `models` tiên tiến hơn này, các từ có các `embeddings` khá
 ### **Continuous Bag-of-Words Model**
 ---
 
+Nội dung tập trung vào việc triển khai **continuous bag-of-words model** (**CBOW**) để tạo `word embeddings` trong `natural language processing`.
+
+#### Quá trình tổng thể của Word Embeddings
+
+* **Word embeddings** được tạo ra thông qua một `machine learning model` học từ một `corpus` (kho ngữ liệu).
+* **Continuous bag-of-words model** dự đoán một từ bị thiếu (**center word**) dựa trên các **context words** (từ ngữ cảnh) xung quanh nó.
+
+#### Tạo Dữ liệu Huấn luyện
+
+* **Context words** được định nghĩa là các từ bao quanh một **center word**, với một **hyperparameter $C$** xác định số lượng `context words` (bán kính cửa sổ ngữ cảnh).
+* `Model` sử dụng **sliding windows** (cửa sổ trượt) để tạo các `training examples` (ví dụ huấn luyện), trong đó `context words` là `inputs` và `center word` là `target` (mục tiêu) để dự đoán.
+
+#### Kiến trúc Mô hình và Học tập
+
+* **Model architecture** bao gồm `context words` là `inputs` và `center words` là `outputs`.
+* Khi `model` học, nó tạo ra `word embeddings` như một sản phẩm phụ của `prediction task` (nhiệm vụ dự đoán), nắm bắt được **semantic relationships** (mối quan hệ ngữ nghĩa) giữa các từ.
+
+> Để tạo **word embeddings**, bạn cần một `corpus` và một `learning algorithm` (thuật toán học tập). Sản phẩm phụ của `task` này sẽ là một tập hợp các `word embeddings`. Trong trường hợp của **continuous bag-of-words model** (**CBOW**), `objective` (mục tiêu) của `task` là **dự đoán một từ bị thiếu** dựa trên các từ xung quanh nó.
+
+![06_Continuous_Bag-of-Words_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/06_Continuous_Bag-of-Words_Model.png)
+
+> Dưới đây là một **visualization** (hình ảnh trực quan) cho bạn thấy `model` hoạt động như thế nào.
+
+![07_Continuous_Bag-of-Words_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/07_Continuous_Bag-of-Words_Model.png)
+
+> Như bạn có thể thấy, **window size** (kích thước cửa sổ) trong hình ảnh phía trên là 5. **Context size** (kích thước ngữ cảnh), $C$, là 2. $C$ thường cho bạn biết có bao nhiêu từ trước hoặc sau **center word** (từ trung tâm) mà `model` sẽ sử dụng để đưa ra **prediction** (dự đoán).
+
+> Dưới đây là một **visualization** khác cho thấy tổng quan về `model`.
+
+![08_Continuous_Bag-of-Words_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/08_Continuous_Bag-of-Words_Model.png)
 
 ---
 ### **Sliding Window of Words in Python**
