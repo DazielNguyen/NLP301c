@@ -264,6 +264,35 @@ Một `Python example` minh họa cách `clean` một `corpus` bằng cách gộ
 ### **Sliding Window of Words in Python**
 ---
 
+Nội dung tập trung vào việc trích xuất **center words** (từ trung tâm) và **context words** (từ ngữ cảnh) để `training` (huấn luyện) **continuous bag-of-words model** trong `natural language processing`.
+
+#### Trích xuất Center và Context Words
+
+* Quá trình bắt đầu với một `cleaned and tokenized corpus` (kho ngữ liệu đã làm sạch và tạo token), được biểu diễn dưới dạng một `array` (mảng) các từ.
+* Một `function` (hàm) gọi là `get_windows` được định nghĩa để trích xuất `center words` và `context words` của chúng dựa trên một `context size` được chỉ định.
+
+#### Triển khai Function
+
+* `Function` nhận một `array of words` và một **context size ($C$)**, cái mà xác định có bao nhiêu từ sẽ được xem xét ở mỗi bên của `center word`.
+* Nó `initialize` (khởi tạo) một vòng lặp để lặp qua `array`, trích xuất `center words` và các `context words` tương ứng của chúng.
+
+#### Sử dụng Function
+
+* `Function` sử dụng **yield keyword** để trả về các giá trị một cách **iteratively** (lặp lại), cho phép **data generation** (tạo dữ liệu) hiệu quả.
+* Một vòng lặp được sử dụng để hiển thị `context` và `center words`, cái mà cần thiết cho **continuous bag-of-words model**.
+
+Tổng quan, bài giảng này cung cấp một cách tiếp cận thực tế để chuẩn bị `data` cho `training word embeddings` bằng `Python`.
+
+![11_Sliding_Window_of_Words_in_Python](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/11_Sliding_Window_of_Words_in_Python.png)
+
+> `Code` phía trên cho thấy một `function` (hàm) nhận hai `parameters` (tham số).
+
+* `Words`: một `list` (danh sách) các từ.
+* $C$: **context size** (kích thước ngữ cảnh).
+
+> Chúng ta bắt đầu bằng cách đặt $i$ bằng $C$. Sau đó, chúng ta tách **center\_word** (từ trung tâm) và **context\_words** (các từ ngữ cảnh). Chúng ta sau đó **yield** (trả về) các giá trị này và **increment** (tăng) $i$ lên.
+
+
 
 ---
 ### **Transforming Words into Vectors**
