@@ -379,9 +379,71 @@ Tóm lại, bài giảng nhấn mạnh tầm quan trọng của việc quản l�
 ### **Smoothing**
 ---
 
+Nội dung này tập trung vào khái niệm **smoothing** (làm mịn) trong `N-gram language models`, cái mà cần thiết để cải thiện việc ước tính `probabilities` trong `natural language processing`.
 
+#### Kỹ thuật Smoothing
+
+- **Smoothing** giải quyết vấn đề **zero probabilities** (xác suất bằng 0) đối với các `N-grams` không có mặt trong một `corpus` giới hạn.
+- **Add-one smoothing** (hay **Laplacian smoothing**) điều chỉnh công thức `N-gram probability` bằng cách thêm 1 vào cả tử số (`numerator`) và mẫu số (`denominator`), đảm bảo không có `N-grams` nào có `zero probability`.
+- Công thức cho `Add-one smoothing` (cho `bigram`) là:
+
+$$P_{\text{Add-1}}(w_i \mid w_{i-1}) = \frac{Count(w_{i-1} w_i) + 1}{Count(w_{i-1}) + |V|}$$
+
+(Trong đó $|V|$ là kích thước `vocabulary`).
+
+#### Backoff và Interpolation
+
+- **Backoff** sử dụng các `N-grams` cấp thấp hơn khi các `N-grams` cấp cao hơn bị thiếu, áp dụng **discounting** (chiết khấu) để điều chỉnh `probabilities`.
+- **Linear interpolation** (nội suy tuyến tính) kết hợp `weighted probabilities` (xác suất có trọng số) từ các cấp độ `N-gram` khác nhau, tối ưu hóa `model` bằng cách sử dụng các hằng số cộng lại bằng 1.
+
+#### Các Phương pháp Nâng cao
+
+- Các kỹ thuật `smoothing` phức tạp hơn bao gồm **add-k smoothing**, **Kneser-Ney**, và **Good-Turing methods**, những kỹ thuật này tinh chỉnh thêm các ước tính `probability`.
+- Các phương pháp này nâng cao `performance` của `N-gram models`, đặc biệt trong các `corpora` lớn hơn, bằng cách cung cấp khả năng xử lý tốt hơn dữ liệu bị thiếu.
+
+Ba khái niệm chính được đề cập ở đây là xử lý các `n-grams` bị thiếu, **smoothing** (làm mịn), và **Backoff** cùng **interpolation** (nội suy).
 
 ---
-### **Week Summary**
+
+### 🛑 Vấn đề Zero Probability
+
+Công thức `probability N-gram` (Maximum Likelihood Estimation - MLE) có thể bằng 0 khi `n-gram` cụ thể không xuất hiện trong `corpus`:
+$$P(w_{n} \mid w_{n-N+1}^{n-1})=\frac{C(w_{n-N+1}^{n-1}, w_{n})}{C(w_{n-N+1}^{n-1})} \text{ có thể bằng } 0$$
+
+### Smoothing: Add-1 và Add-k
+
+Để khắc phục vấn đề **zero probability**, chúng ta có thể sử dụng **smoothing** bằng cách thêm một lượng nhỏ vào các `counts` (số lần đếm).
+
+* **Add-1 smoothing** (cho `Bigram`):
+
+$$P(w_{n} \mid w_{n-1}) = \frac{C(w_{n-1}, w_{n}) + 1}{\sum_{w \in V}(C(w_{n-1}, w) + 1)} = \frac{C(w_{n-1}, w_{n}) + 1}{C(w_{n-1}) + |V|}$$
+
+* **Add-k smoothing** (tổng quát hơn):
+$$P(w_{n} \mid w_{n-1}) = \frac{C(w_{n-1}, w_{n}) + k}{\sum_{w \in V}(C(w_{n-1}, w) + k)} = \frac{C(w_{n-1}, w_{n}) + k}{C(w_{n-1}) + k \cdot |V|}$$
+
 ---
+
+### 🔄 Backoff và Interpolation
+
+### Backoff Strategies
+
+Khi sử dụng **back-off**, nếu `N-gram` cấp cao hơn bị thiếu, `model` sẽ dự phòng sử dụng `(N-1)-gram`, v.v. Điều này yêu cầu **probability discounting** (chiết khấu xác suất) để điều chỉnh `probability distribution` tổng thể.
+
+- **Katz backoff**: Là một ví dụ sử dụng **discounting** để lấy một phần `probability` từ các `N-grams` đã thấy để phân bổ cho các `N-grams` chưa từng thấy.
+- **“Stupid” backoff**: Nếu `probability N-gram` cấp cao hơn bị thiếu, `probability N-gram` cấp thấp hơn sẽ được sử dụng, chỉ cần nhân với một **constant** (hằng số), thường là khoảng $0.4$.
+
+> Visualization
+
+![10_Smoothing](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/10_Smoothing.png)
+
+### Interpolation
+
+**Interpolation** (Nội suy) kết hợp các `probabilities` từ nhiều cấp độ `N-gram` khác nhau bằng cách sử dụng trọng số ($\lambda_i$):
+
+$$\hat{P}(w_{n} \mid w_{n-2} w_{n-1})=\lambda_{1} \times P(w_{n} \mid w_{n-2} w_{n-1}) +\lambda_{2} \times P(w_{n} \mid w_{n-1})+\lambda_{3} \times P(w_{n})$$
+
+Trong đó tổng các trọng số phải bằng 1:
+
+$$\sum_{i} \lambda_{i}=1$$
+
 
