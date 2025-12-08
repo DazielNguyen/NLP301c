@@ -722,6 +722,31 @@ Nội dung này tập trung vào hai loại `evaluation metrics` (số liệu đ
 ### **Evaluating Word Embeddings: Extrinsic Evaluation**
 ---
 
+Nội dung này tập trung vào việc đánh giá **word embeddings** thông qua các phương pháp **extrinsic evaluation** (đánh giá ngoại tại), cái mà đánh giá hiệu quả của chúng trong các `tasks` (tác vụ) thực tế.
 
+#### Đánh giá Ngoại tại (Extrinsic Evaluation)
 
+* Phương pháp này kiểm tra **word embeddings** bằng cách áp dụng chúng vào các `external tasks` (tác vụ bên ngoài), chẳng hạn như `speech recognition` (nhận dạng giọng nói), để xác định tính hữu ích thực tế của chúng.
+* **Performance metrics** (số liệu hiệu suất) từ các `tasks` này đóng vai trò là các chỉ số về chất lượng của **word embeddings**.
+
+#### Ví dụ về các Tác vụ Bên ngoài
+
+* **Named entity recognition** (`NER` - Nhận dạng thực thể được đặt tên) và **parts-of-speech** (`POS`) `tagging` (Gắn thẻ từ loại) được nhấn mạnh là các `tasks` hữu ích để đánh giá **word embeddings**.
+* Ví dụ, việc xác định và phân loại các `named entities` trong các câu có thể là một ứng dụng thực tế của **word embeddings**.
+
+#### Thách thức của Đánh giá Ngoại tại
+
+* Mặc dù **extrinsic evaluation** cung cấp những hiểu biết có giá trị, nhưng nó **time-consuming** (tốn thời gian) và **complex** (phức tạp) hơn so với **intrinsic evaluation**.
+* **Poor performance metrics** (số liệu hiệu suất kém) không chỉ rõ phần nào của quy trình (**word embeddings** hay `task` cụ thể) chịu trách nhiệm cho kết quả.
+
+Tổng quan, **extrinsic evaluation** là cần thiết để xác nhận **utility** (tính hữu dụng) của **word embeddings**, bất chấp những thách thức của nó.
+
+> **Extrinsic evaluation** (Đánh giá ngoại tại) kiểm tra **word embeddings** trên các `external tasks` (tác vụ bên ngoài) như **named entity recognition** (nhận dạng thực thể được đặt tên), **parts-of-speech tagging** (gắn thẻ từ loại), v.v.
+
+* **Ưu điểm (+):** Đánh giá **tính hữu dụng thực tế** (`actual usefulness`) của `embeddings`.
+* **Nhược điểm (-):**
+    * **Time Consuming** (Tốn thời gian).
+    * **More difficult to trouble shoot** (Khó gỡ lỗi hơn): Nếu `performance` kém, khó xác định liệu đó là do `embeddings` hay do bản thân `task` (`model`).
+
+> Bây giờ bạn đã biết cả **intrinsic evaluation** (đánh giá nội tại) và **extrinsic evaluation** (đánh giá ngoại tại).
 
