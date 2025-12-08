@@ -229,6 +229,38 @@ Nội dung tập trung vào việc triển khai **continuous bag-of-words model*
 ![08_Continuous_Bag-of-Words_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/08_Continuous_Bag-of-Words_Model.png)
 
 ---
+### **Cleaning and Tokenization**
+---
+
+Nội dung tập trung vào các quy trình **cleaning** (làm sạch) và **tokenization** (tạo token) trong `natural language processing` (`NLP`).
+
+#### Cleaning và Tokenization
+
+- Các từ nên được xử lý dưới dạng **case insensitive** (không phân biệt chữ hoa/thường), nghĩa là chúng nên được chuyển đổi thành một định dạng duy nhất (chữ thường hoặc chữ hoa) để đồng nhất.
+- **Punctuation** (Dấu câu) cần được xử lý cẩn thận; dấu câu gây ngắt quãng có thể được biểu thị bằng một `special word` (từ đặc biệt) duy nhất, trong khi dấu câu không gây ngắt quãng có thể bị bỏ qua.
+
+#### Xử lý Số và Ký tự Đặc biệt
+
+- **Numbers** (Số) có thể bị bỏ đi nếu chúng không quan trọng, nhưng các số quan trọng nên được giữ lại hoặc thay thế bằng một `special token` như **\<NUMBER\>**.
+- Các **Special characters** (Ký tự đặc biệt), chẳng hạn như ký hiệu toán học và `emojis`, nên được quản lý dựa trên mức độ liên quan của chúng với `model`.
+
+### Ví dụ Thực hành
+
+Một `Python example` minh họa cách `clean` một `corpus` bằng cách gộp `punctuation` và **tokenizing** văn bản bằng cách sử dụng `NLTK library`, tạo ra một `array of tokens` sẵn sàng để phân tích thêm.
+
+Điều này tạo tiền đề cho chủ đề tiếp theo về **continuous bag-of-words model**.
+
+> Trước khi triển khai bất kỳ thuật toán `natural language processing` (`NLP`) nào, bạn có thể muốn `clean` (làm sạch) dữ liệu và `tokenize` (tạo token) nó. Dưới đây là một vài điều cần lưu ý khi xử lý `data` của bạn.
+
+![09_Cleaning_and_Tokenization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/09_Cleaning_and_Tokenization.png)
+
+> Bạn có thể `clean data` bằng `Python` như sau:
+
+![10_Cleaning_and_Tokenization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/10_Cleaning_and_Tokenization.png)
+
+> Bạn có thể thêm bao nhiêu điều kiện tùy thích vào các dòng tương ứng với hình chữ nhật màu xanh lá cây phía trên.
+
+---
 ### **Sliding Window of Words in Python**
 ---
 
