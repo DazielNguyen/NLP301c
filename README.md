@@ -2,7 +2,7 @@
 
 ![Coursera_NLP](https://github.com/DazielNguyen/NLP301c/blob/main/NLP_Coursera.png)
 
-Chào mừng bạn đến với repository học tập môn Natural Language Processing! 👋
+## **Chào mừng bạn đến với repository học tập môn Natural Language Processing!** 👋
 
 ## **Giới thiệu**
 
