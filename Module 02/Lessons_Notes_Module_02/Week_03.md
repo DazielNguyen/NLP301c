@@ -197,11 +197,32 @@ Nội dung này tập trung vào việc xử lý điểm bắt đầu và kết 
 
 > Hãy đảm bảo rằng bạn biết cách tính toán `probabilities` ở trên!
 
-
 ---
 ### **The N-gram Language Model**
 ---
 
+Nội dung này tập trung vào việc tạo và sử dụng một **count matrix** (ma trận đếm) cho `n-grams` trong `natural language processing`.
+
+---
+
+### Count Matrix Creation
+
+* **Count matrix** ghi lại sự xuất hiện của `n-grams`, với các `rows` (hàng) đại diện cho các `n-1 grams` độc nhất (`unique`) và các `columns` (cột) đại diện cho các từ độc nhất.
+* Đối với `bigrams`, phương pháp **sliding window** (cửa sổ trượt) được sử dụng để đếm sự xuất hiện khi bạn `process` `corpus`.
+
+### Probability Matrix Transformation
+
+* **Count matrix** được chuyển đổi thành **probability matrix** (ma trận xác suất) bằng cách `normalizing` (chuẩn hóa) mỗi ô dựa trên tổng của `row` tương ứng.
+* `Matrix` này cung cấp **conditional probabilities** (xác suất có điều kiện) của `n-grams`, điều cần thiết cho `language modeling`.
+
+
+
+---
+
+### Language Model Implementation
+
+* `Language model` sử dụng `probability matrix` để ước tính `sentence probabilities` và dự đoán từ tiếp theo trong một `sequence`.
+* Nó giải quyết các vấn đề **numerical underflow** (tràn số âm) phát sinh từ việc nhân các `probabilities` nhỏ, thường sử dụng các **logarithmic transformations** để đảm bảo `stability` (ổn định).
 
 
 ---
