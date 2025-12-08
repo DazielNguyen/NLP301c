@@ -111,6 +111,46 @@ Nội dung này tập trung vào khái niệm **word embeddings**, một phươn
 ### **How to Create Word Embeddings**
 ---
 
+Nội dung này tập trung vào quá trình tạo **word embeddings** trong `natural language processing` (`NLP`).
+
+#### Các Thành phần Thiết yếu
+
+Để tạo **word embeddings** cần hai thành phần chính:
+
+- **Corpus** (Kho ngữ liệu) văn bản.
+- **Embedding method** (Phương pháp nhúng).
+
+`Corpus` phải liên quan đến ngữ cảnh. Ví dụ, để tạo `Shakespearean embeddings`, bạn cần sử dụng văn bản gốc của Shakespeare chứ không phải chỉ là các ghi chú tóm tắt.
+
+#### Tầm quan trọng của Context
+
+- **Context** (Ngữ cảnh) đề cập đến các từ xung quanh cung cấp ý nghĩa cho mỗi **word embedding**.
+- Một `vocabulary list` đơn giản là không đủ; cần có một `corpus` toàn diện để nắm bắt các sắc thái ngữ nghĩa.
+
+#### Phương pháp và Giám sát
+
+- **Embedding method**, thường dựa trên các `machine learning models`, tạo ra **word embeddings** từ `corpus`.
+- `Learning task` có thể là **self-supervised** (tự giám sát), tận dụng dữ liệu không có nhãn trong khi `model` tự cung cấp ngữ cảnh của riêng nó để giám sát.
+
+#### Hyperparameters và Biểu diễn Toán học
+
+- **Word embeddings** có thể được điều chỉnh bằng **hyperparameters** (siêu tham số), chẳng hạn như **dimension** (chiều) của các `embedding vectors`, thường dao động từ hàng trăm đến hàng nghìn.
+- `Corpus` phải được biến đổi thành một **biểu diễn toán học** phù hợp cho `model`, thường sử dụng **integer-based indices** hoặc **one-hot vectors**.
+
+Nội dung sắp tới sẽ giới thiệu các `word embedding methods` khác nhau, bao gồm cách tiếp cận **continuous bag-of-words** (`CBOW`), cái mà sẽ được triển khai trong bài tập tiếp theo.
+
+> Để tạo **word embeddings**, bạn luôn cần một **corpus** (kho ngữ liệu) văn bản và một **embedding method** (phương pháp nhúng). **Context** (Ngữ cảnh) của một từ cho bạn biết loại từ nào có xu hướng xảy ra gần từ cụ thể đó. **Context** là quan trọng vì đây là yếu tố sẽ mang lại ý nghĩa cho mỗi `word embedding`.
+
+
+#### Phương pháp Embeddings và Tự giám sát
+
+> Có nhiều loại phương pháp có thể cho phép bạn học các **word embeddings**. `Machine learning model` thực hiện một `learning task` (nhiệm vụ học tập), và sản phẩm phụ chính của `task` này là các `word embeddings`. `Task` có thể là học cách dự đoán một từ dựa trên các từ xung quanh trong một câu của `corpus`, như trong trường hợp của **continuous bag-of-words** (`CBOW`).
+
+> `Task` là **self-supervised** (tự giám sát): nó vừa là **unsupervised** (không giám sát) ở chỗ dữ liệu đầu vào — `corpus` — là **unlabelled** (không có nhãn), và vừa là **supervised** (có giám sát) ở chỗ bản thân dữ liệu cung cấp `context` cần thiết mà thông thường sẽ tạo thành các `labels` (nhãn).
+
+> Khi `training word vectors`, có một số **hyperparameters** (siêu tham số) bạn cần điều chỉnh (ví dụ: **dimension** (chiều) của `word vector`).
+
+![05_How_to_Create_Word_Embeddings](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/05_How_to_Create_Word_Embeddings.png)
 
 ---
 ### **Word Embedding Methods**
