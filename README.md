@@ -1,10 +1,23 @@
 # **NLP301c - Xử Lý Ngôn Ngữ Tự Nhiên - Kỳ 6 - FALL 2025**
 
+![Coursera_NLP](https://github.com/DazielNguyen/NLP301c/blob/main/NLP_Coursera.png)
+
 Chào mừng bạn đến với repository học tập môn Natural Language Processing! 👋
 
 ## **Giới thiệu**
 
 Xin chào! Mình là **Nguyễn Văn Anh Duy**, sinh viên ngành Trí Tuệ Nhân Tạo tại Đại học FPT TP.HCM. Repository này lưu trữ toàn bộ tài liệu học tập, bài tập và ghi chú của mình trong môn NLP301c.
+
+## **Về khóa học**
+
+Khóa học **Natural Language Processing Specialization** được phát triển bởi:
+
+- **[Younes Bensouda Mourri](https://www.linkedin.com/in/younes-bensouda-mourri/)** - Instructor, Stanford University
+- **[Łukasz Kaiser](https://www.linkedin.com/in/lukasz-kaiser/)** - Staff Research Scientist, Google Brain
+- **[Eddy Shyu](https://www.linkedin.com/in/eddy-shyu/)** - Curriculum Product Manager, deeplearning.ai
+- **[Andrew Ng](https://www.linkedin.com/in/andrewyng/)** - Founder, DeepLearning.AI & Co-founder, Coursera
+
+Khóa học này là một phần của **DeepLearning.AI** và được cung cấp trên nền tảng **Coursera**.
 
 ## **Cấu trúc Repository**
 
