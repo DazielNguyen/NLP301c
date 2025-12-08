@@ -266,6 +266,63 @@ Nội dung này tập trung vào việc tạo và sử dụng một **count matr
 ### **Language Model Evaluation**
 ---
 
+Nội dung này tập trung vào việc đánh giá `language models` bằng cách sử dụng `perplexity metric`.
+
+#### Understanding Data Splits
+
+- `Text corpus` được chia thành các tập **training**, **validation**, và **test sets** để đảm bảo đánh giá `model` hiệu quả.
+- Một tỷ lệ chia phổ biến cho các `datasets` nhỏ hơn là **80%** cho `training`, **10%** cho `validation`, và **10%** cho `testing`.
+
+#### Perplexity as a Metric
+
+- **Perplexity** đo lường độ phức tạp của một văn bản và cho biết mức độ `language model` dự đoán một tập hợp các câu tốt như thế nào.
+- **Perplexity scores** thấp hơn cho thấy văn bản xuất hiện tự nhiên và giống con người hơn, trong khi `scores` cao hơn cho thấy sự ngẫu nhiên.
+
+#### Calculating Perplexity
+
+- **Perplexity** ($PP$) được tính bằng cách xác định `probability` của các câu trong `test set` và `normalizing` (chuẩn hóa) nó theo số lượng từ ($N$).
+- Công thức tổng quát cho Perplexity của một chuỗi từ $W = w_1, \dots, w_N$ là:
+$$PP(W) = P(w_1, w_2, \dots, w_N)^{-\frac{1}{N}}$$
+- Công thức có thể được đơn giản hóa cho các `bigram models`, và **log perplexity** thường được sử dụng để tính toán dễ dàng hơn.
+
+#### Examples of Language Models
+
+- Các `language models` khác nhau mang lại các `perplexity scores` khác nhau, với các `models` tốt thường đạt từ **20 đến 60**.
+- Nội dung minh họa cách các **unigram**, **bigram**, và **trigram models** hoạt động về mặt `perplexity`, cho thấy sự cải thiện về tính **coherence** (mạch lạc) của văn bản với các `models` phức tạp hơn.
+
+> Bây giờ chúng ta sẽ thảo luận về các `train/val/test splits` (chia tập huấn luyện/xác thực/kiểm thử) và `perplexity`.
+
+#### Train/Val/Test splits
+
+- **Corpora (Kho ngữ liệu) nhỏ hơn:**
+    + 80% train
+    + 10% val
+    + 10% test
+- **Corpora lớn hơn:**
+    + 98% train
+    + 1% val
+    + 1% test
+> Có 2 phương pháp cho chia tập dữ liệu
+
+![08_Language_Model_Evaluation](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/08_Language_Model_Evaluation.png)
+
+#### Perplexity
+
+> `Perplexity` được sử dụng để cho chúng ta biết liệu một tập hợp các câu có vẻ được viết bởi con người hay không, thay vì được tạo ra bởi một chương trình đơn giản chọn từ ngẫu nhiên. Một văn bản được viết bởi con người có nhiều khả năng có `perplexity` thấp hơn, trong khi một văn bản được tạo ra bởi việc chọn từ ngẫu nhiên sẽ có `perplexity` cao hơn.
+
+> Cụ thể, đây là các công thức để tính `perplexity`.
+
+$$PP(W)=P(s_1,s_2,\dots,s_m)^{-\frac{1}{m}}$$
+
+$$PP(W) = \sqrt[m]{ \prod_{i=1}^{m} \prod_{j=1}^{|s_i|} \frac{1}{P\left(w_j^{(i)} \mid w_{j-1}^{(i)}\right)} }$$
+
+> $w_j^{(i)} \to j$ tương ứng với từ thứ $j$ trong câu thứ $i$. Nếu bạn nối tất cả các câu lại, thì $w_i$ là từ thứ $i$ trong `test set`.
+
+$$PP(W) = \sqrt[m]{ \prod_{i=1}^{m} \frac{1}{P(w_i \mid w_{i-1})} }$$
+
+> Để tính **log perplexity**, bạn chuyển từ công thức trên thành:
+
+$$\log PP(W)=-\frac{1}{m}\sum_{i=1}^{m}\log_{2}(P(w_i\mid w_{i-1}))$$
 
 ---
 ### **Out of Vocabulary Words**
