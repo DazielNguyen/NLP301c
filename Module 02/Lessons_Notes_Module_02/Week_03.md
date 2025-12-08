@@ -37,10 +37,73 @@
 ### **N-grams and Probabilities**
 ---
 
+Nội dung này tập trung vào `N-gram language models`, cái mà cần thiết để tạo văn bản tự động.
 
+#### Understanding N-grams
 
+- Một **N-gram** là một chuỗi từ (`sequence of words`) trong đó thứ tự quan trọng; nó cũng có thể đề cập đến ký tự hoặc các yếu tố khác.
+- **Unigrams** bao gồm các từ đơn duy nhất, **bigrams** là các cặp từ liền kề, và **trigrams** là các bộ ba từ.
 
+#### Calculating Probabilities
 
+- `Probability` của một `unigram` được tính bằng cách chia số lần đếm của từ đó cho tổng số từ trong `corpus`.
+- Đối với **bigrams**, `probability` của một từ ($w_i$) đi sau một từ khác ($w_{i-1}$) được xác định bằng số lần đếm của `bigram` chia cho số lần đếm của `unigram` đứng trước:
+$$P(w_i | w_{i-1}) = \frac{Count(w_{i-1} w_i)}{Count(w_{i-1})}$$
+
+#### Generalizing to N-grams
+
+- `Probability` của một từ đi sau một chuỗi từ có thể được tổng quát hóa cho bất kỳ `N-gram` nào, sử dụng số lần đếm của `N-gram` đó và `prefix` ($N-1$ grams) của nó:
+$$P(w_i | w_{i-(N-1)} \dots w_{i-1}) = \frac{Count(w_{i-(N-1)} \dots w_i)}{Count(w_{i-(N-1)} \dots w_{i-1})}$$
+- `Framework` này cho phép tính toán `probabilities` cho các chuỗi có độ dài khác nhau, nâng cao khả năng tạo văn bản.
+
+> Trước khi chúng ta bắt đầu tính toán `probabilities` của các `sequences` nhất định, đầu tiên chúng ta cần định nghĩa `N-gram language model` là gì:
+
+![02_N-grams_and_Probabilities](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/02_N-grams_and_Probabilities.png)
+
+> Bây giờ với những định nghĩa đó, chúng ta có thể gán nhãn cho một câu như sau:
+
+![03_N-grams_and_Probabilities](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/03_N-grams_and_Probabilities.png)
+
+> Bằng ký hiệu khác, bạn có thể viết:
+
+$$w_{1}^{m}=w_{1}w_{2}w_{3}\dots w_{m}$$
+$$w_{1}^{3}=w_{1}w_{2}w_{3}$$
+$$w_{m-2}^{m}=w_{m-2}w_{m-1}w_{m}$$
+
+> Cho `corpus` sau: "I am happy because I am learning." Kích thước `corpus` $m = 7$.
+
+$$P(\text{I}) = \frac{2}{7}$$
+$$P(\text{happy}) = \frac{1}{7}$$
+Để tổng quát hóa, `probability` của một `unigram` là:
+$$P(w) = \frac{C(w)}{m}$$
+
+#### Bigram Probability
+
+![04_N-grams_and_Probabilities](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/04_N-grams_and_Probabilities.png)
+
+> `Bigram Probability` được tính như sau (áp dụng công thức tổng quát cho $N=2$):
+
+$$P(w_2 \mid w_1) = \frac{C(w_1 w_2)}{C(w_1)}$$
+
+#### Trigram Probability
+
+> Để tính `probability` của một `trigram`:
+
+$$P(w_3 \mid w_{1}^{2}) = \frac{C(w_{1}^{2}w_{3})}{C(w_{1}^{2})}$$
+
+> Trong đó `count` là:
+
+$$C(w_{1}^{2}w_{3})=C(w_{1}w_{2}w_{3})=C(w_{1}^{3})$$
+
+#### N-gram Probability
+
+> `N-gram Probability` được tổng quát hóa như sau:
+
+$$P(w_{N} \mid w_{1}^{N-1}) = \frac{C(w_{1}^{N-1}w_{N})}{C(w_{1}^{N-1})}$$
+
+> Trong đó `count` là:
+
+$$C(w_{1}^{N-1}w_{N})=C(w_{1}^{N})$$
 
 ---
 ### **Sequence Probabilities**
