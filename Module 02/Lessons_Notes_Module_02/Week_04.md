@@ -326,6 +326,31 @@ Nội dung tập trung vào việc chuẩn bị `data` (dữ liệu) cho **conti
 ### **Architecture of the CBOW Model**
 ---
 
+Nội dung tập trung vào **architecture** (kiến trúc) của **Continuous Bag of Words** (**CBOW**) `model` được sử dụng trong `natural language processing`.
+
+#### Tổng quan Kiến trúc
+
+* **CBOW model** bao gồm một **shallow dense neural network** (mạng nơ-ron dày đặc nông) với một `input layer`, một `hidden layer` (lớp ẩn), và một `output layer`.
+* `Input` là một `vector` của **context words** (các từ ngữ cảnh), trong khi `output` là **center word** (từ trung tâm) được dự đoán, cả hai đều có kích thước theo **vocabulary** ($V$).
+
+#### Chi tiết các Lớp
+
+* Kích thước của `hidden layer` được xác định bởi **dimension** (chiều) đã chọn của **word embeddings** ($N$), thường dao động từ $100$ đến $1,000$.
+* `Network` là **fully connected** (kết nối đầy đủ), với các **weight matrices** ($W_1$ và $W_2$) và **bias vectors** ($b_1$ và $b_2$) mà `model` học trong quá trình `training`.
+
+#### Hàm Kích hoạt (Activation Functions)
+
+* `Hidden layer` sử dụng **Rectified Linear Units** (**ReLU**) `activation function` (hàm kích hoạt).
+* `Output layer` sử dụng **softmax function** để đưa ra **predictions** (dự đoán).
+
+Bản tóm tắt này cung cấp sự hiểu biết ngắn gọn về cấu trúc và các thành phần của `CBOW model`.
+
+> `Architecture` (Kiến trúc) cho **CBOW model** có thể được mô tả như sau:
+
+![14_Architecture_of_the_CBOW_Model](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/14_Architecture_of_the_CBOW_Model.png)
+
+> Bạn có một `input`, $X$, là giá trị trung bình (`average`) của tất cả các **context vectors** (véc-tơ ngữ cảnh). Sau đó, bạn nhân nó với $W_1$ và cộng thêm $b_1$. Kết quả này đi qua một **ReLU function** để tạo ra **hidden layer** (lớp ẩn) của bạn. Lớp đó sau đó được nhân với $W_2$ và bạn cộng thêm $b_2$. Kết quả này đi qua một **softmax** để cung cấp cho bạn một **distribution** (phân phối) trên $V$ (kích thước `vocabulary`). Bạn chọn `vocabulary word` tương ứng với **arg-max** của `output`.
+
 
 ---
 ### **Architecture of the CBOW Model: Dimensions**
