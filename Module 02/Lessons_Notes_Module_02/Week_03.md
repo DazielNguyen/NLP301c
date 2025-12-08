@@ -168,6 +168,35 @@ $$\begin{array}{r}P(\text { the teacher drinks tea })= \begin{array}{r}P(\text {
 ### **Starting and Ending Sentences**
 ---
 
+Nội dung này tập trung vào việc xử lý điểm bắt đầu và kết thúc của câu khi triển khai `N-gram language models`.
+
+#### Understanding Sentence Boundaries
+
+- Giới thiệu các ký hiệu đặc biệt để biểu thị `start` (bắt đầu) và `end` (kết thúc) của một `sentence`, những ký hiệu này rất quan trọng để tính toán `probabilities` trong `N-gram models`.
+- Giải thích cách sửa đổi các câu bằng cách thêm `start tokens` (ví dụ: "S") và `end tokens` (ví dụ: "/S") để tạo điều kiện thuận lợi cho các phép tính `bigram` và `N-gram`.
+
+#### Calculating Probabilities
+
+- Thảo luận về những thách thức trong việc tính toán `probabilities` cho từ đầu tiên trong một `sentence` do thiếu `context`, và cách việc thêm `start tokens` giải quyết vấn đề này.
+- Mô tả cách xử lý từ cuối cùng của một `sentence`, nhấn mạnh sự cần thiết của một `end-of-sentence token` để duy trì các phép tính `probability` chính xác.
+
+#### Generalizing to N-grams
+
+- Giải thích rằng đối với **N-grams**, việc thêm $n-1$ `start tokens` ở đầu và một `end token` ở cuối mỗi `sentence` cho phép ước tính `probability` chính xác.
+- Minh họa bằng các ví dụ về cách tính `probabilities` cho các độ dài `sentence` khác nhau, đảm bảo tổng `probability` cộng lại bằng 1 trên tất cả các `sentences` có thể có.
+
+> Chúng ta thường bắt đầu và kết thúc một câu với các `tokens` sau tương ứng: `<s>` và `</s>`.
+
+> Khi tính toán `probabilities` bằng cách sử dụng một `unigram`, bạn có thể thêm một `<s>` vào đầu câu. Để tổng quát hóa cho một **N-gram language model**, bạn có thể thêm $N-1$ `start tokens` `<s>`.
+
+> Đối với `end of sentence token` `</s>`, bạn chỉ cần một cái ngay cả khi đó là một `N-gram`.
+
+> Dưới đây là một ví dụ:
+
+![05_Starting_and_Ending_Sentences](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/05_Starting_and_Ending_Sentences.png)
+
+> Hãy đảm bảo rằng bạn biết cách tính toán `probabilities` ở trên!
+
 
 ---
 ### **The N-gram Language Model**
