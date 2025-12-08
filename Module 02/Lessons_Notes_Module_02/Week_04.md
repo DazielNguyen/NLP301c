@@ -690,10 +690,38 @@ Tùy chọn cuối cùng là lấy giá trị **average** (trung bình) của c�
 ### **Evaluating Word Embeddings: Intrinsic Evaluation**
 ---
 
+Nội dung này tập trung vào hai loại `evaluation metrics` (số liệu đánh giá) cho **word embeddings**: **intrinsic evaluation** (đánh giá nội tại) và **extrinsic evaluation** (đánh giá ngoại tại).
+
+#### Đánh giá Nội tại (Intrinsic Evaluation) 
+
+* **Intrinsic evaluation** đánh giá mức độ **word embeddings** nắm bắt được các mối quan hệ **semantic** (ngữ nghĩa) và **syntactic** (ngữ pháp) giữa các từ.
+* Các phương pháp bao gồm kiểm tra trên **analogies** (sự tương tự/tương đồng), chẳng hạn như: "France is to Paris as Italy is to ___," và sử dụng các `clustering algorithms` (thuật toán phân cụm) để nhóm các `word vectors` tương tự.
+
+#### Đánh giá Ngoại tại (Extrinsic Evaluation)
+
+* Phương pháp này đánh giá **word embeddings** dựa trên **performance** (hiệu suất) của chúng trong các `tasks` (tác vụ) hoặc `applications` (ứng dụng) cụ thể.
+* Nó sẽ được thảo luận chi tiết hơn trong nội dung tiếp theo.
+
+#### Tóm tắt Tổng thể
+
+* **Intrinsic evaluation** cho phép kiểm tra các mối quan hệ bên trong các từ thông qua **analogies** và **clustering**.
+* **Extrinsic evaluation** tập trung vào **task performance** (hiệu suất tác vụ).
+
+> **Intrinsic evaluation** (Đánh giá nội tại) cho phép bạn kiểm tra các mối quan hệ giữa các từ. Nó cho phép bạn nắm bắt **semantic analogies** (sự tương tự ngữ nghĩa) như: “France” đối với “Paris” cũng như “Italy” đối với \<?\> và cũng nắm bắt **syntactic analogies** (sự tương tự cú pháp) như: “seen” đối với “saw” cũng như “been” đối với \<?\>.
+
+
+> Các trường hợp **ambiguous** (mơ hồ) có thể khó theo dõi hơn nhiều:
+
+![25_Evaluating_Word_Embeddings_IE](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/25_Evaluating_Word_Embeddings_IE.png)
+
+> Dưới đây là một vài cách cho phép sử dụng **intrinsic evaluation**.
+
+![26_Evaluating_Word_Embeddings_IE](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/26_Evaluating_Word_Embeddings_IE.png)
 
 ---
 ### **Evaluating Word Embeddings: Extrinsic Evaluation**
 ---
+
 
 
 
