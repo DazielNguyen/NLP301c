@@ -67,11 +67,11 @@ Nội dung tập trung vào việc biểu diễn các từ trong một `vocabula
 
 > Ở bên trái, bạn có một ví dụ trong đó bạn sử dụng số nguyên (`integers`) để biểu diễn một từ. Vấn đề ở đó là không có lý do gì khiến từ này tương ứng với một số lớn hơn từ khác. Để khắc phục vấn đề này, chúng ta giới thiệu **one hot vectors** (sơ đồ bên phải). Để triển khai `one hot vectors`, bạn phải `initialize` (khởi tạo) một `vector` toàn số không (`zeros`) có **dimension $V$** và sau đó đặt số **1** vào `index` tương ứng với từ bạn đang biểu diễn.
 
-**Ưu điểm** (`Pros`) của `one-hot vectors`:
+> **Ưu điểm** (`Pros`) của `one-hot vectors`:
 - Đơn giản.
 - Không yêu cầu thứ tự ngụ ý (`implied ordering`).
 
-**Nhược điểm** (`Cons`) của `one-hot vectors`:
+> **Nhược điểm** (`Cons`) của `one-hot vectors`:
 - Rất lớn (`huge`).
 - Không `encode` (mã hóa) được ý nghĩa (`meaning`).
 
@@ -79,7 +79,33 @@ Nội dung tập trung vào việc biểu diễn các từ trong một `vocabula
 ### **Word Embeddings**
 ---
 
+Nội dung này tập trung vào khái niệm **word embeddings**, một phương pháp để `encode` (mã hóa) ý nghĩa của các từ trong một **low-dimensional vector space** (không gian véc-tơ chiều thấp).
 
+#### Understanding Word Embeddings
+
+- **Word embeddings** biểu diễn các từ dưới dạng các `vectors` theo cách nắm bắt được ý nghĩa của chúng, cho phép so sánh dựa trên sự gần gũi trong `vector space`.
+- Các từ có thể được định vị dọc theo hai trục: một cho **sentiment** (từ tích cực đến tiêu cực) và một cho **concreteness** (từ cụ thể đến trừu tượng).
+
+#### Creating Word Vectors
+
+- Một `two-dimensional vector` (véc-tơ hai chiều) có thể biểu diễn các từ, trong đó các `coordinates` (tọa độ) chỉ ra `sentiment` và mức độ trừu tượng của chúng.
+- Biểu diễn này cho phép xác định sự tương đồng giữa các từ, chẳng hạn như "happy" và "excited" gần nhau hơn "paper."
+
+#### Applications and Importance
+
+- **Word embeddings** tạo điều kiện cho các `natural language processing` (`NLP`) `tasks` khác nhau, bao gồm **analogies** (sự tương tự) và **sentence meaning encoding** (mã hóa ý nghĩa câu).
+- Bài giảng nhấn mạnh rằng việc tạo `word embeddings` là một mục tiêu chính của mô-đun này, dẫn đến các `NLP applications` phức tạp hơn như **question answering** và **translation**.
+
+> Vậy tại sao lại sử dụng **word embeddings**? Hãy cùng xem.
+
+![04_Word_Embeddings](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/04_Word_Embeddings.png)
+
+> Từ sơ đồ trên, bạn có thể thấy rằng khi `encode` (mã hóa) một từ trong không gian **2D**, các từ tương tự có xu hướng nằm gần nhau. Có lẽ **coordinate** đầu tiên đại diện cho việc một từ là tích cực hay tiêu cực. **Coordinate** thứ hai cho bạn biết từ đó là **abstract** (trừu tượng) hay **concrete** (cụ thể). Đây chỉ là một ví dụ, trong thế giới thực, bạn sẽ tìm thấy các `embeddings` với hàng trăm **dimensions** (chiều). Bạn có thể coi mỗi **coordinate** là một con số cho bạn biết điều gì đó về từ đó.
+
+> Ưu điểm của Word Embeddings
+
+- **Low dimensions** (Chiều thấp) (ít hơn $V$, kích thước `vocabulary`).
+- Cho phép bạn `encode` (mã hóa) ý nghĩa (`meaning`).
 
 ---
 ### **How to Create Word Embeddings**
