@@ -351,19 +351,117 @@ Bản tóm tắt này cung cấp sự hiểu biết ngắn gọn về cấu trú
 
 > Bạn có một `input`, $X$, là giá trị trung bình (`average`) của tất cả các **context vectors** (véc-tơ ngữ cảnh). Sau đó, bạn nhân nó với $W_1$ và cộng thêm $b_1$. Kết quả này đi qua một **ReLU function** để tạo ra **hidden layer** (lớp ẩn) của bạn. Lớp đó sau đó được nhân với $W_2$ và bạn cộng thêm $b_2$. Kết quả này đi qua một **softmax** để cung cấp cho bạn một **distribution** (phân phối) trên $V$ (kích thước `vocabulary`). Bạn chọn `vocabulary word` tương ứng với **arg-max** của `output`.
 
-
 ---
 ### **Architecture of the CBOW Model: Dimensions**
 ---
+
+Nội dung tập trung vào việc hiểu **dimensions** (chiều) của các lớp trong một `neural network model`, cụ thể là **continuous bag of words** (**CBOW**) `model`.
+
+#### Kiến trúc Neural Network
+
+* `Input layer` được biểu diễn bằng một **column vector** ($x$) với các số không (`zeros`), trong đó $V$ là **vocabulary size** (kích thước từ vựng). ($x$ có dimension $V \times 1$).
+* `Hidden layer` ($h$) được tính bằng **weighted sum** ($W_1 x + b_1$), trong đó $W_1$ là **weight matrix** (ma trận trọng số) (dimension $N \times V$) và $b_1$ là **bias vector** (véc-tơ độ lệch) (dimension $N \times 1$). ($N$ là embedding dimension).
+
+#### Tính toán Output
+
+* Các giá trị **output layer** được suy ra từ `hidden layer` ($h$) bằng cách sử dụng ($W_2 h + b_2$), trong đó $W_2$ là **weight matrix** cho `output layer` (dimension $V \times N$) và $b_2$ là **bias vector** tương ứng (dimension $V \times 1$).
+* `Output` cuối cùng ($\hat{y}$) được thu được bằng cách áp dụng **softmax activation function** (hàm kích hoạt softmax) cho các giá trị `output layer`. ($\hat{y}$ có dimension $V \times 1$).
+
+#### Xử lý các Loại Vector
+
+* Nếu sử dụng **row vectors** (véc-tơ hàng) thay vì **column vectors** (véc-tơ cột), các phép tính `matrix` phải được điều chỉnh tương ứng, chẳng hạn như **transposing matrices** (chuyển vị ma trận) trong quá trình nhân.
+* Hiểu rõ các `dimensions` này là rất quan trọng để tránh các lỗi **dimension mismatch errors** (lỗi không khớp chiều) trong các `programming assignments`.
+
+> Các phương trình cho `model` trước là:
+
+$$z_1 = W_1 x + b_1$$
+
+$$h = \text{ReLU}(z_1)$$
+
+$$z_2 = W_2 h + b_2$$
+
+$$\hat{y} = \text{softmax}(z_2)$$
+
+> Ở đây, bạn có thể thấy các **dimensions** (chiều):
+
+![15_Architecture_of_the_CBOW_Model_Dimensions](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/15_Architecture_of_the_CBOW_Model_Dimensions.png)
+
+> Hãy đảm bảo rằng bạn xem kỹ các phép **matrix multiplications** (nhân ma trận) và hiểu tại sao các **dimensions** (chiều) lại hợp lý.
 
 ---
 ### **Architecture of the CBOW Model: Dimensions 2**
 ---
 
+Nội dung tập trung vào khái niệm **batch processing** (xử lý theo lô) trong `Continuous Bag of Words` (**CBOW**) `model` được sử dụng trong `neural networks`.
+
+#### Batch Processing trong CBOW
+
+* Thay vì cung cấp các `individual examples` (ví dụ riêng lẻ), nhiều `input examples` có thể được xử lý đồng thời, điều này giúp tăng tốc quá trình học tập.
+* **Batch size** ($M$) là một **hyperparameter** (siêu tham số) được định nghĩa trong quá trình `training`, cho phép hình thành một **matrix** ($X$) từ các `input vectors` này.
+
+#### Các Phép toán Matrix
+
+* Các giá trị **hidden layer** ($H$) được tính bằng cách áp dụng **ReLU activation function** cho `weighted input matrix` ($Z_1$), cái mà bao gồm một **bias matrix** ($B_1$).
+* **Output matrix** ($\hat{Y}$) được suy ra từ `hidden layer` và bao gồm một **replicated bias matrix** ($B_2$), biến đổi các `input vectors` thành các `output vectors` tương ứng.
+
+#### Hàm Kích hoạt
+
+* Bài giảng gợi ý về việc giới thiệu các **activation functions** (hàm kích hoạt) được sử dụng trong `CBOW model`, cho thấy người học đang tiến tới việc xây dựng một `model` chức năng.
+
+> Khi xử lý **batch input** (đầu vào theo lô), bạn có thể **stack** (xếp chồng) các ví dụ thành các **columns** (cột). Sau đó, bạn có thể tiến hành nhân các **matrices** (ma trận) như sau:
+
+![16_Architecture_of_the_CBOW_Model_Dimensions_2](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/16_Architecture_of_the_CBOW_Model_Dimensions_2.png)
+
+> Trong sơ đồ phía trên, bạn có thể thấy các **dimensions** (chiều) của mỗi **matrix**. Lưu ý rằng $\hat{Y}$ của bạn có **dimension** $V$ nhân $M$. Mỗi **column** là **prediction** (dự đoán) của `column` tương ứng với các **context words**. Vì vậy, `column` đầu tiên trong $\hat{Y}$ là **prediction** tương ứng với `column` đầu tiên của $X$.
+
 ---
 ### **Architecture of the CBOW Model: Activation Functions**
 ---
 
+Nội dung này tập trung vào hai **activation functions** (hàm kích hoạt) quan trọng được sử dụng trong trí tuệ nhân tạo: **Rectified Linear Unit** (`ReLU`) và **Softmax function**.
+
+#### ⚙️ ReLU Function
+
+* **ReLU** là một **activation function** được sử dụng rộng rãi, nó chỉ kích hoạt một **neuron** khi `weighted input` là dương, thiết lập tất cả các `inputs` âm về 0.
+* Công thức của `ReLU` là:
+
+$$f(z) = \max(0, z)$$
+
+* Ví dụ, nếu `input vector` chứa các giá trị âm, những giá trị đó sẽ trở thành số 0 trong `output`, trong khi các giá trị dương vẫn giữ nguyên.
+
+#### 📊 Softmax Function
+
+* **Softmax function** nhận một `vector of real numbers` (véc-tơ các số thực) làm `input` và `output` ra một **probability distribution** (phân phối xác suất), trong đó tổng các giá trị bằng một.
+
+* Công thức cho `Softmax` (đối với phần tử thứ $i$ trong vector $z$) là:
+
+$$\sigma(z)_i = \frac{e^{z_i}}{\sum_{j=1}^{K} e^{z_j}}$$
+
+* Nó đặc biệt hữu ích trong các vấn đề **multi-class classification** (phân loại đa lớp), vì nó cung cấp `probabilities` của mỗi `class`, cho phép giải thích `model's predictions`.
+
+Tóm lại, `ReLU` giúp quản lý kích hoạt **neuron** ở `hidden layer`, trong khi `Softmax` là cần thiết để tạo **probabilities** ở `output layer` trong các `classification tasks`.
+
+> ReLU function
+
+**ReLU function** (`Rectified Linear Unit`), là một trong những `activation functions` phổ biến nhất. Khi bạn đưa một `vector`, cụ thể là $x$, vào một `ReLU function`. Bạn kết thúc với phép tính:
+
+$$x = \max(0, x)$$
+
+Đây là hình vẽ minh họa `ReLU`.
+
+![17_Architecture_of_the_CBOW_Model_Dimensions_AF](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/17_Architecture_of_the_CBOW_Model_Dimensions_AF.png)
+
+> Softmax function
+
+**Softmax function** nhận một `vector` và biến đổi nó thành một **probability distribution** (phân phối xác suất). Ví dụ, cho trước `vector` $z$ sau, bạn có thể biến đổi nó thành một **probability distribution** như sau.
+
+![18_Architecture_of_the_CBOW_Model_Dimensions_AF](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/18_Architecture_of_the_CBOW_Model_Dimensions_AF.png)
+
+Như bạn có thể thấy, bạn có thể tính `probability` ($\hat{y}_i$) của phần tử $i$ như sau:
+
+$$\hat{y}_i = \frac{e^{z_i}}{\sum_{j=1}^{V} e^{z_j}}$$
+
+Trong đó $V$ là kích thước của `vector` $z$ (tức là kích thước `vocabulary`).
 
 ---
 ### **Training a CBOW Model: Cost Function**
