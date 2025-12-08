@@ -156,7 +156,42 @@ Nội dung sắp tới sẽ giới thiệu các `word embedding methods` khác n
 ### **Word Embedding Methods**
 ---
 
+Nội dung này tập trung vào các **word embedding methods** khác nhau được sử dụng trong `natural language processing`.
 
+#### Mô hình Word2Vec
+
+* **Word2Vec** sử dụng một **shallow neural network** (mạng nơ-ron nông) với hai `architectures` (kiến trúc): **continuous bag-of-words** (**CBOW**) và **continuous skip-gram**.
+    * **CBOW** dự đoán một từ bị thiếu dựa trên các từ xung quanh.
+    * **Skip-gram** dự đoán các từ xung quanh từ một từ `input` cho trước.
+
+#### Các Kỹ thuật Embeddings Nâng cao
+
+* **GloVe** (`Global Vectors`) phân tích ma trận **word co-occurrence matrix** (đồng xuất hiện từ) để nắm bắt ý nghĩa của từ.
+* **FastText** cải tiến `skip-gram` bằng cách biểu diễn các từ dưới dạng **character n-grams**, cho phép nó xử lý hiệu quả các **unseen words** (từ chưa từng thấy).
+
+### Contextual Word Embeddings
+
+* Các `models` tiên tiến như **BERT**, **ELMo**, và **GPT-2** tạo ra các `embeddings` khác nhau cho các từ dựa trên **context** (ngữ cảnh) của chúng, hỗ trợ **polysemy** (đa nghĩa).
+* Các `models` này có thể được tìm thấy dưới dạng **pretrained versions** (phiên bản được huấn luyện trước) trực tuyến và có thể được **fine-tuned** (tinh chỉnh) với các `corpora` cụ thể để có `performance` tốt hơn.
+
+### 📚 Phương pháp Word Embedding
+
+#### Phương pháp Cổ điển (`Classical Methods`)
+
+* **word2vec** (Google, 2013):
+    * **Continuous bag-of-words (CBOW)**: `model` học cách **dự đoán** từ trung tâm (`center word`) cho trước các `context words` (từ ngữ cảnh).
+    * **Continuous skip-gram / Skip-gram with negative sampling (SGNS)**: `model` học cách **dự đoán** các từ xung quanh (`surrounding words`) cho trước một từ `input`.
+
+* **Global Vectors (GloVe)** (Stanford, 2014): Phân tích `logarithm` của **word co-occurrence matrix** (ma trận đồng xuất hiện từ) của `corpus`, tương tự như `count matrix` bạn đã sử dụng trước đây.
+* **fastText** (Facebook, 2016): Dựa trên `skip-gram model` và tính đến cấu trúc của từ bằng cách biểu diễn các từ dưới dạng `n-gram` của ký tự. Nó hỗ trợ các từ **out-of-vocabulary (OOV)**.
+
+#### Deep Learning, Contextual Embeddings
+
+Trong các `models` tiên tiến hơn này, các từ có các `embeddings` khác nhau tùy thuộc vào **context** (ngữ cảnh) của chúng. Bạn có thể tải xuống các `pre-trained embeddings` (embeddings được huấn luyện trước) cho các `models` sau:
+
+* **BERT** (Google, 2018)
+* **ELMo** (Allen Institute for AI, 2018)
+* **GPT-2** (OpenAI, 2018)
 
 ---
 ### **Continuous Bag-of-Words Model**
