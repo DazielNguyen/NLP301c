@@ -179,7 +179,7 @@ Nếu bạn muốn trao đổi hoặc có thắc mắc gì, đừng ngại liên
 
 ## License
 
-Copyright © 2025 Nguyen Van Anh Duy - AWS FCJ Internship Report
+Copyright © 2025 Nguyen Van Anh Duy - NLP301c Documents
 
 ---
 
