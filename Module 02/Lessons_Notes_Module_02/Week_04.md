@@ -644,6 +644,47 @@ $$\mathbf{b}_{2} := \mathbf{b}_{2} - \alpha \frac{\partial J_{\text {batch }}}{\
 ### **Extracting Word Embedding Vectors**
 ---
 
+Nội dung này tập trung vào việc trích xuất **word embeddings** từ một `trained neural network model` (mô hình mạng nơ-ron đã được huấn luyện), cụ thể trong bối cảnh **continuous bag-of-words model** (`CBOW`).
+
+#### Phương pháp Trích xuất
+
+* **Column Vectors từ $W_1$**: Mỗi **column vector** (véc-tơ cột) của **matrix $W_1$** biểu diễn `word embedding` cho một từ tương ứng trong `vocabulary`, duy trì cùng thứ tự với `input data`.
+* **Row Vectors từ $W_2$**: Mỗi **row vector** (véc-tơ hàng) của **matrix $W_2$** đóng vai trò là `word embedding` cho từ tương ứng, cũng tuân theo thứ tự `input`.
+
+#### Biểu diễn Trung bình
+
+* **Average của $W_1$ và $W_2$**: Phương pháp thứ ba liên quan đến việc tính **average** (trung bình) các `column vectors` từ $W_1$ và các `row vectors` từ $W_2$ để tạo ra một **matrix $W_3$** mới, từ đó `word embeddings` có thể được trích xuất.
+
+#### Tổng quan Bài tập (Assignment Overview)
+
+* Trong **assignment** (bài tập) sắp tới, bạn sẽ tính **average** của **transpose** (chuyển vị) của $W_1$ và $W_2$ để trích xuất `word embeddings` dưới dạng **row vectors**, chuẩn bị cho các **evaluation metrics** (số liệu đánh giá) trong tương lai.
+
+> Có hai tùy chọn để trích xuất **word embeddings** sau khi huấn luyện **continuous bag of words model** (`CBOW`).
+
+>1. Sử dụng Ma trận $W_1$
+
+Bạn có thể sử dụng ma trận trọng số $\mathbf{W}_1$ (ma trận từ lớp `input` đến `hidden layer`) như sau:
+
+* Nếu bạn sử dụng $\mathbf{W}_1$, mỗi **column** (cột) của ma trận sẽ tương ứng với `embedding` của một từ cụ thể trong `vocabulary`.
+
+![22_Extracting_Word_Embedding_Vectors](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/22_Extracting_Word_Embedding_Vectors.png)
+
+
+> 2. Sử dụng Ma trận $W_2$
+
+Bạn cũng có thể sử dụng ma trận trọng số $\mathbf{W}_2$ (ma trận từ `hidden layer` đến `output layer`) như sau:
+
+* Trong trường hợp này, mỗi **row** (hàng) của ma trận $\mathbf{W}_2$ sẽ tương ứng với `embedding` của một từ.
+
+![23_Extracting_Word_Embedding_Vectors](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/23_Extracting_Word_Embedding_Vectors.png)
+
+> 3. Lấy Giá trị Trung bình (Averaging)
+
+Tùy chọn cuối cùng là lấy giá trị **average** (trung bình) của cả hai ma trận như sau:
+
+* Phương pháp này thường được sử dụng vì cả $\mathbf{W}_1$ và **chuyển vị** của $\mathbf{W}_2$ ($\mathbf{W}_2^T$) đều đóng vai trò là `embedding matrices`. Việc lấy giá trị trung bình giữa hai biểu diễn này thường cho kết quả **embeddings** ổn định và mạnh mẽ hơn.
+
+![24_Extracting_Word_Embedding_Vectors](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/24_Extracting_Word_Embedding_Vectors.png)
 
 ---
 ### **Evaluating Word Embeddings: Intrinsic Evaluation**
