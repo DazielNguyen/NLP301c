@@ -328,6 +328,52 @@ $$\log PP(W)=-\frac{1}{m}\sum_{i=1}^{m}\log_{2}(P(w_i\mid w_{i-1}))$$
 ### **Out of Vocabulary Words**
 ---
 
+Nội dung này tập trung vào việc xử lý các từ **out-of-vocabulary** (`OOV`) trong `language models`.
+
+#### Understanding Out-of-Vocabulary Words
+
+- **OOV words** là những từ không có mặt trong `training vocabulary` của `model`, thường gặp trong các `tasks` như `speech recognition`.
+- Một **closed vocabulary** (từ vựng đóng) giới hạn `model` trong một tập hợp từ cố định, trong khi **open vocabulary** (từ vựng mở) cho phép các từ mới, chưa từng thấy.
+
+#### Using the UNK Token
+
+- Để quản lý `OOV words`, chúng có thể được thay thế bằng một `special token` (**UNK**), trong quá trình tính toán `probability`.
+- `Vocabulary` được định nghĩa dựa trên `word frequency` (tần suất từ), trong đó các từ xuất hiện ít hơn một số lần được chỉ định sẽ được thay thế bằng **UNK**.
+
+#### Building Vocabulary
+
+- `Vocabulary` có thể được tạo bằng cách đặt một **minimum frequency threshold** (ngưỡng tần suất tối thiểu) hoặc một giới hạn kích thước tối đa.
+- Sự hiện diện của `UNK tokens` có thể ảnh hưởng đến `perplexity` của `model`, thường làm nó có vẻ hiệu quả hơn, nhưng quá nhiều `UNKs` có thể dẫn đến `outputs` vô nghĩa.
+
+Tóm lại, bài giảng nhấn mạnh tầm quan trọng của việc quản lý hiệu quả `OOV words` để cải thiện `language model performance`.
+
+> Nhiều khi, bạn sẽ phải xử lý các từ không xác định trong `corpus`. Vậy làm thế nào để bạn chọn **vocabulary** (từ vựng) của mình?
+
+#### Định nghĩa và Loại Vocabulary
+
+> **Vocabulary** là một tập hợp các từ độc nhất được hỗ trợ bởi `language model` của bạn.
+
+- Trong một số `tasks` như `speech recognition` hoặc `question answering`, bạn sẽ gặp và tạo ra các từ chỉ từ một tập hợp từ cố định. Do đó, đây là **closed vocabulary** (từ vựng đóng).
+- **Open vocabulary** (từ vựng mở) có nghĩa là bạn có thể gặp các từ bên ngoài `vocabulary`, như tên của một thành phố mới trong `training set`.
+
+#### "Công thức" xử lý từ không xác định
+
+> Dưới đây là một "công thức" cho phép bạn xử lý các từ không xác định:
+
+1.  Tạo `vocabulary` $V$.
+2.  Thay thế bất kỳ từ nào trong `corpus` và không có trong $V$ bằng **`<UNK>`** (Unknown token).
+3.  Đếm `probabilities` với `<UNK>` như với bất kỳ từ nào khác.
+
+![09_Out_of_Vocabulary_Words](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W3/09_Out_of_Vocabulary_Words.png)
+
+> Ví dụ trên cho thấy cách bạn có thể sử dụng **min\_frequency** (tần suất tối thiểu) và thay thế tất cả các từ xuất hiện ít hơn `min_frequency` bằng **UNK**. Sau đó bạn có thể coi **UNK** như một từ thông thường.
+
+#### Tiêu chí để tạo Vocabulary
+
+- **Min word frequency $f$**: Chọn một tần suất từ tối thiểu.
+- **Max $|V|$**: Đặt giới hạn kích thước tối đa của `vocabulary`, bao gồm các từ theo tần suất.
+- Sử dụng `<UNK>` một cách **tiết kiệm** (Vì việc sử dụng quá nhiều `<UNK>` có thể làm giảm ý nghĩa của `output`).
+- **Perplexity**: Chỉ so sánh `LM` (Language Models) có cùng `vocabulary` ($V$) để có kết quả đánh giá công bằng.
 
 ---
 ### **Smoothing**
