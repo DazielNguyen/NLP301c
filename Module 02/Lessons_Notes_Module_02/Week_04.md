@@ -293,12 +293,34 @@ Tổng quan, bài giảng này cung cấp một cách tiếp cận thực tế �
 > Chúng ta bắt đầu bằng cách đặt $i$ bằng $C$. Sau đó, chúng ta tách **center\_word** (từ trung tâm) và **context\_words** (các từ ngữ cảnh). Chúng ta sau đó **yield** (trả về) các giá trị này và **increment** (tăng) $i$ lên.
 
 
-
 ---
 ### **Transforming Words into Vectors**
 ---
 
+Nội dung tập trung vào việc chuẩn bị `data` (dữ liệu) cho **continuous bag-of-words model** (**CBOW**) trong `natural language processing`.
 
+#### Chuẩn bị Dữ liệu cho Mô hình CBOW
+
+* **Context và Central Words**: Quá trình bắt đầu bằng việc xác định **context words** và **central word** (từ trung tâm) từ một `sliding window` (cửa sổ trượt) trên `corpus` (kho ngữ liệu).
+* **Vocabulary Creation**: Một **vocabulary** (từ vựng) được hình thành từ các từ độc nhất (`unique words`) trong `corpus`, sau đó được sử dụng để tạo **one-hot vectors** cho các `central words`.
+
+#### Biểu diễn Vector
+
+* **One-Hot Encoding**: Mỗi từ trong `vocabulary` được biểu diễn dưới dạng **one-hot vector**, trong đó '1' cho biết sự hiện diện của một từ và '0' cho biết sự vắng mặt.
+* **Averaging Context Vectors**: Đối với **context words**, một `vector` duy nhất được tạo ra bằng cách **averaging** (tính trung bình) các `one-hot vectors` của mỗi `context word`, cung cấp một biểu diễn cho `context`.
+
+#### Chuẩn bị Dữ liệu Huấn luyện
+
+* **Final Vector Representation**: Các `final vectors` (véc-tơ cuối cùng) cho cả `central words` và `context words` được chuẩn bị để `training` (huấn luyện) **CBOW model**.
+* **Transition to Model Learning**: Với `data` đã được biểu diễn đầy đủ, bước tiếp theo là tìm hiểu về **architecture** (kiến trúc) của **CBOW model** và áp dụng các kỹ năng vào các bài tập sắp tới.
+
+> Để biến đổi các **context vectors** (véc-tơ ngữ cảnh) thành một **single vector** (véc-tơ đơn lẻ), bạn có thể sử dụng công thức/phương pháp sau:
+
+![12_Transforming_Words_into_Vectors](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/12_Transforming_Words_into_Vectors.png)
+
+> Như bạn có thể thấy, chúng ta bắt đầu với các **one-hot vectors** cho các từ ngữ cảnh và biến đổi chúng thành một **single vector** bằng cách lấy **average** (trung bình). Kết quả là bạn nhận được các `vectors` sau đây mà bạn có thể sử dụng cho việc **training** (huấn luyện) của mình.
+
+![13_Transforming_Words_into_Vectors](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Image_Module_02/M2_W4/13_Transforming_Words_into_Vectors.png)
 
 ---
 ### **Architecture of the CBOW Model**
