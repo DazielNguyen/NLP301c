@@ -67,14 +67,19 @@ $$P(w_i | w_{i-(N-1)} \dots w_{i-1}) = \frac{Count(w_{i-(N-1)} \dots w_i)}{Count
 > Bằng ký hiệu khác, bạn có thể viết:
 
 $$w_{1}^{m}=w_{1}w_{2}w_{3}\dots w_{m}$$
+
 $$w_{1}^{3}=w_{1}w_{2}w_{3}$$
+
 $$w_{m-2}^{m}=w_{m-2}w_{m-1}w_{m}$$
 
 > Cho `corpus` sau: "I am happy because I am learning." Kích thước `corpus` $m = 7$.
 
 $$P(\text{I}) = \frac{2}{7}$$
+
 $$P(\text{happy}) = \frac{1}{7}$$
-Để tổng quát hóa, `probability` của một `unigram` là:
+
+> Để tổng quát hóa, `probability` của một `unigram` là:
+
 $$P(w) = \frac{C(w)}{m}$$
 
 #### Bigram Probability
@@ -109,7 +114,55 @@ $$C(w_{1}^{N-1}w_{N})=C(w_{1}^{N})$$
 ### **Sequence Probabilities**
 ---
 
+Nội dung này tập trung vào việc mô hình hóa toàn bộ câu bằng cách sử dụng `n-gram probabilities`, điều này cần thiết để tạo văn bản.
 
+#### Understanding Conditional Probability
+
+- `Conditional probability` (xác suất có điều kiện) của một từ phụ thuộc vào (các) từ đứng trước, được thể hiện thông qua **chain rule** (quy tắc chuỗi).
+- Công thức cho `conditional probability` có thể được sắp xếp lại để tính **joint probability** (xác suất đồng thời) của các chuỗi từ.
+
+#### Applying the Chain Rule
+
+- `Probability` của một câu ($w_1, \dots, w_m$) được tính bằng tích của `probabilities` của mỗi từ với điều kiện là các từ đứng trước nó:
+
+$$P(w_1, \dots, w_m) = P(w_1) \prod_{i=2}^{m} P(w_i | w_1, \dots, w_{i-1})$$
+
+- Khi các câu dài hơn, khả năng tìm thấy các `sequences` chính xác trong `training corpus` (kho ngữ liệu huấn luyện) giảm xuống.
+
+#### Using the Markov Assumption
+
+- **Markov assumption** (giả định Markov) đơn giản hóa các phép tính bằng cách chỉ xem xét một lịch sử giới hạn của các từ trước đó ($n-1$).
+- Dưới giả định Markov, `conditional probability` của $w_i$ được tính:
+
+$$P(w_i | w_1, \dots, w_{i-1}) \approx P(w_i | w_{i-(N-1)}, \dots, w_{i-1})$$
+
+- Đối với `bigrams` (N=2), công thức tập trung vào từ đứng ngay trước nó ($w_{i-1}$), cho phép ước tính `sentence probabilities` dễ dàng hơn.
+
+Bản tóm tắt này gói gọn các khái niệm chính về `n-gram modeling` và ứng dụng của nó trong `natural language processing`.
+
+> Bạn vừa thấy cách tính toán `sequence probabilities`, những thiếu sót của chúng, và cuối cùng là cách xấp xỉ `N-gram probabilities`. Khi làm như vậy, bạn cố gắng xấp xỉ `probability` (xác suất) của một câu. Ví dụ, `probability` của câu sau là gì: "The teacher drinks tea."
+
+> Để tính toán nó, bạn sẽ sử dụng những điều sau:
+
+- $$P(B \mid A)=\frac{P(A,B)}{P(A)}\Longrightarrow P(A,B)=P(A)P(B\mid A)$$
+
+- $$P(A,B,C,D)=P(A)P(B\mid A)P(C\mid A,B)P(D\mid A,B,C)$$
+
+> Để tính `probability` của một `sequence`, bạn có thể tính như sau:
+
+$$\begin{array}{r}P(\text { the teacher drinks tea })= \begin{array}{r}P(\text {the}) P(\text { teacher } \mid \text {the}) P(\text { drinks } \mid \text {the teacher}) P(\text {tea} \mid \text {the teacher drinks })\end{array}\end{array}$$
+
+> Một trong những vấn đề chính khi tính `probabilities` ở trên là `corpus` hiếm khi chứa chính xác các cụm từ giống như những cụm từ bạn đã tính `probabilities`. Do đó, bạn có thể dễ dàng nhận được `probability` bằng 0. **Markov assumption** (giả định Markov) chỉ ra rằng chỉ từ cuối cùng mới quan trọng. Do đó:
+
+- $$\text{Bigram } P(w_n \mid w_{1}^{n-1})\approx P(w_n \mid w_{n-1})$$
+
+- $$\text{N-gram } P(w_n \mid w_{1}^{n-1})\approx P(w_n \mid w_{n-N+1}^{n-1})$$
+
+> Bạn có thể mô hình hóa toàn bộ `sentence` như sau:
+
+- $$P(w_{1}^{n})\approx\prod_{i=1}^{n}P(w_i\mid w_{i-1})$$
+
+- $$P(w_{1}^{n})\approx P(w_1)P(w_2\mid w_1)\dots P(w_n\mid w_{n-1})$$
 
 ---
 ### **Starting and Ending Sentences**
