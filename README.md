@@ -59,11 +59,11 @@ _Xử lý ngôn ngữ tự nhiên với phân loại và không gian vector_
 
 ---
 
-### **Module 02 - Natural Language Processing with Probabilistic Models**
+### [Module 02 - Natural Language Processing with Probabilistic Models](https://github.com/DazielNguyen/NLP301c/tree/main/Module%2002)
 
 _Xử lý ngôn ngữ tự nhiên với các mô hình xác suất_
 
-#### **Week 1: Autocorrect and Minimum Edit Distance**
+#### [Week 1: Autocorrect and Minimum Edit Distance](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Lessons_Notes_Module_02/Week_01.md)
 
 - Xây dựng model Autocorrect (tự động sửa lỗi chính tả)
 - Minimum Edit Distance (Khoảng cách chỉnh sửa tối thiểu)
@@ -71,7 +71,7 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình xác suất_
 - Insert, Delete, Switch, Replace operations
 - **Bài tập**: Triển khai autocorrect system
 
-#### **Week 2: Part of Speech Tagging and Hidden Markov Models**
+#### [Week 2: Part of Speech Tagging and Hidden Markov Models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Lessons_Notes_Module_02/Week_02.md)
 
 - Part of Speech (POS) Tagging
 - Markov Chains (Chuỗi Markov)
@@ -80,7 +80,7 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình xác suất_
 - Named Entity Recognition
 - **Bài tập**: Xây dựng POS tagger sử dụng HMM
 
-#### **Week 3: Autocomplete and Language Models**
+#### [Week 3: Autocomplete and Language Models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Lessons_Notes_Module_02/Week_03.md)
 
 - N-grams (Unigrams, Bigrams, Trigrams)
 - Language Models và tính xác suất câu
@@ -89,7 +89,7 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình xác suất_
 - Out-of-vocabulary words handling
 - **Bài tập**: Xây dựng autocomplete system sử dụng N-gram model
 
-#### **Week 4: Word Embeddings with Neural Networks**
+#### [Week 4: Word Embeddings with Neural Networks](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2002/Lessons_Notes_Module_02/Week_04.md)
 
 - Basic Word Representations (One-hot vectors)
 - Word2Vec và Continuous Bag of Words (CBOW)
@@ -100,11 +100,11 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình xác suất_
 
 ---
 
-### **Module 03 - Natural Language Processing with Sequence Models**
+### [Module 03 - Natural Language Processing with Sequence Models](https://github.com/DazielNguyen/NLP301c/tree/main/Module%2003)
 
 _Xử lý ngôn ngữ tự nhiên với các mô hình chuỗi_
 
-#### **Week 1: Recurrent Neural Networks for Language Modeling**
+#### [Week 1: Recurrent Neural Networks for Language Modeling](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Lessons_Notes_Module_03/Week_01.md)
 
 - Neural Networks cho Sentiment Analysis
 - Recurrent Neural Networks (RNNs)
@@ -113,7 +113,7 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình chuỗi_
 - Backpropagation Through Time (BPTT)
 - **Bài tập**: Xây dựng RNN cho sentiment classification
 
-#### **Week 2: LSTMs and Named Entity Recognition**
+#### [Week 2: LSTMs and Named Entity Recognition](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Lessons_Notes_Module_03/Week_02.md)
 
 - Long Short-Term Memory (LSTM) networks
 - Vanishing và Exploding Gradients problem
@@ -122,7 +122,7 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình chuỗi_
 - Gated Recurrent Units (GRUs)
 - **Bài tập**: Triển khai LSTM cho NER task
 
-#### **Week 3: Siamese Networks**
+#### [Week 3: Siamese Networks](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2003/Lessons_Notes_Module_03/Week_03.md)
 
 - Siamese Network Architecture
 - Similarity và distance metrics
@@ -133,11 +133,11 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình chuỗi_
 
 ---
 
-### **Module 04 - Natural Language Processing with Attention Models**
+### [Module 04 - Natural Language Processing with Attention Models](https://github.com/DazielNguyen/NLP301c/tree/main/Module%2004)
 
 _Xử lý ngôn ngữ tự nhiên với các mô hình attention_
 
-#### **Week 1: Neural Machine Translation**
+#### [Week 1: Neural Machine Translation](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Lessons_Notes_Module_04/Week_01.md)
 
 - Sequence-to-Sequence (Seq2Seq) models
 - Encoder-Decoder architecture
@@ -146,7 +146,7 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình attention_
 - BLEU Score để đánh giá dịch máy
 - **Bài tập**: Xây dựng neural machine translation system
 
-#### **Week 2: Text Summarization**
+#### [Week 2: Text Summarization](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Lessons_Notes_Module_04/Week_02.md)
 
 - Transformers Architecture
 - Multi-Head Attention
@@ -155,7 +155,7 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình attention_
 - Text Summarization (extractive và abstractive)
 - **Bài tập**: Triển khai text summarization với Transformers
 
-#### **Week 3: Question Answering**
+#### [Week 3: Question Answering](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2004/Lessons_Notes_Module_04/Week_03.md)
 
 - Transfer Learning trong NLP
 - BERT (Bidirectional Encoder Representations from Transformers)
