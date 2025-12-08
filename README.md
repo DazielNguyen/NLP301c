@@ -21,11 +21,11 @@ Khóa học này là một phần của **DeepLearning.AI** và được cung c�
 
 ## **Cấu trúc Repository**
 
-### **Module 01 - Natural Language Processing with Classification and Vector Spaces**
+### [Module 01 - Natural Language Processing with Classification and Vector Spaces](https://github.com/DazielNguyen/NLP301c/tree/main/Module%2001)
 
 _Xử lý ngôn ngữ tự nhiên với phân loại và không gian vector_
 
-#### **Week 1: Sentiment Analysis with Logistic Regression**
+#### [Week 1: Sentiment Analysis with Logistic Regression](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Lessons_Notes_Module_01/Week_01.md)
 
 - Phân tích tình cảm (Sentiment Analysis) sử dụng Logistic Regression
 - Biểu diễn văn bản dưới dạng vector
@@ -33,7 +33,7 @@ _Xử lý ngôn ngữ tự nhiên với phân loại và không gian vector_
 - Supervised Machine Learning và hàm chi phí
 - **Bài tập**: Xây dựng model phân loại sentiment cho Twitter data
 
-#### **Week 2: Sentiment Analysis with Naive Bayes**
+#### [Week 2: Sentiment Analysis with Naive Bayes](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Lessons_Notes_Module_01/Week_02.md)
 
 - Probability và Bayes' Rule (Quy tắc Bayes)
 - Conditional Probability (Xác suất có điều kiện)
@@ -41,7 +41,7 @@ _Xử lý ngôn ngữ tự nhiên với phân loại và không gian vector_
 - Laplacian Smoothing để xử lý từ chưa gặp
 - **Bài tập**: Triển khai Naive Bayes cho sentiment analysis
 
-#### **Week 3: Vector Space Models**
+#### [Week 3: Vector Space Models](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Lessons_Notes_Module_01/Week_03.md)
 
 - Word by Word và Word by Document design
 - Co-occurrence matrices (Ma trận đồng xuất hiện)
@@ -49,7 +49,7 @@ _Xử lý ngôn ngữ tự nhiên với phân loại và không gian vector_
 - PCA (Principal Component Analysis) để giảm chiều
 - **Bài tập**: Xây dựng vector space model để tìm từ tương tự
 
-#### **Week 4: Machine Translation and Document Search**
+#### [Week 4: Machine Translation and Document Search](https://github.com/DazielNguyen/NLP301c/blob/main/Module%2001/Lessons_Notes_Module_01/Week_04.md)
 
 - Transforming word vectors giữa các ngôn ngữ
 - Locality Sensitive Hashing (LSH)
