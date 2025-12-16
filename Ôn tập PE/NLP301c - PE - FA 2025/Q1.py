@@ -10,20 +10,40 @@
 # Input: "Cat dog cat Bird DOG bird dog"
 # Output: {'bird': 2, 'cat': 2, 'dog': 3}
 
-def word_frequency(text):
-    words = text.lower().split()
+def process(sentence)-> dict:
+    words = sentence.lower().split(' ')
     freq = {}
-    
-    for word in words:
-        if word in freq:
+    for word in words: 
+        if word in freq: 
             freq[word] += 1
-        else:
+        else: 
             freq[word] = 1
-    
-    sorted_freq = dict(sorted(freq.items()))
-    return sorted_freq
 
-text = "Cat dog cat Bird DOG bird dog"
-result = word_frequency(text)
-print(result)
+    result = dict(sorted(freq.items()))
+    
+    return result
+if __name__ == '__main__': 
+    text = "Cat dog cat Bird DOG bird dog"
+    print(process(text))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

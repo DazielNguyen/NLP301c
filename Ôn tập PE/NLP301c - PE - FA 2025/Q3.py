@@ -8,18 +8,57 @@
 # Example:
 # Input: "I bought 2apples and 3bananas but item#4 was missing"
 # Output: ['2apples', '3bananas']
-
-def extract_words_with_digits(text):
-    words = text.split()
+def process(sentence) -> list:
+    words = sentence.split(' ')
     result = []
-    
-    for word in words:
+    for word in words: 
         if any(char.isdigit() for char in word) and word.isalnum():
             result.append(word)
-    
+
     return result
+    
+
+if __name__ == '__main__':
+    text = "I bought 2apples and 3bananas but item#4 was missing"
+    print(process(text))
 
 
-text = "I bought 2apples and 3bananas but item#4 was missing"
-result = extract_words_with_digits(text)
-print(result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # words = text.split()
+    # result = []
+    
+    # for word in words:
+    #     if any(char.isdigit() for char in word) and word.isalnum():
+    #         result.append(word)
+    
+    # return result
