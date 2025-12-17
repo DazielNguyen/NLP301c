@@ -24,7 +24,29 @@ def most_frequent_substring(text, k):
     3. Count occurrences of each substring
     4. Find and return the most frequent one
     """
-    pass
+    # Edge case: nếu text ngắn hơn k
+    if len(text) < k:
+        return ""
+    
+    # Bước 1: Tạo dictionary đếm
+    freq = {}
+    
+    # Bước 2: Đếm tất cả substring
+    for i in range(len(text) - k + 1):
+        substring = text[i:i+k]
+        freq[substring] = freq.get(substring, 0) + 1
+    
+    # Bước 3: Tìm substring đầu tiên có max frequency
+    max_count = 0
+    result = ""
+    
+    for i in range(len(text) - k + 1):
+        substring = text[i:i+k]
+        if freq[substring] > max_count:  # Chỉ > không >=
+            max_count = freq[substring]
+            result = substring
+    
+    return result
 
 # Test cases
 if __name__ == "__main__":

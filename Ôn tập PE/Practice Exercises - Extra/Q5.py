@@ -22,6 +22,7 @@ def reverse_words(sentence: str) -> str:
     words = sentence.split(' ') # Tách thành một câu thành nhiều từ
     reversed = [word[::-1] for word in words] # Đảo từng từ lại
     result = ' '.join(reversed) # Sau đó dùng join ghép lại thành 1 câu
+    
     return result
 
 # Test cases

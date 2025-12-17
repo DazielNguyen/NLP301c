@@ -23,7 +23,15 @@ def remove_consecutive_duplicates(text):
     3. Iterate from second character onwards
     4. Add character only if different from previous
     """
-    pass
+    if not text: 
+        return ""
+    
+    result = text[0]
+
+    for i in range(1, len(text)): 
+        if text[i] != text[i-1]:
+            result += text[i]
+    return result
 
 # Test cases
 if __name__ == "__main__":
