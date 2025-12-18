@@ -1,3 +1,16 @@
+# Question 2: (2 marks)
+# Write a program to extract and print all the nouns present in the below text.
+# Hint: using spacy package
+# Example:
+# Input:
+# "James works at Microsoft. She lives in Manchester and likes to play the flute."
+# Output:
+# James
+# Microsoft
+# Manchester flute
+
+
+
 import nltk
 
 nltk.download("punkt")

@@ -1,3 +1,19 @@
+# Question 3: (3 marks)
+
+# Write a function that takes a text and a vocabulary as its arguments and 
+# returns the set of words that appear in the text and in the vocabulary. 
+# Both arguments can be represented as lists of strings.
+# Example:
+# Input:
+# text = 'a text and a vocabulary'
+# vocab = 'a vocabulary'
+# Output:
+# ['a', 'vocabulary']
+
+
+
+
+
 def find_common_words(text, vocabulary):
     if isinstance(text, str):
         text_words = set(text.split())

@@ -1,3 +1,20 @@
+# Question 3: # points
+# Write a Python program that takes a document as input and outputs a list of the named
+# entities (people, organizations, locations) in the document.
+# Hint: This requires using a named entity recognition library like spaCy.
+
+# Example:
+
+# Input:
+# A document: "Apple Inc. is an American multinational technology company. Its
+# headquarters are in Cupertino, California."
+
+# Output:
+# [l'Apple Inc.', 'ORG'), ('American', 'NORP'), ('Cupertino', 'GPE'), ('California', 'GPE')]
+
+
+
+
 import sys
 import subprocess
 

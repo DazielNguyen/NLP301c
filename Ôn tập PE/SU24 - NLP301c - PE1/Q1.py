@@ -1,14 +1,20 @@
+# Question 1: 2 points
+# Write a Python program that takes a sentence as input and outputs a list of the words in the sentence. 
+# Input:
+# A sentence: "The quick brown fox jumps over the lazy dog"
+# Desired Output:
+# ['The', 'quick', 'brown', 'Fox', "jumps', 'over', "the', 'lazy', 'dog')
+
+
+
 def sentence_to_word_list(sentence: str) -> list[str]:
-    # Remove leading and trailing whitespace, then split the sentence into words
     words = sentence.strip().split()
     
-    # Remove any punctuation from the words
     cleaned_words = [word.strip(".,!?\"'") for word in words]
     
     return cleaned_words
 
 def main() -> None:
-    # Hardcoded input sentence
     input_sentence = "The quick brown fox jumps over the lazy dog"
 
     # Process the sentence and get the list of words
