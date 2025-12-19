@@ -5,3 +5,19 @@
 # Example:
     # Input: "better apple assignment committee cool loop"
     # Output: ['better", 'committee', 'cool", loop]
+
+
+def process(sentence: str) -> list: 
+    words = sentence.split()
+    vowels = 'ueoaiUEOAI'
+    result = []
+
+    for word in words: 
+        if word[0] not in vowels: 
+            if len(word) != len(set(word)):
+                result.append(word)
+    return result
+if __name__ == '__main__': 
+    text = "better apple assignment committee cool loop"
+    print(process(text))
+

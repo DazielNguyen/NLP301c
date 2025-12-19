@@ -1,14 +1,14 @@
 # Question 1: (2 marks)
 # Write a program that counts the frequency of each word in a given text (ignoring case) 
 # and prints the result as a dictionary sorted alphabetically by word.
-# Input: A string containing the text.
-# Desired Output: A dictionary where
+    # Input: A string containing the text.
+    # Desired Output: A dictionary where
 # • keys= lowercase words
 # • values = counts
 # • dictionary sorted alphabetically by keys
 # Example:
-# Input: "Cat dog cat Bird DOG bird dog"
-# Output: {'bird': 2, 'cat': 2, 'dog': 3}
+    # Input: "Cat dog cat Bird DOG bird dog"
+    # Output: {'bird': 2, 'cat': 2, 'dog': 3}
 
 def process(sentence)-> dict:
     words = sentence.lower().split(' ')
