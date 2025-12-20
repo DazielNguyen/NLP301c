@@ -10,7 +10,8 @@
 
 def reverse_word_order(text: str) -> str:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    return ' '.join(reversed(words))
 
 if __name__ == '__main__':
     text = "Natural Language Processing is amazing"

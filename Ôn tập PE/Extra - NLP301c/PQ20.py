@@ -13,7 +13,27 @@
 
 def longest_common_prefix(text: str) -> str:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    
+    if not words:
+        return ""
+    
+    # Lấy từ đầu tiên làm reference
+    prefix = words[0]
+    
+    # So sánh với các từ khác
+    for word in words[1:]:
+        # Tìm prefix chung giữa prefix hiện tại và word
+        i = 0
+        while i < len(prefix) and i < len(word) and prefix[i] == word[i]:
+            i += 1
+        prefix = prefix[:i]
+        
+        # Nếu prefix rỗng thì dừng luôn
+        if not prefix:
+            return ""
+    
+    return prefix
 
 if __name__ == '__main__':
     test1 = "flower flowing flight"

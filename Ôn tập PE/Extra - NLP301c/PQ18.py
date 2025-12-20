@@ -11,7 +11,21 @@
 
 def group_by_length(text: str) -> dict:
     # TODO: Implement your solution here
-    pass
+    words = text.lower().split()
+    groups = {}
+    
+    for word in words:
+        length = len(word)
+        if length not in groups:
+            groups[length] = set()
+        groups[length].add(word)
+    
+    # Chuyển set thành list đã sắp xếp
+    result = {}
+    for length, word_set in groups.items():
+        result[length] = sorted(list(word_set))
+    
+    return result
 
 if __name__ == '__main__':
     text = "The cat and the dog ran to the big red car"

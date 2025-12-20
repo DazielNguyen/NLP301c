@@ -11,7 +11,17 @@
 
 def process(text: str, stop_words: list) -> list:
     # TODO: Implement your solution here
-    pass
+    words = text.lower().split()
+    result = []
+    seen = set()
+    stop_words_set = set(word.lower() for word in stop_words)
+    
+    for word in words:
+        if word not in stop_words_set and word not in seen:
+            result.append(word)
+            seen.add(word)
+    
+    return result
 
 if __name__ == '__main__':
     text = "The quick brown fox jumps over the lazy dog and the fox runs fast"

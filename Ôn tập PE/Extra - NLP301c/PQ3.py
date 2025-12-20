@@ -11,9 +11,30 @@
 # - Use string.punctuation
 # - Use str.translate() and str.maketrans()
 
+
+# Solution 1: Không dùng thư viện String
+
 def process(text: str) -> str:
     # TODO: Implement your solution here
-    pass
+    punctuation = "'!`~@#$%^&*()_-+=[|]{\}.,<>?/""'''"
+    result = []
+    words = text.lower().split()
+    for word in words: 
+        clean_word = ""
+        for char in word:
+            if char not in punctuation: 
+                clean_word += char
+        if clean_word:
+            result.append(clean_word)
+    return ' '.join(result)
+
+
+# Solution 2: Dùng thư viện String
+# import string
+# def process_v2(text: str) -> str:
+#     translator = str.maketrans('', '', string.punctuation)
+#     return text.lower().translate(translator)
+
 
 if __name__ == '__main__':
     text = "Hello, World! This is a Test... How are you?"

@@ -16,7 +16,29 @@
 
 def process(text: str) -> list:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    vowels = 'aeiouAEIOU'
+    result = []
+    
+    for word in words:
+        # Kiểm tra chỉ chứa alphanumeric
+        if not word.isalnum():
+            continue
+        
+        # Kiểm tra có vowel và digit
+        has_vowel = False
+        has_digit = False
+        
+        for char in word:
+            if char in vowels:
+                has_vowel = True
+            if char.isdigit():
+                has_digit = True
+        
+        if has_vowel and has_digit:
+            result.append(word)
+    
+    return result
 
 if __name__ == '__main__':
     text = "user123 has admin456 access but item#789 was blocked. test7abc works!"

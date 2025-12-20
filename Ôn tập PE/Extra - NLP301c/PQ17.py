@@ -14,7 +14,16 @@
 
 def extract_nth_words(text: str, n: int, m: int) -> list:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    result = []
+    
+    # Bắt đầu từ vị trí m, lấy mỗi từ thứ n
+    index = m
+    while index < len(words):
+        result.append(words[index])
+        index += n
+    
+    return result
 
 if __name__ == '__main__':
     text = "The quick brown fox jumps over the lazy dog near the river"

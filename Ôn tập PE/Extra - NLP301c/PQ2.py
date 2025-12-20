@@ -12,7 +12,9 @@
 
 def process(text: str) -> str:
     # TODO: Implement your solution here
-    pass
+    words = text.lower().split()
+    result = ' '.join(words)
+    return result
 
 if __name__ == '__main__':
     text = "   HELLO    World   FROM    Python   "

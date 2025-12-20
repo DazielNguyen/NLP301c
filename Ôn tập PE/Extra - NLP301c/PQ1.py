@@ -13,9 +13,19 @@
 # - Use NLTK's word_tokenize for words
 # - nltk.download('punkt') if needed
 
+import nltk 
+from nltk.tokenize import word_tokenize, sent_tokenize
+nltk.download('punkt')
+
 def process(text: str) -> list:
     # TODO: Implement your solution here
-    pass
+
+    sentences = sent_tokenize(text) # Tách thành các câu nhỏ
+    result = [] 
+    for sentence in sentences: 
+        tokens = word_tokenize(sentence) # Tách các từ trong các câu nhỏ
+        result.append(tokens) # Thêm các câu vào list
+    return result
 
 if __name__ == '__main__':
     text = "Hello world! How are you today? I am learning NLP."

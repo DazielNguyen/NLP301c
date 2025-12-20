@@ -11,7 +11,23 @@
 
 def process(text: str) -> list:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    palindromes = set()
+    
+    for word in words:
+        # Loại bỏ dấu câu
+        clean_word = ''
+        for char in word:
+            if char.isalpha():
+                clean_word += char
+        
+        if clean_word:
+            word_lower = clean_word.lower()
+            # Kiểm tra palindrome
+            if word_lower == word_lower[::-1]:
+                palindromes.add(word_lower)
+    
+    return sorted(list(palindromes))
 
 if __name__ == '__main__':
     text = "Mom and Dad saw a racecar at noon. The kayak was level on the water."

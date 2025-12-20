@@ -12,7 +12,26 @@
 
 def process(text: str) -> list:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    vowels = 'aeiouAEIOU'
+    result = []
+    seen = set()
+    
+    for word in words:
+        # Loại bỏ dấu câu
+        clean_word = ''
+        for char in word:
+            if char.isalpha():
+                clean_word += char
+        
+        # Kiểm tra điều kiện
+        if clean_word and len(clean_word) > 3 and clean_word[0] in vowels:
+            word_lower = clean_word.lower()
+            if word_lower not in seen:
+                result.append(word_lower)
+                seen.add(word_lower)
+    
+    return result
 
 if __name__ == '__main__':
     text = "An elephant is an intelligent animal. Every elephant eats plants."

@@ -10,7 +10,21 @@
 
 def process(text: str) -> list:
     # TODO: Implement your solution here
-    pass
+    words = text.lower().split()
+    freq = {}
+    
+    # Đếm frequency
+    for word in words:
+        if word in freq:
+            freq[word] += 1
+        else:
+            freq[word] = 1
+    
+    # Sắp xếp theo frequency giảm dần, nếu bằng nhau thì theo alphabet
+    sorted_items = sorted(freq.items(), key=lambda x: (-x[1], x[0]))
+    
+    # Lấy top 3
+    return sorted_items[:3]
 
 if __name__ == '__main__':
     text = "the quick brown fox jumps over the lazy dog the fox is quick"

@@ -10,7 +10,24 @@
 
 def snake_to_camel(names: list) -> list:
     # TODO: Implement your solution here
-    pass
+    result = []
+    
+    for name in names:
+        # Tách theo underscore
+        parts = name.split('_')
+        
+        # Nếu không có underscore, giữ nguyên nhưng lowercase
+        if len(parts) == 1:
+            result.append(name.lower())
+        else:
+            # Phần đầu tiên giữ lowercase, các phần khác capitalize
+            camel = parts[0].lower()
+            for part in parts[1:]:
+                if part:  # Kiểm tra không rỗng
+                    camel += part.capitalize()
+            result.append(camel)
+    
+    return result
 
 if __name__ == '__main__':
     names = ["hello_world", "natural_language_processing", "python_is_fun", "already_in_camelCase"]

@@ -13,7 +13,19 @@
 
 def process(text: str) -> float:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    
+    # Lọc từ có độ dài >= 3
+    filtered_words = [word for word in words if len(word) >= 3]
+    
+    # Tính trung bình
+    if len(filtered_words) == 0:
+        return 0.0
+    
+    total_length = sum(len(word) for word in filtered_words)
+    average = total_length / len(filtered_words)
+    
+    return round(average, 2)
 
 if __name__ == '__main__':
     text = "I am learning natural language processing with Python"

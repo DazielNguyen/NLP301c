@@ -14,7 +14,17 @@
 
 def smart_title_case(text: str) -> str:
     # TODO: Implement your solution here
-    pass
+    words = text.split()
+    result = []
+    
+    for word in words:
+        # Kiểm tra xem có phải tất cả chữ hoa không (acronym)
+        if word.isupper():
+            result.append(word)
+        else:
+            result.append(word.capitalize())
+    
+    return ' '.join(result)
 
 if __name__ == '__main__':
     text = "hello from NASA and FBI headquarters in USA"

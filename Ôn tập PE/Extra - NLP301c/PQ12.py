@@ -14,7 +14,20 @@
 
 def is_isogram(text: str) -> bool:
     # TODO: Implement your solution here
-    pass
+    # Chỉ lấy chữ cái, chuyển thành lowercase
+    letters = ''
+    for char in text:
+        if char.isalpha():
+            letters += char.lower()
+    
+    # Kiểm tra xem có chữ nào lặp lại không
+    seen = set()
+    for letter in letters:
+        if letter in seen:
+            return False
+        seen.add(letter)
+    
+    return True
 
 if __name__ == '__main__':
     test1 = "Dermatoglyphics"
