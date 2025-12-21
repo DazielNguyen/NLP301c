@@ -9,6 +9,7 @@
 6. [Chuyển đổi Format](#6-chuyển-đổi-format)
 7. [Sửa lỗi Chính tả](#7-sửa-lỗi-chính-tả)
 8. [Thao tác với List và Dictionary](#8-thao-tác-với-list-và-dictionary)
+9. [N-grams: Bigrams, Trigrams và Anagrams](#9-n-grams-bigrams-trigrams-và-anagrams)
 
 ---
 
@@ -490,6 +491,362 @@ sorted_data = sorted(data, key=lambda x: (-x[1], x[0]))
 - `lambda x: expression`: hàm ẩn danh (anonymous function)
 - `lambda x: (x[1], x[0])`: sắp xếp theo phần tử thứ 2, sau đó phần tử thứ 1
 - `-x[1]`: đảo dấu để sắp xếp giảm dần
+
+---
+
+## 9. N-grams: Bigrams, Trigrams và Anagrams
+
+### 9.1. Bigrams (2-grams)
+**Mục đích**: Tạo cặp từ liên tiếp trong văn bản
+
+```python
+# Cách 1: Dùng NLTK
+from nltk import bigrams
+from nltk.tokenize import word_tokenize
+
+text = "Natural Language Processing is amazing"
+tokens = word_tokenize(text)
+bigrams_list = list(bigrams(tokens))
+# [('Natural', 'Language'), ('Language', 'Processing'), 
+#  ('Processing', 'is'), ('is', 'amazing')]
+
+# Cách 2: Dùng list comprehension
+def get_bigrams(tokens):
+    return [(tokens[i], tokens[i+1]) for i in range(len(tokens)-1)]
+
+bigrams_list = get_bigrams(tokens)
+
+# Cách 3: Dùng zip
+def get_bigrams_zip(tokens):
+    return list(zip(tokens[:-1], tokens[1:]))
+
+bigrams_list = get_bigrams_zip(tokens)
+```
+
+**Ứng dụng của Bigrams**:
+```python
+# Đếm tần suất bigrams
+from collections import Counter
+
+text = "I love Python. I love programming. Python is great."
+tokens = word_tokenize(text.lower())
+bigrams_list = list(bigrams(tokens))
+bigram_freq = Counter(bigrams_list)
+
+print(bigram_freq.most_common(3))
+# [(('i', 'love'), 2), ('love', 'python'), (1), ('.', 'i'), (1)]
+
+# Tính xác suất bigram (Language Model cơ bản)
+def bigram_probability(word1, word2, bigram_counts, word_counts):
+    bigram_count = bigram_counts.get((word1, word2), 0)
+    word1_count = word_counts.get(word1, 0)
+    
+    if word1_count == 0:
+        return 0
+    return bigram_count / word1_count
+
+# Ví dụ: P(Language | Natural)
+word_counts = Counter(tokens)
+bigram_counts = Counter(bigrams_list)
+prob = bigram_probability('natural', 'language', bigram_counts, word_counts)
+```
+
+### 9.2. Trigrams (3-grams)
+**Mục đích**: Tạo bộ ba từ liên tiếp trong văn bản
+
+```python
+# Cách 1: Dùng NLTK
+from nltk import trigrams
+from nltk.tokenize import word_tokenize
+
+text = "Natural Language Processing is amazing"
+tokens = word_tokenize(text)
+trigrams_list = list(trigrams(tokens))
+# [('Natural', 'Language', 'Processing'), 
+#  ('Language', 'Processing', 'is'), 
+#  ('Processing', 'is', 'amazing')]
+
+# Cách 2: Dùng list comprehension
+def get_trigrams(tokens):
+    return [(tokens[i], tokens[i+1], tokens[i+2]) 
+            for i in range(len(tokens)-2)]
+
+trigrams_list = get_trigrams(tokens)
+
+# Cách 3: Dùng zip
+def get_trigrams_zip(tokens):
+    return list(zip(tokens[:-2], tokens[1:-1], tokens[2:]))
+
+trigrams_list = get_trigrams_zip(tokens)
+```
+
+**Ứng dụng của Trigrams**:
+```python
+# Text generation với trigrams
+from collections import defaultdict
+import random
+
+def build_trigram_model(text):
+    tokens = word_tokenize(text.lower())
+    trigrams_list = list(trigrams(tokens))
+    
+    # Tạo dictionary: (word1, word2) -> [word3, word3, ...]
+    model = defaultdict(list)
+    for w1, w2, w3 in trigrams_list:
+        model[(w1, w2)].append(w3)
+    
+    return model
+
+def generate_text(model, start_words, length=10):
+    w1, w2 = start_words
+    result = [w1, w2]
+    
+    for _ in range(length):
+        if (w1, w2) not in model:
+            break
+        w3 = random.choice(model[(w1, w2)])
+        result.append(w3)
+        w1, w2 = w2, w3
+    
+    return ' '.join(result)
+
+# Ví dụ
+text = "I love Python. Python is great. I love programming. Programming is fun."
+model = build_trigram_model(text)
+generated = generate_text(model, ('i', 'love'), 5)
+# Có thể tạo: "i love python . python is"
+```
+
+### 9.3. N-grams Tổng quát
+**Mục đích**: Tạo chuỗi n phần tử liên tiếp
+
+```python
+# Cách 1: Dùng NLTK (khuyến nghị)
+from nltk import ngrams
+
+text = "Natural Language Processing"
+tokens = word_tokenize(text)
+
+# Unigrams (1-gram)
+unigrams = list(ngrams(tokens, 1))
+# [('Natural',), ('Language',), ('Processing',)]
+
+# Bigrams (2-gram)
+bigrams = list(ngrams(tokens, 2))
+
+# Trigrams (3-gram)
+trigrams = list(ngrams(tokens, 3))
+
+# 4-grams
+fourgrams = list(ngrams(tokens, 4))
+
+# Cách 2: Tự implement
+def get_ngrams(tokens, n):
+    return [tuple(tokens[i:i+n]) for i in range(len(tokens)-n+1)]
+
+# Ví dụ
+fourgrams = get_ngrams(tokens, 4)
+```
+
+**N-gram với Character Level**:
+```python
+# Character-level n-grams (hữu ích cho spell checking)
+def char_ngrams(word, n):
+    # Thêm padding
+    padded = '#' * (n-1) + word + '#' * (n-1)
+    return [padded[i:i+n] for i in range(len(padded)-n+1)]
+
+# Ví dụ
+word = "hello"
+bigrams_char = char_ngrams(word, 2)
+# ['#h', 'he', 'el', 'll', 'lo', 'o#']
+
+trigrams_char = char_ngrams(word, 3)
+# ['##h', '#he', 'hel', 'ell', 'llo', 'lo#', 'o##']
+```
+
+### 9.4. Anagrams (Chữ cái đảo)
+**Mục đích**: Tìm các từ có cùng ký tự nhưng thứ tự khác nhau
+
+```python
+# Kiểm tra 2 từ có phải anagram không
+def is_anagram(word1, word2):
+    # Cách 1: So sánh sorted
+    return sorted(word1.lower()) == sorted(word2.lower())
+
+# Ví dụ
+print(is_anagram("listen", "silent"))  # True
+print(is_anagram("hello", "world"))    # False
+
+# Cách 2: Dùng Counter
+from collections import Counter
+
+def is_anagram_counter(word1, word2):
+    return Counter(word1.lower()) == Counter(word2.lower())
+
+print(is_anagram_counter("Dormitory", "Dirty room"))  # False (có space)
+print(is_anagram_counter("dormitory", "dirtyroom"))   # True
+```
+
+**Tìm tất cả anagrams trong danh sách từ**:
+```python
+from collections import defaultdict
+
+def find_anagrams(words):
+    anagram_groups = defaultdict(list)
+    
+    for word in words:
+        # Dùng sorted string làm key
+        key = ''.join(sorted(word.lower()))
+        anagram_groups[key].append(word)
+    
+    # Chỉ lấy nhóm có > 1 từ
+    result = [group for group in anagram_groups.values() if len(group) > 1]
+    return result
+
+# Ví dụ
+words = ["listen", "silent", "enlist", "hello", "world", "god", "dog"]
+anagram_groups = find_anagrams(words)
+print(anagram_groups)
+# [['listen', 'silent', 'enlist'], ['god', 'dog']]
+```
+
+**Tìm anagrams trong câu**:
+```python
+def sentence_anagrams(text1, text2):
+    # Loại bỏ space và punctuation, chỉ giữ chữ cái
+    clean1 = ''.join(c.lower() for c in text1 if c.isalpha())
+    clean2 = ''.join(c.lower() for c in text2 if c.isalpha())
+    
+    return sorted(clean1) == sorted(clean2)
+
+# Ví dụ
+print(sentence_anagrams("Dormitory", "Dirty room"))  # True
+print(sentence_anagrams("The Eyes", "They See"))     # True
+print(sentence_anagrams("A gentleman", "Elegant man"))  # True
+```
+
+**Tìm anagram sử dụng dictionary**:
+```python
+def find_anagram_words(word, dictionary):
+    """
+    Tìm tất cả anagram của word trong dictionary
+    """
+    word_sorted = ''.join(sorted(word.lower()))
+    anagrams = []
+    
+    for dict_word in dictionary:
+        if ''.join(sorted(dict_word.lower())) == word_sorted:
+            if dict_word.lower() != word.lower():  # Loại bỏ chính nó
+                anagrams.append(dict_word)
+    
+    return anagrams
+
+# Ví dụ
+dictionary = ["listen", "silent", "enlist", "inlets", "hello", "world"]
+word = "listen"
+result = find_anagram_words(word, dictionary)
+print(result)  # ['silent', 'enlist', 'inlets']
+```
+
+### 9.5. Ứng dụng thực tế
+
+**1. Language Model với Bigrams/Trigrams**:
+```python
+# Dự đoán từ tiếp theo
+def predict_next_word(model, w1, w2):
+    """Dự đoán từ tiếp theo dựa trên trigram model"""
+    if (w1, w2) in model:
+        # Lấy từ phổ biến nhất
+        candidates = Counter(model[(w1, w2)])
+        return candidates.most_common(1)[0][0]
+    return None
+
+# Text completion
+def complete_sentence(model, start_words, max_length=20):
+    """Hoàn thành câu dựa trên trigram model"""
+    w1, w2 = start_words
+    sentence = [w1, w2]
+    
+    for _ in range(max_length):
+        next_word = predict_next_word(model, w1, w2)
+        if next_word is None or next_word == '.':
+            break
+        sentence.append(next_word)
+        w1, w2 = w2, next_word
+    
+    return ' '.join(sentence)
+```
+
+**2. Spell Checking với Character N-grams**:
+```python
+def edit_distance_ngrams(word1, word2, n=2):
+    """Tính similarity dựa trên character n-grams"""
+    ngrams1 = set(char_ngrams(word1, n))
+    ngrams2 = set(char_ngrams(word2, n))
+    
+    # Jaccard similarity
+    intersection = len(ngrams1 & ngrams2)
+    union = len(ngrams1 | ngrams2)
+    
+    return intersection / union if union > 0 else 0
+
+def find_similar_words(target, dictionary, n=2, threshold=0.5):
+    """Tìm từ tương tự trong dictionary"""
+    similar = []
+    for word in dictionary:
+        similarity = edit_distance_ngrams(target, word, n)
+        if similarity >= threshold:
+            similar.append((word, similarity))
+    
+    return sorted(similar, key=lambda x: x[1], reverse=True)
+
+# Ví dụ
+dictionary = ["hello", "hallo", "hullo", "world", "help"]
+similar = find_similar_words("helo", dictionary, threshold=0.3)
+print(similar)  # [('hello', 0.6), ('help', 0.4), ...]
+```
+
+**3. Anagram Games và Puzzles**:
+```python
+def anagram_solver(letters, dictionary):
+    """Tìm tất cả từ có thể tạo từ các chữ cái cho trước"""
+    letters_sorted = ''.join(sorted(letters.lower()))
+    possible_words = []
+    
+    for word in dictionary:
+        word_sorted = ''.join(sorted(word.lower()))
+        # Kiểm tra word_sorted có phải substring của letters_sorted
+        if all(word_sorted.count(c) <= letters_sorted.count(c) for c in set(word_sorted)):
+            possible_words.append(word)
+    
+    return possible_words
+
+# Ví dụ: Scrabble helper
+letters = "programming"
+dictionary = ["gram", "program", "ram", "pro", "ring", "map"]
+words = anagram_solver(letters, dictionary)
+print(words)  # ['gram', 'program', 'ram', 'pro', 'ring', 'map']
+```
+
+### 9.6. N-grams Comparison Table
+
+| Type | Size | Example | Use Case |
+|------|------|---------|----------|
+| Unigram | 1 | ('hello',) | Bag of words, frequency analysis |
+| Bigram | 2 | ('hello', 'world') | Basic language model, collocation |
+| Trigram | 3 | ('hello', 'world', '!') | Better language model, context |
+| 4-gram | 4 | ('natural', 'language', 'processing', 'is') | Advanced language model |
+| Char-ngram | n chars | 'he', 'el', 'll', 'lo' | Spell checking, similarity |
+
+### 9.7. Tips cho N-grams
+
+1. **Bigrams**: Tốt cho phát hiện cụm từ thường gặp (collocations)
+2. **Trigrams**: Cân bằng giữa context và sparsity
+3. **Higher n-grams**: Nhiều context nhưng dữ liệu sparse
+4. **Character n-grams**: Tốt cho spell checking, language detection
+5. **Smoothing**: Quan trọng để xử lý unseen n-grams
+6. **Padding**: Thêm start/end tokens cho sentence boundaries
 
 ---
 

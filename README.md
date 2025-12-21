@@ -166,12 +166,147 @@ _Xử lý ngôn ngữ tự nhiên với các mô hình attention_
 
 ---
 
+## **Ôn tập PE (Practice Exam)**
+
+Repository này bao gồm tài liệu ôn tập và đề thi từ các kỳ trước, giúp bạn chuẩn bị tốt cho kỳ thi:
+
+### [Knowledge Base - Tổng hợp kiến thức NLP](https://github.com/DazielNguyen/NLP301c/blob/main/%C3%94n%20t%E1%BA%ADp%20PE/Knowledge.md)
+
+Tài liệu tổng hợp toàn diện các kỹ thuật xử lý chuỗi và câu trong NLP:
+- **Tách từ và Tokenization**: word_tokenize, sent_tokenize, NLTK
+- **Xử lý và Làm sạch Chuỗi**: lowercase, remove punctuation, strip whitespace
+- **Đếm và Thống kê Từ**: frequency distribution, sorting
+- **Lọc và Trích xuất Từ**: filtering, pattern matching
+- **Kiểm tra và Xác thực Chuỗi**: palindrome, isogram, validation
+- **Chuyển đổi Format**: snake_case, camelCase, title case
+- **Sửa lỗi Chính tả**: TextBlob spell correction
+- **Thao tác với List và Dictionary**: slicing, sorting, lambda functions
+- **N-grams: Bigrams, Trigrams và Anagrams**: Language models, text generation, spell checking
+- **NLTK Library Cheatsheet**: Tokenization, stemming, lemmatization, POS tagging, NER, sentiment analysis
+
+### Extra Practice Questions (PQ1-PQ20)
+
+[Bộ câu hỏi thực hành bổ sung](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/Extra%20-%20NLP301c) với 20 câu hỏi từ cơ bản đến nâng cao:
+- **PQ1**: Tokenize paragraph thành sentences và words
+- **PQ2**: Normalize text (lowercase, remove whitespace)
+- **PQ3**: Remove punctuation không dùng thư viện string
+- **PQ4**: Count word frequency, filter và sort
+- **PQ5**: Top 3 most frequent words
+- **PQ6**: Average word length (exclude short words)
+- **PQ7**: Extract words starting with vowel
+- **PQ8**: Extract words with vowel và digit
+- **PQ9**: Extract unique words, exclude stop words
+- **PQ10**: Extract email addresses
+- **PQ11**: Find palindrome words
+- **PQ12**: Check isogram
+- **PQ13**: Validate Python variable names
+- **PQ14**: Convert snake_case to camelCase
+- **PQ15**: Smart title case preserving acronyms
+- **PQ16**: Reverse word order
+- **PQ17**: Extract every nth word
+- **PQ18**: Group words by length
+- **PQ19**: Multi-criteria sorting
+- **PQ20**: Longest common prefix
+
+### Đề thi các kỳ trước
+
+#### **Fall 2024 (FA24)**
+- **[FA24 - Practice Exam](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/FA24%20-%20NLP301c%20-%20PE)**
+  - Mã đề: NLP301c-FA24-PE
+  - Nội dung: Tokenization, sentiment analysis, text processing
+  
+- **[FA24 - Retake Exam](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/FA24%20-%20NLP301c%20-%20RE)**
+  - Mã đề: NLP301c-FA24-RE
+  - Nội dung: String manipulation, word frequency, filtering
+
+#### **Fall 2025 (FA25)**
+- **[FA25 - Practice Exam](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/FA25%20-%20NLP301c%20-%20PE)**
+  - Mã đề: NLP301c-FA25-PE
+  - Nội dung: Advanced text processing, pattern matching
+  
+- **[FA25 - Practice Exam 2](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/FA25%20-%20NLP301c%20-%20PE2)**
+  - Mã đề: NLP301c-FA25-PE2
+  - Nội dung: NLTK applications, word embeddings
+
+#### **Spring 2024 (SP24)**
+- **[SP24 - Practice Exam 1](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/SP24%20-%20NLP301c%20-%20PE1)**
+  - Mã đề: NLP301c-SP24-PE1
+  - Nội dung: Basic tokenization, frequency analysis
+  
+- **[SP24 - Practice Exam 2](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/SP24%20-%20NLP301c%20-%20PE2)**
+  - Mã đề: NLP301c-SP24-PE2
+  - Nội dung: Text cleaning, validation, formatting
+
+#### **Summer 2024 (SU24)**
+- **[SU24 - Practice Exam 1](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/SU24%20-%20NLP301c%20-%20PE1)**
+  - Mã đề: NLP301c-SU24-PE1
+  - Nội dung: String operations, text transformation
+
+#### **Summer 2025 (SU25)**
+- **[SU25 - Practice Exam](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/SU25%20-%20NLP301c%20-%20PE)**
+  - Mã đề: NLP301c-SU25-PE
+  - Nội dung: Comprehensive NLP techniques
+  
+- **[SU25 - Retake Exam](https://github.com/DazielNguyen/NLP301c/tree/main/%C3%94n%20t%E1%BA%ADp%20PE/SU25%20-%20NLP301c%20-%20RE)**
+  - Mã đề: NLP301c-SU25-RE
+  - Nội dung: Problem solving with NLTK
+
+### Tips cho Practice Exam
+
+1. **Nắm vững cơ bản**: Tokenization, lowercase, split(), join()
+2. **Thành thạo NLTK**: word_tokenize(), sent_tokenize(), stopwords
+3. **Xử lý dictionary**: Đếm tần suất, sorting với lambda
+4. **List comprehension**: Viết code ngắn gọn và hiệu quả
+5. **String methods**: strip(), replace(), startswith(), endswith()
+6. **Regex patterns**: Cho pattern matching phức tạp
+7. **Practice coding**: Làm hết các đề PQ1-PQ20 và đề các kỳ trước
+
+---
+
+## **Ôn tập FE (Final Exam)**
+
+Tổng hợp các đề thi Final Exam từ 2023-2025 trên Quizlet để ôn tập lý thuyết:
+
+### Đề thi Final Exam các kỳ
+
+- **[NLP301c - SU23 - FE](https://quizlet.com/vn/1124363658/nlp301c-su23-fe-flash-cards/)** - Summer 2023
+  - Lý thuyết cơ bản về NLP, tokenization, word embeddings
+  
+- **[NLP301c - SP24 - FE](https://quizlet.com/vn/1124364086/nlp301c-sp24-fe-flash-cards/)** - Spring 2024
+  - Vector spaces, probabilistic models, sentiment analysis
+  
+- **[NLP301c - SP24 - FE Retake](https://quizlet.com/vn/1124361416/nlp301c-sp24-fe-retake-flash-cards/)** - Spring 2024 Retake
+  - Autocorrect, edit distance, language models
+  
+- **[NLP301c - FA24 - FE 1](https://quizlet.com/vn/1124365513/nlp301c-fa24-fe-1-flash-cards/)** - Fall 2024 Exam 1
+  - RNNs, LSTMs, sequence models
+  
+- **[NLP301c - FA24 - FE 2](https://quizlet.com/vn/1124366281/nlp301c-fa24-fe-2-flash-cards/)** - Fall 2024 Exam 2
+  - Attention mechanisms, transformers
+  
+- **[NLP301c - SU25 - FE](https://quizlet.com/vn/1124366683/nlp301c-su25-fe-flash-cards/)** - Summer 2025
+  - Comprehensive review, all modules
+  
+- **[NLP301c - FA25 - FE](https://quizlet.com/vn/1124381752/nlp301c-fe-fa25-flash-cards/)** - Fall 2025
+  - Latest exam, BERT, T5, question answering
+
+### Tips cho Final Exam
+
+1. **Ôn lý thuyết**: Nắm vững concepts từ cả 4 modules
+2. **Flashcards**: Sử dụng Quizlet để học thuộc định nghĩa và công thức
+3. **So sánh models**: Hiểu rõ ưu/nhược điểm của từng model (Naive Bayes vs Logistic Regression, RNN vs LSTM, etc.)
+4. **Math formulas**: Ghi nhớ các công thức xác suất, cosine similarity, perplexity
+5. **Architectures**: Vẽ và giải thích được kiến trúc của RNN, LSTM, Transformer
+6. **Applications**: Biết ứng dụng của từng technique trong thực tế
+7. **Practice**: Làm hết các đề từ 2023-2025 trên Quizlet
+
+---
+
 ## **Tài liệu bổ sung**
 
 - **`utils.py`**: Các hàm tiện ích dùng chung cho các bài tập
 - **`requirements.txt`**: Danh sách thư viện Python cần thiết
 - **`npl-env/`**: Virtual environment cho project
-- **`Ôn tập PE/`**: Tài liệu ôn tập cho các kỳ thi Practice Exam
 
 ## **Công nghệ sử dụng**
 
